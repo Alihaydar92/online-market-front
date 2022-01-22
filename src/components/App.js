@@ -12,6 +12,7 @@ import {
 // import { listOfCustomers } from "../redux/actions/customerAction";
 import CustomerTable from "../components/Customer/CustomerTable";
 import ExpeditorTable from "../components/Expeditor/ExpeditorTable";
+import ProductTable from "./Product/ProductTable";
 const { Footer, Content, Sider, Header } = Layout;
 const { SubMenu } = Menu;
 export default function App() {
@@ -75,6 +76,7 @@ export default function App() {
         <Content>
           <CustomerTable></CustomerTable>
           <ExpeditorTable></ExpeditorTable>
+          <ProductTable></ProductTable>
         </Content>
 
         <Footer>Footer</Footer>

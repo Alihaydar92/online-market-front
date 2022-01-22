@@ -10,5 +10,8 @@ export default{
     expeditorListData:[],
     expeditorDataById:{},
     expeditorUpdateData:{},
-    expeditorAddData:{} 
+    expeditorAddData:{} ,
+
+    productListData:[],
+    productDataById:{}
 }

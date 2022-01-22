@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Button, Form, Input } from "antd";
 import { updateCustomer,listOfCustomers } from "../../redux/actions/customerAction";
 
-export default function CustomerAddEdit(props) {
+export default function CustomerEdit(props) {
   const dispatch = useDispatch();
   const customerDataById = useSelector(
     (state) => state.customerReducer.customerDataById
