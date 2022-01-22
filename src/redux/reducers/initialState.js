@@ -13,5 +13,8 @@ export default{
     expeditorAddData:{} ,
 
     productListData:[],
-    productDataById:{}
+    productDataById:{},
+    productDeleteData:{},
+
+    categoryListData:[]
 }

@@ -1,6 +1,23 @@
-import React from "react";
-import { Form, Input, Button, InputNumber,Select } from "antd";
+import React, { useEffect } from "react";
+import { Form, Input, Button, InputNumber, Select } from "antd";
+import {
+  addCategory,
+  listOfCategories,
+} from "../../redux/actions/categoryActions";
+import { useDispatch, useSelector } from "react-redux";
+const { Option } = Select;
 export default function ProductAdd() {
+  const dispatch = useDispatch();
+  const listOfCategoryData = useSelector(
+    (state) => state.categoryReducers.categoryListData
+  );
+  useEffect(() => {
+    dispatch(listOfCategories());
+  }, []);
+
+  useEffect(() => {
+    console.log("listOfCategoryData ", listOfCategoryData);
+  });
   return (
     <div>
       <Form
@@ -67,17 +84,23 @@ export default function ProductAdd() {
         </Form.Item>
         <Form.Item
           label="Kateqoriya"
-          name="categoryDto.name"
+          name="categoryName"
           rules={[{ required: false, message: "Kateqoriyani seçin!" }]}
         >
-          <Select />
+          <Select>
+            {listOfCategoryData.map((categoryData) => (
+              <Option key={categoryData.id} value={categoryData.name}>
+                {categoryData.name}
+              </Option>
+            ))}
+          </Select>
         </Form.Item>
         <Form.Item
           label="Xüsusiyyət"
-          name="categoryDto.name"
+          name="propertyName"
           rules={[{ required: false, message: "Xüsusiyyəti seçin!" }]}
         >
-          <Select />
+          <Select></Select>
         </Form.Item>
         {/* <Form.Item
           label="Satış strategiyası"
