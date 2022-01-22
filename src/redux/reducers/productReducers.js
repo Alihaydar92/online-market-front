@@ -23,6 +23,12 @@ export default function productReducers(state = initialState, action) {
         productDeleteData: action.payload,
       };
     }
+    case actionTypes.ADD_PRODUCT: {
+      return {
+        ...state,
+        productAddData: action.payload,
+      };
+    }
     default:
       return state;
   }

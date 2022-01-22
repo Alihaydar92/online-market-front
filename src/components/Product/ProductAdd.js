@@ -1,27 +1,57 @@
 import React, { useEffect } from "react";
 import { Form, Input, Button, InputNumber, Select } from "antd";
-import {
-  addCategory,
-  listOfCategories,
-} from "../../redux/actions/categoryActions";
+import { listOfCategories } from "../../redux/actions/categoryActions";
+import { listOfProperties } from "../../redux/actions/propertyActions";
+import { addProduct,listOfProducts} from "../../redux/actions/productActions";
 import { useDispatch, useSelector } from "react-redux";
 const { Option } = Select;
-export default function ProductAdd() {
+export default function ProductAdd(props) {
   const dispatch = useDispatch();
-  const listOfCategoryData = useSelector(
+
+  const [form ] =Form.useForm();
+   const listOfCategoryData = useSelector(
     (state) => state.categoryReducers.categoryListData
+  );
+
+  const listOfPropertyData = useSelector(
+    (state) => state.propertyReducers.propertyListData
   );
   useEffect(() => {
     dispatch(listOfCategories());
   }, []);
-
   useEffect(() => {
-    console.log("listOfCategoryData ", listOfCategoryData);
-  });
+    dispatch(listOfProperties());
+  }, []);
+
+  const onCreate =async (e) => {
+    var data ={
+        
+        name:form.getFieldsValue().name,
+        barcode:form.getFieldsValue().barcode,
+        note:form.getFieldsValue().note,
+        sellPrice:form.getFieldsValue().sellPrice,
+        customerSellPrice:form.getFieldsValue().customerSellPrice,
+        otherPrice:form.getFieldsValue().otherPrice,
+        quantity:form.getFieldsValue().quantity,
+        // categoryName:form.getFieldsValue().categoryData.name,
+        // propertyName:form.getFieldsValue().propertyData.name
+    };
+    console.log('kateqoeri data: ',form.getFieldsValue().categoryName)
+    //   form.validateFields().then((values)=>{
+        
+         
+
+    //     //   dispatch(addProduct(data));
+    //     //   props.handleCancel();
+    //     //   dispatch(listOfProducts());
+    //   }).catch(()=>{
+    //       console.log('validate fields')
+    //   })
+  }
   return (
     <div>
       <Form
-        // form={form}
+        form={form}
         name="basic"
         labelCol={{ span: 8 }}
         wrapperCol={{ span: 16 }}
@@ -85,11 +115,11 @@ export default function ProductAdd() {
         <Form.Item
           label="Kateqoriya"
           name="categoryName"
-          rules={[{ required: false, message: "Kateqoriyani seçin!" }]}
+          rules={[{ required: true, message: "Kateqoriyani seçin!" }]}
         >
           <Select>
             {listOfCategoryData.map((categoryData) => (
-              <Option key={categoryData.id} value={categoryData.name}>
+              <Option key={categoryData.id} value={categoryData.id}>
                 {categoryData.name}
               </Option>
             ))}
@@ -98,9 +128,15 @@ export default function ProductAdd() {
         <Form.Item
           label="Xüsusiyyət"
           name="propertyName"
-          rules={[{ required: false, message: "Xüsusiyyəti seçin!" }]}
+          rules={[{ required: true, message: "Xüsusiyyəti seçin!" }]}
         >
-          <Select></Select>
+          <Select>
+            {listOfPropertyData.map((propertyData) => (
+              <Option key={propertyData.id} value={propertyData.name}>
+                {propertyData.name}
+              </Option>
+            ))}
+          </Select>
         </Form.Item>
         {/* <Form.Item
           label="Satış strategiyası"
@@ -116,7 +152,7 @@ export default function ProductAdd() {
             type="submit"
             htmlType="submit"
             style={{ position: "absolute", left: "320px", bottom: "-90px" }}
-            // onClick={onCreate}
+            onClick={onCreate}
           >
             Əlavə et
           </Button>

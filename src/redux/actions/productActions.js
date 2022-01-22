@@ -27,3 +27,12 @@ export const deleteProduct = (id) => (dispatch) => {
     });
   });
 };
+
+export const addProduct = (data) => (dispatch) => {
+  axios.post("http://localhost:8080/products",data).then((response) => {
+    dispatch({
+      type: actionTypes.ADD_PRODUCT,
+      payload: response.data
+    });
+  });
+};
