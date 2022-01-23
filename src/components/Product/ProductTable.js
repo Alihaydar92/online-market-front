@@ -63,6 +63,10 @@ export default function ProductTable() {
       dataIndex: "sellPrice",
     },
     {
+      title: "Qiymət",
+      dataIndex: "price",
+    },
+    {
       title: "Müştəri satış qiyməti",
       dataIndex: "customerSellPrice",
     },

@@ -34,6 +34,7 @@ export default function ProductAdd(props) {
           barcode: form.getFieldsValue().barcode,
           categoryId: form.getFieldsValue().category,
           quantity: form.getFieldsValue().quantity,
+          price: form.getFieldsValue().price,
           sellPrice: form.getFieldsValue().sellPrice,
           otherPrice: form.getFieldsValue().otherPrice,
           customerSellPrice: form.getFieldsValue().customerSellPrice,
@@ -82,6 +83,13 @@ console.log('rpoduct data add: ',data)
           rules={[{ required: false, message: "Qeydi daxil edin!" }]}
         >
           <Input />
+        </Form.Item>
+        <Form.Item
+          label="Qiyməti"
+          name="price"
+          rules={[{ required: false, message: "Qiymətini daxil edin!" }]}
+        >
+          <InputNumber />
         </Form.Item>
         <Form.Item
           label="Satış qiyməti"

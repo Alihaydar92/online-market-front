@@ -46,6 +46,7 @@ export default function ProductEdit(props) {
           barcode: form.getFieldsValue().barcode,
           categoryId: form.getFieldsValue().category,
           quantity: form.getFieldsValue().quantity,
+          price: form.getFieldsValue().price,
           sellPrice: form.getFieldsValue().sellPrice,
           otherPrice: form.getFieldsValue().otherPrice,
           customerSellPrice: form.getFieldsValue().customerSellPrice,
@@ -68,6 +69,7 @@ export default function ProductEdit(props) {
       barcode: productDataById.barcode,
       category: productDataById?.categoryDto?.id,
       quantity: productDataById.quantity,
+      price: productDataById.price,
       sellPrice: productDataById.sellPrice,
       otherPrice: productDataById.otherPrice,
       customerSellPrice: productDataById.barcode,
@@ -113,6 +115,13 @@ export default function ProductEdit(props) {
           rules={[{ required: false, message: "Qeydi daxil edin!" }]}
         >
           <Input />
+        </Form.Item>
+        <Form.Item
+          label="Qiyməti"
+          name="price"
+          rules={[{ required: false, message: "Qiyməti daxil edin!" }]}
+        >
+          <InputNumber />
         </Form.Item>
         <Form.Item
           label="Satış qiyməti"
