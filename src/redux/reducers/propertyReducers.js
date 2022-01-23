@@ -29,6 +29,14 @@ import  initialState from "./initialState"
                 
             }
         }
+
+        case actionTypes.DELETE_PROPERTY: {
+            return {
+                ...state,
+                propertyDeleteData: action.payload
+                
+            }
+        }
         default:
             return state;
     }

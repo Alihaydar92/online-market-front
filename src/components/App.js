@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
 import { Layout, Menu } from "antd";
 import {
   UserOutlined,
   LaptopOutlined,
-  NotificationOutlined,
+  NotificationOutlined
 } from "@ant-design/icons";
 import { Route, Routes ,Link} from "react-router-dom";
 import CustomerTable from "../components/Customer/CustomerTable";
@@ -11,6 +10,7 @@ import ExpeditorTable from "../components/Expeditor/ExpeditorTable";
 import ProductTable from "./Product/ProductTable";
 import  NotFound  from "../components/NotFound";
 import CategoryTable from "./Category/CategoryTable";
+import PropertyTable from "./Property/PropertyTable";
 const { Footer, Content, Sider, Header } = Layout;
 const { SubMenu } = Menu;
 export default function App() {
@@ -27,6 +27,7 @@ export default function App() {
             <Menu.Item key="1"><Link to="/customers">Müştərilər</Link> </Menu.Item>
             <Menu.Item key="2"><Link to="/sellers">Əməkdaşlar</Link></Menu.Item>
             <Menu.Item key="3"><Link to="/categories">Kateqoriya</Link></Menu.Item>
+            <Menu.Item key="4"><Link to="/properties">Xüsusiyyət</Link></Menu.Item>
           </SubMenu>
           <SubMenu key="sub2" icon={<LaptopOutlined />} title="Əməliyyat">
             <Menu.Item key="5"><Link to="/products">Məhsullar</Link></Menu.Item>
@@ -59,6 +60,7 @@ export default function App() {
             <Route  path="/sellers" element={<ExpeditorTable/>}></Route>
             <Route  path="/products" element={<ProductTable/>}></Route>
             <Route  path="/categories" element={<CategoryTable/>}></Route>
+            <Route  path="/properties" element={<PropertyTable/>}></Route>
           </Routes>
 
           {/* <CustomerTable></CustomerTable>

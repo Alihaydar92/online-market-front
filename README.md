@@ -70,7 +70,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
 
-### 1)Cedvellerde axtarish
-### 2)Emeliyyatlardan sonra refresh problem (async)
-### 3)Routing
+### Cedvellerde axtarish
+### Emeliyyatlardan sonra refresh problem (async)
+### Routing
 ### http url-leri dinamic idare
+### label-larin textlerini file-dan oxumaq

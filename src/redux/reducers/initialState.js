@@ -26,6 +26,9 @@ export default{
 
 
     propertyListData:[],
-    propertyDataById:{}
+    propertyDataById:{},
+    propertyDeleteData:{},
+    propertyUpdateData:{},
+    propertyAddData:{}
 
 }
