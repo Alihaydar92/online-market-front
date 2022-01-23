@@ -10,26 +10,10 @@ import CustomerTable from "../components/Customer/CustomerTable";
 import ExpeditorTable from "../components/Expeditor/ExpeditorTable";
 import ProductTable from "./Product/ProductTable";
 import  NotFound  from "../components/NotFound";
+import CategoryTable from "./Category/CategoryTable";
 const { Footer, Content, Sider, Header } = Layout;
 const { SubMenu } = Menu;
 export default function App() {
-  // const dispatch = useDispatch();
-  // const [name, setName] = useState();
-  // const listOfCustomerData = useSelector((state) => state.customerReducer.customerListData);
-  // const listOfExpeditorData = useSelector((state) => state.expeditorReducer?.expeditorListData);
-  // useEffect(() => {
-  //   dispatch(listOfCustomers());
-  //   dispatch(listOfExpeditors());
-  // }, []);
-  // useEffect(() => {
-  //   console.log(listOfCustomerData);
-  //   setName(listOfCustomerData[0]?.name);
-  // }, [listOfCustomerData]);
-
-  // useEffect(() => {
-  //   console.log(listOfExpeditorData);
-  //   setName(listOfExpeditorData[0]?.name);
-  // }, [listOfExpeditorData]);
   return (
     <Layout>
       <Sider width={200} className="site-layout-background">
@@ -74,6 +58,7 @@ export default function App() {
             <Route  path="/customers" element={<CustomerTable/>}></Route>
             <Route  path="/sellers" element={<ExpeditorTable/>}></Route>
             <Route  path="/products" element={<ProductTable/>}></Route>
+            <Route  path="/categories" element={<CategoryTable/>}></Route>
           </Routes>
 
           {/* <CustomerTable></CustomerTable>

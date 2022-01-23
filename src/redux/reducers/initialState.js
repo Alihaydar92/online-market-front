@@ -21,6 +21,8 @@ export default{
     categoryListData:[],
     categoryDataById:{},
     categoryAddData:{},
+    categoryDeleteData:{},
+    categoryUpdateData:{},
 
 
     propertyListData:[],

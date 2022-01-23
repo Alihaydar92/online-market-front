@@ -29,6 +29,14 @@ import  initialState from "./initialState"
                 
             }
         }
+
+        case actionTypes.DELETE_CATEGORY: {
+            return {
+                ...state,
+                categoryDeleteData: action.payload
+                
+            }
+        }
         default:
             return state;
     }
