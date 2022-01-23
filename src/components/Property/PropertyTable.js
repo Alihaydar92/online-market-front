@@ -4,6 +4,7 @@ import { Button, Table, Modal, Space } from "antd";
 import {listOfProperties,getPropertyById} from "../../redux/actions/propertyActions"
 import PropertyAdd from "./PropertyAdd";
 import PropertyDelete from "./PropertyDelete";
+import PropertyEdit from "./PropertyEdit";
 export default function PropertyTable() {
     const dispatch = useDispatch();
     const listOfPropertyData= useSelector(
@@ -67,7 +68,7 @@ export default function PropertyTable() {
       setIsSilModalVisible(false);
     };
     const showEditModal = (data) => {
-    //   dispatch(getCategoryById(data.id));
+      dispatch(getPropertyById(data.id));
       setIsRedakteModalVisible(true);
       setIsElaveEtModalVisible(false);
       setIsSilModalVisible(false);
@@ -101,8 +102,8 @@ export default function PropertyTable() {
           columns={columns}
           rowKey="id"
         ></Table>
-        {/* <Modal
-          title="Kateqoriya məlumatına düzəliş edilməsi"
+        <Modal
+          title="Xüsusiyyət məlumatına düzəliş edilməsi"
           visible={isRedakteEtModalVisible}
           onCancel={handleCancel}
           footer={[
@@ -111,8 +112,8 @@ export default function PropertyTable() {
             </Button>,
           ]}
         >
-          <CategoryEdit rowKey="id" handleCancel={handleCancel}></CategoryEdit>
-        </Modal> */}
+          <PropertyEdit rowKey="id" handleCancel={handleCancel}></PropertyEdit>
+        </Modal>
   
         <Modal
           title="Xüsusiyyət məlumatının əlavə edilməsi"

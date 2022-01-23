@@ -10,7 +10,6 @@ export default function CustomerDelete(props) {
   const customerDataById = useSelector(
     (state) => state.customerReducer.customerDataById
   );
-  const [form] = Form.useForm();
   const listOfCustomerData = useSelector(
     (state) => state.customerReducer?.customerListData
   );

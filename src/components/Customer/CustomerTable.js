@@ -56,7 +56,7 @@ export default function CustomerTable() {
           </Space>
         );
       },
-    },
+    }
   ];
 
   const listOfCustomerData = useSelector(
