@@ -1,15 +1,16 @@
 import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Form, Input, Button, InputNumber, Select } from "antd";
 import { listOfCategories } from "../../redux/actions/categoryActions";
 import { listOfProperties } from "../../redux/actions/propertyActions";
-import { addProduct,listOfProducts} from "../../redux/actions/productActions";
-import { useDispatch, useSelector } from "react-redux";
+import { addProduct,listOfProducts } from "../../redux/actions/productActions";
+
 const { Option } = Select;
 export default function ProductAdd(props) {
   const dispatch = useDispatch();
 
-  const [form ] =Form.useForm();
-   const listOfCategoryData = useSelector(
+  const [form] = Form.useForm();
+  const listOfCategoryData = useSelector(
     (state) => state.categoryReducers.categoryListData
   );
 
@@ -23,31 +24,31 @@ export default function ProductAdd(props) {
     dispatch(listOfProperties());
   }, []);
 
-  const onCreate =async (e) => {
-    var data ={
-        
-        name:form.getFieldsValue().name,
-        barcode:form.getFieldsValue().barcode,
-        note:form.getFieldsValue().note,
-        sellPrice:form.getFieldsValue().sellPrice,
-        customerSellPrice:form.getFieldsValue().customerSellPrice,
-        otherPrice:form.getFieldsValue().otherPrice,
-        quantity:form.getFieldsValue().quantity,
-        // categoryName:form.getFieldsValue().categoryData.name,
-        // propertyName:form.getFieldsValue().propertyData.name
-    };
-    console.log('kateqoeri data: ',form.getFieldsValue().categoryName)
-    //   form.validateFields().then((values)=>{
-        
-         
-
-    //     //   dispatch(addProduct(data));
-    //     //   props.handleCancel();
-    //     //   dispatch(listOfProducts());
-    //   }).catch(()=>{
-    //       console.log('validate fields')
-    //   })
-  }
+  const onCreate = async (e) => {
+    console.log("property data: ", form.getFieldsValue().property);
+    form
+      .validateFields()
+      .then((values) => {
+        var data = {
+          name: form.getFieldsValue().name,
+          barcode: form.getFieldsValue().barcode,
+          categoryId: form.getFieldsValue().category,
+          quantity: form.getFieldsValue().quantity,
+          sellPrice: form.getFieldsValue().sellPrice,
+          otherPrice: form.getFieldsValue().otherPrice,
+          customerSellPrice: form.getFieldsValue().customerSellPrice,
+          propertyId: form.getFieldsValue().property,
+          note: form.getFieldsValue().note
+        };
+console.log('rpoduct data add: ',data)
+          dispatch(addProduct(data));
+          props.handleCancel();
+          dispatch(listOfProducts());
+      })
+      .catch(() => {
+        console.log("validate fields");
+      });
+  };
   return (
     <div>
       <Form
@@ -73,7 +74,7 @@ export default function ProductAdd(props) {
           name="barcode"
           rules={[{ required: true, message: "Barkodu daxil edin!" }]}
         >
-          <InputNumber />
+          <Input />
         </Form.Item>
         <Form.Item
           label="Qeyd"
@@ -87,7 +88,7 @@ export default function ProductAdd(props) {
           name="sellPrice"
           rules={[{ required: false, message: "Satış qiymətini daxil edin!" }]}
         >
-          <Input />
+          <InputNumber />
         </Form.Item>
         <Form.Item
           label="Müştəri satış qiyməti"
@@ -96,25 +97,25 @@ export default function ProductAdd(props) {
             { required: false, message: "Müştəri satış qiymətini daxil edin!" },
           ]}
         >
-          <Input />
+          <InputNumber />
         </Form.Item>
         <Form.Item
           label="Digər qiymətlər"
           name="otherPrice"
           rules={[{ required: false, message: "Digər qiymətləri daxil edin!" }]}
         >
-          <Input />
+          <InputNumber />
         </Form.Item>
         <Form.Item
           label="Kəmiyyət"
           name="quantity"
-          rules={[{ required: false, message: "Kəmiyyəti daxil edin!" }]}
+          rules={[{ required: true, message: "Kəmiyyəti daxil edin!" }]}
         >
-          <Input />
+          <InputNumber />
         </Form.Item>
         <Form.Item
           label="Kateqoriya"
-          name="categoryName"
+          name="category"
           rules={[{ required: true, message: "Kateqoriyani seçin!" }]}
         >
           <Select>
@@ -127,12 +128,12 @@ export default function ProductAdd(props) {
         </Form.Item>
         <Form.Item
           label="Xüsusiyyət"
-          name="propertyName"
+          name="property"
           rules={[{ required: true, message: "Xüsusiyyəti seçin!" }]}
         >
           <Select>
             {listOfPropertyData.map((propertyData) => (
-              <Option key={propertyData.id} value={propertyData.name}>
+              <Option key={propertyData.id} value={propertyData.id}>
                 {propertyData.name}
               </Option>
             ))}

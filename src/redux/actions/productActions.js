@@ -36,3 +36,13 @@ export const addProduct = (data) => (dispatch) => {
     });
   });
 };
+
+export const updateProduct = (data) => (dispatch) => {
+  console.log('update product data ',data)
+  axios.put("http://localhost:8080/products/"+data.id,data).then((response) => {
+    dispatch({
+      type: actionTypes.UPDATE_PRODUCT,
+      payload: response.data
+    });
+  });
+};

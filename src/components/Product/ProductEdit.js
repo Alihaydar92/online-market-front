@@ -1,10 +1,84 @@
-import React from "react";
-import {Form,Input,Button,Select,InputNumber} from "antd"
-export default function ProductEdit() {
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Form, Input, Button, Select, InputNumber } from "antd";
+import { listOfCategories } from "../../redux/actions/categoryActions";
+import { listOfProperties } from "../../redux/actions/propertyActions";
+import {
+  listOfProducts,
+  updateProduct,
+} from "../../redux/actions/productActions";
+const { Option } = Select;
+export default function ProductEdit(props) {
+  const dispatch = useDispatch();
+
+  const [form] = Form.useForm();
+  const listOfCategoryData = useSelector(
+    (state) => state.categoryReducers.categoryListData
+  );
+
+  const listOfPropertyData = useSelector(
+    (state) => state.propertyReducers.propertyListData
+  );
+
+  const propertyDataById = useSelector(
+    (state) => state.propertyReducers.propertyDataById
+  );
+
+  const categoryDataById = useSelector(
+    (state) => state.categoryReducers.categoryDataById
+  );
+
+  const productDataById = useSelector(
+    (state) => state.productReducers?.productDataById
+  );
+  useEffect(() => {
+    dispatch(listOfCategories());
+  }, []);
+  useEffect(() => {
+    dispatch(listOfProperties());
+  }, []);
+  const onUpdate = (e) => {
+    form
+      .validateFields()
+      .then(() => {
+        var data = {
+          name: form.getFieldsValue().name,
+          barcode: form.getFieldsValue().barcode,
+          categoryId: form.getFieldsValue().category,
+          quantity: form.getFieldsValue().quantity,
+          sellPrice: form.getFieldsValue().sellPrice,
+          otherPrice: form.getFieldsValue().otherPrice,
+          customerSellPrice: form.getFieldsValue().customerSellPrice,
+          propertyId: form.getFieldsValue().property,
+          note: form.getFieldsValue().note,
+          id: productDataById.id,
+        };
+        dispatch(updateProduct(data));
+        props.handleCancel();
+        dispatch(listOfProducts());
+      })
+      .catch((errorInfo) => {
+        console.log("validate fields");
+      });
+  };
+
+  useEffect(() => {
+    form.setFieldsValue({
+      name: productDataById.name,
+      barcode: productDataById.barcode,
+      category: productDataById?.categoryDto?.id,
+      quantity: productDataById.quantity,
+      sellPrice: productDataById.sellPrice,
+      otherPrice: productDataById.otherPrice,
+      customerSellPrice: productDataById.barcode,
+      property: productDataById?.propertyDto?.id,
+      note: productDataById.note,
+    });
+  }, [form, productDataById]);
   return (
     <div>
       <Form
-        // form={form}
+        form={form}
         name="basic"
         labelCol={{ span: 8 }}
         wrapperCol={{ span: 16 }}
@@ -18,7 +92,7 @@ export default function ProductEdit() {
         //   onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
-         <Form.Item
+        <Form.Item
           label="Məhusulun adı"
           name="name"
           rules={[{ required: true, message: "Məhusulun adını daxil edin!" }]}
@@ -31,7 +105,7 @@ export default function ProductEdit() {
           name="barcode"
           rules={[{ required: true, message: "Barkodu daxil edin!" }]}
         >
-          <InputNumber />
+          <Input />
         </Form.Item>
         <Form.Item
           label="Qeyd"
@@ -45,7 +119,7 @@ export default function ProductEdit() {
           name="sellPrice"
           rules={[{ required: false, message: "Satış qiymətini daxil edin!" }]}
         >
-          <Input />
+          <InputNumber />
         </Form.Item>
         <Form.Item
           label="Müştəri satış qiyməti"
@@ -54,35 +128,47 @@ export default function ProductEdit() {
             { required: false, message: "Müştəri satış qiymətini daxil edin!" },
           ]}
         >
-          <Input />
+          <InputNumber />
         </Form.Item>
         <Form.Item
           label="Digər qiymətlər"
           name="otherPrice"
           rules={[{ required: false, message: "Digər qiymətləri daxil edin!" }]}
         >
-          <Input />
+          <InputNumber />
         </Form.Item>
         <Form.Item
           label="Kəmiyyət"
           name="quantity"
-          rules={[{ required: false, message: "Kəmiyyəti daxil edin!" }]}
+          rules={[{ required: true, message: "Kəmiyyəti daxil edin!" }]}
         >
-          <Input />
+          <InputNumber />
         </Form.Item>
         <Form.Item
           label="Kateqoriya"
-          name="categoryDto.name"
-          rules={[{ required: false, message: "Kateqoriyani seçin!" }]}
+          name="category"
+          rules={[{ required: true, message: "Kateqoriyani seçin!" }]}
         >
-          <Select />
+          <Select>
+            {listOfCategoryData.map((categoryData) => (
+              <Option key={categoryData.id} value={categoryData.id}>
+                {categoryData.name}
+              </Option>
+            ))}
+          </Select>
         </Form.Item>
         <Form.Item
           label="Xüsusiyyət"
-          name="categoryDto.name"
-          rules={[{ required: false, message: "Xüsusiyyəti seçin!" }]}
+          name="property"
+          rules={[{ required: true, message: "Xüsusiyyəti seçin!" }]}
         >
-          <Select />
+          <Select>
+            {listOfPropertyData.map((propertyData) => (
+              <Option key={propertyData.id} value={propertyData.id}>
+                {propertyData.name}
+              </Option>
+            ))}
+          </Select>
         </Form.Item>
         {/* <Form.Item
           label="Satış strategiyası"
@@ -98,7 +184,7 @@ export default function ProductEdit() {
             type="submit"
             htmlType="submit"
             style={{ position: "absolute", left: "300px", bottom: "-90px" }}
-            // onClick={onUpdate}
+            onClick={onUpdate}
           >
             Yadda saxla
           </Button>

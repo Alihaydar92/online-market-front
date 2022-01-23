@@ -29,6 +29,13 @@ export default function productReducers(state = initialState, action) {
         productAddData: action.payload,
       };
     }
+
+    case actionTypes.UPDATE_PRODUCT: {
+      return {
+        ...state,
+        productUpdateData: action.payload,
+      };
+    }
     default:
       return state;
   }

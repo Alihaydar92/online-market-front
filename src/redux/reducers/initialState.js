@@ -16,8 +16,14 @@ export default{
     productDataById:{},
     productDeleteData:{},
     productAddData:{},
+    productUpdateData:{},
 
     categoryListData:[],
-    propertyListData:[]
+    categoryDataById:{},
+    categoryAddData:{},
+
+
+    propertyListData:[],
+    propertyDataById:{}
 
 }

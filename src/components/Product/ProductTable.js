@@ -27,7 +27,7 @@ export default function ProductTable() {
     setIsSilModalVisible(false);
   };
   const showEditModal = (data) => {
-    // dispatch(getExpeditorById(data.id));
+    dispatch(getProductById(data.id));
     setIsRedakteModalVisible(true);
     setIsElaveEtModalVisible(false);
     setIsSilModalVisible(false);
@@ -76,11 +76,11 @@ export default function ProductTable() {
     },
     {
       title: "Kateqoriya",
-      dataIndex: "categoryDto.name",
+      dataIndex: ["categoryDto","name"]
     },
     {
       title: "Xüsusiyyət",
-      dataIndex: "propertyDto.name",
+      dataIndex: ["propertyDto","name"],
     },
     // {
     //     title: "Satış strategiyası",

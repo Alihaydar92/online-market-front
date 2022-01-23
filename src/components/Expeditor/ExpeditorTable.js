@@ -53,7 +53,7 @@ export default function ExpeditorTable() {
             </Space>
           );
         },
-      },
+      }
     ];
   
     const listOfExpeditorData = useSelector(
@@ -101,20 +101,7 @@ export default function ExpeditorTable() {
       columns={columns}
       rowKey="id"
     ></Table>
-    <Modal
-      title="Əməkdaş məlumatına düzəliş edilməsi"
-      visible={isRedakteEtModalVisible}
-      // onOk={handleOk}
-      onCancel={handleCancel}
-      footer={[
-        // <Button>Düzəlişləri yadda saxla</Button>,
-        <Button danger onClick={handleCancel}>
-          Geri
-        </Button>,
-      ]}
-    >
-      <ExpeditorEdit rowKey="id" handleCancel={handleCancel}></ExpeditorEdit>
-    </Modal>
+    
     <Modal
       title="Əməkdaş məlumatının əlavə edilməsi"
       visible={isElaveEtModalVisible}
@@ -128,6 +115,20 @@ export default function ExpeditorTable() {
       ]}
     >
       <ExpeditorAdd rowKey="id" handleCancel={handleCancel}></ExpeditorAdd>
+    </Modal>
+    <Modal
+      title="Əməkdaş məlumatına düzəliş edilməsi"
+      visible={isRedakteEtModalVisible}
+      // onOk={handleOk}
+      onCancel={handleCancel}
+      footer={[
+        // <Button>Düzəlişləri yadda saxla</Button>,
+        <Button danger onClick={handleCancel}>
+          Geri
+        </Button>,
+      ]}
+    >
+      <ExpeditorEdit rowKey="id" handleCancel={handleCancel}></ExpeditorEdit>
     </Modal>
     <Modal
       title="Əməkdaş məlumatının silinməsi"

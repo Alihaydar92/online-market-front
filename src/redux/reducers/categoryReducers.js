@@ -10,25 +10,25 @@ import  initialState from "./initialState"
                 categoryListData: action.payload
             }
         }
-        // case actionTypes.ADD_CATEGORY: {
-        //     return {
-        //         ...state,
-        //         categoryAddData: action.payload
-        //     }
-        // }
-        // case actionTypes.UPDATE_CATEGORY: {
-        //     return {
-        //         ...state,
-        //         categoryUpdateData: action.payload
-        //     }
-        // }
-        // case actionTypes.GET_CATEGORY_BY_ID: {
-        //     return {
-        //         ...state,
-        //         categoryDataById: action.payload
+        case actionTypes.ADD_CATEGORY: {
+            return {
+                ...state,
+                categoryAddData: action.payload
+            }
+        }
+        case actionTypes.UPDATE_CATEGORY: {
+            return {
+                ...state,
+                categoryUpdateData: action.payload
+            }
+        }
+        case actionTypes.GET_CATEGORY_BY_ID: {
+            return {
+                ...state,
+                categoryDataById: action.payload
                 
-        //     }
-        // }
+            }
+        }
         default:
             return state;
     }

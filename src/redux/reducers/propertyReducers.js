@@ -10,25 +10,25 @@ import  initialState from "./initialState"
                 propertyListData: action.payload
             }
         }
-        // case actionTypes.ADD_CATEGORY: {
-        //     return {
-        //         ...state,
-        //         categoryAddData: action.payload
-        //     }
-        // }
-        // case actionTypes.UPDATE_CATEGORY: {
-        //     return {
-        //         ...state,
-        //         categoryUpdateData: action.payload
-        //     }
-        // }
-        // case actionTypes.GET_CATEGORY_BY_ID: {
-        //     return {
-        //         ...state,
-        //         categoryDataById: action.payload
+        case actionTypes.ADD_PROPERTY: {
+            return {
+                ...state,
+                propertyAddData: action.payload
+            }
+        }
+        case actionTypes.UPDATE_PROPERTY: {
+            return {
+                ...state,
+                propertyUpdateData: action.payload
+            }
+        }
+        case actionTypes.GET_PROPERTY_BY_ID: {
+            return {
+                ...state,
+                propertyDataById: action.payload
                 
-        //     }
-        // }
+            }
+        }
         default:
             return state;
     }
