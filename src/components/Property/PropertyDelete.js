@@ -16,7 +16,7 @@ export default function PropertyDelete(props) {
     const onDelete = (id) => async (e) => {
       dispatch(deleteProperty(id), []);
       props.handleCancel();
-      dispatch(listOfProperties());
+      // dispatch(listOfProperties());
     };
   
     return (

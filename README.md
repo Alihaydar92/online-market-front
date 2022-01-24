@@ -69,9 +69,20 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
+### AliHeyder salam necesen? 
+### Ne var ne yox? neynirsen? 
 
+### CODE
+### 
 ### Cedvellerde axtarish
-### Emeliyyatlardan sonra refresh problem (async)
-### Routing
+### Emeliyyatlardan sonra refresh problem (async) +++
+### Routing +++
 ### http url-leri dinamic idare
 ### label-larin textlerini file-dan oxumaq
+
+### DESIGN
+###
+### elave et duymelerini sag kunce yerleshdirmek
+### headere el gezdirmek 
+### sidebar menunun height-ini 100% dan cixarmaq
+### duzelis ve sil emeliyyatlarini bir columna yerleshdirmek 

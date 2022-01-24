@@ -15,7 +15,7 @@ export default function PropertyAdd(props) {
           };
           dispatch(addProperty(data));
           props.handleCancel();
-          dispatch(listOfProperties());
+          // dispatch(listOfProperties());
         })
         .catch((errorInfo) => {
           console.log("validate fields");

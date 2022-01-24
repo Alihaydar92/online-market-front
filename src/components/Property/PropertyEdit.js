@@ -9,7 +9,7 @@ export default function PropertyEdit(props) {
     );
     const [form] = Form.useForm();
     const listOfExpeditorData = useSelector((state) => state.expeditorReducers.expeditorListData);
-    const onUpdate = async (e) => {
+    const onUpdate =  () => {
       form
         .validateFields()
         .then((values) => {
@@ -21,7 +21,7 @@ export default function PropertyEdit(props) {
           console.log('update property data',data)
           dispatch(updateProperty(data),[]);
           props.handleCancel();
-          dispatch(listOfProperties());
+          // dispatch(listOfProperties());
         })
         .catch((errorInfo) => {
           console.log("validate fields");

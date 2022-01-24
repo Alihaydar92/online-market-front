@@ -1,12 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProductById, listOfProducts } from "../../redux/actions/productActions";
-import { Space, Button, Table, Modal } from "antd";
+import {
+  getProductById,
+  listOfProducts,
+  addProductExcel
+} from "../../redux/actions/productActions";
+import { Space, Button, Table, Modal, Upload, Input, InputNumber } from "antd";
 import ProductAdd from "./ProductAdd";
 import ProductEdit from "./ProductEdit";
 import ProductDelete from "./ProductDelete";
+
 export default function ProductTable() {
   const dispatch = useDispatch();
+  const [selectedFile, setSelectedFile] = useState({
+    file: null,
+    base64URL: "",
+  });
+
   const listOfProductData = useSelector(
     (state) => state.productReducers?.productListData
   );
@@ -45,6 +55,57 @@ export default function ProductTable() {
     setIsRedakteModalVisible(false);
     setIsSilModalVisible(false);
   };
+
+  const getBase64 = (file) => {
+    return new Promise((resolve) => {
+      let fileInfo;
+      let baseURL = "";
+      // Make new FileReader
+      let reader = new FileReader();
+
+      // Convert the file to base64 text
+      reader.readAsDataURL(file);
+
+      // on reader load somthing...
+      reader.onload = () => {
+        // Make a fileInfo Object
+        console.log("Called", reader);
+        baseURL = reader.result;
+        console.log(baseURL);
+        resolve(baseURL);
+      };
+      console.log(fileInfo);
+    });
+  };
+  const handleFileInputChange = (e) => {
+    console.log("e.target.files[0].name", e.target.files[0].name);
+    console.log("file path ", window.location + "   " + e.target.files[0].name);
+    let { file } = selectedFile;
+
+    file = e.target.files[0];
+
+    getBase64(file)
+      .then((result) => {
+        file["base64"] = result;
+        console.log("File Is", file);
+
+        setSelectedFile({
+          fileName: file.name,
+          fileContext:file.base64,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    // selectedFile({
+    //   file: e.target.files[0],
+    // });
+  };
+  const onCreateExcel = async (e) => {
+    console.log(' add excel base64 data', selectedFile);  
+        dispatch(addProductExcel(selectedFile));   
+  };
   const columns = [
     {
       title: "Məhusulun adı",
@@ -80,43 +141,29 @@ export default function ProductTable() {
     },
     {
       title: "Kateqoriya",
-      dataIndex: ["categoryDto","name"]
+      dataIndex: ["categoryDto", "name"],
     },
     {
       title: "Xüsusiyyət",
-      dataIndex: ["propertyDto","name"],
-    },
-    // {
-    //     title: "Satış strategiyası",
-    //     dataIndex: "priceStrategyList[].unitPrice",
-    // },
-    {
-      title: "Düzəliş",
-      dataIndex: "edit",
-      render: (text, productData) => {
-        return (
-          <Space size="middle">
-            <Button
-              size="small"
-              type="primary"
-                onClick={() => showEditModal(productData)}
-            >
-              Redaktə et
-            </Button>
-          </Space>
-        );
-      },
+      dataIndex: ["propertyDto", "name"],
     },
     {
-      title: "Sil",
+      title: "Əməliyyat",
       dataIndex: "delete",
       render: (text, productData) => {
         return (
           <Space size="middle">
             <Button
               size="small"
+              type="primary"
+              onClick={() => showEditModal(productData)}
+            >
+              Redaktə et
+            </Button>
+            <Button
+              size="small"
               type="danger"
-                onClick={() => showRemoveModal(productData.id)}
+              onClick={() => showRemoveModal(productData.id)}
             >
               Sil
             </Button>
@@ -127,13 +174,41 @@ export default function ProductTable() {
   ];
   return (
     <div>
+      <Input
+        style={{ marginTop: "10px", width: "300px" }}
+        // style={{ position: "absolute", right: "50px", top: "100px" }}
+        accept=".xlsx, application/vnd.ms-excel"
+        onChange={handleFileInputChange}
+        type="file"
+      />
+
       <Button
-        style={{ marginTop: "20px" }}
+        style={{ marginTop: "10px", marginLeft: "10px" }}
+        // style={{ position: "absolute", right: "1400px", top: "70px" }}
+        type="primary"
+        onClick={onCreateExcel}
+      >
+        Excel əlavə et
+      </Button>
+      <Button
+        style={{ marginTop: "10px", marginLeft: "1200px" }}
+        // style={{ position: "absolute", right: "30px", top: "70px" }}
         type="primary"
         onClick={showAddModal}
       >
         Əlavə et
       </Button>
+
+      {/* <Button onClick={handleSubmission}>Submit</Button> */}
+      {/* <Button>Excel faylını seç</Button> */}
+      {/* <Input
+                size="small"
+                // ghost="success"
+                type="file"
+                accept=".xlsx, application/vnd.ms-excel"
+                // onClick={() => showRemoveModal(getExcel)}
+              />
+                Excel */}
       <Table
         style={{ marginTop: "20px" }}
         dataSource={listOfProductData}
