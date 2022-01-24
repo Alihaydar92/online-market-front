@@ -10,9 +10,6 @@ export default function PropertyTable() {
     const listOfPropertyData= useSelector(
         (state) => state.propertyReducers.propertyListData
     );
-    const propertyDataById = useSelector(
-        (state) => state.propertyReducers.propertyDataById
-      );
     const [isElaveEtModalVisible, setIsElaveEtModalVisible] = useState(false);
     const [isRedakteEtModalVisible, setIsRedakteModalVisible] = useState(false);
     const [isSilModalVisible, setIsSilModalVisible] = useState(false);
@@ -22,28 +19,18 @@ export default function PropertyTable() {
         dataIndex: "name",
       },
       {
-        title: "Düzəliş",
-        dataIndex: "edit",
-        render: (text, categoryData) => {
+        title: "Əməliyyat",
+        dataIndex: "operation",
+        render: (text, propertyData) => {
           return (
             <Space size="middle">
               <Button
                 size="small"
                 type="primary"
-                onClick={() => showEditModal(categoryData)}
+                onClick={() => showEditModal(propertyData)}
               >
                 Redaktə et
               </Button>
-            </Space>
-          );
-        },
-      },
-      {
-        title: "Sil",
-        dataIndex: "delete",
-        render: (text, propertyData) => {
-          return (
-            <Space size="middle">
               <Button
                 size="small"
                 type="danger"
@@ -54,7 +41,7 @@ export default function PropertyTable() {
             </Space>
           );
         },
-      },
+      }
     ];
     useEffect(() => {
       dispatch(listOfProperties());

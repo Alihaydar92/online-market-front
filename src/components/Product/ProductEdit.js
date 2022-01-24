@@ -106,8 +106,9 @@ export default function ProductEdit(props) {
           label="Barkod"
           name="barcode"
           rules={[{ required: true, message: "Barkodu daxil edin!" }]}
+          
         >
-          <Input />
+          <Input disabled={true}/>
         </Form.Item>
         <Form.Item
           label="Qeyd"

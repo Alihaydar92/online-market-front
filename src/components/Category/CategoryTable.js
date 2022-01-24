@@ -7,15 +7,11 @@ import {
 } from "../../redux/actions/categoryActions";
 import CategoryDelete from "./CategoryDelete";
 import CategoryEdit from "./CategoryEdit";
-import CategoryAdd from "./CategoryAdd"
+import CategoryAdd from "./CategoryAdd";
 export default function CategoryTable() {
   const dispatch = useDispatch();
   const listOfCategoryData = useSelector(
     (state) => state.categoryReducers.categoryListData
-  );
-
-  const categoryDataById = useSelector(
-    (state) => state.categoryReducers.categoryDataById
   );
   const [isElaveEtModalVisible, setIsElaveEtModalVisible] = useState(false);
   const [isRedakteEtModalVisible, setIsRedakteModalVisible] = useState(false);
@@ -26,8 +22,8 @@ export default function CategoryTable() {
       dataIndex: "name",
     },
     {
-      title: "Düzəliş",
-      dataIndex: "edit",
+      title: "Əməliyyat",
+      dataIndex: "operation",
       render: (text, categoryData) => {
         return (
           <Space size="middle">
@@ -38,16 +34,6 @@ export default function CategoryTable() {
             >
               Redaktə et
             </Button>
-          </Space>
-        );
-      },
-    },
-    {
-      title: "Sil",
-      dataIndex: "delete",
-      render: (text, categoryData) => {
-        return (
-          <Space size="middle">
             <Button
               size="small"
               type="danger"
@@ -58,7 +44,7 @@ export default function CategoryTable() {
           </Space>
         );
       },
-    },
+    }
   ];
   useEffect(() => {
     dispatch(listOfCategories());
@@ -95,7 +81,7 @@ export default function CategoryTable() {
   return (
     <div>
       <Button
-        style={{ marginTop: "20px" }}
+        style={{ marginTop: "20px"}}
         type="primary"
         onClick={showAddModal}
       >

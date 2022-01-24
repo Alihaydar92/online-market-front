@@ -85,4 +85,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ### elave et duymelerini sag kunce yerleshdirmek
 ### headere el gezdirmek 
 ### sidebar menunun height-ini 100% dan cixarmaq
-### duzelis ve sil emeliyyatlarini bir columna yerleshdirmek 
+### duzelis ve sil emeliyyatlarini bir columna yerleshdirmek  +++

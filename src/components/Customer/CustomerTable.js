@@ -24,8 +24,8 @@ export default function CustomerTable() {
       dataIndex: "note",
     },
     {
-      title: "Düzəliş",
-      dataIndex: "edit",
+      title: "Əməliyyat",
+      dataIndex: "operation",
       render: (text, customerData) => {
         return (
           <Space size="middle">
@@ -36,16 +36,6 @@ export default function CustomerTable() {
             >
               Redaktə et
             </Button>
-          </Space>
-        );
-      },
-    },
-    {
-      title: "Sil",
-      dataIndex: "delete",
-      render: (text, customerData) => {
-        return (
-          <Space size="middle">
             <Button
               size="small"
               type="danger"
@@ -56,7 +46,7 @@ export default function CustomerTable() {
           </Space>
         );
       },
-    }
+    },
   ];
 
   const listOfCustomerData = useSelector(
@@ -96,7 +86,11 @@ export default function CustomerTable() {
   };
   return (
     <div>
-      <Button style={{ marginTop: "20px" }} type="primary" onClick={showAddModal}>
+      <Button
+        style={{ marginTop: "20px" }}
+        type="primary"
+        onClick={showAddModal}
+      >
         Əlavə et
       </Button>
       <Table

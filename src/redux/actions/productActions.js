@@ -37,6 +37,8 @@ export const updateProduct = (data) => (dispatch) => {
   axios
     .put("http://localhost:8080/products/" + data.id, data)
     .then((response) => {
+      console.log(response.status);
+      console.log(response.data)
       if (response.status === 200) {
         dispatch({
           type: actionTypes.UPDATE_PRODUCT,
@@ -65,6 +67,18 @@ export const addProductExcel = (data) => (dispatch) => {
     if (response.status === 200) {
       dispatch({
         type: actionTypes.ADD_PRODUCT_EXCEL,
+        payload: response.data,
+      });
+      dispatch(listOfProducts());
+    }
+  });
+};
+
+export const addProductImages = (id,data) => (dispatch) => {
+  axios.add("http://localhost:8080/products/"+id + "/images",data).then((response) => {
+    if (response.status === 200) {
+      dispatch({
+        type: actionTypes.ADD_PRODUCT_IMAGES,
         payload: response.data,
       });
       dispatch(listOfProducts());

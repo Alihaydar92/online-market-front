@@ -3,22 +3,31 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getProductById,
   listOfProducts,
-  addProductExcel
+  addProductExcel,
+  addProductImages
 } from "../../redux/actions/productActions";
-import { Space, Button, Table, Modal, Upload, Input, InputNumber } from "antd";
+import { Space, Button, Table, Modal, Input } from "antd";
 import ProductAdd from "./ProductAdd";
 import ProductEdit from "./ProductEdit";
 import ProductDelete from "./ProductDelete";
 
 export default function ProductTable() {
   const dispatch = useDispatch();
+  /////////////////////////////////////////////file upload
   const [selectedFile, setSelectedFile] = useState({
     file: null,
     base64URL: "",
   });
+  //////////////////////////////////////////////////image upload
+  const [images, setImages] = useState([]);
+  const [imageURLs, setImageURLs] = useState([]);
+  const [imagesBase64, setImagesBase64] = useState([]);
 
   const listOfProductData = useSelector(
     (state) => state.productReducers?.productListData
+  );
+  const productDataById = useSelector(
+    (state) => state.productReducers?.productDataById
   );
   useEffect(() => {
     dispatch(listOfProducts());
@@ -30,32 +39,43 @@ export default function ProductTable() {
   const [isElaveEtModalVisible, setIsElaveEtModalVisible] = useState(false);
   const [isRedakteEtModalVisible, setIsRedakteModalVisible] = useState(false);
   const [isSilModalVisible, setIsSilModalVisible] = useState(false);
+  const [isImgPanelVisible, setIsImgPanelVisible] = useState(false);
 
   const showAddModal = () => {
     setIsElaveEtModalVisible(true);
     setIsRedakteModalVisible(false);
     setIsSilModalVisible(false);
+    setIsImgPanelVisible(false);
   };
   const showEditModal = (data) => {
     dispatch(getProductById(data.id));
     setIsRedakteModalVisible(true);
     setIsElaveEtModalVisible(false);
     setIsSilModalVisible(false);
+    setIsImgPanelVisible(false);
   };
   const showRemoveModal = (id) => {
     dispatch(getProductById(id));
     setIsRedakteModalVisible(false);
     setIsElaveEtModalVisible(false);
     setIsSilModalVisible(true);
+    setIsImgPanelVisible(false);
   };
-
+  const showImgPanel = (id) => {
+    dispatch(getProductById(id));
+    setIsRedakteModalVisible(false);
+    setIsElaveEtModalVisible(false);
+    setIsSilModalVisible(false);
+    setIsImgPanelVisible(true);
+  };
   const handleCancel = () => {
     dispatch(listOfProducts());
     setIsElaveEtModalVisible(false);
     setIsRedakteModalVisible(false);
     setIsSilModalVisible(false);
+    setIsImgPanelVisible(false);
   };
-
+  ////////////////////////excel file upload
   const getBase64 = (file) => {
     return new Promise((resolve) => {
       let fileInfo;
@@ -91,7 +111,7 @@ export default function ProductTable() {
 
         setSelectedFile({
           fileName: file.name,
-          fileContext:file.base64,
+          fileContext: file.base64,
         });
       })
       .catch((err) => {
@@ -103,9 +123,51 @@ export default function ProductTable() {
     // });
   };
   const onCreateExcel = async (e) => {
-    console.log(' add excel base64 data', selectedFile);  
-        dispatch(addProductExcel(selectedFile));   
+    console.log(" add excel base64 data", selectedFile);
+    dispatch(addProductExcel(selectedFile));
   };
+ 
+
+
+  ////////////////////////excel file upload
+
+  //////////////////////////////////////////////////image upload
+  useEffect(() => {
+    if (images.length < 1) return;
+    const newImageUrls = [];
+    images.forEach((image) => newImageUrls.push(URL.createObjectURL(image)));
+    images.forEach((image) =>
+      getBase64(image)
+        .then((result) => {
+        const base64Data=  removeBase64Padding(result);
+          image["base64"] = base64Data;
+          
+          console.log("image Is", image);
+
+          setImagesBase64([{
+            content: image.base64,
+          }]);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    );
+    setImageURLs(newImageUrls);
+  }, [images]);
+const removeBase64Padding =(base64Img) =>{
+  return base64Img.replace("data:image/jpeg;base64,", "");
+  // return base64Img.replace(/={1,2}$/, '');
+  console.log('base64Img ',base64Img);
+  // return base64Img;
+}
+  const onImageChange = (e) => {
+    setImages([...e.target.files]);
+  };
+  const onSaveImages = async (e) => {
+    console.log(" add images base64 data", imagesBase64);
+    dispatch(addProductImages(productDataById.id,imagesBase64));
+  };
+  /////////////////////////////////////////////////image upload
   const columns = [
     {
       title: "Məhusulun adı",
@@ -149,7 +211,7 @@ export default function ProductTable() {
     },
     {
       title: "Əməliyyat",
-      dataIndex: "delete",
+      dataIndex: "operation",
       render: (text, productData) => {
         return (
           <Space size="middle">
@@ -167,11 +229,19 @@ export default function ProductTable() {
             >
               Sil
             </Button>
+            <Button
+              size="small"
+              type="danger"
+              onClick={() => showImgPanel(productData.id)}
+            >
+              Şəkil
+            </Button>
           </Space>
         );
       },
     },
   ];
+
   return (
     <div>
       <Input
@@ -191,7 +261,7 @@ export default function ProductTable() {
         Excel əlavə et
       </Button>
       <Button
-        style={{ marginTop: "10px", marginLeft: "1200px" }}
+        style={{ marginTop: "10px", marginLeft: "1150px" }}
         // style={{ position: "absolute", right: "30px", top: "70px" }}
         type="primary"
         onClick={showAddModal}
@@ -250,6 +320,36 @@ export default function ProductTable() {
         ]}
       >
         <ProductDelete rowKey="id" handleCancel={handleCancel}></ProductDelete>
+      </Modal>
+
+      <Modal
+        title="Məhsula şəkillər əlavə edilməsi"
+        visible={isImgPanelVisible}
+        onCancel={handleCancel}
+        width={2000}
+        height={1000}
+        footer={[
+          <div>
+ <Button danger onClick={handleCancel}>
+            Geri
+          </Button>
+          <Button danger onClick={onSaveImages}>
+            yadda saxla
+          </Button>
+          </div>
+         
+          
+        ]}
+      >
+        <input
+          type="file"
+          multiple
+          accept="image/*"
+          onChange={onImageChange}
+        ></input>
+        {imageURLs.map((imageSrc) => (
+          <img src={imageSrc} />
+        ))}
       </Modal>
     </div>
   );

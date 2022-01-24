@@ -21,8 +21,8 @@ export default function ExpeditorTable() {
         dataIndex: "note",
       },
       {
-        title: "Düzəliş",
-        dataIndex: "edit",
+        title: "Əməliyyat",
+        dataIndex: "operation",
         render: (text, expeditorData) => {
           return (
             <Space size="middle">
@@ -33,16 +33,6 @@ export default function ExpeditorTable() {
               >
                 Redaktə et
               </Button>
-            </Space>
-          );
-        },
-      },
-      {
-        title: "Sil",
-        dataIndex: "delete",
-        render: (text, expeditorData) => {
-          return (
-            <Space size="middle">
               <Button
                 size="small"
                 type="danger"
