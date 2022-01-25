@@ -59,7 +59,7 @@ export const deleteProduct = (id) => (dispatch) => {
 
 export const addProductExcel = (data) => (dispatch) => {
   console.log("excell data ", data);
-  axiosInstance.add("/products/excel", data).then((response) => {
+  axiosInstance.post("/products/excel", data).then((response) => {
     if (response.status === 200) {
       dispatch({
         type: actionTypes.ADD_PRODUCT_EXCEL,
@@ -71,7 +71,7 @@ export const addProductExcel = (data) => (dispatch) => {
 };
 
 export const addProductImages = (id, data) => (dispatch) => {
-  axiosInstance.add("/products/" + id + "/images", data).then((response) => {
+  axiosInstance.post("/products/" + id + "/images", data).then((response) => {
     if (response.status === 200) {
       dispatch({
         type: actionTypes.ADD_PRODUCT_IMAGES,

@@ -77,7 +77,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ### Cedvellerde axtarish
 ### Emeliyyatlardan sonra refresh problem (async) +++
 ### Routing +++
-### http url-leri dinamic idare
+### http url-leri dinamic idare (demo olaraq yekunlashdi) +++
 ### label-larin textlerini file-dan oxumaq
 
 ### DESIGN
@@ -86,3 +86,10 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ### headere el gezdirmek 
 ### sidebar menunun height-ini 100% dan cixarmaq
 ### duzelis ve sil emeliyyatlarini bir columna yerleshdirmek  +++
+
+### teyyub terefden pagination
+### barkoda gore axtaris +++
+### img ve diger filelarla bagli codelarin optimizasiyasi 
+### base64 paramin datan silinmesi (replace) meselen: data:application/vnd.ms-excel;base64, ve ya data:image/jpeg;base64,
+### react pagination
+### excel add zamani loading(waiting) yazmaq

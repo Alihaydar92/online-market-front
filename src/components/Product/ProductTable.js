@@ -13,6 +13,10 @@ import ProductDelete from "./ProductDelete";
 
 export default function ProductTable() {
   const dispatch = useDispatch();
+
+  
+
+
   /////////////////////////////////////////////file upload
   const [selectedFile, setSelectedFile] = useState({
     file: null,
@@ -23,12 +27,37 @@ export default function ProductTable() {
   const [imageURLs, setImageURLs] = useState([]);
   const [imagesBase64, setImagesBase64] = useState([]);
 
+
+
+
+
+  
+
+
   const listOfProductData = useSelector(
     (state) => state.productReducers?.productListData
+  );
+  const [dataSource, setDataSource] = useState(listOfProductData);
+  const [value, setValue] = useState('');
+
+  const FilterByBarcodeInput = (
+    <Input
+      placeholder="Barkodla axtar"
+      value={value}
+      onChange={e => {
+        const currValue = e.target.value;
+        setValue(currValue);
+        const filteredData = listOfProductData.filter(entry =>
+          entry.barcode.includes(currValue)
+        );
+        setDataSource(filteredData);
+      }}
+    />
   );
   const productDataById = useSelector(
     (state) => state.productReducers?.productDataById
   );
+
   useEffect(() => {
     dispatch(listOfProducts());
   }, []);
@@ -108,7 +137,6 @@ export default function ProductTable() {
       .then((result) => {
         file["base64"] = result;
         console.log("File Is", file);
-
         setSelectedFile({
           fileName: file.name,
           fileContext: file.base64,
@@ -117,10 +145,6 @@ export default function ProductTable() {
       .catch((err) => {
         console.log(err);
       });
-
-    // selectedFile({
-    //   file: e.target.files[0],
-    // });
   };
   const onCreateExcel = async (e) => {
     console.log(" add excel base64 data", selectedFile);
@@ -139,7 +163,7 @@ export default function ProductTable() {
     images.forEach((image) =>
       getBase64(image)
         .then((result) => {
-        const base64Data=  removeBase64Padding(result);
+        const base64Data=  removeJpegBase64Padding(result);
           image["base64"] = base64Data;
           
           console.log("image Is", image);
@@ -154,27 +178,29 @@ export default function ProductTable() {
     );
     setImageURLs(newImageUrls);
   }, [images]);
-const removeBase64Padding =(base64Img) =>{
+const removeJpegBase64Padding =(base64Img) =>{
   return base64Img.replace("data:image/jpeg;base64,", "");
-  // return base64Img.replace(/={1,2}$/, '');
-  console.log('base64Img ',base64Img);
   // return base64Img;
 }
   const onImageChange = (e) => {
     setImages([...e.target.files]);
   };
-  const onSaveImages = async (e) => {
+  const onSaveImages =  (e) => {
     console.log(" add images base64 data", imagesBase64);
-    dispatch(addProductImages(productDataById.id,imagesBase64));
+    console.log(" productDataById", productDataById);
+    // dispatch(addProductImages(productDataById.id,imagesBase64));
   };
   /////////////////////////////////////////////////image upload
+
+  
+
   const columns = [
     {
       title: "Məhusulun adı",
       dataIndex: "name",
     },
     {
-      title: "Barkod",
+      title: FilterByBarcodeInput,
       dataIndex: "barcode",
     },
     {
@@ -268,22 +294,12 @@ const removeBase64Padding =(base64Img) =>{
       >
         Əlavə et
       </Button>
-
-      {/* <Button onClick={handleSubmission}>Submit</Button> */}
-      {/* <Button>Excel faylını seç</Button> */}
-      {/* <Input
-                size="small"
-                // ghost="success"
-                type="file"
-                accept=".xlsx, application/vnd.ms-excel"
-                // onClick={() => showRemoveModal(getExcel)}
-              />
-                Excel */}
       <Table
         style={{ marginTop: "20px" }}
-        dataSource={listOfProductData}
+        dataSource={dataSource}
         columns={columns}
         rowKey="id"
+        
       ></Table>
       <Modal
         title="Məhsulun əlavə edilməsi"
