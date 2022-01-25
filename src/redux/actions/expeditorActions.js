@@ -1,8 +1,7 @@
-import axios from "axios";
 import * as actionTypes from "./actionTypes";
-
+import axiosInstance from "../../helpers/axios";
 export const listOfExpeditors = () => (dispatch) => {
-  axios.get("http://localhost:8080/sellers").then((response) => {
+  axiosInstance.get("/sellers").then((response) => {
     dispatch({
       type: actionTypes.LIST_OF_EXPEDITORS,
       payload: response.data,
@@ -10,7 +9,7 @@ export const listOfExpeditors = () => (dispatch) => {
   });
 };
 export const getExpeditorById = (id) => (dispatch) => {
-  axios.get("http://localhost:8080/sellers/" + id).then((response) => {
+  axiosInstance.get("/sellers/" + id).then((response) => {
     dispatch({
       type: actionTypes.GET_EXPEDITOR_BY_ID,
       payload: response.data,
@@ -20,7 +19,7 @@ export const getExpeditorById = (id) => (dispatch) => {
 
 export const addExpeditor = (data) => (dispatch) => {
   console.log("add customer ", data);
-  axios.post("http://localhost:8080/sellers", data).then((response) => {
+  axiosInstance.post("/sellers", data).then((response) => {
     if (response.status === 200) {
       dispatch({
         type: actionTypes.ADD_EXPEDITOR,
@@ -33,21 +32,19 @@ export const addExpeditor = (data) => (dispatch) => {
 };
 
 export const updateExpeditor = (data) => (dispatch) => {
-  axios
-    .put("http://localhost:8080/sellers/" + data.id, data)
-    .then((response) => {
-      if (response.status === 200) {
-        dispatch({
-          type: actionTypes.UPDATE_EXPEDITOR,
-          payload: response.data,
-        });
-        dispatch(listOfExpeditors());
-      }
-    });
+  axiosInstance.put("/sellers/" + data.id, data).then((response) => {
+    if (response.status === 200) {
+      dispatch({
+        type: actionTypes.UPDATE_EXPEDITOR,
+        payload: response.data,
+      });
+      dispatch(listOfExpeditors());
+    }
+  });
 };
 
 export const deleteExpeditor = (id) => (dispatch) => {
-  axios.delete("http://localhost:8080/sellers/" + id).then((response) => {
+  axiosInstance.delete("/sellers/" + id).then((response) => {
     if (response.status === 200) {
       dispatch({
         type: actionTypes.DELETE_EXPEDITOR,

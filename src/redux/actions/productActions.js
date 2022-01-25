@@ -1,8 +1,7 @@
-import axios from "axios";
 import * as actionTypes from "./actionTypes";
-
+import axiosInstance from "../../helpers/axios";
 export const listOfProducts = () => (dispatch) => {
-  axios.get("http://localhost:8080/products").then((response) => {
+  axiosInstance.get("/products").then((response) => {
     dispatch({
       type: actionTypes.LIST_OF_PRODUCTS,
       payload: response.data,
@@ -11,7 +10,7 @@ export const listOfProducts = () => (dispatch) => {
 };
 
 export const getProductById = (id) => (dispatch) => {
-  axios.get("http://localhost:8080/products/" + id).then((response) => {
+  axiosInstance.get("/products/" + id).then((response) => {
     console.log("response ", response.data);
     dispatch({
       type: actionTypes.GET_PRODUCT_BY_ID,
@@ -21,7 +20,7 @@ export const getProductById = (id) => (dispatch) => {
 };
 
 export const addProduct = (data) => (dispatch) => {
-  axios.post("http://localhost:8080/products", data).then((response) => {
+  axiosInstance.post("/products", data).then((response) => {
     if (response.status === 200) {
       dispatch({
         type: actionTypes.ADD_PRODUCT,
@@ -34,22 +33,20 @@ export const addProduct = (data) => (dispatch) => {
 
 export const updateProduct = (data) => (dispatch) => {
   console.log("update product data ", data);
-  axios
-    .put("http://localhost:8080/products/" + data.id, data)
-    .then((response) => {
-      console.log(response.status);
-      console.log(response.data)
-      if (response.status === 200) {
-        dispatch({
-          type: actionTypes.UPDATE_PRODUCT,
-          payload: response.data,
-        });
-        dispatch(listOfProducts());
-      }
-    });
+  axiosInstance.put("/products/" + data.id, data).then((response) => {
+    console.log(response.status);
+    console.log(response.data);
+    if (response.status === 200) {
+      dispatch({
+        type: actionTypes.UPDATE_PRODUCT,
+        payload: response.data,
+      });
+      dispatch(listOfProducts());
+    }
+  });
 };
 export const deleteProduct = (id) => (dispatch) => {
-  axios.delete("http://localhost:8080/products/" + id).then((response) => {
+  axiosInstance.delete("/products/" + id).then((response) => {
     if (response.status === 200) {
       dispatch({
         type: actionTypes.DELETE_PRODUCT,
@@ -60,10 +57,9 @@ export const deleteProduct = (id) => (dispatch) => {
   });
 };
 
-
 export const addProductExcel = (data) => (dispatch) => {
-  console.log('excell data ',data)
-  axios.add("http://localhost:8080/products/excel",data).then((response) => {
+  console.log("excell data ", data);
+  axiosInstance.add("/products/excel", data).then((response) => {
     if (response.status === 200) {
       dispatch({
         type: actionTypes.ADD_PRODUCT_EXCEL,
@@ -74,8 +70,8 @@ export const addProductExcel = (data) => (dispatch) => {
   });
 };
 
-export const addProductImages = (id,data) => (dispatch) => {
-  axios.add("http://localhost:8080/products/"+id + "/images",data).then((response) => {
+export const addProductImages = (id, data) => (dispatch) => {
+  axiosInstance.add("/products/" + id + "/images", data).then((response) => {
     if (response.status === 200) {
       dispatch({
         type: actionTypes.ADD_PRODUCT_IMAGES,

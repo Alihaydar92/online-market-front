@@ -1,8 +1,7 @@
-import axios from "axios";
 import * as actionTypes from "./actionTypes";
-
+import axiosInstance from "../../helpers/axios";
 export const listOfProperties = () => (dispatch) => {
-  axios.get("http://localhost:8080/properties").then((response) => {
+  axiosInstance.get("/properties").then((response) => {
     dispatch({
       type: actionTypes.LIST_OF_PROPERTIES,
       payload: response.data,
@@ -11,7 +10,7 @@ export const listOfProperties = () => (dispatch) => {
 };
 
 export const addProperty = (data) => (dispatch) => {
-  axios.post("http://localhost:8080/properties", data).then((response) => {
+  axiosInstance.post("/properties", data).then((response) => {
     if (response.status === 200) {
       dispatch({
         type: actionTypes.ADD_PROPERTY,
@@ -23,7 +22,7 @@ export const addProperty = (data) => (dispatch) => {
 };
 
 export const getPropertyById = (id) => (dispatch) => {
-  axios.get("http://localhost:8080/properties/" + id).then((response) => {
+  axiosInstance.get("/properties/" + id).then((response) => {
     dispatch({
       type: actionTypes.GET_PROPERTY_BY_ID,
       payload: response.data,
@@ -32,21 +31,19 @@ export const getPropertyById = (id) => (dispatch) => {
 };
 
 export const updateProperty = (data) => (dispatch) => {
-  axios
-    .put("http://localhost:8080/properties/" + data.id, data)
-    .then((response) => {
-      if (response.status === 200) {
-        dispatch({
-          type: actionTypes.UPDATE_PROPERTY,
-          payload: response.data,
-        });
-        dispatch(listOfProperties());
-      }
-    });
+  axiosInstance.put("/properties/" + data.id, data).then((response) => {
+    if (response.status === 200) {
+      dispatch({
+        type: actionTypes.UPDATE_PROPERTY,
+        payload: response.data,
+      });
+      dispatch(listOfProperties());
+    }
+  });
 };
 
 export const deleteProperty = (id) => (dispatch) => {
-  axios.delete("http://localhost:8080/properties/" + id).then((response) => {
+  axiosInstance.delete("/properties/" + id).then((response) => {
     if (response.status === 200) {
       dispatch({
         type: actionTypes.DELETE_PROPERTY,
