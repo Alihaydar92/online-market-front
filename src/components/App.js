@@ -19,7 +19,7 @@ export default function App() {
       <Sider width={200} className="site-layout-background">
         <Menu
           mode="inline"
-          defaultSelectedKeys={["1"]}
+          // defaultSelectedKeys={["1"]}
           defaultOpenKeys={["sub1"]}
           style={{ height: "100%", borderRight: 0 }}
         >
@@ -55,7 +55,7 @@ export default function App() {
         </Header>
         <Content>
           <Routes>
-            <Route exact path="/" element={<NotFound/>}></Route>
+            <Route exact path="/" element={<CustomerTable/>}></Route>
             <Route  path="/customers" element={<CustomerTable/>}></Route>
             <Route  path="/sellers" element={<ExpeditorTable/>}></Route>
             <Route  path="/products" element={<ProductTable/>}></Route>

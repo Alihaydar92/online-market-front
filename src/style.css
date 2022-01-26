@@ -1,0 +1,16 @@
+/* Upload */
+.uploadPicturesWrapper div {
+    justify-content: flex-start !important;
+  }
+  
+  .uploadPictureContainer {
+    width: 200px !important;
+    height: auto !important;
+    margin: 2% 5% !important;
+    padding: 10px !important;
+  }
+  
+  .uploadPictureContainer img {
+    height: 200px !important;
+  }
+  

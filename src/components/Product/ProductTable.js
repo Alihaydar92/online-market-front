@@ -4,50 +4,73 @@ import {
   getProductById,
   listOfProducts,
   addProductExcel,
-  addProductImages
+  addProductImages,
 } from "../../redux/actions/productActions";
-import { Space, Button, Table, Modal, Input } from "antd";
+import { Space, Button, Table, Modal, Input,Row,Col } from "antd";
 import ProductAdd from "./ProductAdd";
 import ProductEdit from "./ProductEdit";
 import ProductDelete from "./ProductDelete";
+import ImageUploading from "react-images-uploading";
+import "../../style.css";
 
 export default function ProductTable() {
   const dispatch = useDispatch();
-
-  
-
-
   /////////////////////////////////////////////file upload
   const [selectedFile, setSelectedFile] = useState({
     file: null,
     base64URL: "",
   });
+  /////////////////////////////////////////////file upload
+
   //////////////////////////////////////////////////image upload
   const [images, setImages] = useState([]);
-  const [imageURLs, setImageURLs] = useState([]);
-  const [imagesBase64, setImagesBase64] = useState([]);
+  const maxNumber = 10;
 
-
-
-
-
-  
-
+  const onChange = (imageList, addUpdateIndex) => {
+    // data for submit
+    console.log(imageList, addUpdateIndex);
+    var content=""; 
+    var myArray=[];
+    let splittedBase64Array=[];
+     imageList.forEach(function (item, index) {
+      console.log(item, index);
+       myArray = item.content.split(",", -1);
+      console.log(myArray)
+       content= myArray[1];
+       console.log(content)
+       
+       splittedBase64Array.push({content});
+    });
+    // splittedBase64Array.push(text);
+    // imageList=splittedBase64Array;
+    console.log(splittedBase64Array);
+    console.log(imageList);
+    setImages(splittedBase64Array);
+  };
+  //////////////////////////////////////////////////image upload
 
   const listOfProductData = useSelector(
     (state) => state.productReducers?.productListData
   );
-  const [dataSource, setDataSource] = useState(listOfProductData);
-  const [value, setValue] = useState('');
+  const [dataSource, setDataSource] = useState();
+  const [value, setValue] = useState("");
+  useEffect(() => {
+    dispatch(listOfProducts());
+    setDataSource(listOfProductData);
+  }, []);
 
+  useEffect(() => {
+    console.log("listOfProductData", listOfProductData);
+    setDataSource(listOfProductData)
+  },[listOfProductData]);
   const FilterByBarcodeInput = (
     <Input
       placeholder="Barkodla axtar"
       value={value}
-      onChange={e => {
+      onChange={(e) => {
         const currValue = e.target.value;
         setValue(currValue);
-        const filteredData = listOfProductData.filter(entry =>
+        const filteredData = listOfProductData.filter((entry) =>
           entry.barcode.includes(currValue)
         );
         setDataSource(filteredData);
@@ -58,13 +81,9 @@ export default function ProductTable() {
     (state) => state.productReducers?.productDataById
   );
 
-  useEffect(() => {
-    dispatch(listOfProducts());
-  }, []);
+  
 
-  useEffect(() => {
-    console.log("listOfProductData", listOfProductData);
-  });
+  
   const [isElaveEtModalVisible, setIsElaveEtModalVisible] = useState(false);
   const [isRedakteEtModalVisible, setIsRedakteModalVisible] = useState(false);
   const [isSilModalVisible, setIsSilModalVisible] = useState(false);
@@ -84,6 +103,7 @@ export default function ProductTable() {
     setIsImgPanelVisible(false);
   };
   const showRemoveModal = (id) => {
+    console.log("productDataById", productDataById);
     dispatch(getProductById(id));
     setIsRedakteModalVisible(false);
     setIsElaveEtModalVisible(false);
@@ -91,6 +111,8 @@ export default function ProductTable() {
     setIsImgPanelVisible(false);
   };
   const showImgPanel = (id) => {
+    console.log("productDataById", productDataById);
+    setImages([]);
     dispatch(getProductById(id));
     setIsRedakteModalVisible(false);
     setIsElaveEtModalVisible(false);
@@ -104,7 +126,7 @@ export default function ProductTable() {
     setIsSilModalVisible(false);
     setIsImgPanelVisible(false);
   };
-  ////////////////////////excel file upload
+  //hem excel hem de imageleri base64-e ceviren function
   const getBase64 = (file) => {
     return new Promise((resolve) => {
       let fileInfo;
@@ -126,6 +148,9 @@ export default function ProductTable() {
       console.log(fileInfo);
     });
   };
+
+  ////////////////////////excel file upload
+  //excel file sececek function
   const handleFileInputChange = (e) => {
     console.log("e.target.files[0].name", e.target.files[0].name);
     console.log("file path ", window.location + "   " + e.target.files[0].name);
@@ -150,49 +175,19 @@ export default function ProductTable() {
     console.log(" add excel base64 data", selectedFile);
     dispatch(addProductExcel(selectedFile));
   };
- 
-
-
   ////////////////////////excel file upload
 
-  //////////////////////////////////////////////////image upload
-  useEffect(() => {
-    if (images.length < 1) return;
-    const newImageUrls = [];
-    images.forEach((image) => newImageUrls.push(URL.createObjectURL(image)));
-    images.forEach((image) =>
-      getBase64(image)
-        .then((result) => {
-        const base64Data=  removeJpegBase64Padding(result);
-          image["base64"] = base64Data;
-          
-          console.log("image Is", image);
-
-          setImagesBase64([{
-            content: image.base64,
-          }]);
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-    );
-    setImageURLs(newImageUrls);
-  }, [images]);
-const removeJpegBase64Padding =(base64Img) =>{
-  return base64Img.replace("data:image/jpeg;base64,", "");
-  // return base64Img;
-}
-  const onImageChange = (e) => {
-    setImages([...e.target.files]);
-  };
-  const onSaveImages =  (e) => {
-    console.log(" add images base64 data", imagesBase64);
+  //save images
+  const onSaveImages = () => {
     console.log(" productDataById", productDataById);
-    // dispatch(addProductImages(productDataById.id,imagesBase64));
+    console.log(" images", images);
+    let data={
+      images:images
+    }
+   
+    console.log(" images data: ", data);
+    dispatch(addProductImages(productDataById.id,data));
   };
-  /////////////////////////////////////////////////image upload
-
-  
 
   const columns = [
     {
@@ -299,7 +294,6 @@ const removeJpegBase64Padding =(base64Img) =>{
         dataSource={dataSource}
         columns={columns}
         rowKey="id"
-        
       ></Table>
       <Modal
         title="Məhsulun əlavə edilməsi"
@@ -346,26 +340,60 @@ const removeJpegBase64Padding =(base64Img) =>{
         height={1000}
         footer={[
           <div>
- <Button danger onClick={handleCancel}>
-            Geri
-          </Button>
-          <Button danger onClick={onSaveImages}>
-            yadda saxla
-          </Button>
-          </div>
-         
-          
+            <Button danger onClick={handleCancel}>
+              Geri
+            </Button>
+            <Button danger onClick={onSaveImages}>
+              yadda saxla
+            </Button>
+          </div>,
         ]}
       >
-        <input
-          type="file"
+        <ImageUploading
           multiple
-          accept="image/*"
-          onChange={onImageChange}
-        ></input>
-        {imageURLs.map((imageSrc) => (
-          <img src={imageSrc} />
-        ))}
+          value={images}
+          onChange={onChange}
+          maxNumber={maxNumber}
+          dataURLKey="content"
+        >
+          {({
+            imageList,
+            onImageUpload,
+            onImageRemoveAll,
+            onImageUpdate,
+            onImageRemove,
+            isDragging,
+            dragProps,
+          }) => (
+            // write your building UI
+            <div className="upload__image-wrapper">
+              <button
+                style={isDragging ? { color: "red" } : undefined}
+                onClick={onImageUpload}
+                {...dragProps}
+              >
+                Click or Drop here
+              </button>
+              &nbsp;
+              <button onClick={onImageRemoveAll}>Remove all images</button>
+              <Row>
+              {imageList.map((image, index) => (
+                <Col>
+                <div key={index} className="image-item">
+                  <img src={image["content"]} alt="" width="100" height={100} />
+                  <div className="image-item__btn-wrapper">
+                    <button onClick={() => onImageUpdate(index)}>Update</button>
+                    <button onClick={() => onImageRemove(index)}>Remove</button>
+                  </div>
+                </div>
+                </Col>
+                
+              ))}
+              </Row>
+              
+            </div>
+          )}
+        </ImageUploading>
       </Modal>
     </div>
   );

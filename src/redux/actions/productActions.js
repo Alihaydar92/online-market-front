@@ -71,7 +71,7 @@ export const addProductExcel = (data) => (dispatch) => {
 };
 
 export const addProductImages = (id, data) => (dispatch) => {
-  axiosInstance.post("/products/" + id + "/images", data).then((response) => {
+  axiosInstance.post("/product/" + id + "/images/list", data).then((response) => {
     if (response.status === 200) {
       dispatch({
         type: actionTypes.ADD_PRODUCT_IMAGES,
