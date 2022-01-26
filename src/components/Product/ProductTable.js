@@ -5,6 +5,7 @@ import {
   listOfProducts,
   addProductExcel,
   addProductImages,
+  getProductImagesByProductId
 } from "../../redux/actions/productActions";
 import { Space, Button, Table, Modal, Input,Row,Col } from "antd";
 import ProductAdd from "./ProductAdd";
@@ -52,17 +53,24 @@ export default function ProductTable() {
   const listOfProductData = useSelector(
     (state) => state.productReducers?.productListData
   );
+  const productDataById = useSelector(
+    (state) => state.productReducers?.productDataById
+  );
+
+  const productImagesDataByProductId=useSelector(
+    (state) => state.productReducers?.productImagesDataByProductId
+  )
   const [dataSource, setDataSource] = useState();
   const [value, setValue] = useState("");
   useEffect(() => {
     dispatch(listOfProducts());
-    setDataSource(listOfProductData);
   }, []);
 
   useEffect(() => {
     console.log("listOfProductData", listOfProductData);
     setDataSource(listOfProductData)
   },[listOfProductData]);
+
   const FilterByBarcodeInput = (
     <Input
       placeholder="Barkodla axtar"
@@ -77,9 +85,7 @@ export default function ProductTable() {
       }}
     />
   );
-  const productDataById = useSelector(
-    (state) => state.productReducers?.productDataById
-  );
+  
 
   
 
@@ -113,6 +119,9 @@ export default function ProductTable() {
   const showImgPanel = (id) => {
     console.log("productDataById", productDataById);
     setImages([]);
+    dispatch(getProductImagesByProductId(id));
+    setImages([productImagesDataByProductId]);
+    console.log('images ',images)
     dispatch(getProductById(id));
     setIsRedakteModalVisible(false);
     setIsElaveEtModalVisible(false);
@@ -257,6 +266,7 @@ export default function ProductTable() {
             >
               Şəkil
             </Button>
+            
           </Space>
         );
       },

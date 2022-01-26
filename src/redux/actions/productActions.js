@@ -81,3 +81,16 @@ export const addProductImages = (id, data) => (dispatch) => {
     }
   });
 };
+
+export const getProductImagesByProductId = (id) => (dispatch) => {
+  axiosInstance.get("/product/" + id + "/images").then((response) => {
+    console.log("get product imgs by product id reposne data: ",response.data)
+    if (response.status === 200) {
+      dispatch({
+        type: actionTypes.GET_PRODUCT_IMAGES_BY_PRODUCT_ID,
+        payload: response.data,
+      });
+      dispatch(listOfProducts());
+    }
+  });
+};

@@ -36,6 +36,12 @@ export default function productReducers(state = initialState, action) {
         productUpdateData: action.payload,
       };
     }
+    case actionTypes.GET_PRODUCT_IMAGES_BY_PRODUCT_ID: {
+      return {
+        ...state,
+        productImagesDataByProductId: action.payload,
+      };
+    }
     default:
       return state;
   }

@@ -17,6 +17,7 @@ export default{
     productDeleteData:{},
     productAddData:{},
     productUpdateData:{},
+    productImagesDataByProductId:{},
 
     categoryListData:[],
     categoryDataById:{},
