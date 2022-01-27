@@ -2,7 +2,7 @@ import {  useDispatch } from "react-redux";
 import { Button, Form, Input } from "antd";
 // import { addCustomer, listOfCustomers } from "../../redux/actions/customerAction";
 import { addExpeditor,listOfExpeditors } from "../../redux/actions/expeditorActions";
-export default function CustomerAddEdit(props) {
+export default function ExpeditorAdd(props) {
   const dispatch = useDispatch();
 
   const [form] = Form.useForm();

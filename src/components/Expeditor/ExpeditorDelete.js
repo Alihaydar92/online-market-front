@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Button, Form } from "antd";
 import { deleteExpeditor , listOfExpeditors} from '../../redux/actions/expeditorActions';
-export default function CustomerDelete(props) {
+export default function ExpeditorDelete(props) {
   const dispatch = useDispatch();
   const expeditorDataById = useSelector(
     (state) => state.expeditorReducers.expeditorDataById

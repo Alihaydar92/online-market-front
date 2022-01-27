@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Button, Form, Input } from "antd";
 import { updateExpeditor,listOfExpeditors } from "../../redux/actions/expeditorActions";
 
-export default function CustomerAddEdit(props) {
+export default function ExpeditorEdit(props) {
   const dispatch = useDispatch();
   const expeditorDataById = useSelector(
     (state) => state.expeditorReducers?.expeditorDataById

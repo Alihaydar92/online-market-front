@@ -11,7 +11,7 @@ import ProductTable from "./Product/ProductTable";
 import  NotFound  from "../components/NotFound";
 import CategoryTable from "./Category/CategoryTable";
 import PropertyTable from "./Property/PropertyTable";
-import ChartTable from "./Chart/ChartTable";
+import CartAdd from "./Cart/CartAdd";
 const { Footer, Content, Sider, Header } = Layout;
 const { SubMenu } = Menu;
 export default function App() {
@@ -32,7 +32,7 @@ export default function App() {
           </SubMenu>
           <SubMenu key="sub2" icon={<LaptopOutlined />} title="Əməliyyat">
             <Menu.Item key="5"><Link to="/products">Məhsullar</Link></Menu.Item>
-            <Menu.Item key="6"><Link to="/carts">Chart</Link></Menu.Item>
+            <Menu.Item key="6"><Link to="/carts">Cart</Link></Menu.Item>
             <Menu.Item key="7">option7</Menu.Item>
             <Menu.Item key="8">option8</Menu.Item>
           </SubMenu>
@@ -62,7 +62,7 @@ export default function App() {
             <Route  path="/products" element={<ProductTable/>}></Route>
             <Route  path="/categories" element={<CategoryTable/>}></Route>
             <Route  path="/properties" element={<PropertyTable/>}></Route>
-            <Route  path="/carts" element={<ChartTable/>}></Route>
+            <Route  path="/carts" element={<CartAdd/>}></Route>
           </Routes>
 
           {/* <CustomerTable></CustomerTable>

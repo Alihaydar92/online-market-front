@@ -90,3 +90,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ### excel add zamani loading(waiting) yazmaq
 ### image-in sizeni ve visual olcusunu kiciltmek 
 ### productlist ilk defeden gelmir (bax:barkod axtarisa gore) +++
+### sekil add ederken bir meseleye diqqet etmek reqse getmek (backendde)

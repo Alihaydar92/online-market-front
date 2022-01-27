@@ -24,29 +24,29 @@ export default function ProductTable() {
   /////////////////////////////////////////////file upload
 
   //////////////////////////////////////////////////image upload
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState([{id:''}]);
   const maxNumber = 10;
 
   const onChange = (imageList, addUpdateIndex) => {
     // data for submit
     console.log(imageList, addUpdateIndex);
-    var content=""; 
-    var myArray=[];
-    let splittedBase64Array=[];
-     imageList.forEach(function (item, index) {
-      console.log(item, index);
-       myArray = item.content.split(",", -1);
-      console.log(myArray)
-       content= myArray[1];
-       console.log(content)
+    // var content=""; 
+    // var myArray=[];
+    // let splittedBase64Array=[];
+    //  imageList.forEach(function (item, index) {
+    //   console.log(item, index);
+    //    myArray = item.content.split(",", -1);
+    //   console.log(myArray)
+    //    content= myArray[1];
+    //    console.log(content)
        
-       splittedBase64Array.push({content});
-    });
-    // splittedBase64Array.push(text);
-    // imageList=splittedBase64Array;
-    console.log(splittedBase64Array);
-    console.log(imageList);
-    setImages(splittedBase64Array);
+    //    splittedBase64Array.push({content});
+    // });
+    // // splittedBase64Array.push(text);
+    // // imageList=splittedBase64Array;
+    // console.log(splittedBase64Array);
+    // console.log(imageList);
+    setImages(imageList);
   };
   //////////////////////////////////////////////////image upload
 
@@ -117,12 +117,14 @@ export default function ProductTable() {
     setIsImgPanelVisible(false);
   };
   const showImgPanel = (id) => {
-    console.log("productDataById", productDataById);
-    setImages([]);
+    // setImages(null);
     dispatch(getProductImagesByProductId(id));
-    setImages([productImagesDataByProductId]);
-    console.log('images ',images)
     dispatch(getProductById(id));
+    console.log("productDataById", productDataById);
+    console.log("productImagesDataByProductId", productImagesDataByProductId);
+    setImages(productImagesDataByProductId.images);
+    console.log('images ',images)
+   
     setIsRedakteModalVisible(false);
     setIsElaveEtModalVisible(false);
     setIsSilModalVisible(false);
@@ -192,6 +194,7 @@ export default function ProductTable() {
     console.log(" images", images);
     let data={
       images:images
+      
     }
    
     console.log(" images data: ", data);
