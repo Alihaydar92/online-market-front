@@ -106,9 +106,8 @@ export default function ProductEdit(props) {
           label="Barkod"
           name="barcode"
           rules={[{ required: true, message: "Barkodu daxil edin!" }]}
-          
         >
-          <Input disabled={true}/>
+          <Input disabled={true} />
         </Form.Item>
         <Form.Item
           label="Qeyd"
@@ -159,7 +158,23 @@ export default function ProductEdit(props) {
           name="category"
           rules={[{ required: true, message: "Kateqoriyani seçin!" }]}
         >
-          <Select>
+          <Select
+            showSearch
+            optionFilterProp="children"
+            // onSearch={onSearchCategory}
+            filterOption={(input, option) => {
+              return (
+                option.props.children
+                  .toString()
+                  .toLowerCase()
+                  .indexOf(input.toLowerCase()) >= 0 ||
+                option.props.value
+                  .toString()
+                  .toLowerCase()
+                  .indexOf(input.toLowerCase()) >= 0
+              );
+            }}
+          >
             {listOfCategoryData.map((categoryData) => (
               <Option key={categoryData.id} value={categoryData.id}>
                 {categoryData.name}
@@ -172,7 +187,23 @@ export default function ProductEdit(props) {
           name="property"
           rules={[{ required: true, message: "Xüsusiyyəti seçin!" }]}
         >
-          <Select>
+          <Select
+            showSearch
+            optionFilterProp="children"
+            // onSearch={onSearchCategory}
+            filterOption={(input, option) => {
+              return (
+                option.props.children
+                  .toString()
+                  .toLowerCase()
+                  .indexOf(input.toLowerCase()) >= 0 ||
+                option.props.value
+                  .toString()
+                  .toLowerCase()
+                  .indexOf(input.toLowerCase()) >= 0
+              );
+            }}
+          >
             {listOfPropertyData.map((propertyData) => (
               <Option key={propertyData.id} value={propertyData.id}>
                 {propertyData.name}

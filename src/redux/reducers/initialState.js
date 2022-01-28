@@ -30,6 +30,10 @@ export default{
     propertyDataById:{},
     propertyDeleteData:{},
     propertyUpdateData:{},
-    propertyAddData:{}
+    propertyAddData:{},
+
+
+    storeHouseListData:[],
+    storeHouseDataById:{}
 
 }

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Form, Input, Button, InputNumber, Select } from "antd";
 import { listOfCategories } from "../../redux/actions/categoryActions";
 import { listOfProperties } from "../../redux/actions/propertyActions";
-import { addProduct,listOfProducts } from "../../redux/actions/productActions";
+import { addProduct, listOfProducts } from "../../redux/actions/productActions";
 
 const { Option } = Select;
 export default function ProductAdd(props) {
@@ -39,12 +39,12 @@ export default function ProductAdd(props) {
           otherPrice: form.getFieldsValue().otherPrice,
           customerSellPrice: form.getFieldsValue().customerSellPrice,
           propertyId: form.getFieldsValue().property,
-          note: form.getFieldsValue().note
+          note: form.getFieldsValue().note,
         };
-console.log('rpoduct data add: ',data)
-          dispatch(addProduct(data));
-          props.handleCancel();
-          dispatch(listOfProducts());
+        console.log("rpoduct data add: ", data);
+        dispatch(addProduct(data));
+        props.handleCancel();
+        dispatch(listOfProducts());
       })
       .catch(() => {
         console.log("validate fields");

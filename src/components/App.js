@@ -12,6 +12,11 @@ import  NotFound  from "../components/NotFound";
 import CategoryTable from "./Category/CategoryTable";
 import PropertyTable from "./Property/PropertyTable";
 import CartAdd from "./Cart/CartAdd";
+import EditableCartTable from "./Cart/EditableCartTable";
+import DinamycTable from "./Cart/DinamycTable";
+import AddDeleteTableRows from "./Cart/AddDeleteTableRows"
+import StoreHouseTable from "./StoreHouse/StoreHouseTable";
+
 const { Footer, Content, Sider, Header } = Layout;
 const { SubMenu } = Menu;
 export default function App() {
@@ -33,8 +38,8 @@ export default function App() {
           <SubMenu key="sub2" icon={<LaptopOutlined />} title="Əməliyyat">
             <Menu.Item key="5"><Link to="/products">Məhsullar</Link></Menu.Item>
             <Menu.Item key="6"><Link to="/carts">Cart</Link></Menu.Item>
-            <Menu.Item key="7">option7</Menu.Item>
-            <Menu.Item key="8">option8</Menu.Item>
+            <Menu.Item key="7"><Link to="/editableCartTable">EditableCartTable</Link></Menu.Item>
+            <Menu.Item key="8"><Link to="/storeHouse">Anbar</Link></Menu.Item>
           </SubMenu>
           <SubMenu key="sub3" icon={<NotificationOutlined />} title="Digər">
             <Menu.Item key="9">option9</Menu.Item>
@@ -63,6 +68,8 @@ export default function App() {
             <Route  path="/categories" element={<CategoryTable/>}></Route>
             <Route  path="/properties" element={<PropertyTable/>}></Route>
             <Route  path="/carts" element={<CartAdd/>}></Route>
+            <Route  path="/editableCartTable" element={<AddDeleteTableRows/>}></Route>
+            <Route  path="/storeHouse" element={<StoreHouseTable/>}></Route>
           </Routes>
 
           {/* <CustomerTable></CustomerTable>

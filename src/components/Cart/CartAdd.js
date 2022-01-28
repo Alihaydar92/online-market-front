@@ -1,22 +1,38 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Form, Input, Button, InputNumber, Select } from "antd";
-import {listOfCustomers} from "../../redux/actions/customerAction";
-import {listOfExpeditors} from "../../redux/actions/expeditorActions";
-
-const {Option} =Select;
+import { Form, Button, InputNumber, Select, Row, Col } from "antd";
+import { listOfCustomers } from "../../redux/actions/customerAction";
+import { listOfExpeditors } from "../../redux/actions/expeditorActions";
+import { listOfProducts } from "../../redux/actions/productActions";
+const { Option } = Select;
 export default function CartAdd() {
-    const dispatch=useDispatch();
+  const dispatch = useDispatch();
 
-useEffect(()=>{
+  useEffect(() => {
     dispatch(listOfExpeditors());
-});
+  }, []);
 
-useEffect(()=>{
-    dispatch(listOfCustomers())
-})
-const customerList =useSelector((state) => state.customerReducer.customerListData)
-const expeditorList =useSelector((state)=> state.expeditorReducers.expeditorListData)
+  useEffect(() => {
+    dispatch(listOfCustomers());
+  }, []);
+
+  useEffect(() => {
+    dispatch(listOfProducts());
+  }, []);
+  const customerList = useSelector(
+    (state) => state.customerReducer.customerListData
+  );
+  const expeditorList = useSelector(
+    (state) => state.expeditorReducers.expeditorListData
+  );
+  
+  const productList = useSelector(
+    (state) => state.productReducers.productListData
+  );
+
+  const onSearchCustomer = (value) => {
+    console.log("customer value ", value);
+  };
   return (
     <div>
       <Form
@@ -29,71 +45,122 @@ const expeditorList =useSelector((state)=> state.expeditorReducers.expeditorList
         //   onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
-      
-
-        <Form.Item
-          label="Qiyməti"
-          name="price"
-          rules={[{ required: false, message: "Qiymətini daxil edin!" }]}
-        >
-          <InputNumber />
-        </Form.Item>
-        <Form.Item
-          label="Satış qiyməti"
-          name="sellPrice"
-          rules={[{ required: false, message: "Satış qiymətini daxil edin!" }]}
-        >
-          <InputNumber />
-        </Form.Item>
-        <Form.Item
-          label="Müştəri satış qiyməti"
-          name="customerSellPrice"
-          rules={[
-            { required: false, message: "Müştəri satış qiymətini daxil edin!" },
-          ]}
-        >
-          <InputNumber />
-        </Form.Item>
-        <Form.Item
-          label="Digər qiymətlər"
-          name="otherPrice"
-          rules={[{ required: false, message: "Digər qiymətləri daxil edin!" }]}
-        >
-          <InputNumber />
-        </Form.Item>
-        <Form.Item
-          label="Kəmiyyət"
-          name="quantity"
-          rules={[{ required: true, message: "Kəmiyyəti daxil edin!" }]}
-        >
-          <InputNumber />
-        </Form.Item>
-        <Form.Item
-          label="Müştəri"
-          name="category"
-          rules={[{ required: true, message: "Müştərini seçin!" }]}
-        >
-          <Select>
-            {customerList.map((customerData) => (
-              <Option key={customerData.id} value={customerData.id}>
-                {customerData.name}
-              </Option>
-            ))}
-          </Select>
-        </Form.Item>
-        <Form.Item
-          label="Ekspeditor"
-          name="property"
-          rules={[{ required: true, message: "Ekspeditoru seçin!" }]}
-        >
-          <Select>
-            {expeditorList.map((expeditorData) => (
-              <Option key={expeditorData.id} value={expeditorData.id}>
-                {expeditorData.name}
-              </Option>
-            ))}
-          </Select>
-        </Form.Item>
+        <Row>
+          <Col span={6}>
+            <Form.Item
+              label="Müştəri"
+              name="category"
+              rules={[{ required: true, message: "Müştərini seçin!" }]}
+            >
+              <Select
+                showSearch
+                optionFilterProp="children"
+                onSearch={onSearchCustomer}
+                filterOption={(input, option) => {
+                  return (
+                    option.props.children
+                      .toString()
+                      .toLowerCase()
+                      .indexOf(input.toLowerCase()) >= 0 ||
+                    option.props.value
+                      .toString()
+                      .toLowerCase()
+                      .indexOf(input.toLowerCase()) >= 0
+                  );
+                }}
+              >
+                {customerList.map((customerData) => (
+                  <Option key={customerData.id} value={customerData.id}>
+                    {customerData.name}
+                  </Option>
+                ))}
+              </Select>
+            </Form.Item>
+          </Col>
+          <Col span={6}>
+            <Form.Item
+              label="Ekspeditor"
+              name="expeditor"
+              rules={[{ required: true, message: "Ekspeditoru seçin!" }]}
+            >
+              <Select showSearch
+                optionFilterProp="children"
+                // onSearch={onSearchExpeditor}
+                filterOption={(input, option) => {
+                  return (
+                    option.props.children
+                      .toString()
+                      .toLowerCase()
+                      .indexOf(input.toLowerCase()) >= 0 ||
+                    option.props.value
+                      .toString()
+                      .toLowerCase()
+                      .indexOf(input.toLowerCase()) >= 0
+                  );
+                }}>
+                {expeditorList.map((expeditorData) => (
+                  <Option key={expeditorData.id} value={expeditorData.id}>
+                    {expeditorData.name}
+                  </Option>
+                ))}
+              </Select>
+            </Form.Item>
+          </Col>
+        </Row>
+        <Row>
+          <Col span={6}>
+            <Form.Item
+              label="Məhsul"
+              name="product"
+              rules={[{ required: true, message: "Məhsulu seçin!" }]}
+            >
+              <Select showSearch
+                optionFilterProp="children"
+                // onSearch={onSearchProduct}
+                filterOption={(input, option) => {
+                  return (
+                    option.props.children
+                      .toString()
+                      .toLowerCase()
+                      .indexOf(input.toLowerCase()) >= 0 ||
+                    option.props.value
+                      .toString()
+                      .toLowerCase()
+                      .indexOf(input.toLowerCase()) >= 0
+                  );
+                }}>
+                {productList.map((productData) => (
+                  <Option key={productData.id} value={productData.id}>
+                    {productData.name}
+                  </Option>
+                ))}
+              </Select>
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item
+              label="Kəmiyyət"
+              name="quantity"
+              rules={[{ required: true, message: "Kəmiyyəti daxil edin!" }]}
+            >
+              <InputNumber />
+            </Form.Item>
+          </Col>
+        </Row>
+        <Row>
+          <Col span={3}>
+            <Form.Item>
+              <Button
+                type="submit"
+                htmlType="submit"
+                style={{ position: "absolute", left: "320px", bottom: "-90px" }}
+                // onClick={onCreate}
+              >
+                Səbətə at
+              </Button>
+            </Form.Item>
+          </Col>
+        </Row>
         {/* <Form.Item
           label="Satış strategiyası"
           name="priceStrategyList[].unitPrice"
@@ -103,16 +170,6 @@ const expeditorList =useSelector((state)=> state.expeditorReducers.expeditorList
         >
           <Input />
         </Form.Item> */}
-        <Form.Item>
-          <Button
-            type="submit"
-            htmlType="submit"
-            style={{ position: "absolute", left: "320px", bottom: "-90px" }}
-            // onClick={onCreate}
-          >
-            Əlavə et
-          </Button>
-        </Form.Item>
       </Form>
     </div>
   );

@@ -91,3 +91,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ### image-in sizeni ve visual olcusunu kiciltmek 
 ### productlist ilk defeden gelmir (bax:barkod axtarisa gore) +++
 ### sekil add ederken bir meseleye diqqet etmek reqse getmek (backendde)
+### sekil panelinde update buttonunu yigisdirmaq
+### sekil panelinde data ikinci klikde gelir
