@@ -88,8 +88,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ### base64 paramin datan silinmesi (replace) meselen: data:application/vnd.ms-excel;base64, ve ya data:image/jpeg;base64,
 ### react pagination
 ### excel add zamani loading(waiting) yazmaq
-### image-in sizeni ve visual olcusunu kiciltmek 
+### image-in sizeni ve visual olcusunu kiciltmek (sonradan qeyd: teyyub edecek bunu) 
 ### productlist ilk defeden gelmir (bax:barkod axtarisa gore) +++
 ### sekil add ederken bir meseleye diqqet etmek reqse getmek (backendde)
-### sekil panelinde update buttonunu yigisdirmaq
-### sekil panelinde data ikinci klikde gelir
+### sekil panelinde update buttonunu yigisdirmaq+++
+### sekil panelinde data ikinci klikde gelir+++

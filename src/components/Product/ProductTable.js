@@ -70,7 +70,7 @@ export default function ProductTable() {
     console.log("listOfProductData", listOfProductData);
     setDataSource(listOfProductData)
   },[listOfProductData]);
-
+ 
   const FilterByBarcodeInput = (
     <Input
       placeholder="Barkodla axtar"
@@ -118,7 +118,8 @@ export default function ProductTable() {
   };
   const showImgPanel = (id) => {
     // setImages(null);
-    dispatch(getProductImagesByProductId(id));
+    dispatch(getProductImagesByProductId(id),[productImagesDataByProductId]);
+    
     dispatch(getProductById(id));
     console.log("productDataById", productDataById);
     console.log("productImagesDataByProductId", productImagesDataByProductId);
@@ -395,7 +396,7 @@ export default function ProductTable() {
                 <div key={index} className="image-item">
                   <img src={image["content"]} alt="" width="100" height={100} />
                   <div className="image-item__btn-wrapper">
-                    <button onClick={() => onImageUpdate(index)}>Update</button>
+                    {/* <button onClick={() => onImageUpdate(index)}>Update</button> */}
                     <button onClick={() => onImageRemove(index)}>Remove</button>
                   </div>
                 </div>
