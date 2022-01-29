@@ -5,9 +5,9 @@ import {
   listOfProducts,
   addProductExcel,
   addProductImages,
-  getProductImagesByProductId
+  getProductImagesByProductId,
 } from "../../redux/actions/productActions";
-import { Space, Button, Table, Modal, Input,Row,Col } from "antd";
+import { Space, Button, Table, Modal, Input, Row, Col } from "antd";
 import ProductAdd from "./ProductAdd";
 import ProductEdit from "./ProductEdit";
 import ProductDelete from "./ProductDelete";
@@ -21,16 +21,17 @@ export default function ProductTable() {
     file: null,
     base64URL: "",
   });
+  const [disabledSave, setDisabledSave] = useState(true);
   /////////////////////////////////////////////file upload
 
   //////////////////////////////////////////////////image upload
-  const [images, setImages] = useState([{id:''}]);
+  const [images, setImages] = useState([{ id: "" }]);
   const maxNumber = 10;
 
   const onChange = (imageList, addUpdateIndex) => {
     // data for submit
     console.log(imageList, addUpdateIndex);
-    // var content=""; 
+    // var content="";
     // var myArray=[];
     // let splittedBase64Array=[];
     //  imageList.forEach(function (item, index) {
@@ -39,7 +40,7 @@ export default function ProductTable() {
     //   console.log(myArray)
     //    content= myArray[1];
     //    console.log(content)
-       
+
     //    splittedBase64Array.push({content});
     // });
     // // splittedBase64Array.push(text);
@@ -57,9 +58,9 @@ export default function ProductTable() {
     (state) => state.productReducers?.productDataById
   );
 
-  const productImagesDataByProductId=useSelector(
+  const productImagesDataByProductId = useSelector(
     (state) => state.productReducers?.productImagesDataByProductId
-  )
+  );
   const [dataSource, setDataSource] = useState();
   const [value, setValue] = useState("");
   useEffect(() => {
@@ -68,9 +69,14 @@ export default function ProductTable() {
 
   useEffect(() => {
     console.log("listOfProductData", listOfProductData);
-    setDataSource(listOfProductData)
-  },[listOfProductData]);
- 
+    setDataSource(listOfProductData);
+  }, [listOfProductData]);
+
+  useEffect(() => {
+    setImages(productImagesDataByProductId.images);
+  }, [productImagesDataByProductId]);
+
+  useEffect(() => {});
   const FilterByBarcodeInput = (
     <Input
       placeholder="Barkodla axtar"
@@ -85,11 +91,6 @@ export default function ProductTable() {
       }}
     />
   );
-  
-
-  
-
-  
   const [isElaveEtModalVisible, setIsElaveEtModalVisible] = useState(false);
   const [isRedakteEtModalVisible, setIsRedakteModalVisible] = useState(false);
   const [isSilModalVisible, setIsSilModalVisible] = useState(false);
@@ -118,14 +119,14 @@ export default function ProductTable() {
   };
   const showImgPanel = (id) => {
     // setImages(null);
-    dispatch(getProductImagesByProductId(id),[productImagesDataByProductId]);
-    
+    dispatch(getProductImagesByProductId(id));
     dispatch(getProductById(id));
     console.log("productDataById", productDataById);
     console.log("productImagesDataByProductId", productImagesDataByProductId);
-    setImages(productImagesDataByProductId.images);
-    console.log('images ',images)
-   
+    //  dispatch(setImages(productImagesDataByProductId.images)) ;
+    // setImages(productImagesDataByProductId.images)
+    console.log("images ", images);
+
     setIsRedakteModalVisible(false);
     setIsElaveEtModalVisible(false);
     setIsSilModalVisible(false);
@@ -164,8 +165,6 @@ export default function ProductTable() {
   ////////////////////////excel file upload
   //excel file sececek function
   const handleFileInputChange = (e) => {
-    console.log("e.target.files[0].name", e.target.files[0].name);
-    console.log("file path ", window.location + "   " + e.target.files[0].name);
     let { file } = selectedFile;
 
     file = e.target.files[0];
@@ -182,6 +181,7 @@ export default function ProductTable() {
       .catch((err) => {
         console.log(err);
       });
+    setDisabledSave(false);
   };
   const onCreateExcel = async (e) => {
     console.log(" add excel base64 data", selectedFile);
@@ -193,13 +193,12 @@ export default function ProductTable() {
   const onSaveImages = () => {
     console.log(" productDataById", productDataById);
     console.log(" images", images);
-    let data={
-      images:images
-      
-    }
-   
+    let data = {
+      images: images,
+    };
+
     console.log(" images data: ", data);
-    dispatch(addProductImages(productDataById.id,data));
+    dispatch(addProductImages(productDataById.id, data));
   };
 
   const columns = [
@@ -270,7 +269,6 @@ export default function ProductTable() {
             >
               Şəkil
             </Button>
-            
           </Space>
         );
       },
@@ -279,19 +277,20 @@ export default function ProductTable() {
 
   return (
     <div>
+      Fayl seç:
       <Input
-        style={{ marginTop: "10px", width: "300px" }}
+        style={{ marginTop: "10px", width: "300px", marginLeft: "10px" }}
         // style={{ position: "absolute", right: "50px", top: "100px" }}
         accept=".xlsx, application/vnd.ms-excel"
         onChange={handleFileInputChange}
         type="file"
       />
-
       <Button
         style={{ marginTop: "10px", marginLeft: "10px" }}
         // style={{ position: "absolute", right: "1400px", top: "70px" }}
         type="primary"
         onClick={onCreateExcel}
+        disabled={disabledSave}
       >
         Excel əlavə et
       </Button>
@@ -345,7 +344,6 @@ export default function ProductTable() {
       >
         <ProductDelete rowKey="id" handleCancel={handleCancel}></ProductDelete>
       </Modal>
-
       <Modal
         title="Məhsula şəkillər əlavə edilməsi"
         visible={isImgPanelVisible}
@@ -382,33 +380,42 @@ export default function ProductTable() {
             // write your building UI
             <div className="upload__image-wrapper">
               <Row>
-              <button
-                style={{}}
-                // style={{ marginTop: "20px",width:""}}
-                onClick={onImageUpload}
-                {...dragProps}
-              >
-                Faylı seç
-              </button>
-              &nbsp;&nbsp;&nbsp;
-              {/* <button onClick={onImageRemoveAll}>Remove all images</button> */}
+                <button
+                  style={{}}
+                  // style={{ marginTop: "20px",width:""}}
+                  onClick={onImageUpload}
+                  {...dragProps}
+                >
+                  Faylı seç
+                </button>
+                &nbsp;&nbsp;&nbsp;
+                {/* <button onClick={onImageRemoveAll}>Remove all images</button> */}
               </Row>
-             
+
               <Row>
-              {imageList.map((image, index) => (
-                <Col>
-                <div key={index} className="image-item">
-                  <img style={{marginTop:"10px",marginRight:"10px"}} src={image["content"]} alt="" width="100" height={100} />
-                  <div className="image-item__btn-wrapper">
-                    {/* <button onClick={() => onImageUpdate(index)}>Update</button> */}
-                    <button style={{marginTop:"10px"}} onClick={() => onImageRemove(index)}>Sil</button>
-                  </div> 
-                </div>
-                </Col>
-                
-              ))}
+                {imageList.map((image, index) => (
+                  <Col>
+                    <div key={index} className="image-item">
+                      <img
+                        style={{ marginTop: "10px", marginRight: "10px" }}
+                        src={image["content"]}
+                        alt=""
+                        width="100"
+                        height={100}
+                      />
+                      <div className="image-item__btn-wrapper">
+                        {/* <button onClick={() => onImageUpdate(index)}>Update</button> */}
+                        <button
+                          style={{ marginTop: "10px" }}
+                          onClick={() => onImageRemove(index)}
+                        >
+                          Sil
+                        </button>
+                      </div>
+                    </div>
+                  </Col>
+                ))}
               </Row>
-              
             </div>
           )}
         </ImageUploading>
