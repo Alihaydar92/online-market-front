@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Button, Form, Input } from "antd";
 import {listOfCategories,updateCategory} from "../../redux/actions/categoryActions"
+const {TextArea} =Input;
 export default function CategoryEdit(props) {
     const dispatch = useDispatch();
     const [form] = Form.useForm();
@@ -54,7 +55,7 @@ export default function CategoryEdit(props) {
           name="note"
           rules={[{ required: false, message: "Qeydi daxil edin!" }]}
         >
-          <Input />
+          <TextArea />
         </Form.Item>
         <Form.Item>
           <Button

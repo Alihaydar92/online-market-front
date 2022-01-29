@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Button, Form, Input } from "antd";
 import { updateCustomer,listOfCustomers } from "../../redux/actions/customerAction";
-
+const {TextArea} =Input;
 export default function CustomerEdit(props) {
   const dispatch = useDispatch();
   const customerDataById = useSelector(
@@ -81,7 +81,7 @@ export default function CustomerEdit(props) {
           name="note"
           rules={[{ required: false, message: "Qeydi daxil edin!" }]}
         >
-          <Input />
+          <TextArea />
         </Form.Item>
         <Form.Item>
           <Button

@@ -97,6 +97,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ### qeyde text area-ya deyismek
 ### productdaki qiymet fieldlerini anbara atmaq (butun cedvel ve modallarda)
 ### anbara diger qiymetler ve musteri satis qiymeti elavesi , kemiyet adi deyisilib olacaq say
+### product page-de buttonlara duzelis
 
 Global bugs: 
  1. Axirinci yazilmis data her defe Elave et zamani gelir, halbuki bos gelmelidir data 

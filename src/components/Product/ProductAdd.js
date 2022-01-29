@@ -6,6 +6,7 @@ import { listOfProperties } from "../../redux/actions/propertyActions";
 import { addProduct, listOfProducts } from "../../redux/actions/productActions";
 
 const { Option } = Select;
+const {TextArea} =Input;
 export default function ProductAdd(props) {
   const dispatch = useDispatch();
 
@@ -79,7 +80,7 @@ export default function ProductAdd(props) {
           name="note"
           rules={[{ required: false, message: "Qeydi daxil edin!" }]}
         >
-          <Input />
+          <TextArea />
         </Form.Item>
         <Form.Item
           label="Kəmiyyət"

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  listOfStoreHouse,getStoreHouseById
+  listOfStoreHouse,
+  getStoreHouseById,
 } from "../../redux/actions/storeHouseActions";
-import { Space, Button, Table, Modal, Input,Row,Col } from "antd";
+import { Space, Button, Table, Modal, Input, Row, Col } from "antd";
 import StoreHouseAdd from "./StoreHouseAdd";
 import StoreHouseEdit from "./StoreHouseEdit";
 import StoreHouseDelete from "./StoreHouseDelete";
@@ -17,22 +18,21 @@ export default function StoreHouseTable() {
     base64URL: "",
   });
   /////////////////////////////////////////////file upload
-const storeHouseList= useSelector((state) =>state.storeHouseReducers.storeHouseListData);
-  
-  const [dataSource, setDataSource] = useState();
-  const [value, setValue] = useState("");
+  const storeHouseList = useSelector(
+    (state) => state.storeHouseReducers.storeHouseListData
+  );
+
   useEffect(() => {
     dispatch(listOfStoreHouse());
   }, []);
 
-//   useEffect(() => {
-//     console.log("listOfProductData", storeHouseList);
-//   },[listOfProductData]);
+  //   useEffect(() => {
+  //     console.log("listOfProductData", storeHouseList);
+  //   },[listOfProductData]);
 
   const [isElaveEtModalVisible, setIsElaveEtModalVisible] = useState(false);
   const [isRedakteEtModalVisible, setIsRedakteModalVisible] = useState(false);
   const [isSilModalVisible, setIsSilModalVisible] = useState(false);
-
 
   const showAddModal = () => {
     setIsElaveEtModalVisible(true);
@@ -104,20 +104,13 @@ const storeHouseList= useSelector((state) =>state.storeHouseReducers.storeHouseL
         console.log(err);
       });
   };
-//   const onCreateExcel = async (e) => {
-//     console.log(" add excel base64 data", selectedFile);
-//     dispatch(addProductExcel(selectedFile));
-//   };
-  ////////////////////////excel file upload
-
 
   const columns = [
-  
     {
       title: "Barkod",
       dataIndex: "barcode",
     },
-    
+
     {
       title: "Satış qiyməti",
       dataIndex: "sellPrice",
@@ -126,7 +119,14 @@ const storeHouseList= useSelector((state) =>state.storeHouseReducers.storeHouseL
       title: "Qiymət",
       dataIndex: "price",
     },
-    
+    {
+      title: "Müştəri satış qiyməti",
+      dataIndex: "customerSellPrice",
+    },
+    {
+      title: "Digər qiymətlər",
+      dataIndex: "otherPrice",
+    },
     {
       title: "Kəmiyyət",
       dataIndex: "quantity",
@@ -135,7 +135,7 @@ const storeHouseList= useSelector((state) =>state.storeHouseReducers.storeHouseL
       title: "Məhsul",
       dataIndex: ["product", "name"],
     },
-   
+
     {
       title: "Əməliyyat",
       dataIndex: "operation",
@@ -155,7 +155,7 @@ const storeHouseList= useSelector((state) =>state.storeHouseReducers.storeHouseL
               onClick={() => showRemoveModal(storeHouse.id)}
             >
               Sil
-            </Button>         
+            </Button>
           </Space>
         );
       },
@@ -164,24 +164,8 @@ const storeHouseList= useSelector((state) =>state.storeHouseReducers.storeHouseL
 
   return (
     <div>
-      {/* <Input
-        style={{ marginTop: "10px", width: "300px" }}
-        // style={{ position: "absolute", right: "50px", top: "100px" }}
-        accept=".xlsx, application/vnd.ms-excel"
-        onChange={handleFileInputChange}
-        type="file"
-      />
-
       <Button
-        style={{ marginTop: "10px", marginLeft: "10px" }}
-        // style={{ position: "absolute", right: "1400px", top: "70px" }}
-        type="primary"
-        onClick={onCreateExcel}
-      >
-        Excel əlavə et
-      </Button> */}
-      <Button
-        style={{ marginTop: "10px"}}
+        style={{ marginTop: "10px" }}
         // style={{ position: "absolute", right: "30px", top: "70px" }}
         type="primary"
         onClick={showAddModal}
@@ -216,7 +200,10 @@ const storeHouseList= useSelector((state) =>state.storeHouseReducers.storeHouseL
           </Button>,
         ]}
       >
-        <StoreHouseEdit rowKey="id" handleCancel={handleCancel}></StoreHouseEdit>
+        <StoreHouseEdit
+          rowKey="id"
+          handleCancel={handleCancel}
+        ></StoreHouseEdit>
       </Modal>
       <Modal
         title="Anbar məlumatının silinməsi"
@@ -228,9 +215,11 @@ const storeHouseList= useSelector((state) =>state.storeHouseReducers.storeHouseL
           </Button>,
         ]}
       >
-        <StoreHouseDelete rowKey="id" handleCancel={handleCancel}></StoreHouseDelete>
+        <StoreHouseDelete
+          rowKey="id"
+          handleCancel={handleCancel}
+        ></StoreHouseDelete>
       </Modal>
-
     </div>
   );
 }

@@ -9,6 +9,7 @@ import {
 import { listOfProducts } from "../../redux/actions/productActions";
 
 const { Option } = Select;
+const { TextArea } = Input;
 export default function StoreHouseEdit(props) {
   const dispatch = useDispatch();
 
@@ -118,6 +119,13 @@ export default function StoreHouseEdit(props) {
           rules={[{ required: true, message: "Kəmiyyəti daxil edin!" }]}
         >
           <InputNumber />
+        </Form.Item>
+        <Form.Item
+          label="Qeyd"
+          name="note"
+          rules={[{ required: false, message: "Qeydi daxil edin!" }]}
+        >
+          <TextArea />
         </Form.Item>
         <Form.Item
           label="Məhsul"

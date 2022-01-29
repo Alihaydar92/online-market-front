@@ -2,6 +2,7 @@ import {  useDispatch } from "react-redux";
 import { Button, Form, Input } from "antd";
 // import { addCustomer, listOfCustomers } from "../../redux/actions/customerAction";
 import { addExpeditor,listOfExpeditors } from "../../redux/actions/expeditorActions";
+const {TextArea} =Input;
 export default function ExpeditorAdd(props) {
   const dispatch = useDispatch();
 
@@ -62,7 +63,7 @@ export default function ExpeditorAdd(props) {
           name="note"
           rules={[{ required: false, message: "Qeydi daxil edin!" }]}
         >
-          <Input/>
+          <TextArea/>
         </Form.Item>
         <Form.Item>
           <Button

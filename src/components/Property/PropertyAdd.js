@@ -2,6 +2,7 @@ import React from 'react';
 import {useDispatch } from "react-redux";
 import {Form,Input,Button} from "antd";
 import {listOfProperties,addProperty} from "../../redux/actions/propertyActions"
+const {TextArea} =Input;
 export default function PropertyAdd(props) {
     const dispatch = useDispatch();
     const [form] = Form.useForm();  
@@ -46,7 +47,7 @@ export default function PropertyAdd(props) {
             name="note"
             rules={[{ required: false, message: "Qeydi daxil edin!" }]}
           >
-            <Input/>
+            <TextArea/>
           </Form.Item>
           <Form.Item>
             <Button

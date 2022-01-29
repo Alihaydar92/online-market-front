@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Button, Form, Input } from "antd";
 import { updateExpeditor,listOfExpeditors } from "../../redux/actions/expeditorActions";
-
+const {TextArea} =Input;
 export default function ExpeditorEdit(props) {
   const dispatch = useDispatch();
   const expeditorDataById = useSelector(
@@ -73,7 +73,7 @@ export default function ExpeditorEdit(props) {
           name="note"
           rules={[{ required: false, message: "Qeydi daxil edin!" }]}
         >
-          <Input />
+          <TextArea />
         </Form.Item>
         <Form.Item>
           <Button

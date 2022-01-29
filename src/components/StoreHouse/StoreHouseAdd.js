@@ -7,6 +7,7 @@ import {
 } from "../../redux/actions/storeHouseActions";
 import { listOfProducts } from "../../redux/actions/productActions";
 const { Option } = Select;
+const { TextArea } = Input;
 export default function StoreHouseAdd(props) {
   const dispatch = useDispatch();
 
@@ -56,7 +57,10 @@ export default function StoreHouseAdd(props) {
         <Form.Item
           label="Barkod"
           name="barcode"
-          rules={[{ required: true, message: "Barkodu daxil edin!" },{min:2, message:"Minimum 2 simvol daxil edin"}]}
+          rules={[
+            { required: true, message: "Barkodu daxil edin!" },
+            { min: 2, message: "Minimum 2 simvol daxil edin" },
+          ]}
         >
           <Input />
         </Form.Item>
@@ -97,6 +101,13 @@ export default function StoreHouseAdd(props) {
           rules={[{ required: true, message: "Kəmiyyəti daxil edin!" }]}
         >
           <InputNumber />
+        </Form.Item>
+        <Form.Item
+          label="Qeyd"
+          name="note"
+          rules={[{ required: false, message: "Qeydi daxil edin!" }]}
+        >
+          <TextArea />
         </Form.Item>
         <Form.Item
           label="Məhsul"

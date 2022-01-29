@@ -2,6 +2,8 @@ import React from 'react';
 import {  useDispatch } from "react-redux";
 import { Button, Form, Input } from "antd";
 import {listOfCategories,addCategory} from "../../redux/actions/categoryActions"
+
+const {TextArea} =Input;
 export default function CategoryAdd(props) {
     const dispatch = useDispatch();
 
@@ -52,7 +54,7 @@ export default function CategoryAdd(props) {
           name="note"
           rules={[{ required: false, message: "Qeydi daxil edin!" }]}
         >
-          <Input/>
+          <TextArea/>
         </Form.Item>
         <Form.Item>
           <Button

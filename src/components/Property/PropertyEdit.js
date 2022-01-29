@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Button, Form, Input } from "antd";
-import {updateProperty,listOfProperties} from "../../redux/actions/propertyActions"
+import {updateProperty,listOfProperties} from "../../redux/actions/propertyActions";
+const {TextArea} =Input;
 export default function PropertyEdit(props) {
     const dispatch = useDispatch();
     const propertyDataById = useSelector(
       (state) => state.propertyReducers.propertyDataById
     );
     const [form] = Form.useForm();
-    const listOfExpeditorData = useSelector((state) => state.expeditorReducers.expeditorListData);
     const onUpdate =  () => {
       form
         .validateFields()
@@ -55,7 +55,7 @@ export default function PropertyEdit(props) {
             name="note"
             rules={[{ required: false, message: "Qeydi daxil edin!" }]}
           >
-            <Input />
+            <TextArea />
           </Form.Item>
           <Form.Item>
             <Button
