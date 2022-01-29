@@ -93,3 +93,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ### sekil add ederken bir meseleye diqqet etmek reqse getmek (backendde)
 ### sekil panelinde update buttonunu yigisdirmaq+++
 ### sekil panelinde data ikinci klikde gelir+++
+### product excel add (eger fayl secilmeyibse buttonu passiv et)

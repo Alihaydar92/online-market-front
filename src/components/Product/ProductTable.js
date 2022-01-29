@@ -358,7 +358,7 @@ export default function ProductTable() {
               Geri
             </Button>
             <Button danger onClick={onSaveImages}>
-              yadda saxla
+              Yadda saxla
             </Button>
           </div>,
         ]}
@@ -381,24 +381,28 @@ export default function ProductTable() {
           }) => (
             // write your building UI
             <div className="upload__image-wrapper">
+              <Row>
               <button
-                style={isDragging ? { color: "red" } : undefined}
+                style={{}}
+                // style={{ marginTop: "20px",width:""}}
                 onClick={onImageUpload}
                 {...dragProps}
               >
-                Click or Drop here
+                Faylı seç
               </button>
-              &nbsp;
-              <button onClick={onImageRemoveAll}>Remove all images</button>
+              &nbsp;&nbsp;&nbsp;
+              {/* <button onClick={onImageRemoveAll}>Remove all images</button> */}
+              </Row>
+             
               <Row>
               {imageList.map((image, index) => (
                 <Col>
                 <div key={index} className="image-item">
-                  <img src={image["content"]} alt="" width="100" height={100} />
+                  <img style={{marginTop:"10px",marginRight:"10px"}} src={image["content"]} alt="" width="100" height={100} />
                   <div className="image-item__btn-wrapper">
                     {/* <button onClick={() => onImageUpdate(index)}>Update</button> */}
-                    <button onClick={() => onImageRemove(index)}>Remove</button>
-                  </div>
+                    <button style={{marginTop:"10px"}} onClick={() => onImageRemove(index)}>Sil</button>
+                  </div> 
                 </div>
                 </Col>
                 
