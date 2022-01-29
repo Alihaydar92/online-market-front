@@ -46,10 +46,6 @@ export default function ProductEdit(props) {
           barcode: form.getFieldsValue().barcode,
           categoryId: form.getFieldsValue().category,
           quantity: form.getFieldsValue().quantity,
-          price: form.getFieldsValue().price,
-          sellPrice: form.getFieldsValue().sellPrice,
-          otherPrice: form.getFieldsValue().otherPrice,
-          customerSellPrice: form.getFieldsValue().customerSellPrice,
           propertyId: form.getFieldsValue().property,
           note: form.getFieldsValue().note,
           id: productDataById.id,
@@ -97,7 +93,7 @@ export default function ProductEdit(props) {
         <Form.Item
           label="Məhusulun adı"
           name="name"
-          rules={[{ required: true, message: "Məhusulun adını daxil edin!" }]}
+          rules={[{ required: true, message: "Məhusulun adını daxil edin!" },{min:2, message:"Minimum 2 simvol daxil edin"}]}
         >
           <Input />
         </Form.Item>
@@ -105,7 +101,7 @@ export default function ProductEdit(props) {
         <Form.Item
           label="Barkod"
           name="barcode"
-          rules={[{ required: true, message: "Barkodu daxil edin!" }]}
+          rules={[{ required: true, message: "Barkodu daxil edin!" },{min:2, message:"Minimum 2 simvol daxil edin"}]}
         >
           <Input disabled={true} />
         </Form.Item>
@@ -130,22 +126,7 @@ export default function ProductEdit(props) {
         >
           <InputNumber />
         </Form.Item>
-        <Form.Item
-          label="Müştəri satış qiyməti"
-          name="customerSellPrice"
-          rules={[
-            { required: false, message: "Müştəri satış qiymətini daxil edin!" },
-          ]}
-        >
-          <InputNumber />
-        </Form.Item>
-        <Form.Item
-          label="Digər qiymətlər"
-          name="otherPrice"
-          rules={[{ required: false, message: "Digər qiymətləri daxil edin!" }]}
-        >
-          <InputNumber />
-        </Form.Item>
+        
         <Form.Item
           label="Kəmiyyət"
           name="quantity"
@@ -211,15 +192,6 @@ export default function ProductEdit(props) {
             ))}
           </Select>
         </Form.Item>
-        {/* <Form.Item
-          label="Satış strategiyası"
-          name="priceStrategyList[].unitPrice"
-          rules={[
-            { required: false, message: "Satış strategiyasını daxil edin!" },
-          ]}
-        >
-          <Input />
-        </Form.Item> */}
         <Form.Item>
           <Button
             type="submit"

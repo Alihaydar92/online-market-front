@@ -43,9 +43,9 @@ export default function ExpeditorAdd(props) {
       >
         
         <Form.Item
-          label="Müştəri adı"
+          label="Satıcı adı"
           name="name"
-          rules={[{ required: true, message: "Müştəri adını daxil edin!" }]}
+          rules={[{ required: true, message: "Satıcı adını daxil edin!" },{min:2, message:"Minimum 2 simvol daxil edin"}]}
         >
           <Input/>
         </Form.Item>
@@ -53,7 +53,7 @@ export default function ExpeditorAdd(props) {
         <Form.Item
           label="Müştəri soyad"
           name="surname"
-          rules={[{ required: true, message: "Müştəri soyadını daxil edin!" }]}
+          rules={[{ required: true, message: "Satıcı soyadını daxil edin!" },{min:2, message:"Minimum 2 simvol daxil edin"}]}
         >
           <Input/>
         </Form.Item>

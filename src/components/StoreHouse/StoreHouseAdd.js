@@ -28,6 +28,8 @@ export default function StoreHouseAdd(props) {
           quantity: form.getFieldsValue().quantity,
           price: form.getFieldsValue().price,
           sellPrice: form.getFieldsValue().sellPrice,
+          otherPrice: form.getFieldsValue().otherPrice,
+          customerSellPrice: form.getFieldsValue().customerSellPrice,
         };
         console.log("rpoduct data add: ", data);
         dispatch(addStoreHouse(data));
@@ -54,7 +56,7 @@ export default function StoreHouseAdd(props) {
         <Form.Item
           label="Barkod"
           name="barcode"
-          rules={[{ required: true, message: "Barkodu daxil edin!" }]}
+          rules={[{ required: true, message: "Barkodu daxil edin!" },{min:2, message:"Minimum 2 simvol daxil edin"}]}
         >
           <Input />
         </Form.Item>
@@ -73,7 +75,22 @@ export default function StoreHouseAdd(props) {
         >
           <InputNumber />
         </Form.Item>
-
+        <Form.Item
+          label="Müştəri satış qiyməti"
+          name="customerSellPrice"
+          rules={[
+            { required: false, message: "Müştəri satış qiymətini daxil edin!" },
+          ]}
+        >
+          <InputNumber />
+        </Form.Item>
+        <Form.Item
+          label="Digər qiymətlər"
+          name="otherPrice"
+          rules={[{ required: false, message: "Digər qiymətləri daxil edin!" }]}
+        >
+          <InputNumber />
+        </Form.Item>
         <Form.Item
           label="Kəmiyyət"
           name="quantity"

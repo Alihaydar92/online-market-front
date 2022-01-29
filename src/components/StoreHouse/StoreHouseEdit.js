@@ -39,6 +39,8 @@ export default function StoreHouseEdit(props) {
           quantity: form.getFieldsValue().quantity,
           price: form.getFieldsValue().price,
           sellPrice: form.getFieldsValue().sellPrice,
+          otherPrice: form.getFieldsValue().otherPrice,
+          customerSellPrice: form.getFieldsValue().customerSellPrice,
           id: storeHouseDataById.id,
         };
         console.log("rpoduct data add: ", data);
@@ -94,7 +96,22 @@ export default function StoreHouseEdit(props) {
         >
           <InputNumber />
         </Form.Item>
-
+        <Form.Item
+          label="Müştəri satış qiyməti"
+          name="customerSellPrice"
+          rules={[
+            { required: false, message: "Müştəri satış qiymətini daxil edin!" },
+          ]}
+        >
+          <InputNumber />
+        </Form.Item>
+        <Form.Item
+          label="Digər qiymətlər"
+          name="otherPrice"
+          rules={[{ required: false, message: "Digər qiymətləri daxil edin!" }]}
+        >
+          <InputNumber />
+        </Form.Item>
         <Form.Item
           label="Kəmiyyət"
           name="quantity"

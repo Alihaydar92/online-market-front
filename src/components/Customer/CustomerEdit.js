@@ -64,7 +64,7 @@ export default function CustomerEdit(props) {
         <Form.Item
           label="Müştərinin adı"
           name="name"
-          rules={[{ required: true, message: "Müştərinin adını daxil edin!" }]}
+          rules={[{ required: true, message: "Müştərinin adını daxil edin!" },{min:2, message:"Minimum 2 simvol daxil edin"}]}
         >
           <Input />
         </Form.Item>
@@ -72,7 +72,7 @@ export default function CustomerEdit(props) {
         <Form.Item
           label="Müştərinin soyad"
           name="surname"
-          rules={[{ required: true, message: "Müştərinin soyadını daxil edin!" }]}
+          rules={[{ required: true, message: "Müştərinin soyadını daxil edin!" },{min:2, message:"Minimum 2 simvol daxil edin"}]}
         >
           <Input />
         </Form.Item>

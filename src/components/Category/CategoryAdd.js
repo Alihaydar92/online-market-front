@@ -14,7 +14,7 @@ export default function CategoryAdd(props) {
       .then((values) => {
         var data = {
           name: form.getFieldsValue().name,
-          note: form.getFieldsValue().note,
+          note: form.getFieldsValue().note
         };
 
         console.log("on create data", data);
@@ -43,7 +43,7 @@ export default function CategoryAdd(props) {
         <Form.Item
           label="Kateqoriya adı"
           name="name"
-          rules={[{ required: true, message: "Kateqoriya adını daxil edin!" }]}
+          rules={[{ required: true, message: "Kateqoriya adını daxil edin!"  },{min:2, message:"Minimum 2 simvol daxil edin"}]}
         >
           <Input/>
         </Form.Item>
