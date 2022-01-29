@@ -44,6 +44,7 @@ export default function ProductAdd(props) {
         console.log("rpoduct data add: ", data);
         dispatch(addProduct(data));
         props.handleCancel();
+        form.resetFields();
         dispatch(listOfProducts());
       })
       .catch(() => {

@@ -32,6 +32,7 @@ export default function StoreHouseAdd(props) {
         console.log("rpoduct data add: ", data);
         dispatch(addStoreHouse(data));
         props.handleCancel();
+        form.resetFields();
         dispatch(listOfStoreHouse());
       })
       .catch(() => {

@@ -20,6 +20,7 @@ export default function CategoryAdd(props) {
         console.log("on create data", data);
         dispatch(addCategory(data));
         props.handleCancel();
+        form.resetFields();
         dispatch(listOfCategories());
         console.log("on create data", data);
       })

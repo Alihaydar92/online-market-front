@@ -15,6 +15,7 @@ export default function PropertyAdd(props) {
           };
           dispatch(addProperty(data));
           props.handleCancel();
+          form.resetFields();
           // dispatch(listOfProperties());
         })
         .catch((errorInfo) => {

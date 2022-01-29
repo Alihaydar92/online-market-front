@@ -8,7 +8,7 @@ export default function CustomerAdd(props) {
   const [form] = Form.useForm();
 
  
-  const onCreate = async (e) => {
+  const onCreate =  (e) => {
     form
       .validateFields()
       .then((values) => {
@@ -22,7 +22,8 @@ export default function CustomerAdd(props) {
         // setVisibleUpdate(false)
         dispatch(addCustomer(data));
         props.handleCancel();
-        dispatch(listOfCustomers());
+    form.resetFields();
+        // dispatch(listOfCustomers());
         console.log("on create data", data);
       })
       .catch((errorInfo) => {

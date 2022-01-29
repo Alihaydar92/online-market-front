@@ -21,6 +21,7 @@ export default function ExpeditorAdd(props) {
         console.log("on create data", data);
         dispatch(addExpeditor(data));
         props.handleCancel();
+        form.resetFields();
         dispatch(listOfExpeditors());
         console.log("on create data", data);
       })

@@ -7,7 +7,7 @@ import {
   addProductImages,
   getProductImagesByProductId,
 } from "../../redux/actions/productActions";
-import { Space, Button, Table, Modal, Input, Row, Col } from "antd";
+import { Space, Button, Table, Modal, Input, Row, Col,Spin } from "antd";
 import ProductAdd from "./ProductAdd";
 import ProductEdit from "./ProductEdit";
 import ProductDelete from "./ProductDelete";
@@ -22,6 +22,7 @@ export default function ProductTable() {
     base64URL: "",
   });
   const [disabledSave, setDisabledSave] = useState(true);
+  
   /////////////////////////////////////////////file upload
 
   //////////////////////////////////////////////////image upload
@@ -277,6 +278,7 @@ export default function ProductTable() {
 
   return (
     <div>
+      {/* <Spin spinning={loading}>  */}
       Fayl seç:
       <Input
         style={{ marginTop: "10px", width: "300px", marginLeft: "10px" }}
@@ -420,6 +422,8 @@ export default function ProductTable() {
           )}
         </ImageUploading>
       </Modal>
+      {/* </Spin> */}
+      
     </div>
   );
 }

@@ -16,10 +16,13 @@ import EditableCartTable from "./Cart/EditableCartTable";
 import DinamycTable from "./Cart/DinamycTable";
 import AddDeleteTableRows from "./Cart/AddDeleteTableRows"
 import StoreHouseTable from "./StoreHouse/StoreHouseTable";
+import useFullPageLoader from "../hooks/useFullPageLoader";
 
 const { Footer, Content, Sider, Header } = Layout;
+
 const { SubMenu } = Menu;
 export default function App() {
+  const [loader ,showLoader, hideLoader] =useFullPageLoader();
   return (
     <Layout>
       <Sider width={200} className="site-layout-background">

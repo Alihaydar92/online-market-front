@@ -33,7 +33,8 @@ export default function ExpeditorTable() {
   );
   const columns = [
     {
-      title: FilterByBarcodeInput,
+      label:"emekdas",
+      title:FilterByBarcodeInput,
       dataIndex: "name",
     },
     {
