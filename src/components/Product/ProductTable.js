@@ -7,7 +7,7 @@ import {
   addProductImages,
   getProductImagesByProductId,
 } from "../../redux/actions/productActions";
-import { Space, Button, Table, Modal, Input, Row, Col,Spin } from "antd";
+import { Space, Button, Table, Modal, Input, Row, Col } from "antd";
 import ProductAdd from "./ProductAdd";
 import ProductEdit from "./ProductEdit";
 import ProductDelete from "./ProductDelete";
@@ -22,7 +22,7 @@ export default function ProductTable() {
     base64URL: "",
   });
   const [disabledSave, setDisabledSave] = useState(true);
-  
+
   /////////////////////////////////////////////file upload
 
   //////////////////////////////////////////////////image upload
@@ -223,7 +223,7 @@ export default function ProductTable() {
       title: "Qiymət",
       dataIndex: "price",
     },
-  
+
     {
       title: "Kəmiyyət",
       dataIndex: "quantity",
@@ -271,32 +271,41 @@ export default function ProductTable() {
 
   return (
     <div>
-      {/* <Spin spinning={loading}>  */}
-      Fayl seç:
-      <Input
-        style={{ marginTop: "10px", width: "300px", marginLeft: "10px" }}
-        // style={{ position: "absolute", right: "50px", top: "100px" }}
-        accept=".xlsx, application/vnd.ms-excel"
-        onChange={handleFileInputChange}
-        type="file"
-      />
-      <Button
-        style={{ marginTop: "10px", marginLeft: "10px" }}
-        // style={{ position: "absolute", right: "1400px", top: "70px" }}
-        type="primary"
-        onClick={onCreateExcel}
-        disabled={disabledSave}
-      >
-        Excel əlavə et
-      </Button>
-      <Button
-        style={{ marginTop: "10px", marginLeft: "1150px" }}
-        // style={{ position: "absolute", right: "30px", top: "70px" }}
-        type="primary"
-        onClick={showAddModal}
-      >
-        Əlavə et
-      </Button>
+      <Row>
+        <Space>
+          Fayl seç:
+          <Input
+            style={{ marginTop: "10px", width: "300px"}}
+            // style={{ position: "absolute", right: "50px", top: "100px" }}
+            accept=".xlsx, application/vnd.ms-excel"
+            onChange={handleFileInputChange}
+            type="file"
+          />
+          <Button
+            style={{ marginTop: "10px", marginLeft: "10px" }}
+            // style={{ position: "absolute", right: "1400px", top: "70px" }}
+            type="primary"
+            onClick={onCreateExcel}
+            disabled={disabledSave}
+          >
+            Excel əlavə et
+          </Button>
+        </Space>
+      </Row>
+      <Row>
+        <Col>
+        <Button
+          style={{ marginTop: "30px" }}
+          // style={{ position: "absolute", right: "30px", top: "70px" }}
+          type="primary"
+          onClick={showAddModal}
+        >
+          Əlavə et
+        </Button>
+        </Col>
+       
+      </Row>
+
       <Table
         style={{ marginTop: "20px" }}
         dataSource={dataSource}
@@ -416,7 +425,6 @@ export default function ProductTable() {
         </ImageUploading>
       </Modal>
       {/* </Spin> */}
-      
     </div>
   );
 }

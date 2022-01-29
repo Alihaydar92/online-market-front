@@ -96,9 +96,9 @@ export default function StoreHouseAdd(props) {
           <InputNumber />
         </Form.Item>
         <Form.Item
-          label="Kəmiyyət"
+          label="Say"
           name="quantity"
-          rules={[{ required: true, message: "Kəmiyyəti daxil edin!" }]}
+          rules={[{ required: true, message: "Sayı daxil edin!" }]}
         >
           <InputNumber />
         </Form.Item>

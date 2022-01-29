@@ -45,7 +45,7 @@ export default function CategoryAdd(props) {
         <Form.Item
           label="Kateqoriya adı"
           name="name"
-          rules={[{ required: true, message: "Kateqoriya adını daxil edin!"  },{min:2, message:"Minimum 2 simvol daxil edin"}]}
+          rules={[{ required: true, message: "Kateqoriya adını daxil edin!"  },{min:2, message:"Minimum 2 simvol daxil edin"},{whitespace:true }]}
         >
           <Input/>
         </Form.Item>

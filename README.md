@@ -85,36 +85,36 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ### teyyub terefden pagination
 ### barkoda gore axtaris +++
 ### img ve diger filelarla bagli codelarin optimizasiyasi 
-### base64 paramin datan silinmesi (replace) meselen: data:application/vnd.ms-excel;base64, ve ya data:image/jpeg;base64,
+### base64 paramin datan silinmesi (replace) meselen: data:application/vnd.ms-excel;base64, ve ya data:image/jpeg;base64, (sonradan qeydI iptal oldu) +++
 ### react pagination
 ### excel add zamani loading(waiting) yazmaq
-### image-in sizeni ve visual olcusunu kiciltmek (sonradan qeyd: teyyub edecek bunu) 
+### image-in sizeni ve visual olcusunu kiciltmek (sonradan qeyd: teyyub edecek bunu)  +++
 ### productlist ilk defeden gelmir (bax:barkod axtarisa gore) +++
 ### sekil add ederken bir meseleye diqqet etmek reqse getmek (backendde)
 ### sekil panelinde update buttonunu yigisdirmaq+++
 ### sekil panelinde data ikinci klikde gelir+++
-### product excel add (eger fayl secilmeyibse buttonu passiv et)
-### qeyde text area-ya deyismek
-### productdaki qiymet fieldlerini anbara atmaq (butun cedvel ve modallarda)
-### anbara diger qiymetler ve musteri satis qiymeti elavesi , kemiyet adi deyisilib olacaq say
-### product page-de buttonlara duzelis
+### product excel add (eger fayl secilmeyibse buttonu passiv et) +++
+### qeyde text area-ya deyismek +++ 
+### productdaki qiymet fieldlerini anbara atmaq (butun cedvel ve modallarda) +++ 
+### anbara diger qiymetler ve musteri satis qiymeti elavesi , kemiyet adi deyisilib olacaq say  +++
+### product page-de buttonlara duzelis +++
 
 Global bugs: 
- 1. Axirinci yazilmis data her defe Elave et zamani gelir, halbuki bos gelmelidir data 
+ 1. Axirinci yazilmis data her defe Elave et zamani gelir, halbuki bos gelmelidir data  +++
  2. table-da uzun stringler dizayni pozur, limitlemek lazimdir. 
  3. Axtaris Textboxda da trim qoymaq
  4. Input textbox-larda trim 
  5. String TextBoxlara input penceresinde maxLength qoymaq, limit (Teyyubla danismaqla) 
- 6. Eyni zamanda username, name kimi fieldlerde yaxsi olar ki minlength de qoymaq. 
+ 6. Eyni zamanda username, name kimi fieldlerde yaxsi olar ki minlength de qoymaq. +++
  7. Imkan varsa pencerelesi responsive etmek (Sonda da edile biler)
- 8. form reset
- 9. form reseti hell etdikde ikinci defe form acilan kimi validate edir, bunu hell etmek
+ 8. form reset +++
+ 9. form reseti hell etdikde ikinci defe form acilan kimi validate edir, bunu hell etmek (helelik bele qalacaq ) +++
  10. form ilk input focus
  
  
 Emekdaslar:  
  1. Table-da birinci fieldde textbox axtaris qoyduguna gore sutun adi yoxdu. (basga bir iki yerde de bu hal var)
- 2. input zamani uzun string yazanda error 
+ 2. input zamani uzun string yazanda error teyyub duzeltdi +++
 
 
 Anbar Page: 

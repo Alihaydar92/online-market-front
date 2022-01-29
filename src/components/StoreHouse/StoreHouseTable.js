@@ -4,7 +4,7 @@ import {
   listOfStoreHouse,
   getStoreHouseById,
 } from "../../redux/actions/storeHouseActions";
-import { Space, Button, Table, Modal, Input, Row, Col } from "antd";
+import { Space, Button, Table, Modal} from "antd";
 import StoreHouseAdd from "./StoreHouseAdd";
 import StoreHouseEdit from "./StoreHouseEdit";
 import StoreHouseDelete from "./StoreHouseDelete";
@@ -128,7 +128,7 @@ export default function StoreHouseTable() {
       dataIndex: "otherPrice",
     },
     {
-      title: "Kəmiyyət",
+      title: "Say",
       dataIndex: "quantity",
     },
     {
