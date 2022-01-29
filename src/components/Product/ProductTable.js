@@ -216,19 +216,6 @@ export default function ProductTable() {
       dataIndex: "note",
     },
     {
-      title: "Satış qiyməti",
-      dataIndex: "sellPrice",
-    },
-    {
-      title: "Qiymət",
-      dataIndex: "price",
-    },
-
-    {
-      title: "Kəmiyyət",
-      dataIndex: "quantity",
-    },
-    {
       title: "Kateqoriya",
       dataIndex: ["categoryDto", "name"],
     },

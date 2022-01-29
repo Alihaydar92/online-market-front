@@ -35,13 +35,13 @@ export default function StoreHouseEdit(props) {
       .validateFields()
       .then((values) => {
         var data = {
-          barcode: form.getFieldsValue().barcode,
           productId: form.getFieldValue().product,
           quantity: form.getFieldsValue().quantity,
           price: form.getFieldsValue().price,
           sellPrice: form.getFieldsValue().sellPrice,
           otherPrice: form.getFieldsValue().otherPrice,
           customerSellPrice: form.getFieldsValue().customerSellPrice,
+          note: form.getFieldsValue.note.trim(),
           id: storeHouseDataById.id,
         };
         console.log("rpoduct data add: ", data);
@@ -56,7 +56,6 @@ export default function StoreHouseEdit(props) {
 
   useEffect(() => {
     form.setFieldsValue({
-      barcode: storeHouseDataById.barcode,
       product: storeHouseDataById?.productId,
       quantity: storeHouseDataById.quantity,
       price: storeHouseDataById.price,
@@ -75,14 +74,6 @@ export default function StoreHouseEdit(props) {
         //   onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
-        <Form.Item
-          label="Barkod"
-          name="barcode"
-          rules={[{ required: true, message: "Barkodu daxil edin!" }]}
-        >
-          <Input />
-        </Form.Item>
-
         <Form.Item
           label="Qiyməti"
           name="price"

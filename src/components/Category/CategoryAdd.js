@@ -15,8 +15,8 @@ export default function CategoryAdd(props) {
       .validateFields()
       .then((values) => {
         var data = {
-          name: form.getFieldsValue().name,
-          note: form.getFieldsValue().note
+          name: form.getFieldsValue().name.trim(),
+          note: form.getFieldsValue().note.trim()
         };
 
         console.log("on create data", data);
@@ -27,7 +27,7 @@ export default function CategoryAdd(props) {
         console.log("on create data", data);
       })
       .catch((errorInfo) => {
-        console.log("validate fields");
+        console.log("validate fields errorInfo ",errorInfo);
       });
   };
   return (<div>
@@ -45,9 +45,10 @@ export default function CategoryAdd(props) {
         <Form.Item
           label="Kateqoriya adı"
           name="name"
-          rules={[{ required: true, message: "Kateqoriya adını daxil edin!"  },{min:2, message:"Minimum 2 simvol daxil edin"},{whitespace:true }]}
-        >
-          <Input/>
+          rules={[{ required: true, message: "Kateqoriya adını daxil edin!"  },{min:2, message:"Minimum 2 simvol daxil edin"},{max:200 ,message:"Maksimum 200 simvol daxil edin" }]}
+       
+       >
+          <Input autoFocus/>
         </Form.Item>
         <Form.Item
           label="Qeyd"

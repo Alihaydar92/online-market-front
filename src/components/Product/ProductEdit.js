@@ -43,12 +43,11 @@ export default function ProductEdit(props) {
       .validateFields()
       .then(() => {
         var data = {
-          name: form.getFieldsValue().name,
-          barcode: form.getFieldsValue().barcode,
+          name: form.getFieldsValue().name.trim(),
+          barcode: form.getFieldsValue().barcode.trim(),
           categoryId: form.getFieldsValue().category,
-          quantity: form.getFieldsValue().quantity,
           propertyId: form.getFieldsValue().property,
-          note: form.getFieldsValue().note,
+          note: form.getFieldsValue().note.trim(),
           id: productDataById.id,
         };
         dispatch(updateProduct(data));
@@ -94,7 +93,7 @@ export default function ProductEdit(props) {
         <Form.Item
           label="Məhusulun adı"
           name="name"
-          rules={[{ required: true, message: "Məhusulun adını daxil edin!" },{min:2, message:"Minimum 2 simvol daxil edin"}]}
+          rules={[{ required: true, message: "Məhusulun adını daxil edin!" },{min:2, message:"Minimum 2 simvol daxil edin"},{max:200 ,message:"Maksimum 200 simvol daxil edin" }]}
         >
           <Input />
         </Form.Item>
@@ -102,9 +101,9 @@ export default function ProductEdit(props) {
         <Form.Item
           label="Barkod"
           name="barcode"
-          rules={[{ required: true, message: "Barkodu daxil edin!" },{min:2, message:"Minimum 2 simvol daxil edin"}]}
+          rules={[{ required: true, message: "Barkodu daxil edin!" },{min:8, message:"Minimum 8 simvol daxil edin"},{max:20 ,message:"Maksimum 20 simvol daxil edin" }]}
         >
-          <Input disabled={true} />
+          <Input/>
         </Form.Item>
         <Form.Item
           label="Qeyd"
@@ -128,13 +127,7 @@ export default function ProductEdit(props) {
           <InputNumber />
         </Form.Item>
         
-        <Form.Item
-          label="Kəmiyyət"
-          name="quantity"
-          rules={[{ required: true, message: "Kəmiyyəti daxil edin!" }]}
-        >
-          <InputNumber />
-        </Form.Item>
+      
         <Form.Item
           label="Kateqoriya"
           name="category"

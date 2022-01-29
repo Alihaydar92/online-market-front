@@ -14,7 +14,7 @@ export default function PropertyEdit(props) {
         .validateFields()
         .then((values) => {
           var data = {
-            name: form.getFieldsValue().name,
+            name: form.getFieldsValue().name.trim(),
             // note: form.getFieldsValue().note,
             id: propertyDataById.id
           };
@@ -46,7 +46,7 @@ export default function PropertyEdit(props) {
           <Form.Item
             label="Xüsusiyyət adı"
             name="name"
-            rules={[{ required: true, message: "Xüsusiyyət adını daxil edin!" }]}
+            rules={[{ required: true, message: "Xüsusiyyət adını daxil edin!" },{min:2 ,message:"Minimum 2 simvol daxil edin" },{max:200 ,message:"Maksimum 200 simvol daxil edin" }]}
           >
             <Input />
           </Form.Item>

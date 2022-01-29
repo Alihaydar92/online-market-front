@@ -13,9 +13,9 @@ export default function CustomerAdd(props) {
       .validateFields()
       .then((values) => {
         var data = {
-          name: form.getFieldsValue().name,
-          surname: form.getFieldsValue().surname,
-          note: form.getFieldsValue().note,
+          name: form.getFieldsValue().name.trim(),
+          surname: form.getFieldsValue().surname.trim(),
+          note: form.getFieldsValue().note.trim(),
         };
 
         console.log("on create data", data);
@@ -48,7 +48,7 @@ export default function CustomerAdd(props) {
         <Form.Item
           label="Müştəri adı"
           name="name"
-          rules={[{ required: true, message: "Müştəri adını daxil edin!" },{min:2, message:"Minimum 2 simvol daxil edin"}]}
+          rules={[{ required: true, message: "Müştəri adını daxil edin!" },{min:2, message:"Minimum 2 simvol daxil edin"},{max:200 ,message:"Maksimum 200 simvol daxil edin" }]}
         >
           <Input autoFocus onFocus={e=>e.currentTarget.select()}/>
         </Form.Item>
@@ -56,7 +56,7 @@ export default function CustomerAdd(props) {
         <Form.Item
           label="Müştəri soyad"
           name="surname"
-          rules={[{ required: true, message: "Müştəri soyadını daxil edin!" },{min:2, message:"Minimum 2 simvol daxil edin"}]}
+          rules={[{ required: true, message: "Müştəri soyadını daxil edin!" },{min:2, message:"Minimum 2 simvol daxil edin"},{max:200 ,message:"Maksimum 200 simvol daxil edin" }]}
         >
           <Input/>
         </Form.Item>

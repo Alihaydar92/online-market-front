@@ -107,11 +107,6 @@ export default function StoreHouseTable() {
 
   const columns = [
     {
-      title: "Barkod",
-      dataIndex: "barcode",
-    },
-
-    {
       title: "Satış qiyməti",
       dataIndex: "sellPrice",
     },

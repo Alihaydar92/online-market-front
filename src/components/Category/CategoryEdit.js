@@ -15,9 +15,9 @@ export default function CategoryEdit(props) {
           .validateFields()
           .then((values) => {
             var data = {
-              name: form.getFieldsValue().name,
-              surname: form.getFieldsValue().surname,
-              note: form.getFieldsValue().note,
+              name: form.getFieldsValue().name.trim(),
+              surname: form.getFieldsValue().surname.trim(),
+              note: form.getFieldsValue().note.trim(),
               id: categoryDataById.id
             };
             dispatch(updateCategory(data),[]);
@@ -46,7 +46,7 @@ export default function CategoryEdit(props) {
         <Form.Item
           label="Kateqoriya adı"
           name="name"
-          rules={[{ required: true, message: "Kateqoriyanın adını daxil edin!" },{min:2, message:"Minimum 2 simvol daxil edin"}]}
+          rules={[{ required: true, message: "Kateqoriyanın adını daxil edin!" },{min:2, message:"Minimum 2 simvol daxil edin"},{max:200 ,message:"Maksimum 200 simvol daxil edin" }]}
         >
           <Input />
         </Form.Item>

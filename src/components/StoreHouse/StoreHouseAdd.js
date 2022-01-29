@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Form, Input, Button, InputNumber, Select } from "antd";
+import { Form, Input, Button, InputNumber, Select, DatePicker } from "antd";
+import moment from "moment";
 import {
   addStoreHouse,
   listOfStoreHouse,
@@ -10,7 +11,10 @@ const { Option } = Select;
 const { TextArea } = Input;
 export default function StoreHouseAdd(props) {
   const dispatch = useDispatch();
-
+  // const worker = {
+  //   addedDate: moment("2020-06-09T12:40:14+0000")
+  // };
+  
   const [form] = Form.useForm();
   const listOfProductData = useSelector(
     (state) => state.productReducers?.productListData
@@ -18,28 +22,31 @@ export default function StoreHouseAdd(props) {
   useEffect(() => {
     dispatch(listOfProducts());
   }, []);
-
+  const onChange = (date, dateString) => {
+    console.log(date, dateString);
+  };
   const onCreate = async (e) => {
     form
       .validateFields()
       .then((values) => {
         var data = {
-          barcode: form.getFieldsValue().barcode,
           productId: form.getFieldValue().product,
           quantity: form.getFieldsValue().quantity,
           price: form.getFieldsValue().price,
           sellPrice: form.getFieldsValue().sellPrice,
           otherPrice: form.getFieldsValue().otherPrice,
           customerSellPrice: form.getFieldsValue().customerSellPrice,
+          note: form.getFieldsValue().note.trim(),
+          addedDate: form.getFieldsValue().addedDate.dateString
         };
-        console.log("rpoduct data add: ", data);
+        console.log("product data add: ", data);
         dispatch(addStoreHouse(data));
         props.handleCancel();
         form.resetFields();
         dispatch(listOfStoreHouse());
       })
-      .catch(() => {
-        console.log("validate fields");
+      .catch((err) => {
+        console.log("validate fields",err);
       });
   };
   return (
@@ -54,17 +61,6 @@ export default function StoreHouseAdd(props) {
         //   onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
-        <Form.Item
-          label="Barkod"
-          name="barcode"
-          rules={[
-            { required: true, message: "Barkodu daxil edin!" },
-            { min: 2, message: "Minimum 2 simvol daxil edin" },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-
         <Form.Item
           label="Qiyməti"
           name="price"
@@ -137,6 +133,12 @@ export default function StoreHouseAdd(props) {
               </Option>
             ))}
           </Select>
+        </Form.Item>
+        <Form.Item  label="Daxil olma tarixi"
+        type="object"
+          name="addedDate"
+          rules={[{ required: false, message: "Tarixi daxil edin!" }]}>
+          <DatePicker onChange={onChange} format={"DD.MM.YYYY"}/>
         </Form.Item>
         <Form.Item>
           <Button

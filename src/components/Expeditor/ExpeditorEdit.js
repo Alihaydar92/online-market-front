@@ -15,9 +15,9 @@ export default function ExpeditorEdit(props) {
       .validateFields()
       .then((values) => {
         var data = {
-          name: form.getFieldsValue().name,
-          surname: form.getFieldsValue().surname,
-          note: form.getFieldsValue().note,
+          name: form.getFieldsValue().name.trim(),
+          surname: form.getFieldsValue().surname.trim(),
+          note: form.getFieldsValue().note.trim(),
           id: expeditorDataById.id
         };
         dispatch(updateExpeditor(data),[listOfExpeditorData]);
@@ -54,17 +54,17 @@ export default function ExpeditorEdit(props) {
         autoComplete="off"
       >
         <Form.Item
-          label="Əməkdaşın adı"
+          label="Satıcı adı"
           name="name"
-          rules={[{ required: true, message: "Əməkdaşın adını daxil edin!" },{min:2, message:"Minimum 2 simvol daxil edin"}]}
+          rules={[{ required: true, message: "Satıcı adını daxil edin!" },{min:2, message:"Minimum 2 simvol daxil edin"},{max:200 ,message:"Maksimum 200 simvol daxil edin" }]}
         >
           <Input />
         </Form.Item>
 
         <Form.Item
-          label="Əməkdaşın soyadı"
+          label="Satıcı soyadı"
           name="surname"
-          rules={[{ required: true, message: "Əməkdaşın soyadını daxil edin!" },{min:2, message:"Minimum 2 simvol daxil edin"}]}
+          rules={[{ required: true, message: "Satıcı soyadını daxil edin!" },{min:2, message:"Minimum 2 simvol daxil edin"},{max:200 ,message:"Maksimum 200 simvol daxil edin" }]}
         >
           <Input />
         </Form.Item>

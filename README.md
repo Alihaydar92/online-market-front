@@ -71,7 +71,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ### DESIGN
 ###
-### elave et duymelerini sag kunce yerleshdirmek
+### elave et duymelerini sag kunce yerleshdirmek (ehtiyac olmadi)
 ### headere el gezdirmek 
 ### sidebar menunun height-ini 100% dan cixarmaq
 ### duzelis ve sil emeliyyatlarini bir columna yerleshdirmek  +++
@@ -79,7 +79,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ### CODE
 ### Cedvellerde axtarish
 ### Emeliyyatlardan sonra refresh problem (async) +++
-### Routing +++s
+### Routing +++
 ### http url-leri dinamic idare (demo olaraq yekunlashdi) +++
 ### label-larin textlerini file-dan oxumaq
 ### teyyub terefden pagination
@@ -90,7 +90,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ### excel add zamani loading(waiting) yazmaq
 ### image-in sizeni ve visual olcusunu kiciltmek (sonradan qeyd: teyyub edecek bunu)  +++
 ### productlist ilk defeden gelmir (bax:barkod axtarisa gore) +++
-### sekil add ederken bir meseleye diqqet etmek reqse getmek (backendde)
+### sekil add ederken bir meseleye diqqet etmek reqse getmek (backendde)+++
 ### sekil panelinde update buttonunu yigisdirmaq+++
 ### sekil panelinde data ikinci klikde gelir+++
 ### product excel add (eger fayl secilmeyibse buttonu passiv et) +++
@@ -98,18 +98,22 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ### productdaki qiymet fieldlerini anbara atmaq (butun cedvel ve modallarda) +++ 
 ### anbara diger qiymetler ve musteri satis qiymeti elavesi , kemiyet adi deyisilib olacaq say  +++
 ### product page-de buttonlara duzelis +++
+### input numberde menfi cixarmamamq
+### anbar showallda productun nameni de gelsin (teyyub)
+
 
 Global bugs: 
  1. Axirinci yazilmis data her defe Elave et zamani gelir, halbuki bos gelmelidir data  +++
  2. table-da uzun stringler dizayni pozur, limitlemek lazimdir. 
  3. Axtaris Textboxda da trim qoymaq
- 4. Input textbox-larda trim 
- 5. String TextBoxlara input penceresinde maxLength qoymaq, limit (Teyyubla danismaqla) 
+ 4. Input textbox-larda trim +++
+ 5. String TextBoxlara input penceresinde maxLength qoymaq, limit (Teyyubla danismaqla)  +++
  6. Eyni zamanda username, name kimi fieldlerde yaxsi olar ki minlength de qoymaq. +++
  7. Imkan varsa pencerelesi responsive etmek (Sonda da edile biler)
  8. form reset +++
  9. form reseti hell etdikde ikinci defe form acilan kimi validate edir, bunu hell etmek (helelik bele qalacaq ) +++
  10. form ilk input focus
+
  
  
 Emekdaslar:  
@@ -120,16 +124,16 @@ Emekdaslar:
 Anbar Page: 
  1. Anbara mehsul daxil edende ya comboboxda ve ya hansisa bir formada yaxsi olar ki istifadece hem barkod nomresi ve ya ad ile axtaris edib mehsulu sece bilsin. Mecbur qalmasin ki yalniz barkod daxil etmekdir. 
  2. Hem barkod var hem Mehsul secimi, mentiqsizdi ve anbara mal daxil edende zaten barkoda ne yaziram goturur hec ele meshul yoxdu. 1-ci mesele hell olsa bu da hellin tapacaq 
- 3. Anbarda table-da satis qiymeti gorunmur. 
+ 3. Anbarda table-da satis qiymeti gorunmur. +++
  4. Anbarda tarix de qoymaq lazimdir mehsulun anbara geldiyi tarix, default now() dussun, user bunu deyise bilsin. Amma daxilde lazim olarsa bir dene de userin gormediyi insert_date tutmaq olar. 
  Table-da da bunu gostermek. Ozu de sort hemise anbara daxil olma tarixine gore desc getse yaxsidi 
  5. Table-da mehsul da gorunmur, halbu ki duzelis edende combo da gorunur. 
  
 
 Mehsullar: 
- 1. Elave et duymesi cox uzaqda qalir. pencere balacalasanda. 
- 2. Sekilsiz mehsul elave olunmadi 
+ 1. Elave et duymesi cox uzaqda qalir. pencere balacalasanda. +++
+ 2. Sekilsiz mehsul elave olunmadi +++
  3. Mehsul kemiyyet qiymet deyer hamsina -1 yaza bildim, 0 da yaza bildim 
- 4. Satis qiymeti maya deyerinden asagi ola biler bilmez deqiqlesdirmek, olmazsa kontrol qoymaq. 
- 5. Mehsul deyismesinde barkodu deyisme imkani. 
- 6. Barkod eyni zamanda musterinin satis qiymetine de gedir dusur
+ 4. Satis qiymeti maya deyerinden asagi ola biler bilmez deqiqlesdirmek, olmazsa kontrol qoymaq. (teyyub)
+ 5. Mehsul deyismesinde barkodu deyisme imkani.  +++
+ 6. Barkod eyni zamanda musterinin satis qiymetine de gedir dusur+++
