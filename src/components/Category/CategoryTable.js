@@ -10,6 +10,7 @@ import CategoryEdit from "./CategoryEdit";
 import CategoryAdd from "./CategoryAdd";
 export default function CategoryTable() {
   const dispatch = useDispatch();
+  const [username, setUsername] = useState('Default username');
   const listOfCategoryData = useSelector(
     (state) => state.categoryReducers.categoryListData
   );
@@ -101,7 +102,7 @@ export default function CategoryTable() {
         footer={[
           <Button danger onClick={handleCancel}>
             Geri
-          </Button>,
+          </Button>
         ]}
       >
         <CategoryEdit rowKey="id" handleCancel={handleCancel}></CategoryEdit>

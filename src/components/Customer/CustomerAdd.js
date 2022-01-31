@@ -1,14 +1,17 @@
-import {  useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Button, Form, Input } from "antd";
-import { addCustomer, listOfCustomers } from "../../redux/actions/customerAction";
-const {TextArea} =Input;
+import {
+  addCustomer,
+  listOfCustomers,
+} from "../../redux/actions/customerAction";
+const { TextArea } = Input;
 export default function CustomerAdd(props) {
   const dispatch = useDispatch();
 
   const [form] = Form.useForm();
 
- 
-  const onCreate =  (e) => {
+  const onCreate = (e) => {
     form
       .validateFields()
       .then((values) => {
@@ -22,16 +25,23 @@ export default function CustomerAdd(props) {
         // setVisibleUpdate(false)
         dispatch(addCustomer(data));
         props.handleCancel();
-    
+
         // dispatch(listOfCustomers());
         console.log("on create data", data);
         form.resetFields();
       })
       .catch((errorInfo) => {
         console.log("validate fields");
-      })
-      // form.resetFields();
+      });
+    // form.resetFields();
   };
+  useEffect(() => {
+    form.setFieldsValue({
+      name: "",
+      surname: "",
+      note: "",
+    });
+  }, [form]);
   return (
     <div>
       <Form
@@ -44,28 +54,35 @@ export default function CustomerAdd(props) {
         //   onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
-        
         <Form.Item
           label="Müştəri adı"
           name="name"
-          rules={[{ required: true, message: "Müştəri adını daxil edin!" },{min:2, message:"Minimum 2 simvol daxil edin"},{max:200 ,message:"Maksimum 200 simvol daxil edin" }]}
+          rules={[
+            { required: true, message: "Müştəri adını daxil edin!" },
+            { min: 2, message: "Minimum 2 simvol daxil edin" },
+            { max: 200, message: "Maksimum 200 simvol daxil edin" },
+          ]}
         >
-          <Input autoFocus onFocus={e=>e.currentTarget.select()}/>
+          <Input autoFocus onFocus={(e) => e.currentTarget.select()} />
         </Form.Item>
 
         <Form.Item
           label="Müştəri soyad"
           name="surname"
-          rules={[{ required: true, message: "Müştəri soyadını daxil edin!" },{min:2, message:"Minimum 2 simvol daxil edin"},{max:200 ,message:"Maksimum 200 simvol daxil edin" }]}
+          rules={[
+            { required: true, message: "Müştəri soyadını daxil edin!" },
+            { min: 2, message: "Minimum 2 simvol daxil edin" },
+            { max: 200, message: "Maksimum 200 simvol daxil edin" },
+          ]}
         >
-          <Input/>
+          <Input />
         </Form.Item>
         <Form.Item
           label="Qeyd"
           name="note"
           rules={[{ required: false, message: "Qeydi daxil edin!" }]}
         >
-          <TextArea/>
+          <TextArea />
         </Form.Item>
         <Form.Item>
           <Button

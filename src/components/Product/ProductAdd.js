@@ -6,7 +6,7 @@ import { listOfProperties } from "../../redux/actions/propertyActions";
 import { addProduct, listOfProducts } from "../../redux/actions/productActions";
 
 const { Option } = Select;
-const {TextArea} =Input;
+const { TextArea } = Input;
 export default function ProductAdd(props) {
   const dispatch = useDispatch();
 
@@ -47,6 +47,15 @@ export default function ProductAdd(props) {
         console.log("validate fields");
       });
   };
+  useEffect(() => {
+    form.setFieldsValue({
+      name: "",
+      barcode: "",
+      categoryId: null,
+      propertyId: null,
+      note: "",
+    });
+  }, [form]);
   return (
     <div>
       <Form
@@ -62,7 +71,11 @@ export default function ProductAdd(props) {
         <Form.Item
           label="Məhusulun adı"
           name="name"
-          rules={[{ required: true, message: "Məhusulun adını daxil edin!" },{min:2, message:"Minimum 2 simvol daxil edin"},{max:200 ,message:"Maksimum 200 simvol daxil edin" }]}
+          rules={[
+            { required: true, message: "Məhusulun adını daxil edin!" },
+            { min: 2, message: "Minimum 2 simvol daxil edin" },
+            { max: 200, message: "Maksimum 200 simvol daxil edin" },
+          ]}
         >
           <Input />
         </Form.Item>
@@ -70,7 +83,11 @@ export default function ProductAdd(props) {
         <Form.Item
           label="Barkod"
           name="barcode"
-          rules={[{ required: true, message: "Barkodu daxil edin!" },{min:8, message:"Minimum 8 simvol daxil edin"},{max:20 ,message:"Maksimum 20 simvol daxil edin" }]}
+          rules={[
+            { required: true, message: "Barkodu daxil edin!" },
+            { min: 8, message: "Minimum 8 simvol daxil edin" },
+            { max: 20, message: "Maksimum 20 simvol daxil edin" },
+          ]}
         >
           <Input />
         </Form.Item>
@@ -81,7 +98,7 @@ export default function ProductAdd(props) {
         >
           <TextArea />
         </Form.Item>
-        
+
         <Form.Item
           label="Kateqoriya"
           name="category"

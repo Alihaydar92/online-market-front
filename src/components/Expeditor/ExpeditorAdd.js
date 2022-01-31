@@ -1,14 +1,17 @@
-import {  useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Button, Form, Input } from "antd";
 // import { addCustomer, listOfCustomers } from "../../redux/actions/customerAction";
-import { addExpeditor,listOfExpeditors } from "../../redux/actions/expeditorActions";
-const {TextArea} =Input;
+import {
+  addExpeditor,
+  listOfExpeditors,
+} from "../../redux/actions/expeditorActions";
+const { TextArea } = Input;
 export default function ExpeditorAdd(props) {
   const dispatch = useDispatch();
 
   const [form] = Form.useForm();
 
- 
   const onCreate = async (e) => {
     form
       .validateFields()
@@ -27,9 +30,16 @@ export default function ExpeditorAdd(props) {
         console.log("on create data", data);
       })
       .catch((errorInfo) => {
-        console.log("validate fields");
+        console.log("validate fields", errorInfo);
       });
   };
+  useEffect(() => {
+    form.setFieldsValue({
+      name: "",
+      surname: "",
+      note: "",
+    });
+  }, [form]);
   return (
     <div>
       <Form
@@ -42,28 +52,35 @@ export default function ExpeditorAdd(props) {
         //   onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
-        
         <Form.Item
           label="Satıcı adı"
           name="name"
-          rules={[{ required: true, message: "Satıcı adını daxil edin!" },{min:2, message:"Minimum 2 simvol daxil edin"},{max:200 ,message:"Maksimum 200 simvol daxil edin" }]}
+          rules={[
+            { required: true, message: "Satıcı adını daxil edin!" },
+            { min: 2, message: "Minimum 2 simvol daxil edin" },
+            { max: 200, message: "Maksimum 200 simvol daxil edin" },
+          ]}
         >
-          <Input/>
+          <Input />
         </Form.Item>
 
         <Form.Item
           label="Müştəri soyad"
           name="surname"
-          rules={[{ required: true, message: "Satıcı soyadını daxil edin!" },{min:2, message:"Minimum 2 simvol daxil edin"},{max:200 ,message:"Maksimum 200 simvol daxil edin" }]}
+          rules={[
+            { required: true, message: "Satıcı soyadını daxil edin!" },
+            { min: 2, message: "Minimum 2 simvol daxil edin" },
+            { max: 200, message: "Maksimum 200 simvol daxil edin" },
+          ]}
         >
-          <Input/>
+          <Input />
         </Form.Item>
         <Form.Item
           label="Qeyd"
           name="note"
           rules={[{ required: false, message: "Qeydi daxil edin!" }]}
         >
-          <TextArea/>
+          <TextArea />
         </Form.Item>
         <Form.Item>
           <Button

@@ -71,10 +71,11 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ### DESIGN
 ###
-### elave et duymelerini sag kunce yerleshdirmek (ehtiyac olmadi)
+### elave et duymelerini sag kunce yerleshdirmek (ehtiyac olmadi) +++
 ### headere el gezdirmek 
 ### sidebar menunun height-ini 100% dan cixarmaq
 ### duzelis ve sil emeliyyatlarini bir columna yerleshdirmek  +++
+### headeer solda logo olsun, sag terefde user profile (logout,user name, xos gelmisiz)
 
 ### CODE
 ### Cedvellerde axtarish
@@ -98,14 +99,22 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ### productdaki qiymet fieldlerini anbara atmaq (butun cedvel ve modallarda) +++ 
 ### anbara diger qiymetler ve musteri satis qiymeti elavesi , kemiyet adi deyisilib olacaq say  +++
 ### product page-de buttonlara duzelis +++
-### input numberde menfi cixarmamamq
-### anbar showallda productun nameni de gelsin (teyyub)
+### input numberde menfi cixarmamamq +++
+### anbar showallda productun nameni de gelsin (teyyub) +++
+### resetfields eslinde duz islemir, yalniz emeliyyat olduqdan sonra isleyir, halbuki modali elebele acib bagladiqda bele islemelidi (modal acarken reset olmalidi datalar)(useEffectLayout genis test edib yoxlamaq)
+### qeydi bos qoyduqda trim islemir
+### anbar elavesinde mehsul combo axtarisda barkod da axtarilsin amma gonderilerken mehsul id gonderilecek
+### sellers add excel
+### product editde qiymet ve satis qiymeti
+### sekil elave edende yadda saxla altinda modal baglanmir
+### anbar date add-da problem
+
 
 
 Global bugs: 
  1. Axirinci yazilmis data her defe Elave et zamani gelir, halbuki bos gelmelidir data  +++
  2. table-da uzun stringler dizayni pozur, limitlemek lazimdir. 
- 3. Axtaris Textboxda da trim qoymaq
+ 3. Axtaris Textboxda da trim qoymaq (teyyub,ali)
  4. Input textbox-larda trim +++
  5. String TextBoxlara input penceresinde maxLength qoymaq, limit (Teyyubla danismaqla)  +++
  6. Eyni zamanda username, name kimi fieldlerde yaxsi olar ki minlength de qoymaq. +++
@@ -122,18 +131,19 @@ Emekdaslar:
 
 
 Anbar Page: 
- 1. Anbara mehsul daxil edende ya comboboxda ve ya hansisa bir formada yaxsi olar ki istifadece hem barkod nomresi ve ya ad ile axtaris edib mehsulu sece bilsin. Mecbur qalmasin ki yalniz barkod daxil etmekdir. 
+ 1. Anbara mehsul daxil edende ya comboboxda ve ya hansisa bir formada yaxsi olar ki istifadece hem barkod nomresi ve ya ad ile axtaris edib mehsulu sece bilsin. Mecbur qalmasin ki yalniz barkod daxil etmekdir. (qeyd: mehusl axtarisinda barkoda gore de tapsin)
  2. Hem barkod var hem Mehsul secimi, mentiqsizdi ve anbara mal daxil edende zaten barkoda ne yaziram goturur hec ele meshul yoxdu. 1-ci mesele hell olsa bu da hellin tapacaq 
  3. Anbarda table-da satis qiymeti gorunmur. +++
  4. Anbarda tarix de qoymaq lazimdir mehsulun anbara geldiyi tarix, default now() dussun, user bunu deyise bilsin. Amma daxilde lazim olarsa bir dene de userin gormediyi insert_date tutmaq olar. 
  Table-da da bunu gostermek. Ozu de sort hemise anbara daxil olma tarixine gore desc getse yaxsidi 
- 5. Table-da mehsul da gorunmur, halbu ki duzelis edende combo da gorunur. 
+ 5. Table-da mehsul da gorunmur, halbu ki duzelis edende combo da gorunur. +++
+ 6. update islemir +++
  
 
 Mehsullar: 
  1. Elave et duymesi cox uzaqda qalir. pencere balacalasanda. +++
  2. Sekilsiz mehsul elave olunmadi +++
- 3. Mehsul kemiyyet qiymet deyer hamsina -1 yaza bildim, 0 da yaza bildim 
+ 3. Mehsul kemiyyet qiymet deyer hamsina -1 yaza bildim, 0 da yaza bildim +++
  4. Satis qiymeti maya deyerinden asagi ola biler bilmez deqiqlesdirmek, olmazsa kontrol qoymaq. (teyyub)
  5. Mehsul deyismesinde barkodu deyisme imkani.  +++
  6. Barkod eyni zamanda musterinin satis qiymetine de gedir dusur+++

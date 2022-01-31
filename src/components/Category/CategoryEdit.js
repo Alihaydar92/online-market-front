@@ -16,7 +16,7 @@ export default function CategoryEdit(props) {
           .then((values) => {
             var data = {
               name: form.getFieldsValue().name.trim(),
-              surname: form.getFieldsValue().surname.trim(),
+              // surname: form.getFieldsValue().surname.trim(),
               note: form.getFieldsValue().note.trim(),
               id: categoryDataById.id
             };
@@ -25,13 +25,14 @@ export default function CategoryEdit(props) {
             dispatch(listOfCategories());
           })
           .catch((errorInfo) => {
-            console.log("validate fields");
+            console.log("validate fields",errorInfo);
           });
       };
       useEffect(() => {
         form.setFieldsValue({
-            name: categoryDataById.name,
+            name: categoryDataById?.name,
             // note:categoryDataById.note
+            note:categoryDataById?.note
         })
       },[form,categoryDataById]);
   return (

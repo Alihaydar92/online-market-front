@@ -161,15 +161,7 @@ export default function CartAdd() {
             </Form.Item>
           </Col>
         </Row>
-        {/* <Form.Item
-          label="Satış strategiyası"
-          name="priceStrategyList[].unitPrice"
-          rules={[
-            { required: false, message: "Satış strategiyasını daxil edin!" },
-          ]}
-        >
-          <Input />
-        </Form.Item> */}
+
       </Form>
     </div>
   );

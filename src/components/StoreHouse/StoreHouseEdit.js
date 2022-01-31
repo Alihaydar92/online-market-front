@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Form, Input, Button, InputNumber, Select } from "antd";
+import { Form, Input, Button, InputNumber, Select, DatePicker } from "antd";
+import moment from "moment";
 import {
   listOfStoreHouse,
   updateStoreHouse,
@@ -11,8 +12,15 @@ import { listOfProducts } from "../../redux/actions/productActions";
 const { Option } = Select;
 const { TextArea } = Input;
 export default function StoreHouseEdit(props) {
-  const dispatch = useDispatch();
+  const dateFormat = "DD.MM.YYYY";
 
+  const dispatch = useDispatch();
+  const [addedDateString, setAddedDateString] = useState(
+    
+  );
+  const [addedDateValue, setAddedDateValue] = useState(
+   
+  );
   const [form] = Form.useForm();
   const listOfProductData = useSelector(
     (state) => state.productReducers?.productListData
@@ -28,9 +36,12 @@ export default function StoreHouseEdit(props) {
   useEffect(() => {
     dispatch(listOfProducts());
   }, []);
-
+  const onChange = (date, dateString) => {
+    console.log(date, dateString);
+    setAddedDateString(dateString);
+    // setAddedDateDate(date);
+  };
   const onUpdate = async (e) => {
-    console.log("property data: ", form.getFieldsValue().property);
     form
       .validateFields()
       .then((values) => {
@@ -39,9 +50,11 @@ export default function StoreHouseEdit(props) {
           quantity: form.getFieldsValue().quantity,
           price: form.getFieldsValue().price,
           sellPrice: form.getFieldsValue().sellPrice,
-          otherPrice: form.getFieldsValue().otherPrice,
+          customerOfferedPrice: form.getFieldsValue().customerOfferedPrice,
           customerSellPrice: form.getFieldsValue().customerSellPrice,
-          note: form.getFieldsValue.note.trim(),
+          note: form.getFieldsValue().note.trim(),
+          // addedDate:addedDateValue.format(dateFormat),
+          addedDate:moment(form.getFieldsValue().dateAdded).format(dateFormat)  ,
           id: storeHouseDataById.id,
         };
         console.log("rpoduct data add: ", data);
@@ -49,17 +62,28 @@ export default function StoreHouseEdit(props) {
         props.handleCancel();
         dispatch(listOfStoreHouse());
       })
-      .catch(() => {
-        console.log("validate fields");
+      .catch((err) => {
+        console.log("validate fields", err);
       });
+      console.log(' added date value on update' ,addedDateValue)
+      console.log(' addedDateValue.format(dateFormat) string' ,addedDateValue.format(dateFormat))
   };
-
+  useEffect(()=>{
+    setAddedDateValue(moment(storeHouseDataById?.addedDate,dateFormat))
+    console.log(addedDateValue);
+  },[form,storeHouseDataById])
   useEffect(() => {
+    
     form.setFieldsValue({
-      product: storeHouseDataById?.productId,
+      product: storeHouseDataById?.productDtos?.id,
       quantity: storeHouseDataById.quantity,
       price: storeHouseDataById.price,
       sellPrice: storeHouseDataById.sellPrice,
+      customerOfferedPrice: storeHouseDataById.customerOfferedPrice,
+      customerSellPrice: storeHouseDataById.customerSellPrice,
+      note: storeHouseDataById.note === null ? "" : storeHouseDataById.note,
+      dateAdded:moment(storeHouseDataById?.addedDate,dateFormat)
+      // .format(dateFormat)
     });
   }, [form, storeHouseDataById]);
   return (
@@ -79,14 +103,14 @@ export default function StoreHouseEdit(props) {
           name="price"
           rules={[{ required: false, message: "Qiymətini daxil edin!" }]}
         >
-          <InputNumber />
+          <InputNumber min={0} />
         </Form.Item>
         <Form.Item
           label="Satış qiyməti"
           name="sellPrice"
           rules={[{ required: false, message: "Satış qiymətini daxil edin!" }]}
         >
-          <InputNumber />
+          <InputNumber min={0} />
         </Form.Item>
         <Form.Item
           label="Müştəri satış qiyməti"
@@ -95,21 +119,21 @@ export default function StoreHouseEdit(props) {
             { required: false, message: "Müştəri satış qiymətini daxil edin!" },
           ]}
         >
-          <InputNumber />
+          <InputNumber min={0} />
         </Form.Item>
         <Form.Item
           label="Digər qiymətlər"
-          name="otherPrice"
+          name="customerOfferedPrice"
           rules={[{ required: false, message: "Digər qiymətləri daxil edin!" }]}
         >
-          <InputNumber />
+          <InputNumber min={0} />
         </Form.Item>
         <Form.Item
           label="Say"
           name="quantity"
           rules={[{ required: true, message: "Sayı daxil edin!" }]}
         >
-          <InputNumber />
+          <InputNumber min={0} />
         </Form.Item>
         <Form.Item
           label="Qeyd"
@@ -147,11 +171,25 @@ export default function StoreHouseEdit(props) {
             ))}
           </Select>
         </Form.Item>
+        <Form.Item
+          label="Daxil olma tarixi"
+          type="object"
+          name="dateAdded"
+          rules={[{ required: true, message: "Tarixi daxil edin!" }]}
+        >
+          <DatePicker
+            onChange={onChange}
+            value={addedDateValue}
+            // onOk={onChange}
+            // defaultValue={moment()}
+            format={dateFormat}
+          />
+        </Form.Item>
         <Form.Item>
           <Button
             type="submit"
             htmlType="submit"
-            style={{ position: "absolute", left: "320px", bottom: "-90px" }}
+            style={{ position: "absolute", left: "300px", bottom: "-90px" }}
             onClick={onUpdate}
           >
             Yadda saxla

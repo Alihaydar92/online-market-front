@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, Input, Button, InputNumber, Select, DatePicker } from "antd";
 import moment from "moment";
@@ -10,11 +10,15 @@ import { listOfProducts } from "../../redux/actions/productActions";
 const { Option } = Select;
 const { TextArea } = Input;
 export default function StoreHouseAdd(props) {
+  const dateFormat = "DD.MM.YYYY";
+  const [addedDateString, setAddedDateString] = useState(
+    moment().format(dateFormat)
+  );
+  const [addedDate, setAddedDate] = useState(
+    moment()
+  );
   const dispatch = useDispatch();
-  // const worker = {
-  //   addedDate: moment("2020-06-09T12:40:14+0000")
-  // };
-  
+
   const [form] = Form.useForm();
   const listOfProductData = useSelector(
     (state) => state.productReducers?.productListData
@@ -22,9 +26,16 @@ export default function StoreHouseAdd(props) {
   useEffect(() => {
     dispatch(listOfProducts());
   }, []);
-  const onChange = (date, dateString) => {
-    console.log(date, dateString);
-  };
+  // const onChange = (date, dateString) => {
+  //   console.log(date, dateString);
+  //   setAddedDateString(dateString);
+  //   setAddedDate(date);
+  // };
+  // useLayoutEffect(() => {
+  //   console.log("date use layout effect ");
+  //   onChange(moment(), moment().format(dateFormat));
+  // }, []);
+
   const onCreate = async (e) => {
     form
       .validateFields()
@@ -34,21 +45,33 @@ export default function StoreHouseAdd(props) {
           quantity: form.getFieldsValue().quantity,
           price: form.getFieldsValue().price,
           sellPrice: form.getFieldsValue().sellPrice,
-          otherPrice: form.getFieldsValue().otherPrice,
+          customerOfferedPrice: form.getFieldsValue().customerOfferedPrice,
           customerSellPrice: form.getFieldsValue().customerSellPrice,
           note: form.getFieldsValue().note.trim(),
-          addedDate: form.getFieldsValue().addedDate.dateString
+          addedDate: form.getFieldsValue().addedDateString,
         };
-        console.log("product data add: ", data);
         dispatch(addStoreHouse(data));
         props.handleCancel();
         form.resetFields();
         dispatch(listOfStoreHouse());
       })
       .catch((err) => {
-        console.log("validate fields",err);
+        console.log("validate fields", err);
       });
   };
+  useLayoutEffect(() => {
+    form.setFieldsValue({
+      dateAdded: addedDate,
+      productId: "",
+      quantity: "",
+      price: "",
+      sellPrice: "",
+      customerOfferedPrice: "",
+      customerSellPrice: "",
+      note: "",
+    });
+    console.log('form use layout')
+  }, [form]);
   return (
     <div>
       <Form
@@ -66,14 +89,14 @@ export default function StoreHouseAdd(props) {
           name="price"
           rules={[{ required: false, message: "Qiymətini daxil edin!" }]}
         >
-          <InputNumber />
+          <InputNumber min={0} />
         </Form.Item>
         <Form.Item
           label="Satış qiyməti"
           name="sellPrice"
           rules={[{ required: false, message: "Satış qiymətini daxil edin!" }]}
         >
-          <InputNumber />
+          <InputNumber min={0} />
         </Form.Item>
         <Form.Item
           label="Müştəri satış qiyməti"
@@ -82,21 +105,21 @@ export default function StoreHouseAdd(props) {
             { required: false, message: "Müştəri satış qiymətini daxil edin!" },
           ]}
         >
-          <InputNumber />
+          <InputNumber min={0} />
         </Form.Item>
         <Form.Item
           label="Digər qiymətlər"
-          name="otherPrice"
+          name="customerOfferedPrice"
           rules={[{ required: false, message: "Digər qiymətləri daxil edin!" }]}
         >
-          <InputNumber />
+          <InputNumber min={0} />
         </Form.Item>
         <Form.Item
           label="Say"
           name="quantity"
           rules={[{ required: true, message: "Sayı daxil edin!" }]}
         >
-          <InputNumber />
+          <InputNumber min={0} />
         </Form.Item>
         <Form.Item
           label="Qeyd"
@@ -134,11 +157,18 @@ export default function StoreHouseAdd(props) {
             ))}
           </Select>
         </Form.Item>
-        <Form.Item  label="Daxil olma tarixi"
-        type="object"
-          name="addedDate"
-          rules={[{ required: false, message: "Tarixi daxil edin!" }]}>
-          <DatePicker onChange={onChange} format={"DD.MM.YYYY"}/>
+        <Form.Item
+          label="Daxil olma tarixi"
+          type="object"
+          name="dateAdded"
+          rules={[{ required: true, message: "Tarixi daxil edin!" }]}
+        >
+          <DatePicker
+            // onChange={onChange}
+            value={addedDate}
+            // defaultValue={moment()}
+            format={dateFormat}
+          />
         </Form.Item>
         <Form.Item>
           <Button

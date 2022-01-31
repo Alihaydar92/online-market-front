@@ -4,7 +4,7 @@ import {
   listOfStoreHouse,
   getStoreHouseById,
 } from "../../redux/actions/storeHouseActions";
-import { Space, Button, Table, Modal} from "antd";
+import { Space, Button, Table, Modal } from "antd";
 import StoreHouseAdd from "./StoreHouseAdd";
 import StoreHouseEdit from "./StoreHouseEdit";
 import StoreHouseDelete from "./StoreHouseDelete";
@@ -120,7 +120,7 @@ export default function StoreHouseTable() {
     },
     {
       title: "Digər qiymətlər",
-      dataIndex: "otherPrice",
+      dataIndex: "customerOfferedPrice",
     },
     {
       title: "Say",
@@ -128,9 +128,13 @@ export default function StoreHouseTable() {
     },
     {
       title: "Məhsul",
-      dataIndex: ["product", "name"],
+      dataIndex: ["productDtos", "name"],
     },
-
+    
+    {
+      title: "Əlavə olunma tarixi",
+      dataIndex: "addedDate",
+    },
     {
       title: "Əməliyyat",
       dataIndex: "operation",
@@ -183,7 +187,11 @@ export default function StoreHouseTable() {
           </Button>,
         ]}
       >
-        <StoreHouseAdd rowKey="id" handleCancel={handleCancel}></StoreHouseAdd>
+        <StoreHouseAdd
+          data={isElaveEtModalVisible}
+          rowKey="id"
+          handleCancel={handleCancel}
+        ></StoreHouseAdd>
       </Modal>
       <Modal
         title="Anbar məlumatına düzəliş edilməsi"
