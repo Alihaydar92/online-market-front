@@ -105,7 +105,7 @@ Table-da birinci fieldde textbox axtaris qoyduguna gore sutun adi yoxdu. (basga 
 
 ### Anbar Page:
 
-Anbara mehsul daxil edende ya comboboxda ve ya hansisa bir formada yaxsi olar ki istifadece hem barkod nomresi ve ya ad ile axtaris edib mehsulu sece bilsin. Mecbur qalmasin ki yalniz barkod daxil etmekdir. (qeyd: mehusl axtarisinda barkoda gore de tapsin)
+Anbara mehsul daxil edende ya comboboxda ve ya hansisa bir formada yaxsi olar ki istifadece hem barkod nomresi ve ya ad ile axtaris edib mehsulu sece bilsin. Mecbur qalmasin ki yalniz barkod daxil etmekdir. (qeyd: mehusl axtarisinda barkoda gore de tapsin) +++
 
 Hem barkod var hem Mehsul secimi, mentiqsizdi ve anbara mal daxil edende zaten barkoda ne yaziram goturur hec ele meshul yoxdu. 1-ci mesele hell olsa bu da hellin tapacaq
 

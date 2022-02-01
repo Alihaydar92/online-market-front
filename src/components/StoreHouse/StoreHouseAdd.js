@@ -28,6 +28,7 @@ export default function StoreHouseAdd(props) {
           note: form.getFieldsValue().note.trim(),
           addedDate: moment(form.getFieldsValue().dateAdded).format(dateFormat),
         };
+        console.log('storehouse data' ,data)
         dispatch(addStoreHouse(data));
         props.handleCancel();
         form.resetFields();
@@ -129,7 +130,7 @@ export default function StoreHouseAdd(props) {
           >
             {listOfProductData.map((productData) => (
               <Option key={productData.id} value={productData.id}>
-                {productData.name}
+                {productData.name + ' (' + productData.barcode + ')'}
               </Option>
             ))}
           </Select>
