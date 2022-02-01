@@ -1,10 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Form, Input, Button } from "antd";
-import {
-  listOfProperties,
-  addProperty,
-} from "../../redux/actions/propertyActions";
+import { addProperty } from "../../redux/actions/propertyActions";
 const { TextArea } = Input;
 export default function PropertyAdd(props) {
   const dispatch = useDispatch();
@@ -15,12 +12,10 @@ export default function PropertyAdd(props) {
       .then((values) => {
         var data = {
           name: form.getFieldsValue().name.trim(),
-          // note: form.getFieldsValue().note,
         };
         dispatch(addProperty(data));
         props.handleCancel();
         form.resetFields();
-        // dispatch(listOfProperties());
       })
       .catch((errorInfo) => {
         console.log("validate fields");

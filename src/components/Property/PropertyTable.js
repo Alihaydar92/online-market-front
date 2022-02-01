@@ -68,6 +68,7 @@ export default function PropertyTable() {
     };
   
     const handleCancel = () => {
+      dispatch(listOfProperties())
       setIsElaveEtModalVisible(false);
       setIsRedakteModalVisible(false);
       setIsSilModalVisible(false);

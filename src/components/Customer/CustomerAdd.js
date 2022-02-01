@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { Button, Form, Input } from "antd";
 import {
   addCustomer,
-  listOfCustomers,
 } from "../../redux/actions/customerAction";
 const { TextArea } = Input;
 export default function CustomerAdd(props) {
@@ -20,20 +19,14 @@ export default function CustomerAdd(props) {
           surname: form.getFieldsValue().surname.trim(),
           note: form.getFieldsValue().note.trim(),
         };
-
         console.log("on create data", data);
-        // setVisibleUpdate(false)
         dispatch(addCustomer(data));
         props.handleCancel();
-
-        // dispatch(listOfCustomers());
-        console.log("on create data", data);
         form.resetFields();
       })
       .catch((errorInfo) => {
         console.log("validate fields");
       });
-    // form.resetFields();
   };
   useEffect(() => {
     form.setFieldsValue({

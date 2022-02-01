@@ -1,12 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Form, Input, Button, Select, InputNumber } from "antd";
+import { Form, Input, Button, Select } from "antd";
 import { listOfCategories } from "../../redux/actions/categoryActions";
 import { listOfProperties } from "../../redux/actions/propertyActions";
-import {
-  listOfProducts,
-  updateProduct,
-} from "../../redux/actions/productActions";
+import { updateProduct } from "../../redux/actions/productActions";
 const { Option } = Select;
 const { TextArea } = Input;
 export default function ProductEdit(props) {
@@ -20,15 +17,6 @@ export default function ProductEdit(props) {
   const listOfPropertyData = useSelector(
     (state) => state.propertyReducers.propertyListData
   );
-
-  const propertyDataById = useSelector(
-    (state) => state.propertyReducers.propertyDataById
-  );
-
-  const categoryDataById = useSelector(
-    (state) => state.categoryReducers.categoryDataById
-  );
-
   const productDataById = useSelector(
     (state) => state.productReducers?.productDataById
   );
@@ -52,7 +40,6 @@ export default function ProductEdit(props) {
         };
         dispatch(updateProduct(data));
         props.handleCancel();
-        dispatch(listOfProducts());
       })
       .catch((errorInfo) => {
         console.log("validate fields");
@@ -61,12 +48,13 @@ export default function ProductEdit(props) {
 
   useEffect(() => {
     form.setFieldsValue({
-      name: productDataById.name,
-      barcode: productDataById.barcode,
+      name: productDataById?.name === null ? "" : productDataById?.name,
+      barcode:
+        productDataById?.barcode === null ? "" : productDataById?.barcode,
       category: productDataById?.categoryDto?.id,
-      quantity: productDataById.quantity,
+      quantity: productDataById?.quantity,
       property: productDataById?.propertyDto?.id,
-      note: productDataById.note,
+      note: productDataById?.note === null ? "" : productDataById?.note,
     });
   }, [form, productDataById]);
   return (
@@ -76,14 +64,6 @@ export default function ProductEdit(props) {
         name="basic"
         labelCol={{ span: 8 }}
         wrapperCol={{ span: 16 }}
-        // initialValues={{
-        //     remember: true,
-        //   name: customerDataById.name,
-        //   surname: customerDataById?.surname,
-        //   note: customerDataById?.note,
-        // }}
-        //   onFinish={onFinish}
-        //   onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
         <Form.Item
@@ -153,7 +133,6 @@ export default function ProductEdit(props) {
           <Select
             showSearch
             optionFilterProp="children"
-            // onSearch={onSearchCategory}
             filterOption={(input, option) => {
               return (
                 option.props.children

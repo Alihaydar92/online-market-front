@@ -116,7 +116,6 @@ export default function ExpeditorTable() {
       </Button>
       <Table
         style={{ marginTop: "20px" ,wordBreak:'break-word'}}
-        //   rowSelection={rowSelection}
         dataSource={dataSource}
         columns={columns}
         rowKey="id"
@@ -128,7 +127,6 @@ export default function ExpeditorTable() {
         // onOk={handleOk}
         onCancel={handleCancel}
         footer={[
-          // <Button>Düzəlişləri yadda saxla</Button>,
           <Button danger onClick={handleCancel}>
             Geri
           </Button>,
@@ -142,7 +140,6 @@ export default function ExpeditorTable() {
         // onOk={handleOk}
         onCancel={handleCancel}
         footer={[
-          // <Button>Düzəlişləri yadda saxla</Button>,
           <Button danger onClick={handleCancel}>
             Geri
           </Button>,
@@ -156,7 +153,6 @@ export default function ExpeditorTable() {
         // onOk={handleOk}
         onCancel={handleCancel}
         footer={[
-          // <Button>Düzəlişləri yadda saxla</Button>,
           <Button danger onClick={handleCancel}>
             Geri
           </Button>,

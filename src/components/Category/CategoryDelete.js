@@ -1,20 +1,15 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Button, Form } from "antd";
-import {listOfCategories,deleteCategory} from "../../redux/actions/categoryActions"
+import { deleteCategory } from "../../redux/actions/categoryActions";
 export default function CategoryDelete(props) {
   const dispatch = useDispatch();
   const categoryDataById = useSelector(
     (state) => state.categoryReducers.categoryDataById
   );
-  useEffect(() => {}, [categoryDataById]);
-  useEffect(() => {
-      console.log('categoryDataById ',categoryDataById)
-  }, []);
   const onDelete = (id) => async (e) => {
     dispatch(deleteCategory(id), []);
     props.handleCancel();
-    dispatch(listOfCategories());
   };
 
   return (

@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, Input, Button, InputNumber, Select, DatePicker } from "antd";
 import moment from "moment";
@@ -57,12 +57,12 @@ export default function StoreHouseEdit(props) {
   useEffect(() => {
     form.setFieldsValue({
       product: storeHouseDataById?.productDtos?.id,
-      quantity: storeHouseDataById.quantity,
-      price: storeHouseDataById.price,
-      sellPrice: storeHouseDataById.sellPrice,
-      customerOfferedPrice: storeHouseDataById.customerOfferedPrice,
-      customerSellPrice: storeHouseDataById.customerSellPrice,
-      note: storeHouseDataById.note === null ? "" : storeHouseDataById.note,
+      quantity: storeHouseDataById?.quantity,
+      price: storeHouseDataById?.price,
+      sellPrice: storeHouseDataById?.sellPrice,
+      customerOfferedPrice: storeHouseDataById?.customerOfferedPrice,
+      customerSellPrice: storeHouseDataById?.customerSellPrice,
+      note: storeHouseDataById?.note === null ? "" : storeHouseDataById?.note,
       dateAdded:
         storeHouseDataById?.addedDate === null
           ? moment()

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Form, Input, Button, InputNumber, Select } from "antd";
+import { Form, Input, Button, Select } from "antd";
 import { listOfCategories } from "../../redux/actions/categoryActions";
 import { listOfProperties } from "../../redux/actions/propertyActions";
 import { addProduct, listOfProducts } from "../../redux/actions/productActions";
@@ -41,7 +41,6 @@ export default function ProductAdd(props) {
         dispatch(addProduct(data));
         props.handleCancel();
         form.resetFields();
-        dispatch(listOfProducts());
       })
       .catch(() => {
         console.log("validate fields");
@@ -64,8 +63,6 @@ export default function ProductAdd(props) {
         labelCol={{ span: 8 }}
         wrapperCol={{ span: 16 }}
         initialValues={{ remember: true }}
-        //   onFinish={onFinish}
-        //   onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
         <Form.Item

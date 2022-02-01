@@ -26,10 +26,6 @@ export default function StoreHouseTable() {
     dispatch(listOfStoreHouse());
   }, []);
 
-  //   useEffect(() => {
-  //     console.log("listOfProductData", storeHouseList);
-  //   },[listOfProductData]);
-
   const [isElaveEtModalVisible, setIsElaveEtModalVisible] = useState(false);
   const [isRedakteEtModalVisible, setIsRedakteModalVisible] = useState(false);
   const [isSilModalVisible, setIsSilModalVisible] = useState(false);
@@ -46,7 +42,6 @@ export default function StoreHouseTable() {
     setIsSilModalVisible(false);
   };
   const showRemoveModal = (id) => {
-    // console.log("productDataById", productDataById);
     dispatch(getStoreHouseById(id));
     setIsRedakteModalVisible(false);
     setIsElaveEtModalVisible(false);
@@ -54,7 +49,7 @@ export default function StoreHouseTable() {
   };
 
   const handleCancel = () => {
-    // dispatch(listOfProducts());
+    dispatch(listOfStoreHouse());
     setIsElaveEtModalVisible(false);
     setIsRedakteModalVisible(false);
     setIsSilModalVisible(false);
@@ -130,7 +125,7 @@ export default function StoreHouseTable() {
       title: "Məhsul",
       dataIndex: ["productDtos", "name"],
     },
-    
+
     {
       title: "Əlavə olunma tarixi",
       dataIndex: "addedDate",
@@ -172,7 +167,7 @@ export default function StoreHouseTable() {
         Əlavə et
       </Button>
       <Table
-        style={{ marginTop: "20px",wordBreak:'break-word' }}
+        style={{ marginTop: "20px", wordBreak: "break-word" }}
         dataSource={storeHouseList}
         columns={columns}
         rowKey="id"

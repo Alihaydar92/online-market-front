@@ -1,40 +1,39 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Button, Form, Input } from "antd";
-import {listOfCategories,updateCategory} from "../../redux/actions/categoryActions"
-const {TextArea} =Input;
+import {
+  listOfCategories,
+  updateCategory,
+} from "../../redux/actions/categoryActions";
+const { TextArea } = Input;
 export default function CategoryEdit(props) {
-    const dispatch = useDispatch();
-    const [form] = Form.useForm();
-    const categoryDataById = useSelector(
-        (state) => state.categoryReducers.categoryDataById
-      );
-
-      const onUpdate = async (e) => {
-        form
-          .validateFields()
-          .then((values) => {
-            var data = {
-              name: form.getFieldsValue().name.trim(),
-              // surname: form.getFieldsValue().surname.trim(),
-              note: form.getFieldsValue().note.trim(),
-              id: categoryDataById.id
-            };
-            dispatch(updateCategory(data),[]);
-            props.handleCancel();
-            dispatch(listOfCategories());
-          })
-          .catch((errorInfo) => {
-            console.log("validate fields",errorInfo);
-          });
-      };
-      useEffect(() => {
-        form.setFieldsValue({
-            name: categoryDataById?.name,
-            // note:categoryDataById.note
-            note:categoryDataById?.note
-        })
-      },[form,categoryDataById]);
+  const dispatch = useDispatch();
+  const [form] = Form.useForm();
+  const categoryDataById = useSelector(
+    (state) => state.categoryReducers.categoryDataById
+  );
+  const onUpdate = async (e) => {
+    form
+      .validateFields()
+      .then((values) => {
+        var data = {
+          name: form.getFieldsValue().name.trim(),
+          note: form.getFieldsValue().note.trim(),
+          id: categoryDataById.id,
+        };
+        dispatch(updateCategory(data), []);
+        props.handleCancel();
+      })
+      .catch((errorInfo) => {
+        console.log("validate fields", errorInfo);
+      });
+  };
+  useEffect(() => {
+    form.setFieldsValue({
+      name: categoryDataById?.name,
+      note: categoryDataById?.note === null ? "" : categoryDataById?.note,
+    });
+  }, [form, categoryDataById]);
   return (
     <div>
       <Form
@@ -47,7 +46,11 @@ export default function CategoryEdit(props) {
         <Form.Item
           label="Kateqoriya adı"
           name="name"
-          rules={[{ required: true, message: "Kateqoriyanın adını daxil edin!" },{min:2, message:"Minimum 2 simvol daxil edin"},{max:200 ,message:"Maksimum 200 simvol daxil edin" }]}
+          rules={[
+            { required: true, message: "Kateqoriyanın adını daxil edin!" },
+            { min: 2, message: "Minimum 2 simvol daxil edin" },
+            { max: 200, message: "Maksimum 200 simvol daxil edin" },
+          ]}
         >
           <Input />
         </Form.Item>

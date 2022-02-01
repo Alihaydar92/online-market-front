@@ -3,8 +3,7 @@ import { useDispatch } from "react-redux";
 import { Button, Form, Input } from "antd";
 // import { addCustomer, listOfCustomers } from "../../redux/actions/customerAction";
 import {
-  addExpeditor,
-  listOfExpeditors,
+  addExpeditor
 } from "../../redux/actions/expeditorActions";
 const { TextArea } = Input;
 export default function ExpeditorAdd(props) {
@@ -21,13 +20,10 @@ export default function ExpeditorAdd(props) {
           surname: form.getFieldsValue().surname.trim(),
           note: form.getFieldsValue().note.trim(),
         };
-
         console.log("on create data", data);
         dispatch(addExpeditor(data));
         props.handleCancel();
         form.resetFields();
-        dispatch(listOfExpeditors());
-        console.log("on create data", data);
       })
       .catch((errorInfo) => {
         console.log("validate fields", errorInfo);
@@ -48,8 +44,6 @@ export default function ExpeditorAdd(props) {
         labelCol={{ span: 8 }}
         wrapperCol={{ span: 16 }}
         initialValues={{ remember: true }}
-        //   onFinish={onFinish}
-        //   onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
         <Form.Item

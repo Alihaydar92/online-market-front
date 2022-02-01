@@ -2,37 +2,18 @@ import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, Input, Button, InputNumber, Select, DatePicker } from "antd";
 import moment from "moment";
-import {
-  addStoreHouse,
-  listOfStoreHouse,
-} from "../../redux/actions/storeHouseActions";
-import { listOfProducts } from "../../redux/actions/productActions";
+import { addStoreHouse } from "../../redux/actions/storeHouseActions";
 const { Option } = Select;
 const { TextArea } = Input;
 export default function StoreHouseAdd(props) {
   const dateFormat = "DD.MM.YYYY";
-  const [addedDateValue, setAddedDateValue] = useState(
-    moment()
-  );
+  const [addedDateValue, setAddedDateValue] = useState(moment());
   const dispatch = useDispatch();
 
   const [form] = Form.useForm();
   const listOfProductData = useSelector(
     (state) => state.productReducers?.productListData
   );
-  // useEffect(() => {
-  //   dispatch(listOfProducts());
-  // }, []);
-  // const onChange = (date, dateString) => {
-  //   console.log(date, dateString);
-  //   setAddedDateString(dateString);
-  //   setAddedDate(date);
-  // };
-  // useLayoutEffect(() => {
-  //   console.log("date use layout effect ");
-  //   onChange(moment(), moment().format(dateFormat));
-  // }, []);
-
   const onCreate = async (e) => {
     form
       .validateFields()
@@ -45,7 +26,7 @@ export default function StoreHouseAdd(props) {
           customerOfferedPrice: form.getFieldsValue().customerOfferedPrice,
           customerSellPrice: form.getFieldsValue().customerSellPrice,
           note: form.getFieldsValue().note.trim(),
-          addedDate: moment(form.getFieldsValue().dateAdded).format(dateFormat) 
+          addedDate: moment(form.getFieldsValue().dateAdded).format(dateFormat),
         };
         dispatch(addStoreHouse(data));
         props.handleCancel();
@@ -66,7 +47,7 @@ export default function StoreHouseAdd(props) {
       customerSellPrice: "",
       note: "",
     });
-    console.log('form use layout')
+    console.log("form use layout");
   }, [form]);
   return (
     <div>

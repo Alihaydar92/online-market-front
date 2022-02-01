@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Button, Form } from "antd";
 import {
-  deleteCustomer,
-  listOfCustomers,
+  deleteCustomer
 } from "../../redux/actions/customerAction";
 export default function CustomerDelete(props) {
   const dispatch = useDispatch();
@@ -13,12 +12,9 @@ export default function CustomerDelete(props) {
   const listOfCustomerData = useSelector(
     (state) => state.customerReducer?.customerListData
   );
-  // const modalSituation=useSelector((state)=>state.modalsStore?.showYesNoModal)
-  useEffect(() => {}, [customerDataById]);
   const onDelete = (id) => async (e) => {
     dispatch(deleteCustomer(id), [listOfCustomerData]);
     props.handleCancel();
-    dispatch(listOfCustomers());
   };
 
   return (

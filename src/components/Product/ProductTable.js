@@ -111,7 +111,6 @@ export default function ProductTable() {
     setIsImgPanelVisible(false);
   };
   const showRemoveModal = (id) => {
-    console.log("productDataById", productDataById);
     dispatch(getProductById(id));
     setIsRedakteModalVisible(false);
     setIsElaveEtModalVisible(false);
@@ -119,15 +118,8 @@ export default function ProductTable() {
     setIsImgPanelVisible(false);
   };
   const showImgPanel = (id) => {
-    // setImages(null);
     dispatch(getProductImagesByProductId(id));
     dispatch(getProductById(id));
-    console.log("productDataById", productDataById);
-    console.log("productImagesDataByProductId", productImagesDataByProductId);
-    //  dispatch(setImages(productImagesDataByProductId.images)) ;
-    // setImages(productImagesDataByProductId.images)
-    console.log("images ", images);
-
     setIsRedakteModalVisible(false);
     setIsElaveEtModalVisible(false);
     setIsSilModalVisible(false);

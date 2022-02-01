@@ -1,22 +1,15 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Button, Form } from "antd";
-import {listOfProperties,deleteProperty} from "../../redux/actions/propertyActions"
+import {deleteProperty} from "../../redux/actions/propertyActions"
 export default function PropertyDelete(props) {
     const dispatch = useDispatch();
     const propertyDataById = useSelector(
       (state) => state.propertyReducers.propertyDataById
     );
-
-    
-    useEffect(() => {}, [propertyDataById]);
-    useEffect(() => {
-        console.log('propertyDataById ',propertyDataById)
-    }, []);
     const onDelete = (id) => async (e) => {
       dispatch(deleteProperty(id), []);
       props.handleCancel();
-      // dispatch(listOfProperties());
     };
   
     return (

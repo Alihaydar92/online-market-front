@@ -109,7 +109,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ### sekil elave edende yadda saxla altinda modal baglanmir +++
 ### anbar date add-da problem +++
 ### anbar modal editi acarken added date null gelirse problem olur (nvalid date) bunu nezere almaq +++
-
+### butun modallarda submit buttonun altinda cagirilan listleri silmek(onsuzda cancel cagirildiqda silinir) 1category done, 2 customer done ,3. expeditor done ,4 property done, 5 storehouse done 6 product done +++
+### butun trimleri yoxlamaq 1.category done , 2 customer done, 3 expeditor done, 4 property done , 5 storehouse done 6 product done +++
+### categoryye note artirlmalidirmi?
 
 
 Global bugs: 

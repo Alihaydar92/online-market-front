@@ -1,15 +1,20 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Button, Form, Input } from "antd";
-import { updateExpeditor,listOfExpeditors } from "../../redux/actions/expeditorActions";
-const {TextArea} =Input;
+import {
+  updateExpeditor,
+  listOfExpeditors,
+} from "../../redux/actions/expeditorActions";
+const { TextArea } = Input;
 export default function ExpeditorEdit(props) {
   const dispatch = useDispatch();
   const expeditorDataById = useSelector(
     (state) => state.expeditorReducers?.expeditorDataById
   );
   const [form] = Form.useForm();
-  const listOfExpeditorData = useSelector((state) => state.expeditorReducers.expeditorListData);
+  const listOfExpeditorData = useSelector(
+    (state) => state.expeditorReducers.expeditorListData
+  );
   const onUpdate = async (e) => {
     form
       .validateFields()
@@ -18,11 +23,10 @@ export default function ExpeditorEdit(props) {
           name: form.getFieldsValue().name.trim(),
           surname: form.getFieldsValue().surname.trim(),
           note: form.getFieldsValue().note.trim(),
-          id: expeditorDataById.id
+          id: expeditorDataById.id,
         };
-        dispatch(updateExpeditor(data),[listOfExpeditorData]);
+        dispatch(updateExpeditor(data), [listOfExpeditorData]);
         props.handleCancel();
-        dispatch(listOfExpeditors());
       })
       .catch((errorInfo) => {
         console.log("validate fields");
@@ -30,11 +34,12 @@ export default function ExpeditorEdit(props) {
   };
   useEffect(() => {
     form.setFieldsValue({
-        name: expeditorDataById.name,
-          surname: expeditorDataById?.surname,
-          note: expeditorDataById?.note,
-    })
-  },[form,expeditorDataById]);
+      name: expeditorDataById?.name === null ? "" : expeditorDataById?.name,
+      surname:
+        expeditorDataById?.surname === null ? "" : expeditorDataById?.surname,
+      note: expeditorDataById?.note === null ? "" : expeditorDataById?.note,
+    });
+  }, [form, expeditorDataById]);
 
   return (
     <div>
@@ -56,7 +61,11 @@ export default function ExpeditorEdit(props) {
         <Form.Item
           label="Satıcı adı"
           name="name"
-          rules={[{ required: true, message: "Satıcı adını daxil edin!" },{min:2, message:"Minimum 2 simvol daxil edin"},{max:200 ,message:"Maksimum 200 simvol daxil edin" }]}
+          rules={[
+            { required: true, message: "Satıcı adını daxil edin!" },
+            { min: 2, message: "Minimum 2 simvol daxil edin" },
+            { max: 200, message: "Maksimum 200 simvol daxil edin" },
+          ]}
         >
           <Input />
         </Form.Item>
@@ -64,7 +73,11 @@ export default function ExpeditorEdit(props) {
         <Form.Item
           label="Satıcı soyadı"
           name="surname"
-          rules={[{ required: true, message: "Satıcı soyadını daxil edin!" },{min:2, message:"Minimum 2 simvol daxil edin"},{max:200 ,message:"Maksimum 200 simvol daxil edin" }]}
+          rules={[
+            { required: true, message: "Satıcı soyadını daxil edin!" },
+            { min: 2, message: "Minimum 2 simvol daxil edin" },
+            { max: 200, message: "Maksimum 200 simvol daxil edin" },
+          ]}
         >
           <Input />
         </Form.Item>

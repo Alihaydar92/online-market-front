@@ -1,9 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { Button, Form } from "antd";
-import {
-  deleteProduct,
-  listOfProducts,
-} from "../../redux/actions/productActions";
+import { deleteProduct } from "../../redux/actions/productActions";
 export default function ProductDelete(props) {
   const dispatch = useDispatch();
   const productDataById = useSelector(
@@ -12,7 +9,6 @@ export default function ProductDelete(props) {
   const onDelete = (id) => async (e) => {
     dispatch(deleteProduct(id), []);
     props.handleCancel();
-    dispatch(listOfProducts());
   };
 
   return (
