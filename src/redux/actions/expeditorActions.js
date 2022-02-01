@@ -54,3 +54,17 @@ export const deleteExpeditor = (id) => (dispatch) => {
     }
   });
 };
+
+
+export const addExpeditorExcel = (data) => (dispatch) => {
+  console.log("excell data ", data);
+  axiosInstance.post("/sellers/excel", data).then((response) => {
+    if (response.status === 200) {
+      dispatch({
+        type: actionTypes.ADD_EXPEDITOR_EXCEL,
+        payload: response.data,
+      });
+      dispatch(listOfExpeditors());
+    }
+  });
+};

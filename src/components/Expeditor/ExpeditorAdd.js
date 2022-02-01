@@ -1,10 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Button, Form, Input } from "antd";
-// import { addCustomer, listOfCustomers } from "../../redux/actions/customerAction";
-import {
-  addExpeditor
-} from "../../redux/actions/expeditorActions";
+import { addExpeditor } from "../../redux/actions/expeditorActions";
 const { TextArea } = Input;
 export default function ExpeditorAdd(props) {
   const dispatch = useDispatch();
@@ -47,10 +44,10 @@ export default function ExpeditorAdd(props) {
         autoComplete="off"
       >
         <Form.Item
-          label="Satıcı adı"
+          label="Əməkdaş adı"
           name="name"
           rules={[
-            { required: true, message: "Satıcı adını daxil edin!" },
+            { required: true, message: "Əməkdaş adını daxil edin!" },
             { min: 2, message: "Minimum 2 simvol daxil edin" },
             { max: 200, message: "Maksimum 200 simvol daxil edin" },
           ]}
@@ -59,10 +56,10 @@ export default function ExpeditorAdd(props) {
         </Form.Item>
 
         <Form.Item
-          label="Müştəri soyad"
+          label="Əməkdaş soyad"
           name="surname"
           rules={[
-            { required: true, message: "Satıcı soyadını daxil edin!" },
+            { required: true, message: "Əməkdaş soyadını daxil edin!" },
             { min: 2, message: "Minimum 2 simvol daxil edin" },
             { max: 200, message: "Maksimum 200 simvol daxil edin" },
           ]}

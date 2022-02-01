@@ -1,4 +1,4 @@
-import { Layout, Menu } from "antd";
+import { Layout, Menu ,Image} from "antd";
 import {
   UserOutlined,
   LaptopOutlined,
@@ -8,24 +8,19 @@ import { Route, Routes ,Link} from "react-router-dom";
 import CustomerTable from "../components/Customer/CustomerTable";
 import ExpeditorTable from "../components/Expeditor/ExpeditorTable";
 import ProductTable from "./Product/ProductTable";
-import  NotFound  from "../components/NotFound";
 import CategoryTable from "./Category/CategoryTable";
 import PropertyTable from "./Property/PropertyTable";
 import CartAdd from "./Cart/CartAdd";
-import EditableCartTable from "./Cart/EditableCartTable";
-import DinamycTable from "./Cart/DinamycTable";
 import AddDeleteTableRows from "./Cart/AddDeleteTableRows"
 import StoreHouseTable from "./StoreHouse/StoreHouseTable";
-import useFullPageLoader from "../hooks/useFullPageLoader";
-
+const logo =require('../helpers/greenStreamImg.jpeg')
 const { Footer, Content, Sider, Header } = Layout;
-
 const { SubMenu } = Menu;
 export default function App() {
-  const [loader ,showLoader, hideLoader] =useFullPageLoader();
   return (
     <Layout>
       <Sider width={200} className="site-layout-background">
+      <Image alt="logo" src={String(logo)}/>
         <Menu
           mode="inline"
           // defaultSelectedKeys={["1"]}
@@ -74,10 +69,6 @@ export default function App() {
             <Route  path="/editableCartTable" element={<AddDeleteTableRows/>}></Route>
             <Route  path="/storeHouse" element={<StoreHouseTable/>}></Route>
           </Routes>
-
-          {/* <CustomerTable></CustomerTable>
-          <ExpeditorTable></ExpeditorTable>
-          <ProductTable></ProductTable> */}
         </Content>
 
         <Footer>Footer</Footer>

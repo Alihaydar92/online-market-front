@@ -10,7 +10,6 @@ import CategoryEdit from "./CategoryEdit";
 import CategoryAdd from "./CategoryAdd";
 export default function CategoryTable() {
   const dispatch = useDispatch();
-  const [username, setUsername] = useState('Default username');
   const listOfCategoryData = useSelector(
     (state) => state.categoryReducers.categoryListData
   );
@@ -21,6 +20,10 @@ export default function CategoryTable() {
     {
       title: "Kateqoriya adı",
       dataIndex: "name",
+    },
+    {
+      title: "Qeyd",
+      dataIndex: "note",
     },
     {
       title: "Əməliyyat",
