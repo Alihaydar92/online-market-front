@@ -172,7 +172,7 @@ export default function StoreHouseTable() {
         Əlavə et
       </Button>
       <Table
-        style={{ marginTop: "20px" }}
+        style={{ marginTop: "20px",wordBreak:'break-word' }}
         dataSource={storeHouseList}
         columns={columns}
         rowKey="id"

@@ -11,10 +11,7 @@ const { Option } = Select;
 const { TextArea } = Input;
 export default function StoreHouseAdd(props) {
   const dateFormat = "DD.MM.YYYY";
-  const [addedDateString, setAddedDateString] = useState(
-    moment().format(dateFormat)
-  );
-  const [addedDate, setAddedDate] = useState(
+  const [addedDateValue, setAddedDateValue] = useState(
     moment()
   );
   const dispatch = useDispatch();
@@ -23,9 +20,9 @@ export default function StoreHouseAdd(props) {
   const listOfProductData = useSelector(
     (state) => state.productReducers?.productListData
   );
-  useEffect(() => {
-    dispatch(listOfProducts());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(listOfProducts());
+  // }, []);
   // const onChange = (date, dateString) => {
   //   console.log(date, dateString);
   //   setAddedDateString(dateString);
@@ -48,12 +45,11 @@ export default function StoreHouseAdd(props) {
           customerOfferedPrice: form.getFieldsValue().customerOfferedPrice,
           customerSellPrice: form.getFieldsValue().customerSellPrice,
           note: form.getFieldsValue().note.trim(),
-          addedDate: form.getFieldsValue().addedDateString,
+          addedDate: moment(form.getFieldsValue().dateAdded).format(dateFormat) 
         };
         dispatch(addStoreHouse(data));
         props.handleCancel();
         form.resetFields();
-        dispatch(listOfStoreHouse());
       })
       .catch((err) => {
         console.log("validate fields", err);
@@ -61,7 +57,7 @@ export default function StoreHouseAdd(props) {
   };
   useLayoutEffect(() => {
     form.setFieldsValue({
-      dateAdded: addedDate,
+      dateAdded: addedDateValue,
       productId: "",
       quantity: "",
       price: "",
@@ -165,7 +161,7 @@ export default function StoreHouseAdd(props) {
         >
           <DatePicker
             // onChange={onChange}
-            value={addedDate}
+            value={addedDateValue}
             // defaultValue={moment()}
             format={dateFormat}
           />

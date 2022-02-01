@@ -89,7 +89,7 @@ export default function CategoryTable() {
         Əlavə et
       </Button>
       <Table
-        style={{ marginTop: "20px" }}
+        style={{ marginTop: "20px",wordBreak:'break-word' }}
         //   rowSelection={rowSelection}
         dataSource={listOfCategoryData}
         columns={columns}

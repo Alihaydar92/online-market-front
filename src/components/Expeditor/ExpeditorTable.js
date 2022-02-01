@@ -115,7 +115,7 @@ export default function ExpeditorTable() {
         Əlavə et
       </Button>
       <Table
-        style={{ marginTop: "20px" }}
+        style={{ marginTop: "20px" ,wordBreak:'break-word'}}
         //   rowSelection={rowSelection}
         dataSource={dataSource}
         columns={columns}

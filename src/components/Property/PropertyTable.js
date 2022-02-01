@@ -83,7 +83,7 @@ export default function PropertyTable() {
           Əlavə et
         </Button>
         <Table
-          style={{ marginTop: "20px" }}
+          style={{ marginTop: "20px" ,wordBreak:'break-word'}}
           //   rowSelection={rowSelection}
           dataSource={listOfPropertyData}
           columns={columns}

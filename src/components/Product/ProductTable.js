@@ -200,6 +200,7 @@ export default function ProductTable() {
 
     console.log(" images data: ", data);
     dispatch(addProductImages(productDataById.id, data));
+    handleCancel();
   };
 
   const columns = [
@@ -294,7 +295,7 @@ export default function ProductTable() {
       </Row>
 
       <Table
-        style={{ marginTop: "20px" }}
+        style={{ marginTop: "20px",wordBreak:'break-word' }}
         dataSource={dataSource}
         columns={columns}
         rowKey="id"

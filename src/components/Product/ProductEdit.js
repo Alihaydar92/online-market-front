@@ -8,7 +8,7 @@ import {
   updateProduct,
 } from "../../redux/actions/productActions";
 const { Option } = Select;
-const {TextArea} =Input;
+const { TextArea } = Input;
 export default function ProductEdit(props) {
   const dispatch = useDispatch();
 
@@ -65,10 +65,6 @@ export default function ProductEdit(props) {
       barcode: productDataById.barcode,
       category: productDataById?.categoryDto?.id,
       quantity: productDataById.quantity,
-      price: productDataById.price,
-      sellPrice: productDataById.sellPrice,
-      otherPrice: productDataById.otherPrice,
-      customerSellPrice: productDataById.barcode,
       property: productDataById?.propertyDto?.id,
       note: productDataById.note,
     });
@@ -93,7 +89,11 @@ export default function ProductEdit(props) {
         <Form.Item
           label="Məhusulun adı"
           name="name"
-          rules={[{ required: true, message: "Məhusulun adını daxil edin!" },{min:2, message:"Minimum 2 simvol daxil edin"},{max:200 ,message:"Maksimum 200 simvol daxil edin" }]}
+          rules={[
+            { required: true, message: "Məhusulun adını daxil edin!" },
+            { min: 2, message: "Minimum 2 simvol daxil edin" },
+            { max: 200, message: "Maksimum 200 simvol daxil edin" },
+          ]}
         >
           <Input />
         </Form.Item>
@@ -101,9 +101,13 @@ export default function ProductEdit(props) {
         <Form.Item
           label="Barkod"
           name="barcode"
-          rules={[{ required: true, message: "Barkodu daxil edin!" },{min:8, message:"Minimum 8 simvol daxil edin"},{max:20 ,message:"Maksimum 20 simvol daxil edin" }]}
+          rules={[
+            { required: true, message: "Barkodu daxil edin!" },
+            { min: 8, message: "Minimum 8 simvol daxil edin" },
+            { max: 20, message: "Maksimum 20 simvol daxil edin" },
+          ]}
         >
-          <Input/>
+          <Input />
         </Form.Item>
         <Form.Item
           label="Qeyd"
@@ -112,22 +116,6 @@ export default function ProductEdit(props) {
         >
           <TextArea />
         </Form.Item>
-        <Form.Item
-          label="Qiyməti"
-          name="price"
-          rules={[{ required: false, message: "Qiyməti daxil edin!" }]}
-        >
-          <InputNumber />
-        </Form.Item>
-        <Form.Item
-          label="Satış qiyməti"
-          name="sellPrice"
-          rules={[{ required: false, message: "Satış qiymətini daxil edin!" }]}
-        >
-          <InputNumber />
-        </Form.Item>
-        
-      
         <Form.Item
           label="Kateqoriya"
           name="category"

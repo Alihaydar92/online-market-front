@@ -15,12 +15,7 @@ export default function StoreHouseEdit(props) {
   const dateFormat = "DD.MM.YYYY";
 
   const dispatch = useDispatch();
-  const [addedDateString, setAddedDateString] = useState(
-    
-  );
-  const [addedDateValue, setAddedDateValue] = useState(
-   
-  );
+  const [addedDateValue, setAddedDateValue] = useState();
   const [form] = Form.useForm();
   const listOfProductData = useSelector(
     (state) => state.productReducers?.productListData
@@ -36,11 +31,6 @@ export default function StoreHouseEdit(props) {
   useEffect(() => {
     dispatch(listOfProducts());
   }, []);
-  const onChange = (date, dateString) => {
-    console.log(date, dateString);
-    setAddedDateString(dateString);
-    // setAddedDateDate(date);
-  };
   const onUpdate = async (e) => {
     form
       .validateFields()
@@ -53,27 +43,18 @@ export default function StoreHouseEdit(props) {
           customerOfferedPrice: form.getFieldsValue().customerOfferedPrice,
           customerSellPrice: form.getFieldsValue().customerSellPrice,
           note: form.getFieldsValue().note.trim(),
-          // addedDate:addedDateValue.format(dateFormat),
-          addedDate:moment(form.getFieldsValue().dateAdded).format(dateFormat)  ,
+          addedDate: moment(form.getFieldsValue().dateAdded).format(dateFormat),
           id: storeHouseDataById.id,
         };
         console.log("rpoduct data add: ", data);
         dispatch(updateStoreHouse(data));
         props.handleCancel();
-        dispatch(listOfStoreHouse());
       })
       .catch((err) => {
         console.log("validate fields", err);
       });
-      console.log(' added date value on update' ,addedDateValue)
-      console.log(' addedDateValue.format(dateFormat) string' ,addedDateValue.format(dateFormat))
   };
-  useEffect(()=>{
-    setAddedDateValue(moment(storeHouseDataById?.addedDate,dateFormat))
-    console.log(addedDateValue);
-  },[form,storeHouseDataById])
   useEffect(() => {
-    
     form.setFieldsValue({
       product: storeHouseDataById?.productDtos?.id,
       quantity: storeHouseDataById.quantity,
@@ -82,8 +63,10 @@ export default function StoreHouseEdit(props) {
       customerOfferedPrice: storeHouseDataById.customerOfferedPrice,
       customerSellPrice: storeHouseDataById.customerSellPrice,
       note: storeHouseDataById.note === null ? "" : storeHouseDataById.note,
-      dateAdded:moment(storeHouseDataById?.addedDate,dateFormat)
-      // .format(dateFormat)
+      dateAdded:
+        storeHouseDataById?.addedDate === null
+          ? moment()
+          : moment(storeHouseDataById?.addedDate, dateFormat),
     });
   }, [form, storeHouseDataById]);
   return (
@@ -94,8 +77,6 @@ export default function StoreHouseEdit(props) {
         labelCol={{ span: 8 }}
         wrapperCol={{ span: 16 }}
         initialValues={{ remember: true }}
-        //   onFinish={onFinish}
-        //   onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
         <Form.Item
@@ -177,13 +158,7 @@ export default function StoreHouseEdit(props) {
           name="dateAdded"
           rules={[{ required: true, message: "Tarixi daxil edin!" }]}
         >
-          <DatePicker
-            onChange={onChange}
-            value={addedDateValue}
-            // onOk={onChange}
-            // defaultValue={moment()}
-            format={dateFormat}
-          />
+          <DatePicker value={addedDateValue} format={dateFormat} />
         </Form.Item>
         <Form.Item>
           <Button

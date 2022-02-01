@@ -105,15 +105,16 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ### qeydi bos qoyduqda trim islemir
 ### anbar elavesinde mehsul combo axtarisda barkod da axtarilsin amma gonderilerken mehsul id gonderilecek
 ### sellers add excel
-### product editde qiymet ve satis qiymeti
-### sekil elave edende yadda saxla altinda modal baglanmir
-### anbar date add-da problem
+### product editde qiymet ve satis qiymeti +++
+### sekil elave edende yadda saxla altinda modal baglanmir +++
+### anbar date add-da problem +++
+### anbar modal editi acarken added date null gelirse problem olur (nvalid date) bunu nezere almaq +++
 
 
 
 Global bugs: 
  1. Axirinci yazilmis data her defe Elave et zamani gelir, halbuki bos gelmelidir data  +++
- 2. table-da uzun stringler dizayni pozur, limitlemek lazimdir. 
+ 2. table-da uzun stringler dizayni pozur, limitlemek lazimdir. +++
  3. Axtaris Textboxda da trim qoymaq (teyyub,ali)
  4. Input textbox-larda trim +++
  5. String TextBoxlara input penceresinde maxLength qoymaq, limit (Teyyubla danismaqla)  +++
@@ -134,7 +135,7 @@ Anbar Page:
  1. Anbara mehsul daxil edende ya comboboxda ve ya hansisa bir formada yaxsi olar ki istifadece hem barkod nomresi ve ya ad ile axtaris edib mehsulu sece bilsin. Mecbur qalmasin ki yalniz barkod daxil etmekdir. (qeyd: mehusl axtarisinda barkoda gore de tapsin)
  2. Hem barkod var hem Mehsul secimi, mentiqsizdi ve anbara mal daxil edende zaten barkoda ne yaziram goturur hec ele meshul yoxdu. 1-ci mesele hell olsa bu da hellin tapacaq 
  3. Anbarda table-da satis qiymeti gorunmur. +++
- 4. Anbarda tarix de qoymaq lazimdir mehsulun anbara geldiyi tarix, default now() dussun, user bunu deyise bilsin. Amma daxilde lazim olarsa bir dene de userin gormediyi insert_date tutmaq olar. 
+ 4. Anbarda tarix de qoymaq lazimdir mehsulun anbara geldiyi tarix, default now() dussun, user bunu deyise bilsin. Amma daxilde lazim olarsa bir dene de userin gormediyi insert_date tutmaq olar.  (qeyd: insertdate meselesi teyyub terefde) +++
  Table-da da bunu gostermek. Ozu de sort hemise anbara daxil olma tarixine gore desc getse yaxsidi 
  5. Table-da mehsul da gorunmur, halbu ki duzelis edende combo da gorunur. +++
  6. update islemir +++

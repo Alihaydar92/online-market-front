@@ -13,7 +13,7 @@ export default function StoreHouseDelete(props) {
     const onDelete = (id) => async (e) => {
       dispatch(deleteStoreHouse(id), []);
       props.handleCancel();
-      dispatch(listOfStoreHouse());
+      // dispatch(listOfStoreHouse());
     };
   
     return (
