@@ -2,7 +2,16 @@ import * as actionTypes from "./actionTypes";
 import axiosInstance from "../../helpers/axios";
 export const listOfProducts = () => (dispatch) => {
   axiosInstance.get("/products").then((response) => {
+    dispatch({
+      type: actionTypes.LIST_OF_PRODUCTS,
+      payload: response.data,
+    });
     
+  });
+};
+export const listOfProductsByPage = (page,pageSize) => (dispatch) => {
+  console.log('page and pagesize ' ,page + '//' +pageSize)
+  axiosInstance.get("/products?page="+page+"&size="+pageSize).then((response) => {
     dispatch({
       type: actionTypes.LIST_OF_PRODUCTS,
       payload: response.data,

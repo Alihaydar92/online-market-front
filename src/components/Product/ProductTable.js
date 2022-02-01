@@ -6,6 +6,7 @@ import {
   addProductExcel,
   addProductImages,
   getProductImagesByProductId,
+  listOfProductsByPage,
 } from "../../redux/actions/productActions";
 import { Space, Button, Table, Modal, Input, Row, Col } from "antd";
 import ProductAdd from "./ProductAdd";
@@ -22,6 +23,9 @@ export default function ProductTable() {
     base64URL: "",
   });
   const [disabledSave, setDisabledSave] = useState(true);
+
+  const [page,setPage]=useState(1);
+  const [pageSize,setPageSize]=useState(11);
 
   /////////////////////////////////////////////file upload
 
@@ -69,8 +73,8 @@ export default function ProductTable() {
   }, []);
 
   useEffect(() => {
-    console.log("listOfProductData", listOfProductData);
-    setDataSource(listOfProductData);
+    console.log("listOfProductData", listOfProductData.pages);
+    setDataSource(listOfProductData.pages);
   }, [listOfProductData]);
 
   useEffect(() => {
@@ -85,7 +89,7 @@ export default function ProductTable() {
       onChange={(e) => {
         const currValue = e.target.value;
         setValue(currValue);
-        const filteredData = listOfProductData.filter((entry) =>
+        const filteredData = listOfProductData.pages.filter((entry) =>
           entry.barcode.includes(currValue)
         );
         setDataSource(filteredData);
@@ -291,6 +295,16 @@ export default function ProductTable() {
         dataSource={dataSource}
         columns={columns}
         rowKey="id"
+        pagination={{
+          current:page,
+          pageSize:pageSize,
+          total:listOfProductData.totalPages,
+          onChange:(page,pageSize)=>{
+            setPage(page);
+            setPageSize(pageSize);
+            dispatch(listOfProductsByPage(page,pageSize))
+          }
+        }}
       ></Table>
       <Modal
         title="Məhsulun əlavə edilməsi"

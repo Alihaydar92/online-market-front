@@ -170,7 +170,7 @@ export default function StoreHouseTable() {
         style={{ marginTop: "20px", wordBreak: "break-word" }}
         dataSource={storeHouseList}
         columns={columns}
-        rowKey="id"
+        rowKey="id"   
       ></Table>
       <Modal
         title="Anbar məlumatının əlavə edilməsi"
