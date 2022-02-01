@@ -50,11 +50,21 @@ Anbar Page:
  4. Anbarda tarix de qoymaq lazimdir mehsulun anbara geldiyi tarix, default now() dussun, user bunu deyise bilsin. Amma daxilde lazim olarsa bir dene de userin gormediyi insert_date tutmaq olar.  (qeyd: insertdate meselesi teyyub terefde) +++
  5. Table-da mehsul da gorunmur, halbu ki duzelis edende combo da gorunur. +++
  6. update islemir +++
- 
+ Anbara mehsul daxil edende ya comboboxda ve ya hansisa bir formada yaxsi olar ki istifadece hem barkod nomresi ve ya ad ile axtaris edib mehsulu sece bilsin. Mecbur qalmasin ki yalniz barkod daxil etmekdir. (qeyd: mehusl axtarisinda barkoda gore de tapsin) +++
 
+Hem barkod var hem Mehsul secimi, mentiqsizdi ve anbara mal daxil edende zaten barkoda ne yaziram goturur hec ele meshul yoxdu. 1-ci mesele hell olsa bu da hellin tapacaq+++
+ 
 Mehsullar: 
  1. Elave et duymesi cox uzaqda qalir. pencere balacalasanda. +++
  2. Sekilsiz mehsul elave olunmadi +++
  3. Mehsul kemiyyet qiymet deyer hamsina -1 yaza bildim, 0 da yaza bildim +++
  5. Mehsul deyismesinde barkodu deyisme imkani.  +++
  6. Barkod eyni zamanda musterinin satis qiymetine de gedir dusur+++
+
+headere el gezdirmek+++
+
+sidebar menunun height-ini 100% dan cixarmaq+++
+
+headeer solda logo olsun, sag terefde user profile (logout,user name, xos gelmisiz)+++
+
+anbar elavesinde mehsul combo axtarisda barkod da axtarilsin amma gonderilerken mehsul id gonderilecek+++

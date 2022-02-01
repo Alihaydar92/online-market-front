@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Collapse,
   Navbar,
@@ -8,9 +8,11 @@ import {
   NavItem,
   NavLink,
   UncontrolledDropdown,
+  Dropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem } from 'reactstrap';
+  DropdownItem,
+} from "reactstrap";
 
 export default class Navi extends React.Component {
   constructor(props) {
@@ -18,32 +20,42 @@ export default class Navi extends React.Component {
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      isOpen: false
+      isOpen: false,
     };
   }
   toggle() {
     this.setState({
-      isOpen: !this.state.isOpen
+      isOpen: !this.state.isOpen,
     });
   }
   render() {
     return (
       <div>
-         <Navbar color="light" light expand="md">
-      <Nav className="ml-auto" navbar>
-        <NavItem>
-          <NavLink href="/components/">Inactive Link</NavLink>
-        </NavItem>
-        <UncontrolledDropdown setActiveFromChild>
-          <DropdownToggle tag="a" className="nav-link" caret>
-            Dropdown
-          </DropdownToggle>
-          <DropdownMenu>
-            <DropdownItem tag="a" href="/blah" active>Link</DropdownItem>
-          </DropdownMenu>
-        </UncontrolledDropdown>
-      </Nav>
-    </Navbar>
+        <Navbar color="light" light expand="md" left>
+          {/* <NavbarBrand href="/">reactstrap</NavbarBrand> */}
+          {/* <NavbarToggler onClick={this.toggle} /> */}
+          <Collapse isOpen={this.state.isOpen} navbar>
+            <Nav className="ms-auto" navbar left>
+              
+
+              <Dropdown
+                direction="left"
+                isOpen={this.state.btnDropleft}
+                toggle={() => {
+                  this.setState({ btnDropleft: !this.state.btnDropleft });
+                }}
+              >
+                <DropdownToggle caret>İstifadəçi</DropdownToggle>
+                <DropdownMenu>
+                  <DropdownItem>Profil</DropdownItem>
+                  <DropdownItem>Çıxış</DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+
+             
+            </Nav>
+          </Collapse>
+        </Navbar>
       </div>
     );
   }

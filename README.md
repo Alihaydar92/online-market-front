@@ -69,19 +69,13 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-### DESIGN
 
-headere el gezdirmek
-
-sidebar menunun height-ini 100% dan cixarmaq
-
-headeer solda logo olsun, sag terefde user profile (logout,user name, xos gelmisiz)
 
 ### CODE
 
-Cedvellerde axtarish
+Cedvellerde axtarish (Axtaris Textboxda da trim qoymaq (teyyub,ali))
 
-label-larin textlerini file-dan oxumaq
+form ilk input focus
 
 img ve diger filelarla bagli codelarin optimizasiyasi
 
@@ -91,23 +85,11 @@ excel add zamani loading(waiting) yazmaq
 
 resetfields eslinde duz islemir, yalniz emeliyyat olduqdan sonra isleyir, halbuki modali elebele acib bagladiqda bele islemelidi (modal acarken reset olmalidi datalar)(useEffectLayout genis test edib yoxlamaq)
 
-anbar elavesinde mehsul combo axtarisda barkod da axtarilsin amma gonderilerken mehsul id gonderilecek
-
-Axtaris Textboxda da trim qoymaq (teyyub,ali)
-
+### sonra
 Imkan varsa pencerelesi responsive etmek (Sonda da edile biler)
 
-form ilk input focus
+label-larin textlerini file-dan oxumaq
 
-### Emekdaslar:
-
-Table-da birinci fieldde textbox axtaris qoyduguna gore sutun adi yoxdu. (basga bir iki yerde de bu hal var)
-
-### Anbar Page:
-
-Anbara mehsul daxil edende ya comboboxda ve ya hansisa bir formada yaxsi olar ki istifadece hem barkod nomresi ve ya ad ile axtaris edib mehsulu sece bilsin. Mecbur qalmasin ki yalniz barkod daxil etmekdir. (qeyd: mehusl axtarisinda barkoda gore de tapsin) +++
-
-Hem barkod var hem Mehsul secimi, mentiqsizdi ve anbara mal daxil edende zaten barkoda ne yaziram goturur hec ele meshul yoxdu. 1-ci mesele hell olsa bu da hellin tapacaq
 
 ### backend teyyub
 

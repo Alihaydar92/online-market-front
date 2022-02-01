@@ -46,35 +46,27 @@ export default function App() {
             <Menu.Item key="5">
               <Link to="/products">Məhsullar</Link>
             </Menu.Item>
-            <Menu.Item key="6">
+            {/* <Menu.Item key="6">
               <Link to="/carts">Cart</Link>
             </Menu.Item>
             <Menu.Item key="7">
               <Link to="/editableCartTable">EditableCartTable</Link>
-            </Menu.Item>
+            </Menu.Item> */}
             <Menu.Item key="8">
               <Link to="/storeHouse">Anbar</Link>
             </Menu.Item>
           </SubMenu>
           <SubMenu key="sub3" icon={<NotificationOutlined />} title="Digər">
-            <Menu.Item key="9">option9</Menu.Item>
+            {/* <Menu.Item key="9">option9</Menu.Item>
             <Menu.Item key="10">option10</Menu.Item>
             <Menu.Item key="11">option11</Menu.Item>
-            <Menu.Item key="12">option12</Menu.Item>
+            <Menu.Item key="12">option12</Menu.Item> */}
           </SubMenu>
         </Menu>
       </Sider>
       &nbsp; &nbsp;
       <Layout>
-        <Navi/>
-        {/* <Header className="header">
-          <div className="logo" />
-          <Menu theme="dark" mode="vertical" defaultSelectedKeys={["2"]}>
-            <Menu.Item key="1">nav 1</Menu.Item>
-            <Menu.Item key="2">nav 2</Menu.Item>
-            <Menu.Item key="3">nav 3</Menu.Item>
-          </Menu>
-        </Header> */}
+        <Navi />
         <Content>
           <Routes>
             <Route exact path="/" element={<CustomerTable />}></Route>
