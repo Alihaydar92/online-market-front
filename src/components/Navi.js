@@ -29,31 +29,21 @@ export default class Navi extends React.Component {
   render() {
     return (
       <div>
-        <Navbar color="light" light expand="md" right>
-          {/* <NavbarBrand href="/">reactstrap</NavbarBrand> */}
-          {/* <NavbarToggler onClick={this.toggle} /> */}
-          <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar right>
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret right>
-                  Options
-                </DropdownToggle>
-                <DropdownMenu right>
-                  <DropdownItem>
-                    Option 1
-                  </DropdownItem>
-                  <DropdownItem>
-                    Option 2
-                  </DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem>
-                    Reset
-                  </DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
-            </Nav>
-          </Collapse>
-        </Navbar>
+         <Navbar color="light" light expand="md">
+      <Nav className="ml-auto" navbar>
+        <NavItem>
+          <NavLink href="/components/">Inactive Link</NavLink>
+        </NavItem>
+        <UncontrolledDropdown setActiveFromChild>
+          <DropdownToggle tag="a" className="nav-link" caret>
+            Dropdown
+          </DropdownToggle>
+          <DropdownMenu>
+            <DropdownItem tag="a" href="/blah" active>Link</DropdownItem>
+          </DropdownMenu>
+        </UncontrolledDropdown>
+      </Nav>
+    </Navbar>
       </div>
     );
   }
