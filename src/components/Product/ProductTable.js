@@ -25,7 +25,7 @@ export default function ProductTable() {
   const [disabledSave, setDisabledSave] = useState(true);
 
   const [page,setPage]=useState(1);
-  const [pageSize,setPageSize]=useState(11);
+  const [pageSize,setPageSize]=useState(5);
 
   /////////////////////////////////////////////file upload
 

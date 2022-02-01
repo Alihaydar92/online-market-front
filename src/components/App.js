@@ -21,7 +21,7 @@ export default function App() {
   return (
     <Layout>
       <Sider width={200} className="site-layout-background">
-        <Image alt="logo" src={String(logo)} />
+      <Image width={50} alt="logo" src={String(logo)} />
         <Menu
           mode="inline"
           // defaultSelectedKeys={["1"]}
@@ -57,10 +57,10 @@ export default function App() {
             </Menu.Item>
           </SubMenu>
           <SubMenu key="sub3" icon={<NotificationOutlined />} title="Digər">
-            {/* <Menu.Item key="9">option9</Menu.Item>
+            <Menu.Item key="9">option9</Menu.Item>
             <Menu.Item key="10">option10</Menu.Item>
             <Menu.Item key="11">option11</Menu.Item>
-            <Menu.Item key="12">option12</Menu.Item> */}
+            <Menu.Item key="12">option12</Menu.Item>
           </SubMenu>
         </Menu>
       </Sider>

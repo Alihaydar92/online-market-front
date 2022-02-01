@@ -13,4 +13,8 @@
   .uploadPictureContainer img {
     height: 200px !important;
   }
+
+  .ant-pagination-options-size-changer.ant-select{
+    display: none !important;
+  }
   

@@ -1,4 +1,5 @@
 import React from "react";
+import { Layout, Menu, Image } from "antd";
 import {
   Collapse,
   Navbar,
@@ -13,7 +14,7 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "reactstrap";
-
+const logo = require("../helpers/greenStreamImg.jpeg");
 export default class Navi extends React.Component {
   constructor(props) {
     super(props);
@@ -31,7 +32,9 @@ export default class Navi extends React.Component {
   render() {
     return (
       <div>
+        
         <Navbar color="light" light expand="md" left>
+        <Image width={80} alt="logo" src={String(logo)} />
           {/* <NavbarBrand href="/">reactstrap</NavbarBrand> */}
           {/* <NavbarToggler onClick={this.toggle} /> */}
           <Collapse isOpen={this.state.isOpen} navbar>
