@@ -10,6 +10,13 @@ export default function productReducers(state = initialState, action) {
       };
     }
 
+    case actionTypes.LIST_OF_PRODUCTS_BY_PAGE: {
+      return {
+        ...state,
+        productListDataByPage: action.payload,
+      };
+    }
+
     case actionTypes.GET_PRODUCT_BY_ID: {
       return {
         ...state,

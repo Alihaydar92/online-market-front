@@ -68,3 +68,11 @@ sidebar menunun height-ini 100% dan cixarmaq+++
 headeer solda logo olsun, sag terefde user profile (logout,user name, xos gelmisiz)+++
 
 anbar elavesinde mehsul combo axtarisda barkod da axtarilsin amma gonderilerken mehsul id gonderilecek+++
+
+react pagination +++
+
+teyyub terefden pagination+++
+
+sellers add excel(teyyub terefde qaldi, hazir edende test etmek)+++
+
+mehsullar pagede cedvelin uzunlugunu duzeltmek(sidebar menu eybecer dusur buna gore)+++

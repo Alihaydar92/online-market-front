@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useReducer } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, Input, Button, Select } from "antd";
 import { listOfCategories } from "../../redux/actions/categoryActions";
 import { listOfProperties } from "../../redux/actions/propertyActions";
 import { updateProduct } from "../../redux/actions/productActions";
+import paginationReducer from "../../redux/reducers/paginationReducer";
 const { Option } = Select;
 const { TextArea } = Input;
 export default function ProductEdit(props) {
@@ -20,6 +21,12 @@ export default function ProductEdit(props) {
   const productDataById = useSelector(
     (state) => state.productReducers?.productDataById
   );
+
+  const [paginationData] =useReducer(paginationReducer);
+
+  useEffect(()=>{
+    console.log('paginationData' ,paginationData)
+  },[paginationData])
   useEffect(() => {
     dispatch(listOfCategories());
   }, []);
@@ -38,7 +45,7 @@ export default function ProductEdit(props) {
           note: form.getFieldsValue().note.trim(),
           id: productDataById.id,
         };
-        dispatch(updateProduct(data));
+        dispatch(updateProduct(data,paginationData));
         props.handleCancel();
       })
       .catch((errorInfo) => {
@@ -83,8 +90,8 @@ export default function ProductEdit(props) {
           name="barcode"
           rules={[
             { required: true, message: "Barkodu daxil edin!" },
-            { min: 8, message: "Minimum 8 simvol daxil edin" },
-            { max: 20, message: "Maksimum 20 simvol daxil edin" },
+            // { min: 8, message: "Minimum 8 simvol daxil edin" },
+            // { max: 20, message: "Maksimum 20 simvol daxil edin" },
           ]}
         >
           <Input />

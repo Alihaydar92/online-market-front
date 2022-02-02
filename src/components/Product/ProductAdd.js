@@ -82,8 +82,8 @@ export default function ProductAdd(props) {
           name="barcode"
           rules={[
             { required: true, message: "Barkodu daxil edin!" },
-            { min: 8, message: "Minimum 8 simvol daxil edin" },
-            { max: 20, message: "Maksimum 20 simvol daxil edin" },
+            // { min: 8, message: "Minimum 8 simvol daxil edin" },
+            // { max: 20, message: "Maksimum 20 simvol daxil edin" },
           ]}
         >
           <Input />

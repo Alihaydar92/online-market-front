@@ -1,4 +1,5 @@
 export default{
+    paginationData:{page:'',pageSize:''},
     data:[],
     dataById:{},
     modalType: null,
@@ -13,6 +14,7 @@ export default{
     expeditorAddData:{} ,
 
     productListData:{},
+    productListDataByPage:{},
     productDataById:{},
     productDeleteData:{},
     productAddData:{},

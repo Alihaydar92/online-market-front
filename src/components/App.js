@@ -5,6 +5,7 @@ import {
   NotificationOutlined,
 } from "@ant-design/icons";
 import { Route, Routes, Link } from "react-router-dom";
+import Login from "../components/Login"
 import CustomerTable from "../components/Customer/CustomerTable";
 import ExpeditorTable from "../components/Expeditor/ExpeditorTable";
 import ProductTable from "./Product/ProductTable";
@@ -69,7 +70,7 @@ export default function App() {
         <Navi />
         <Content>
           <Routes>
-            <Route exact path="/" element={<CustomerTable />}></Route>
+            <Route exact path="/" element={<Login />}></Route>
             <Route path="/customers" element={<CustomerTable />}></Route>
             <Route path="/sellers" element={<ExpeditorTable />}></Route>
             <Route path="/products" element={<ProductTable />}></Route>

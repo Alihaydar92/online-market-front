@@ -5,13 +5,15 @@ import productReducers from "./productReducers";
 import categoryReducers from "./categoryReducers";
 import propertyReducers from "./propertyReducers";
 import storeHouseReducers from "./storeHouseReducers"
+import paginationReducer from "./paginationReducer"
 const rootReducer=combineReducers({
     customerReducer,
     expeditorReducers,
     productReducers,
     categoryReducers,
     propertyReducers,
-    storeHouseReducers
+    storeHouseReducers,
+    paginationReducer
 })
 
 export default rootReducer;

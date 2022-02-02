@@ -13,7 +13,7 @@ export const listOfProductsByPage = (page,pageSize) => (dispatch) => {
   console.log('page and pagesize ' ,page + '//' +pageSize)
   axiosInstance.get("/products?page="+page+"&size="+pageSize).then((response) => {
     dispatch({
-      type: actionTypes.LIST_OF_PRODUCTS,
+      type: actionTypes.LIST_OF_PRODUCTS_BY_PAGE,
       payload: response.data,
     });
     
@@ -37,13 +37,14 @@ export const addProduct = (data) => (dispatch) => {
         type: actionTypes.ADD_PRODUCT,
         payload: response.data,
       });
-      dispatch(listOfProducts());
+      dispatch(listOfProductsByPage(0,15));
     }
   });
 };
 
 export const updateProduct = (data) => (dispatch) => {
   console.log("update product data ", data);
+  // console.log("paginationData ", paginationData);
   axiosInstance.put("/products/" + data.id, data).then((response) => {
     console.log(response.status);
     console.log(response.data);
@@ -52,7 +53,8 @@ export const updateProduct = (data) => (dispatch) => {
         type: actionTypes.UPDATE_PRODUCT,
         payload: response.data,
       });
-      dispatch(listOfProducts());
+      // dispatch(listOfProductsByPage(paginationData.page,paginationData.pageSize));
+      dispatch(listOfProducts())
     }
   });
 };
@@ -63,7 +65,7 @@ export const deleteProduct = (id) => (dispatch) => {
         type: actionTypes.DELETE_PRODUCT,
         payload: response.data,
       });
-      dispatch(listOfProducts());
+      dispatch(listOfProductsByPage());
     }
   });
 };
@@ -76,7 +78,7 @@ export const addProductExcel = (data) => (dispatch) => {
         type: actionTypes.ADD_PRODUCT_EXCEL,
         payload: response.data,
       });
-      dispatch(listOfProducts());
+      dispatch(listOfProductsByPage());
     }
   });
 };
@@ -88,7 +90,7 @@ export const addProductImages = (id, data) => (dispatch) => {
         type: actionTypes.ADD_PRODUCT_IMAGES,
         payload: response.data,
       });
-      dispatch(listOfProducts());
+      dispatch(listOfProductsByPage());
     }
   });
 };
@@ -101,7 +103,7 @@ export const getProductImagesByProductId = (id) => (dispatch) => {
         type: actionTypes.GET_PRODUCT_IMAGES_BY_PRODUCT_ID,
         payload: response.data,
       });
-      dispatch(listOfProducts());
+      dispatch(listOfProductsByPage());
     }
   });
 };

@@ -84,6 +84,7 @@ export default function PropertyTable() {
           Əlavə et
         </Button>
         <Table
+        scroll={{y:530}}
           style={{ marginTop: "20px" ,wordBreak:'break-word'}}
           //   rowSelection={rowSelection}
           dataSource={listOfPropertyData}

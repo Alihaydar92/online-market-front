@@ -5,7 +5,7 @@ import {
   getExpeditorById,
   addExpeditorExcel,
 } from "../../redux/actions/expeditorActions";
-import { Button, Table, Modal, Space, Input ,Row} from "antd";
+import { Button, Table, Modal, Space, Input, Row } from "antd";
 import ExpeditorAdd from "./ExpeditorAdd";
 import ExpeditorEdit from "./ExpeditorEdit";
 import ExpeditorDelete from "./ExpeditorDelete";
@@ -41,8 +41,8 @@ export default function ExpeditorTable() {
   );
   const columns = [
     {
-      label:"emekdas",
-      title:FilterByBarcodeInput,
+      label: "emekdas",
+      title: FilterByBarcodeInput,
       dataIndex: "name",
     },
     {
@@ -84,7 +84,7 @@ export default function ExpeditorTable() {
   useEffect(() => {
     dispatch(listOfExpeditors());
   }, []);
-  
+
   useEffect(() => {
     setDataSource(listOfExpeditorData);
   }, [listOfExpeditorData]);
@@ -138,8 +138,7 @@ export default function ExpeditorTable() {
 
   ////////////////////////excel file upload
 
-
-    ////////////////////////excel file upload
+  ////////////////////////excel file upload
   //excel file sececek function
   const handleFileInputChange = (e) => {
     let { file } = selectedFile;
@@ -171,14 +170,14 @@ export default function ExpeditorTable() {
         <Space>
           Fayl seç:
           <Input
-            style={{ marginTop: "10px", width: "300px"}}
+            style={{ marginTop: "20px", width: "300px" }}
             // style={{ position: "absolute", right: "50px", top: "100px" }}
             accept=".xlsx, application/vnd.ms-excel"
             onChange={handleFileInputChange}
             type="file"
           />
           <Button
-            style={{ marginTop: "10px", marginLeft: "10px" }}
+            style={{ marginTop: "20px", marginLeft: "10px" }}
             // style={{ position: "absolute", right: "1400px", top: "70px" }}
             type="primary"
             onClick={onCreateExcel}
@@ -196,7 +195,8 @@ export default function ExpeditorTable() {
         Əlavə et
       </Button>
       <Table
-        style={{ marginTop: "20px" ,wordBreak:'break-word'}}
+        scroll={{ y: 460 }}
+        style={{ marginTop: "20px", wordBreak: "break-word" }}
         dataSource={dataSource}
         columns={columns}
         rowKey="id"

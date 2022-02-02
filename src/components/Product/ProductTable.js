@@ -1,19 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getProductById,
-  listOfProducts,
+  // listOfProducts,
   addProductExcel,
   addProductImages,
   getProductImagesByProductId,
   listOfProductsByPage,
 } from "../../redux/actions/productActions";
+import paginationReducer from "../../redux/reducers/paginationReducer"
 import { Space, Button, Table, Modal, Input, Row, Col } from "antd";
 import ProductAdd from "./ProductAdd";
 import ProductEdit from "./ProductEdit";
 import ProductDelete from "./ProductDelete";
 import ImageUploading from "react-images-uploading";
 import "../../style.css";
+// import { PAGINATION } from "../../redux/actions/actionTypes";
 
 export default function ProductTable() {
   const dispatch = useDispatch();
@@ -24,9 +26,10 @@ export default function ProductTable() {
   });
   const [disabledSave, setDisabledSave] = useState(true);
 
-  const [page,setPage]=useState(0);
-  const [pageSize,setPageSize]=useState(15);
-
+  // const [page,setPage]=useState(0);
+  // const [pageSize,setPageSize]=useState(15);
+  const [pagination,setPagination]=useState({page:0,pageSize:15});
+const [paginationData,paginationDispatch] =useReducer(paginationReducer,[]);
   /////////////////////////////////////////////file upload
 
   //////////////////////////////////////////////////image upload
@@ -56,8 +59,11 @@ export default function ProductTable() {
   };
   //////////////////////////////////////////////////image upload
 
-  const listOfProductData = useSelector(
-    (state) => state.productReducers?.productListData
+  // const listOfProductData = useSelector(
+  //   (state) => state.productReducers?.productListData
+  // );
+  const listOfProductDataByPage = useSelector(
+    (state) => state.productReducers?.productListDataByPage
   );
   const productDataById = useSelector(
     (state) => state.productReducers?.productDataById
@@ -69,13 +75,17 @@ export default function ProductTable() {
   const [dataSource, setDataSource] = useState();
   const [value, setValue] = useState("");
   useEffect(() => {
-    dispatch(listOfProducts());
+    dispatch(listOfProductsByPage(pagination.page,pagination.pageSize));
   }, []);
 
+  useEffect(()=>{
+    dispatch({type:'PAGINATION', payload:pagination});
+  })
+
   useEffect(() => {
-    console.log("listOfProductData", listOfProductData.pages);
-    setDataSource(listOfProductData.pages);
-  }, [listOfProductData]);
+    console.log("listOfProductData", listOfProductDataByPage.pages);
+    setDataSource(listOfProductDataByPage.pages);
+  }, [listOfProductDataByPage]);
 
   useEffect(() => {
     setImages(productImagesDataByProductId.images);
@@ -89,7 +99,7 @@ export default function ProductTable() {
       onChange={(e) => {
         const currValue = e.target.value;
         setValue(currValue);
-        const filteredData = listOfProductData.pages.filter((entry) =>
+        const filteredData = listOfProductDataByPage.pages.filter((entry) =>
           entry.barcode.includes(currValue)
         );
         setDataSource(filteredData);
@@ -130,7 +140,8 @@ export default function ProductTable() {
     setIsImgPanelVisible(true);
   };
   const handleCancel = () => {
-    dispatch(listOfProducts());
+    console.log('page and pagesize ',pagination.page + ' and ' +pagination.pageSize)
+    dispatch(listOfProductsByPage(pagination.page,pagination.pageSize));
     setIsElaveEtModalVisible(false);
     setIsRedakteModalVisible(false);
     setIsSilModalVisible(false);
@@ -259,14 +270,14 @@ export default function ProductTable() {
         <Space>
           Fayl seç:
           <Input
-            style={{ marginTop: "10px", width: "300px"}}
+            style={{ marginTop: "20px", width: "300px"}}
             // style={{ position: "absolute", right: "50px", top: "100px" }}
             accept=".xlsx, application/vnd.ms-excel"
             onChange={handleFileInputChange}
             type="file"
           />
           <Button
-            style={{ marginTop: "10px", marginLeft: "10px" }}
+            style={{ marginTop: "20px", marginLeft: "10px" }}
             // style={{ position: "absolute", right: "1400px", top: "70px" }}
             type="primary"
             onClick={onCreateExcel}
@@ -279,7 +290,7 @@ export default function ProductTable() {
       <Row>
         <Col>
         <Button
-          style={{ marginTop: "30px" }}
+          style={{ marginTop: "20px" }}
           // style={{ position: "absolute", right: "30px", top: "70px" }}
           type="primary"
           onClick={showAddModal}
@@ -297,12 +308,12 @@ export default function ProductTable() {
         columns={columns}
         rowKey="id"
         pagination={{
-          current:page,
-          pageSize:pageSize,
-          total:listOfProductData.totalItems,
+          current:pagination.page,
+          pageSize:pagination.pageSize,
+          total:listOfProductDataByPage.totalItems,
           onChange:(page,pageSize)=>{
-            setPage(page);
-            setPageSize(pageSize);
+            setPagination({page,pageSize});
+            // setPageSize(pageSize);
             dispatch(listOfProductsByPage(page,pageSize))
           }
         }}

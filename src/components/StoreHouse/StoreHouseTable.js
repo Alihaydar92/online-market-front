@@ -159,7 +159,7 @@ export default function StoreHouseTable() {
   return (
     <div>
       <Button
-        style={{ marginTop: "10px" }}
+        style={{ marginTop: "20px" }}
         // style={{ position: "absolute", right: "30px", top: "70px" }}
         type="primary"
         onClick={showAddModal}
@@ -167,6 +167,7 @@ export default function StoreHouseTable() {
         Əlavə et
       </Button>
       <Table
+      scroll={{y:530}}
         style={{ marginTop: "20px", wordBreak: "break-word" }}
         dataSource={storeHouseList}
         columns={columns}

@@ -48,7 +48,7 @@ export default function CategoryTable() {
           </Space>
         );
       },
-    }
+    },
   ];
   useEffect(() => {
     dispatch(listOfCategories());
@@ -85,14 +85,15 @@ export default function CategoryTable() {
   return (
     <div>
       <Button
-        style={{ marginTop: "20px"}}
+        style={{ marginTop: "20px" }}
         type="primary"
         onClick={showAddModal}
       >
         Əlavə et
       </Button>
       <Table
-        style={{ marginTop: "20px",wordBreak:'break-word' }}
+        scroll={{ y: 530 }}
+        style={{ marginTop: "20px", wordBreak: "break-word" }}
         //   rowSelection={rowSelection}
         dataSource={listOfCategoryData}
         columns={columns}
@@ -105,7 +106,7 @@ export default function CategoryTable() {
         footer={[
           <Button danger onClick={handleCancel}>
             Geri
-          </Button>
+          </Button>,
         ]}
       >
         <CategoryEdit rowKey="id" handleCancel={handleCancel}></CategoryEdit>

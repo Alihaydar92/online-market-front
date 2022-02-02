@@ -79,13 +79,16 @@ form ilk input focus
 
 img ve diger filelarla bagli codelarin optimizasiyasi
 
-react pagination
-
 excel add zamani loading(waiting) yazmaq
 
 resetfields eslinde duz islemir, yalniz emeliyyat olduqdan sonra isleyir, halbuki modali elebele acib bagladiqda bele islemelidi (modal acarken reset olmalidi datalar)(useEffectLayout genis test edib yoxlamaq)
 
-mehsullar pagede cedvelin uzunlugunu duzeltmek(sidebar menu eybecer dusur buna gore)
+login from duzeltmek
+
+login formla esas page daxil olmaq
+
+base auth tetbiq ederek login olmaq
+
 
 ### sonra
 Imkan varsa pencerelesi responsive etmek (Sonda da edile biler)
@@ -94,10 +97,6 @@ label-larin textlerini file-dan oxumaq
 
 
 ### backend teyyub
-
-teyyub terefden pagination+++
-
-sellers add excel(teyyub terefde qaldi, hazir edende test etmek)+++
 
 Anbar tableda  sort hemise anbara daxil olma tarixine gore desc getse yaxsidi
 
