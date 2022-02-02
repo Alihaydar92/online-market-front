@@ -45,7 +45,7 @@ export default function ProductEdit(props) {
           note: form.getFieldsValue().note.trim(),
           id: productDataById.id,
         };
-        dispatch(updateProduct(data,paginationData));
+        dispatch(updateProduct(data));
         props.handleCancel();
       })
       .catch((errorInfo) => {

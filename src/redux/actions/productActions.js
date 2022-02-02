@@ -44,7 +44,6 @@ export const addProduct = (data) => (dispatch) => {
 
 export const updateProduct = (data) => (dispatch) => {
   console.log("update product data ", data);
-  // console.log("paginationData ", paginationData);
   axiosInstance.put("/products/" + data.id, data).then((response) => {
     console.log(response.status);
     console.log(response.data);
@@ -53,7 +52,7 @@ export const updateProduct = (data) => (dispatch) => {
         type: actionTypes.UPDATE_PRODUCT,
         payload: response.data,
       });
-      // dispatch(listOfProductsByPage(paginationData.page,paginationData.pageSize));
+      // dispatch(listOfProductsByPage());
       dispatch(listOfProducts())
     }
   });

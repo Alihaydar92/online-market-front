@@ -70,7 +70,7 @@ export default function App() {
         <Navi />
         <Content>
           <Routes>
-            <Route exact path="/" element={<Login />}></Route>
+            <Route exact path="/" element={<CustomerTable />}></Route>
             <Route path="/customers" element={<CustomerTable />}></Route>
             <Route path="/sellers" element={<ExpeditorTable />}></Route>
             <Route path="/products" element={<ProductTable />}></Route>
