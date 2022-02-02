@@ -24,7 +24,7 @@ export default function ProductTable() {
   });
   const [disabledSave, setDisabledSave] = useState(true);
 
-  const [page,setPage]=useState(1);
+  const [page,setPage]=useState(0);
   const [pageSize,setPageSize]=useState(15);
 
   /////////////////////////////////////////////file upload
@@ -293,12 +293,13 @@ export default function ProductTable() {
       <Table
         style={{ marginTop: "20px",wordBreak:'break-word' }}
         dataSource={dataSource}
+        scroll={{y:460}}
         columns={columns}
         rowKey="id"
         pagination={{
           current:page,
           pageSize:pageSize,
-          total:listOfProductData.totalPages,
+          total:listOfProductData.totalItems,
           onChange:(page,pageSize)=>{
             setPage(page);
             setPageSize(pageSize);

@@ -19,14 +19,14 @@ const { Footer, Content, Sider, Header } = Layout;
 const { SubMenu } = Menu;
 export default function App() {
   return (
-    <Layout>
+    <Layout style={{  height: "100%"}} >
       <Sider width={200} className="site-layout-background">
       <Image width={50} alt="logo" src={String(logo)} />
         <Menu
           mode="inline"
           // defaultSelectedKeys={["1"]}
           defaultOpenKeys={["sub1"]}
-          style={{ borderRight: 0, height: "100vh" }}
+          style={{ borderRight: 0 , height: "100%"}}
         >
           <SubMenu key="sub1" icon={<UserOutlined />} title="Qeydiyyat">
             <Menu.Item key="1">

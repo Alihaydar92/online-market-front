@@ -85,6 +85,8 @@ excel add zamani loading(waiting) yazmaq
 
 resetfields eslinde duz islemir, yalniz emeliyyat olduqdan sonra isleyir, halbuki modali elebele acib bagladiqda bele islemelidi (modal acarken reset olmalidi datalar)(useEffectLayout genis test edib yoxlamaq)
 
+mehsullar pagede cedvelin uzunlugunu duzeltmek(sidebar menu eybecer dusur buna gore)
+
 ### sonra
 Imkan varsa pencerelesi responsive etmek (Sonda da edile biler)
 
@@ -93,11 +95,13 @@ label-larin textlerini file-dan oxumaq
 
 ### backend teyyub
 
-teyyub terefden pagination
+teyyub terefden pagination+++
 
-sellers add excel(teyyub terefde qaldi, hazir edende test etmek)
+sellers add excel(teyyub terefde qaldi, hazir edende test etmek)+++
 
 Anbar tableda  sort hemise anbara daxil olma tarixine gore desc getse yaxsidi
 
 mehsullar / Satis qiymeti maya deyerinden asagi ola biler bilmez deqiqlesdirmek, olmazsa kontrol qoymaq. (teyyub)
+
+paginationda 120ci pagede data olmadigi halda 120ci page-i qaytarir
 

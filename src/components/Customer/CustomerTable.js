@@ -95,7 +95,7 @@ export default function CustomerTable() {
       </Button>
       <Table
         style={{ marginTop: "20px" ,wordBreak:'break-word'}}
-        
+        scroll={{y:530}}
         //   rowSelection={rowSelection}
         dataSource={listOfCustomerData}
         columns={columns}
