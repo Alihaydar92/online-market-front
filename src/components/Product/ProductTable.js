@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getProductById,
@@ -8,7 +8,6 @@ import {
   getProductImagesByProductId,
   listOfProductsByPage,
 } from "../../redux/actions/productActions";
-import paginationReducer from "../../redux/reducers/paginationReducer"
 import { Space, Button, Table, Modal, Input, Row, Col } from "antd";
 import ProductAdd from "./ProductAdd";
 import ProductEdit from "./ProductEdit";
@@ -19,6 +18,7 @@ import "../../style.css";
 
 export default function ProductTable() {
   const dispatch = useDispatch();
+
   /////////////////////////////////////////////file upload
   const [selectedFile, setSelectedFile] = useState({
     file: null,
@@ -28,8 +28,8 @@ export default function ProductTable() {
 
   // const [page,setPage]=useState(0);
   // const [pageSize,setPageSize]=useState(15);
-  const [pagination,setPagination]=useState({page:0,pageSize:15});
-const [paginationData,paginationDispatch] =useReducer(paginationReducer,[]);
+  const [pagination,setPagination]=useState({page:1,pageSize:15});
+// const [paginationData,paginationDispatch] =useReducer(paginationReducer,{});
   /////////////////////////////////////////////file upload
 
   //////////////////////////////////////////////////image upload
@@ -77,10 +77,6 @@ const [paginationData,paginationDispatch] =useReducer(paginationReducer,[]);
   useEffect(() => {
     dispatch(listOfProductsByPage(pagination.page,pagination.pageSize));
   }, []);
-
-  useEffect(()=>{
-    dispatch({type:'PAGINATION', payload:pagination});
-  })
 
   useEffect(() => {
     console.log("listOfProductData", listOfProductDataByPage.pages);
@@ -141,11 +137,14 @@ const [paginationData,paginationDispatch] =useReducer(paginationReducer,[]);
   };
   const handleCancel = () => {
     console.log('page and pagesize ',pagination.page + ' and ' +pagination.pageSize)
-    dispatch(listOfProductsByPage(pagination.page,pagination.pageSize));
+    // dispatch(listOfProductsByPage(pagination.page,pagination.pageSize));
     setIsElaveEtModalVisible(false);
     setIsRedakteModalVisible(false);
     setIsSilModalVisible(false);
     setIsImgPanelVisible(false);
+  };
+  const setfirstpage=()=>{
+pagination.page=1;
   };
   //hem excel hem de imageleri base64-e ceviren function
   const getBase64 = (file) => {
@@ -191,9 +190,9 @@ const [paginationData,paginationDispatch] =useReducer(paginationReducer,[]);
       });
     setDisabledSave(false);
   };
-  const onCreateExcel = async (e) => {
+  const onCreateExcel=paginationData=>() => {
     console.log(" add excel base64 data", selectedFile);
-    dispatch(addProductExcel(selectedFile));
+    dispatch(addProductExcel(selectedFile,paginationData));
   };
   ////////////////////////excel file upload
 
@@ -206,7 +205,7 @@ const [paginationData,paginationDispatch] =useReducer(paginationReducer,[]);
     };
 
     console.log(" images data: ", data);
-    dispatch(addProductImages(productDataById.id, data));
+    dispatch(addProductImages(productDataById.id, data,pagination));
     handleCancel();
   };
 
@@ -280,7 +279,7 @@ const [paginationData,paginationDispatch] =useReducer(paginationReducer,[]);
             style={{ marginTop: "20px", marginLeft: "10px" }}
             // style={{ position: "absolute", right: "1400px", top: "70px" }}
             type="primary"
-            onClick={onCreateExcel}
+            onClick={onCreateExcel(pagination)}
             disabled={disabledSave}
           >
             Excel əlavə et
@@ -302,12 +301,14 @@ const [paginationData,paginationDispatch] =useReducer(paginationReducer,[]);
       </Row>
 
       <Table
+      
         style={{ marginTop: "20px",wordBreak:'break-word' }}
         dataSource={dataSource}
         scroll={{y:460}}
         columns={columns}
         rowKey="id"
         pagination={{
+          // defaultCurrent:0,
           current:pagination.page,
           pageSize:pagination.pageSize,
           total:listOfProductDataByPage.totalItems,
@@ -328,7 +329,7 @@ const [paginationData,paginationDispatch] =useReducer(paginationReducer,[]);
           </Button>,
         ]}
       >
-        <ProductAdd rowKey="id" handleCancel={handleCancel}></ProductAdd>
+        <ProductAdd  rowKey="id" handleCancel={handleCancel} firstPage={setfirstpage}></ProductAdd>
       </Modal>
       <Modal
         title="Məhsul məlumatına düzəliş edilməsi"
@@ -340,7 +341,7 @@ const [paginationData,paginationDispatch] =useReducer(paginationReducer,[]);
           </Button>,
         ]}
       >
-        <ProductEdit rowKey="id" handleCancel={handleCancel}></ProductEdit>
+        <ProductEdit paginationData={pagination} rowKey="id" handleCancel={handleCancel}></ProductEdit>
       </Modal>
       <Modal
         title="Məhsul məlumatının silinməsi"
@@ -352,7 +353,7 @@ const [paginationData,paginationDispatch] =useReducer(paginationReducer,[]);
           </Button>,
         ]}
       >
-        <ProductDelete rowKey="id" handleCancel={handleCancel}></ProductDelete>
+        <ProductDelete paginationData={pagination}  rowKey="id" handleCancel={handleCancel}></ProductDelete>
       </Modal>
       <Modal
         title="Məhsula şəkillər əlavə edilməsi"

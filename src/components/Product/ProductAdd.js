@@ -25,7 +25,7 @@ export default function ProductAdd(props) {
     dispatch(listOfProperties());
   }, []);
 
-  const onCreate = async (e) => {
+  const onCreate =  (e) => {
     console.log("property data: ", form.getFieldsValue().property);
     form
       .validateFields()
@@ -38,12 +38,13 @@ export default function ProductAdd(props) {
           note: form.getFieldsValue().note.trim(),
         };
         console.log("rpoduct data add: ", data);
-        dispatch(addProduct(data));
+        dispatch(addProduct(data,1,15));
         props.handleCancel();
+        props.firstPage();
         form.resetFields();
       })
-      .catch(() => {
-        console.log("validate fields");
+      .catch((err) => {
+        console.log("validate fields",err);
       });
   };
   useEffect(() => {

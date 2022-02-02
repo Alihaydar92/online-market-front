@@ -7,7 +7,7 @@ import {
   updateStoreHouse,
 } from "../../redux/actions/storeHouseActions";
 
-import { listOfProducts } from "../../redux/actions/productActions";
+// import { listOfProducts } from "../../redux/actions/productActions";
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -29,7 +29,7 @@ export default function StoreHouseEdit(props) {
   }, []);
 
   useEffect(() => {
-    dispatch(listOfProducts());
+    // dispatch(listOfProducts());
   }, []);
   const onUpdate = async (e) => {
     form

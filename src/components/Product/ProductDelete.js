@@ -7,7 +7,7 @@ export default function ProductDelete(props) {
     (state) => state.productReducers?.productDataById
   );
   const onDelete = (id) => async (e) => {
-    dispatch(deleteProduct(id), []);
+    dispatch(deleteProduct(id,props.pagination),[]);
     props.handleCancel();
   };
 

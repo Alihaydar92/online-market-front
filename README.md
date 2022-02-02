@@ -89,6 +89,7 @@ login formla esas page daxil olmaq
 
 base auth tetbiq ederek login olmaq
 
+paginationda page ve pagesize ilkin deyerlerini global const deyisen kimi saxlamq(basqa pencerelerde de istifade etmek ucun)
 
 ### sonra
 Imkan varsa pencerelesi responsive etmek (Sonda da edile biler)

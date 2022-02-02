@@ -1,17 +1,17 @@
 import * as actionTypes from "./actionTypes";
 import axiosInstance from "../../helpers/axios";
-export const listOfProducts = () => (dispatch) => {
-  axiosInstance.get("/products").then((response) => {
-    dispatch({
-      type: actionTypes.LIST_OF_PRODUCTS,
-      payload: response.data,
-    });
+// export const listOfProducts = () => (dispatch) => {
+//   axiosInstance.get("/products").then((response) => {
+//     dispatch({
+//       type: actionTypes.LIST_OF_PRODUCTS,
+//       payload: response.data,
+//     });
     
-  });
-};
+//   });
+// };
 export const listOfProductsByPage = (page,pageSize) => (dispatch) => {
   console.log('page and pagesize ' ,page + '//' +pageSize)
-  axiosInstance.get("/products?page="+page+"&size="+pageSize).then((response) => {
+  axiosInstance.get("/products?page="+(page-1)+"&size="+pageSize).then((response) => {
     dispatch({
       type: actionTypes.LIST_OF_PRODUCTS_BY_PAGE,
       payload: response.data,
@@ -30,20 +30,21 @@ export const getProductById = (id) => (dispatch) => {
   });
 };
 
-export const addProduct = (data) => (dispatch) => {
+export const addProduct = (data,page,pageSize) => (dispatch) => {
   axiosInstance.post("/products", data).then((response) => {
     if (response.status === 200) {
       dispatch({
         type: actionTypes.ADD_PRODUCT,
         payload: response.data,
       });
-      dispatch(listOfProductsByPage(0,15));
+      dispatch(listOfProductsByPage(page,pageSize));
     }
   });
 };
 
-export const updateProduct = (data) => (dispatch) => {
+export const updateProduct = (data,paginationData) => (dispatch) => {
   console.log("update product data ", data);
+  console.log("update paginationData data ", paginationData);
   axiosInstance.put("/products/" + data.id, data).then((response) => {
     console.log(response.status);
     console.log(response.data);
@@ -52,24 +53,24 @@ export const updateProduct = (data) => (dispatch) => {
         type: actionTypes.UPDATE_PRODUCT,
         payload: response.data,
       });
-      // dispatch(listOfProductsByPage());
-      dispatch(listOfProducts())
+      dispatch(listOfProductsByPage(paginationData.page,paginationData.pageSize));
+      
     }
   });
 };
-export const deleteProduct = (id) => (dispatch) => {
+export const deleteProduct = (id,paginationData) => (dispatch) => {
   axiosInstance.delete("/products/" + id).then((response) => {
     if (response.status === 200) {
       dispatch({
         type: actionTypes.DELETE_PRODUCT,
         payload: response.data,
       });
-      dispatch(listOfProductsByPage());
+      dispatch(listOfProductsByPage(paginationData.page,paginationData.pageSize));
     }
   });
 };
 
-export const addProductExcel = (data) => (dispatch) => {
+export const addProductExcel = (data,paginationData) => (dispatch) => {
   console.log("excell data ", data);
   axiosInstance.post("/products/excel", data).then((response) => {
     if (response.status === 200) {
@@ -77,19 +78,19 @@ export const addProductExcel = (data) => (dispatch) => {
         type: actionTypes.ADD_PRODUCT_EXCEL,
         payload: response.data,
       });
-      dispatch(listOfProductsByPage());
+      dispatch(listOfProductsByPage(paginationData.page,paginationData.pageSize));
     }
   });
 };
 
-export const addProductImages = (id, data) => (dispatch) => {
+export const addProductImages = (id, data,paginationData) => (dispatch) => {
   axiosInstance.post("/product/" + id + "/images/list", data).then((response) => {
     if (response.status === 200) {
       dispatch({
         type: actionTypes.ADD_PRODUCT_IMAGES,
         payload: response.data,
       });
-      dispatch(listOfProductsByPage());
+      dispatch(listOfProductsByPage(paginationData.page,paginationData.pageSize));
     }
   });
 };
@@ -102,7 +103,7 @@ export const getProductImagesByProductId = (id) => (dispatch) => {
         type: actionTypes.GET_PRODUCT_IMAGES_BY_PRODUCT_ID,
         payload: response.data,
       });
-      dispatch(listOfProductsByPage());
+      // dispatch(listOfProductsByPage());
     }
   });
 };

@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { Form, Button, InputNumber, Select, Row, Col } from "antd";
 import { listOfCustomers } from "../../redux/actions/customerAction";
 import { listOfExpeditors } from "../../redux/actions/expeditorActions";
-import { listOfProducts } from "../../redux/actions/productActions";
 const { Option } = Select;
 export default function CartAdd() {
   const dispatch = useDispatch();
@@ -16,9 +15,6 @@ export default function CartAdd() {
     dispatch(listOfCustomers());
   }, []);
 
-  useEffect(() => {
-    dispatch(listOfProducts());
-  }, []);
   const customerList = useSelector(
     (state) => state.customerReducer.customerListData
   );

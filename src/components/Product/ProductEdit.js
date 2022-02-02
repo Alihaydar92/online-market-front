@@ -1,10 +1,9 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, Input, Button, Select } from "antd";
 import { listOfCategories } from "../../redux/actions/categoryActions";
 import { listOfProperties } from "../../redux/actions/propertyActions";
 import { updateProduct } from "../../redux/actions/productActions";
-import paginationReducer from "../../redux/reducers/paginationReducer";
 const { Option } = Select;
 const { TextArea } = Input;
 export default function ProductEdit(props) {
@@ -22,11 +21,6 @@ export default function ProductEdit(props) {
     (state) => state.productReducers?.productDataById
   );
 
-  const [paginationData] =useReducer(paginationReducer);
-
-  useEffect(()=>{
-    console.log('paginationData' ,paginationData)
-  },[paginationData])
   useEffect(() => {
     dispatch(listOfCategories());
   }, []);
@@ -45,7 +39,8 @@ export default function ProductEdit(props) {
           note: form.getFieldsValue().note.trim(),
           id: productDataById.id,
         };
-        dispatch(updateProduct(data));
+        console.log('paginationData : ',props.paginationData)
+        dispatch(updateProduct(data,props.paginationData));
         props.handleCancel();
       })
       .catch((errorInfo) => {

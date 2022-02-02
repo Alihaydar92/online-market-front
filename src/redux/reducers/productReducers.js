@@ -3,12 +3,12 @@ import * as actionTypes from "../actions/actionTypes";
 
 export default function productReducers(state = initialState, action) {
   switch (action.type) {
-    case actionTypes.LIST_OF_PRODUCTS: {
-      return {
-        ...state,
-        productListData: action.payload,
-      };
-    }
+    // case actionTypes.LIST_OF_PRODUCTS: {
+    //   return {
+    //     ...state,
+    //     productListData: action.payload,
+    //   };
+    // }
 
     case actionTypes.LIST_OF_PRODUCTS_BY_PAGE: {
       return {
