@@ -1,9 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Button, Form } from "antd";
-import {
-  deleteCustomer
-} from "../../redux/actions/customerAction";
+import { deleteCustomer } from "../../redux/actions/customerAction";
 export default function CustomerDelete(props) {
   const dispatch = useDispatch();
   const customerDataById = useSelector(

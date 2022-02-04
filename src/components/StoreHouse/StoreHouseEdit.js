@@ -17,9 +17,9 @@ export default function StoreHouseEdit(props) {
   const dispatch = useDispatch();
   const [addedDateValue, setAddedDateValue] = useState();
   const [form] = Form.useForm();
-  const listOfProductData = useSelector(
-    (state) => state.productReducers?.productListData
-  );
+  // const listOfProductData = useSelector(
+  //   (state) => state.productReducers?.productListData
+  // );
 
   const storeHouseDataById = useSelector(
     (state) => state.storeHouseReducers.storeHouseDataById
@@ -84,7 +84,7 @@ export default function StoreHouseEdit(props) {
           name="price"
           rules={[{ required: false, message: "Qiymətini daxil edin!" }]}
         >
-          <InputNumber min={0} />
+          <InputNumber min={0} autoFocus="true" />
         </Form.Item>
         <Form.Item
           label="Satış qiyməti"
@@ -131,7 +131,6 @@ export default function StoreHouseEdit(props) {
           <Select
             showSearch
             optionFilterProp="children"
-            // onSearch={onSearchCategory}
             filterOption={(input, option) => {
               return (
                 option.props.children
@@ -145,11 +144,11 @@ export default function StoreHouseEdit(props) {
               );
             }}
           >
-            {listOfProductData.map((productData) => (
+            {/* {listOfProductData.map((productData) => (
               <Option key={productData.id} value={productData.id}>
                 {productData.name}
               </Option>
-            ))}
+            ))} */}
           </Select>
         </Form.Item>
         <Form.Item

@@ -75,8 +75,6 @@ export default function CategoryTable() {
   };
 
   const handleCancel = () => {
-    // dispatch(emptyOneData());
-    // dispatch(listOfCustomers());
     setIsElaveEtModalVisible(false);
     setIsRedakteModalVisible(false);
     setIsSilModalVisible(false);
@@ -102,6 +100,7 @@ export default function CategoryTable() {
       <Modal
         title="Kateqoriya məlumatına düzəliş edilməsi"
         visible={isRedakteEtModalVisible}
+        destroyOnClose={true} 
         onCancel={handleCancel}
         footer={[
           <Button danger onClick={handleCancel}>
@@ -115,6 +114,7 @@ export default function CategoryTable() {
       <Modal
         title="Kateqoriya məlumatının əlavə edilməsi"
         visible={isElaveEtModalVisible}
+        destroyOnClose={true} 
         onCancel={handleCancel}
         footer={[
           <Button danger onClick={handleCancel}>

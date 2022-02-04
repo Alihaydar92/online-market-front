@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Form, Input, Button, Select } from "antd";
 import { listOfCategories } from "../../redux/actions/categoryActions";
 import { listOfProperties } from "../../redux/actions/propertyActions";
-import { addProduct, listOfProducts } from "../../redux/actions/productActions";
+import { addProduct } from "../../redux/actions/productActions";
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -75,7 +75,7 @@ export default function ProductAdd(props) {
             { max: 200, message: "Maksimum 200 simvol daxil edin" },
           ]}
         >
-          <Input />
+          <Input autoFocus="true"/>
         </Form.Item>
 
         <Form.Item
@@ -83,8 +83,6 @@ export default function ProductAdd(props) {
           name="barcode"
           rules={[
             { required: true, message: "Barkodu daxil edin!" },
-            // { min: 8, message: "Minimum 8 simvol daxil edin" },
-            // { max: 20, message: "Maksimum 20 simvol daxil edin" },
           ]}
         >
           <Input />

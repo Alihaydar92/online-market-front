@@ -171,14 +171,12 @@ export default function ExpeditorTable() {
           Fayl seç:
           <Input
             style={{ marginTop: "20px", width: "300px" }}
-            // style={{ position: "absolute", right: "50px", top: "100px" }}
             accept=".xlsx, application/vnd.ms-excel"
             onChange={handleFileInputChange}
             type="file"
           />
           <Button
             style={{ marginTop: "20px", marginLeft: "10px" }}
-            // style={{ position: "absolute", right: "1400px", top: "70px" }}
             type="primary"
             onClick={onCreateExcel}
             disabled={disabledSave}
@@ -205,7 +203,7 @@ export default function ExpeditorTable() {
       <Modal
         title="Əməkdaş məlumatının əlavə edilməsi"
         visible={isElaveEtModalVisible}
-        // onOk={handleOk}
+        destroyOnClose={true} 
         onCancel={handleCancel}
         footer={[
           <Button danger onClick={handleCancel}>
@@ -218,7 +216,7 @@ export default function ExpeditorTable() {
       <Modal
         title="Əməkdaş məlumatına düzəliş edilməsi"
         visible={isRedakteEtModalVisible}
-        // onOk={handleOk}
+        destroyOnClose={true} 
         onCancel={handleCancel}
         footer={[
           <Button danger onClick={handleCancel}>
@@ -231,7 +229,6 @@ export default function ExpeditorTable() {
       <Modal
         title="Əməkdaş məlumatının silinməsi"
         visible={isSilModalVisible}
-        // onOk={handleOk}
         onCancel={handleCancel}
         footer={[
           <Button danger onClick={handleCancel}>

@@ -78,7 +78,6 @@ export default function CustomerTable() {
   };
 
   const handleCancel = () => {
-    // dispatch(emptyOneData());
     dispatch(listOfCustomers());
     setIsElaveEtModalVisible(false);
     setIsRedakteModalVisible(false);
@@ -96,7 +95,6 @@ export default function CustomerTable() {
       <Table
         style={{ marginTop: "20px" ,wordBreak:'break-word'}}
         scroll={{y:530}}
-        //   rowSelection={rowSelection}
         dataSource={listOfCustomerData}
         columns={columns}
         rowKey="id"
@@ -104,10 +102,9 @@ export default function CustomerTable() {
       <Modal
         title="Müştəri məlumatına düzəliş edilməsi"
         visible={isRedakteEtModalVisible}
-        // onOk={handleOk}
+        destroyOnClose={true} 
         onCancel={handleCancel}
         footer={[
-          // <Button>Düzəlişləri yadda saxla</Button>,
           <Button danger onClick={handleCancel}>
             Geri
           </Button>,
@@ -118,24 +115,22 @@ export default function CustomerTable() {
       <Modal
         title="Müştəri məlumatının əlavə edilməsi"
         visible={isElaveEtModalVisible}
-        // onOk={handleOk}
+        destroyOnClose={true} 
         onCancel={handleCancel}
         footer={[
-          // <Button>Düzəlişləri yadda saxla</Button>,
           <Button danger onClick={handleCancel}>
             Geri
           </Button>,
         ]}
       >
-        <CustomerAdd focus={true} rowKey="id" handleCancel={handleCancel}></CustomerAdd>
+        <CustomerAdd key="add" rowKey="id" handleCancel={handleCancel}></CustomerAdd>
       </Modal>
       <Modal
         title="Müştəri məlumatının silinməsi"
         visible={isSilModalVisible}
-        // onOk={handleOk}
         onCancel={handleCancel}
+        
         footer={[
-          // <Button>Düzəlişləri yadda saxla</Button>,
           <Button danger onClick={handleCancel}>
             Geri
           </Button>,

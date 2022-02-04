@@ -56,7 +56,7 @@ export default function CustomerEdit(props) {
             { max: 200, message: "Maksimum 200 simvol daxil edin" },
           ]}
         >
-          <Input />
+          <Input autoFocus="true" />
         </Form.Item>
 
         <Form.Item

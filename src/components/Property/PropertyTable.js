@@ -86,7 +86,6 @@ export default function PropertyTable() {
         <Table
         scroll={{y:530}}
           style={{ marginTop: "20px" ,wordBreak:'break-word'}}
-          //   rowSelection={rowSelection}
           dataSource={listOfPropertyData}
           columns={columns}
           rowKey="id"
@@ -94,6 +93,7 @@ export default function PropertyTable() {
         <Modal
           title="Xüsusiyyət məlumatına düzəliş edilməsi"
           visible={isRedakteEtModalVisible}
+          destroyOnClose={true}
           onCancel={handleCancel}
           footer={[
             <Button danger onClick={handleCancel}>
@@ -107,6 +107,7 @@ export default function PropertyTable() {
         <Modal
           title="Xüsusiyyət məlumatının əlavə edilməsi"
           visible={isElaveEtModalVisible}
+          destroyOnClose={true}
           onCancel={handleCancel}
           footer={[
             <Button danger onClick={handleCancel}>

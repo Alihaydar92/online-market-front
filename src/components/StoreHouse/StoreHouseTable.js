@@ -12,12 +12,6 @@ import "../../style.css";
 
 export default function StoreHouseTable() {
   const dispatch = useDispatch();
-  /////////////////////////////////////////////file upload
-  const [selectedFile, setSelectedFile] = useState({
-    file: null,
-    base64URL: "",
-  });
-  /////////////////////////////////////////////file upload
   const storeHouseList = useSelector(
     (state) => state.storeHouseReducers.storeHouseListData
   );
@@ -54,52 +48,6 @@ export default function StoreHouseTable() {
     setIsRedakteModalVisible(false);
     setIsSilModalVisible(false);
   };
-  //hem excel hem de imageleri base64-e ceviren function
-  const getBase64 = (file) => {
-    return new Promise((resolve) => {
-      let fileInfo;
-      let baseURL = "";
-      // Make new FileReader
-      let reader = new FileReader();
-
-      // Convert the file to base64 text
-      reader.readAsDataURL(file);
-
-      // on reader load somthing...
-      reader.onload = () => {
-        // Make a fileInfo Object
-        console.log("Called", reader);
-        baseURL = reader.result;
-        console.log(baseURL);
-        resolve(baseURL);
-      };
-      console.log(fileInfo);
-    });
-  };
-
-  ////////////////////////excel file upload
-  //excel file sececek function
-  const handleFileInputChange = (e) => {
-    console.log("e.target.files[0].name", e.target.files[0].name);
-    console.log("file path ", window.location + "   " + e.target.files[0].name);
-    let { file } = selectedFile;
-
-    file = e.target.files[0];
-
-    getBase64(file)
-      .then((result) => {
-        file["base64"] = result;
-        console.log("File Is", file);
-        setSelectedFile({
-          fileName: file.name,
-          fileContext: file.base64,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
   const columns = [
     {
       title: "Satış qiyməti",
@@ -160,22 +108,22 @@ export default function StoreHouseTable() {
     <div>
       <Button
         style={{ marginTop: "20px" }}
-        // style={{ position: "absolute", right: "30px", top: "70px" }}
         type="primary"
         onClick={showAddModal}
       >
         Əlavə et
       </Button>
       <Table
-      scroll={{y:530}}
+        scroll={{ y: 530 }}
         style={{ marginTop: "20px", wordBreak: "break-word" }}
         dataSource={storeHouseList}
         columns={columns}
-        rowKey="id"   
+        rowKey="id"
       ></Table>
       <Modal
         title="Anbar məlumatının əlavə edilməsi"
         visible={isElaveEtModalVisible}
+        destroyOnClose={true}
         onCancel={handleCancel}
         footer={[
           <Button danger onClick={handleCancel}>
@@ -192,6 +140,7 @@ export default function StoreHouseTable() {
       <Modal
         title="Anbar məlumatına düzəliş edilməsi"
         visible={isRedakteEtModalVisible}
+        destroyOnClose={true}
         onCancel={handleCancel}
         footer={[
           <Button danger onClick={handleCancel}>

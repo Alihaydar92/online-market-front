@@ -301,8 +301,8 @@ export default function ProductTable() {
           <Form.Item label="Məhsul:" name="name">
             <Input allowClear />
           </Form.Item>
-          <Form.Item label="Barkod:" name="barcode">
-            <Input allowClear />
+          <Form.Item  label="Barkod:" name="barcode">
+            <Input  allowClear />
           </Form.Item>
           <Form.Item label="Qeyd:" name="note">
             <Input allowClear />
@@ -360,6 +360,7 @@ export default function ProductTable() {
       <Modal
         title="Məhsulun əlavə edilməsi"
         visible={isElaveEtModalVisible}
+        destroyOnClose={true}
         onCancel={handleCancel}
         footer={[
           <Button danger onClick={handleCancel}>
@@ -376,6 +377,7 @@ export default function ProductTable() {
       <Modal
         title="Məhsul məlumatına düzəliş edilməsi"
         visible={isRedakteEtModalVisible}
+        destroyOnClose={true}
         onCancel={handleCancel}
         footer={[
           <Button danger onClick={handleCancel}>

@@ -77,7 +77,7 @@ export default function ProductEdit(props) {
             { max: 200, message: "Maksimum 200 simvol daxil edin" },
           ]}
         >
-          <Input />
+          <Input autoFocus="true"/>
         </Form.Item>
 
         <Form.Item
@@ -85,8 +85,6 @@ export default function ProductEdit(props) {
           name="barcode"
           rules={[
             { required: true, message: "Barkodu daxil edin!" },
-            // { min: 8, message: "Minimum 8 simvol daxil edin" },
-            // { max: 20, message: "Maksimum 20 simvol daxil edin" },
           ]}
         >
           <Input />

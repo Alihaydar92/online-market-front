@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, Input, Button, InputNumber, Select, DatePicker } from "antd";
 import moment from "moment";
@@ -11,9 +11,9 @@ export default function StoreHouseAdd(props) {
   const dispatch = useDispatch();
 
   const [form] = Form.useForm();
-  const listOfProductData = useSelector(
-    (state) => state.productReducers?.productListData
-  );
+  // const listOfProductData = useSelector(
+  //   (state) => state.productReducers?.productListDataByPage
+  // );
   const onCreate = async (e) => {
     form
       .validateFields()
@@ -28,7 +28,7 @@ export default function StoreHouseAdd(props) {
           note: form.getFieldsValue().note.trim(),
           addedDate: moment(form.getFieldsValue().dateAdded).format(dateFormat),
         };
-        console.log('storehouse data' ,data)
+        console.log("storehouse data", data);
         dispatch(addStoreHouse(data));
         props.handleCancel();
         form.resetFields();
@@ -58,8 +58,6 @@ export default function StoreHouseAdd(props) {
         labelCol={{ span: 8 }}
         wrapperCol={{ span: 16 }}
         initialValues={{ remember: true }}
-        //   onFinish={onFinish}
-        //   onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
         <Form.Item
@@ -67,7 +65,7 @@ export default function StoreHouseAdd(props) {
           name="price"
           rules={[{ required: false, message: "Qiymətini daxil edin!" }]}
         >
-          <InputNumber min={0} />
+          <InputNumber min={0} autoFocus="true" />
         </Form.Item>
         <Form.Item
           label="Satış qiyməti"
@@ -114,7 +112,6 @@ export default function StoreHouseAdd(props) {
           <Select
             showSearch
             optionFilterProp="children"
-            // onSearch={onSearchCategory}
             filterOption={(input, option) => {
               return (
                 option.props.children
@@ -128,11 +125,11 @@ export default function StoreHouseAdd(props) {
               );
             }}
           >
-            {listOfProductData.map((productData) => (
+            {/* {listOfProductData.map((productData) => (
               <Option key={productData.id} value={productData.id}>
-                {productData.name + ' (' + productData.barcode + ')'}
+                {productData.name + " (" + productData.barcode + ")"}
               </Option>
-            ))}
+            ))} */}
           </Select>
         </Form.Item>
         <Form.Item
@@ -141,12 +138,7 @@ export default function StoreHouseAdd(props) {
           name="dateAdded"
           rules={[{ required: true, message: "Tarixi daxil edin!" }]}
         >
-          <DatePicker
-            // onChange={onChange}
-            value={addedDateValue}
-            // defaultValue={moment()}
-            format={dateFormat}
-          />
+          <DatePicker value={addedDateValue} format={dateFormat} />
         </Form.Item>
         <Form.Item>
           <Button

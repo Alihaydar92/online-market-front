@@ -1,15 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { Button, Form, Input } from "antd";
-import {
-  addCustomer,
-} from "../../redux/actions/customerAction";
+import { addCustomer } from "../../redux/actions/customerAction";
 const { TextArea } = Input;
 export default function CustomerAdd(props) {
   const dispatch = useDispatch();
-
   const [form] = Form.useForm();
-
   const onCreate = (e) => {
     form
       .validateFields()
@@ -35,23 +31,21 @@ export default function CustomerAdd(props) {
       note: "",
     });
   }, [form]);
-  useEffect(() => {
-   console.log(props.focus)
-  }, [props]);
   return (
-    <div>
+    <div key="add" rowKey="id">
       <Form
+        key="add"
+        rowKey="id"
         form={form}
         name="basic"
         labelCol={{ span: 8 }}
         wrapperCol={{ span: 16 }}
         initialValues={{ remember: true }}
-        //   onFinish={onFinish}
-        //   onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
         <Form.Item
-        autoFocus={true}
+          key="add"
+          rowKey="id"
           label="Müştəri adı"
           name="name"
           rules={[
@@ -60,7 +54,7 @@ export default function CustomerAdd(props) {
             { max: 200, message: "Maksimum 200 simvol daxil edin" },
           ]}
         >
-          <Input autoFocus onFocus={(e) => e.currentTarget.select()} />
+          <Input autoFocus="true" />
         </Form.Item>
 
         <Form.Item
@@ -72,7 +66,7 @@ export default function CustomerAdd(props) {
             { max: 200, message: "Maksimum 200 simvol daxil edin" },
           ]}
         >
-          <Input />
+          <Input rowKey="id" key="add" />
         </Form.Item>
         <Form.Item
           label="Qeyd"
