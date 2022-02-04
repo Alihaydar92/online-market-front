@@ -35,6 +35,9 @@ export default function CustomerAdd(props) {
       note: "",
     });
   }, [form]);
+  useEffect(() => {
+   console.log(props.focus)
+  }, [props]);
   return (
     <div>
       <Form
@@ -48,6 +51,7 @@ export default function CustomerAdd(props) {
         autoComplete="off"
       >
         <Form.Item
+        autoFocus={true}
           label="Müştəri adı"
           name="name"
           rules={[

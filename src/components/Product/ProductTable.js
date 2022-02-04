@@ -2,66 +2,47 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getProductById,
-  // listOfProducts,
   addProductExcel,
   addProductImages,
   getProductImagesByProductId,
   listOfProductsByPage,
+  searchProduct,
 } from "../../redux/actions/productActions";
-import { Space, Button, Table, Modal, Input, Row, Col } from "antd";
+import { Space, Button, Table, Modal, Input, Row, Col, Form } from "antd";
 import ProductAdd from "./ProductAdd";
 import ProductEdit from "./ProductEdit";
 import ProductDelete from "./ProductDelete";
 import ImageUploading from "react-images-uploading";
 import "../../style.css";
-// import { PAGINATION } from "../../redux/actions/actionTypes";
+import { SearchOutlined } from "@ant-design/icons";
 
 export default function ProductTable() {
   const dispatch = useDispatch();
-
+  const [form] = Form.useForm();
   /////////////////////////////////////////////file upload
   const [selectedFile, setSelectedFile] = useState({
     file: null,
     base64URL: "",
   });
   const [disabledSave, setDisabledSave] = useState(true);
-
-  // const [page,setPage]=useState(0);
-  // const [pageSize,setPageSize]=useState(15);
-  const [pagination,setPagination]=useState({page:1,pageSize:15});
-// const [paginationData,paginationDispatch] =useReducer(paginationReducer,{});
   /////////////////////////////////////////////file upload
+
+  /////////////////////////////////////////////pagination
+  const [pagination, setPagination] = useState({ page: 1, pageSize: 15 });
+  const setfirstpage = () => {
+    pagination.page = 1;
+  };
+  /////////////////////////////////////////////pagination
 
   //////////////////////////////////////////////////image upload
   const [images, setImages] = useState([{ id: "" }]);
   const maxNumber = 10;
-
   const onChange = (imageList, addUpdateIndex) => {
-    // data for submit
     console.log(imageList, addUpdateIndex);
-    // var content="";
-    // var myArray=[];
-    // let splittedBase64Array=[];
-    //  imageList.forEach(function (item, index) {
-    //   console.log(item, index);
-    //    myArray = item.content.split(",", -1);
-    //   console.log(myArray)
-    //    content= myArray[1];
-    //    console.log(content)
-
-    //    splittedBase64Array.push({content});
-    // });
-    // // splittedBase64Array.push(text);
-    // // imageList=splittedBase64Array;
-    // console.log(splittedBase64Array);
-    // console.log(imageList);
     setImages(imageList);
   };
   //////////////////////////////////////////////////image upload
 
-  // const listOfProductData = useSelector(
-  //   (state) => state.productReducers?.productListData
-  // );
   const listOfProductDataByPage = useSelector(
     (state) => state.productReducers?.productListDataByPage
   );
@@ -72,36 +53,26 @@ export default function ProductTable() {
   const productImagesDataByProductId = useSelector(
     (state) => state.productReducers?.productImagesDataByProductId
   );
-  const [dataSource, setDataSource] = useState();
-  const [value, setValue] = useState("");
-  useEffect(() => {
-    dispatch(listOfProductsByPage(pagination.page,pagination.pageSize));
-  }, []);
 
   useEffect(() => {
-    console.log("listOfProductData", listOfProductDataByPage.pages);
-    setDataSource(listOfProductDataByPage.pages);
-  }, [listOfProductDataByPage]);
+    dispatch(listOfProductsByPage(pagination.page, pagination.pageSize));
+  }, []);
+
+  useEffect(() => {}, [listOfProductDataByPage]);
 
   useEffect(() => {
     setImages(productImagesDataByProductId.images);
   }, [productImagesDataByProductId]);
 
-  useEffect(() => {});
-  const FilterByBarcodeInput = (
-    <Input
-      placeholder="Barkodla axtar"
-      value={value}
-      onChange={(e) => {
-        const currValue = e.target.value;
-        setValue(currValue);
-        const filteredData = listOfProductDataByPage.pages.filter((entry) =>
-          entry.barcode.includes(currValue)
-        );
-        setDataSource(filteredData);
-      }}
-    />
-  );
+  useEffect(() => {
+    form.setFieldsValue({
+      name: "",
+      barcode: "",
+      note: "",
+    });
+  }, [form]);
+
+  ////////////////////////////////////////////////////////////////////modals
   const [isElaveEtModalVisible, setIsElaveEtModalVisible] = useState(false);
   const [isRedakteEtModalVisible, setIsRedakteModalVisible] = useState(false);
   const [isSilModalVisible, setIsSilModalVisible] = useState(false);
@@ -136,16 +107,13 @@ export default function ProductTable() {
     setIsImgPanelVisible(true);
   };
   const handleCancel = () => {
-    console.log('page and pagesize ',pagination.page + ' and ' +pagination.pageSize)
-    // dispatch(listOfProductsByPage(pagination.page,pagination.pageSize));
     setIsElaveEtModalVisible(false);
     setIsRedakteModalVisible(false);
     setIsSilModalVisible(false);
     setIsImgPanelVisible(false);
   };
-  const setfirstpage=()=>{
-pagination.page=1;
-  };
+  ////////////////////////////////////////////////////////////////////modals
+
   //hem excel hem de imageleri base64-e ceviren function
   const getBase64 = (file) => {
     return new Promise((resolve) => {
@@ -190,9 +158,9 @@ pagination.page=1;
       });
     setDisabledSave(false);
   };
-  const onCreateExcel=paginationData=>() => {
+  const onCreateExcel = (paginationData) => () => {
     console.log(" add excel base64 data", selectedFile);
-    dispatch(addProductExcel(selectedFile,paginationData));
+    dispatch(addProductExcel(selectedFile, paginationData));
   };
   ////////////////////////excel file upload
 
@@ -205,8 +173,35 @@ pagination.page=1;
     };
 
     console.log(" images data: ", data);
-    dispatch(addProductImages(productDataById.id, data,pagination));
+    dispatch(addProductImages(productDataById.id, data, pagination));
     handleCancel();
+  };
+  const onSearch = (e) => {
+    var searchData = {
+      name: form.getFieldsValue().name.trim(),
+      barcode: form.getFieldsValue().barcode.trim(),
+      note: form.getFieldsValue().note.trim(),
+    };
+    dispatch(searchProduct(searchData, pagination));
+    setPagination({
+      page: listOfProductDataByPage.currentPage + 1,
+      pageSize: 15,
+    });
+    // setDataSource(searchProductData.pages);
+    // setTotal(searchProductData.totalItems);
+  };
+
+  const onClear = () => {
+    form.setFieldsValue({
+      name: "",
+      barcode: "",
+      note: "",
+    });
+  };
+
+  const onRefresh = () => {
+    onClear();
+    dispatch(listOfProductsByPage(pagination.page, pagination.pageSize));
   };
 
   const columns = [
@@ -215,7 +210,7 @@ pagination.page=1;
       dataIndex: "name",
     },
     {
-      title: FilterByBarcodeInput,
+      title: "Barkod",
       dataIndex: "barcode",
     },
     {
@@ -265,19 +260,17 @@ pagination.page=1;
 
   return (
     <div>
-      <Row>
+      <Row style={{ marginTop: "20px" }}>
         <Space>
           Fayl seç:
           <Input
-            style={{ marginTop: "20px", width: "300px"}}
-            // style={{ position: "absolute", right: "50px", top: "100px" }}
+            style={{ width: "300px" }}
             accept=".xlsx, application/vnd.ms-excel"
             onChange={handleFileInputChange}
             type="file"
           />
           <Button
-            style={{ marginTop: "20px", marginLeft: "10px" }}
-            // style={{ position: "absolute", right: "1400px", top: "70px" }}
+            style={{ marginLeft: "10px" }}
             type="primary"
             onClick={onCreateExcel(pagination)}
             disabled={disabledSave}
@@ -286,37 +279,82 @@ pagination.page=1;
           </Button>
         </Space>
       </Row>
-      <Row>
+      <Row style={{ marginTop: "20px" }}>
         <Col>
-        <Button
-          style={{ marginTop: "20px" }}
-          // style={{ position: "absolute", right: "30px", top: "70px" }}
-          type="primary"
-          onClick={showAddModal}
-        >
-          Əlavə et
-        </Button>
+          <Button type="primary" onClick={showAddModal}>
+            Əlavə et
+          </Button>
         </Col>
-       
       </Row>
 
+      <Form
+        form={form}
+        name="basic"
+        layout="inline"
+        labelCol={{ span: 8 }}
+        wrapperCol={{ span: 16 }}
+        initialValues={{ remember: true }}
+        autoComplete="off"
+        style={{ marginTop: "20px" }}
+      >
+        <Input.Group compact>
+          <Form.Item label="Məhsul:" name="name">
+            <Input allowClear />
+          </Form.Item>
+          <Form.Item label="Barkod:" name="barcode">
+            <Input allowClear />
+          </Form.Item>
+          <Form.Item label="Qeyd:" name="note">
+            <Input allowClear />
+          </Form.Item>
+          <Form.Item>
+            <Button
+              icon={<SearchOutlined />}
+              type="primary"
+              htmlType="submit"
+              onClick={onSearch}
+            >
+              Axtar
+            </Button>
+          </Form.Item>
+          <Form.Item>
+            <Button
+              type="primary"
+              htmlType="submit"
+              style={{ left: "20px" }}
+              onClick={onClear}
+            >
+              Təmizlə
+            </Button>
+          </Form.Item>
+          <Form.Item>
+            <Button
+              type="primary"
+              htmlType="submit"
+              style={{ left: "40px" }}
+              onClick={onRefresh}
+            >
+              Yenilə
+            </Button>
+          </Form.Item>
+        </Input.Group>
+      </Form>
+
       <Table
-      
-        style={{ marginTop: "20px",wordBreak:'break-word' }}
-        dataSource={dataSource}
-        scroll={{y:460}}
+        style={{ wordBreak: "break-word", marginTop: "20px" }}
+        dataSource={listOfProductDataByPage.pages}
+        scroll={{ y: 420 }}
         columns={columns}
         rowKey="id"
         pagination={{
           // defaultCurrent:0,
-          current:pagination.page,
-          pageSize:pagination.pageSize,
-          total:listOfProductDataByPage.totalItems,
-          onChange:(page,pageSize)=>{
-            setPagination({page,pageSize});
-            // setPageSize(pageSize);
-            dispatch(listOfProductsByPage(page,pageSize))
-          }
+          current: pagination.page,
+          pageSize: pagination.pageSize,
+          total: listOfProductDataByPage.totalItems,
+          onChange: (page, pageSize) => {
+            setPagination({ page, pageSize });
+            dispatch(listOfProductsByPage(page, pageSize));
+          },
         }}
       ></Table>
       <Modal
@@ -329,7 +367,11 @@ pagination.page=1;
           </Button>,
         ]}
       >
-        <ProductAdd  rowKey="id" handleCancel={handleCancel} firstPage={setfirstpage}></ProductAdd>
+        <ProductAdd
+          rowKey="id"
+          handleCancel={handleCancel}
+          firstPage={setfirstpage}
+        ></ProductAdd>
       </Modal>
       <Modal
         title="Məhsul məlumatına düzəliş edilməsi"
@@ -341,7 +383,11 @@ pagination.page=1;
           </Button>,
         ]}
       >
-        <ProductEdit paginationData={pagination} rowKey="id" handleCancel={handleCancel}></ProductEdit>
+        <ProductEdit
+          paginationData={pagination}
+          rowKey="id"
+          handleCancel={handleCancel}
+        ></ProductEdit>
       </Modal>
       <Modal
         title="Məhsul məlumatının silinməsi"
@@ -353,7 +399,11 @@ pagination.page=1;
           </Button>,
         ]}
       >
-        <ProductDelete paginationData={pagination}  rowKey="id" handleCancel={handleCancel}></ProductDelete>
+        <ProductDelete
+          paginationData={pagination}
+          rowKey="id"
+          handleCancel={handleCancel}
+        ></ProductDelete>
       </Modal>
       <Modal
         title="Məhsula şəkillər əlavə edilməsi"
@@ -391,16 +441,10 @@ pagination.page=1;
             // write your building UI
             <div className="upload__image-wrapper">
               <Row>
-                <button
-                  style={{}}
-                  // style={{ marginTop: "20px",width:""}}
-                  onClick={onImageUpload}
-                  {...dragProps}
-                >
+                <button onClick={onImageUpload} {...dragProps}>
                   Faylı seç
                 </button>
                 &nbsp;&nbsp;&nbsp;
-                {/* <button onClick={onImageRemoveAll}>Remove all images</button> */}
               </Row>
 
               <Row>
@@ -415,7 +459,6 @@ pagination.page=1;
                         height={100}
                       />
                       <div className="image-item__btn-wrapper">
-                        {/* <button onClick={() => onImageUpdate(index)}>Update</button> */}
                         <button
                           style={{ marginTop: "10px" }}
                           onClick={() => onImageRemove(index)}
@@ -431,7 +474,6 @@ pagination.page=1;
           )}
         </ImageUploading>
       </Modal>
-      {/* </Spin> */}
     </div>
   );
 }

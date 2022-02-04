@@ -33,12 +33,12 @@ export default class Navi extends React.Component {
     return (
       <div>
         
-        <Navbar color="light" light expand="md" left>
+        <Navbar color="light" light expand="md">
         <Image width={80} alt="logo" src={String(logo)} />
           {/* <NavbarBrand href="/">reactstrap</NavbarBrand> */}
           {/* <NavbarToggler onClick={this.toggle} /> */}
           <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ms-auto" navbar left>
+            <Nav className="ms-auto" navbar>
               
 
               <Dropdown

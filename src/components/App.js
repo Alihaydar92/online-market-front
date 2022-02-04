@@ -5,7 +5,7 @@ import {
   NotificationOutlined,
 } from "@ant-design/icons";
 import { Route, Routes, Link } from "react-router-dom";
-import Login from "../components/Login"
+import Login from "../components/Login";
 import CustomerTable from "../components/Customer/CustomerTable";
 import ExpeditorTable from "../components/Expeditor/ExpeditorTable";
 import ProductTable from "./Product/ProductTable";
@@ -20,14 +20,14 @@ const { Footer, Content, Sider, Header } = Layout;
 const { SubMenu } = Menu;
 export default function App() {
   return (
-    <Layout style={{  height: "100%"}} >
+    <Layout style={{ height: "100%" }}>
       <Sider width={200} className="site-layout-background">
-      <Image width={50} alt="logo" src={String(logo)} />
+        <Image width={50} alt="logo" src={String(logo)} />
         <Menu
           mode="inline"
           // defaultSelectedKeys={["1"]}
           defaultOpenKeys={["sub1"]}
-          style={{ borderRight: 0 , height: "100%"}}
+          style={{ borderRight: 0, height: "100%" }}
         >
           <SubMenu key="sub1" icon={<UserOutlined />} title="Qeydiyyat">
             <Menu.Item key="1">
@@ -71,6 +71,7 @@ export default function App() {
         <Content>
           <Routes>
             <Route exact path="/" element={<CustomerTable />}></Route>
+
             <Route path="/customers" element={<CustomerTable />}></Route>
             <Route path="/sellers" element={<ExpeditorTable />}></Route>
             <Route path="/products" element={<ProductTable />}></Route>

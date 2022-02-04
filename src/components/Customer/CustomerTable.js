@@ -127,7 +127,7 @@ export default function CustomerTable() {
           </Button>,
         ]}
       >
-        <CustomerAdd rowKey="id" handleCancel={handleCancel}></CustomerAdd>
+        <CustomerAdd focus={true} rowKey="id" handleCancel={handleCancel}></CustomerAdd>
       </Modal>
       <Modal
         title="Müştəri məlumatının silinməsi"

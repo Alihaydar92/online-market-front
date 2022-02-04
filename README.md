@@ -73,8 +73,6 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ### CODE
 
-Cedvellerde axtarish (Axtaris Textboxda da trim qoymaq (teyyub,ali))
-
 form ilk input focus
 
 img ve diger filelarla bagli codelarin optimizasiyasi
