@@ -75,7 +75,7 @@ export default function ProductAdd(props) {
             { max: 200, message: "Maksimum 200 simvol daxil edin" },
           ]}
         >
-          <Input autoFocus="true"/>
+          <Input autoFocus={true}/>
         </Form.Item>
 
         <Form.Item

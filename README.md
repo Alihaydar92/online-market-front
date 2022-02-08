@@ -73,8 +73,6 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ### CODE
 
-form ilk input focus
-
 img ve diger filelarla bagli codelarin optimizasiyasi
 
 excel add zamani loading(waiting) yazmaq

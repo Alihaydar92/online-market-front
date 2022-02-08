@@ -1,5 +1,8 @@
 import * as actionTypes from "./actionTypes";
 import axiosInstance from "../../helpers/axios";
+
+
+
 export const listOfProductsByPage = (page, pageSize) => (dispatch) => {
   console.log("page and pagesize ", page + "//" + pageSize);
   axiosInstance
@@ -66,7 +69,7 @@ export const deleteProduct = (id, paginationData) => (dispatch) => {
 };
 
 export const addProductExcel = (data, paginationData) => (dispatch) => {
-  console.log("excell data ", data);
+  
   axiosInstance.post("/products/excel", data).then((response) => {
     if (response.status === 200) {
       dispatch({

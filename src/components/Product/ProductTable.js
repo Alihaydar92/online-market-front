@@ -8,7 +8,7 @@ import {
   listOfProductsByPage,
   searchProduct,
 } from "../../redux/actions/productActions";
-import { Space, Button, Table, Modal, Input, Row, Col, Form } from "antd";
+import { Space, Button, Table, Modal, Input, Row, Col, Form,Image } from "antd";
 import ProductAdd from "./ProductAdd";
 import ProductEdit from "./ProductEdit";
 import ProductDelete from "./ProductDelete";
@@ -16,8 +16,12 @@ import ImageUploading from "react-images-uploading";
 import "../../style.css";
 import { SearchOutlined } from "@ant-design/icons";
 
+
 export default function ProductTable() {
   const dispatch = useDispatch();
+//page loader 
+
+
   const [form] = Form.useForm();
   /////////////////////////////////////////////file upload
   const [selectedFile, setSelectedFile] = useState({
@@ -71,7 +75,7 @@ export default function ProductTable() {
       note: "",
     });
   }, [form]);
-
+ 
   ////////////////////////////////////////////////////////////////////modals
   const [isElaveEtModalVisible, setIsElaveEtModalVisible] = useState(false);
   const [isRedakteEtModalVisible, setIsRedakteModalVisible] = useState(false);
@@ -451,15 +455,18 @@ export default function ProductTable() {
 
               <Row>
                 {imageList.map((image, index) => (
-                  <Col>
+                  <Col style={{ marginTop: "10px", marginRight: "10px" }}>
                     <div key={index} className="image-item">
-                      <img
-                        style={{ marginTop: "10px", marginRight: "10px" }}
+                    <Image.PreviewGroup>
+                    <Image
+                        // style={{ marginTop: "10px", marginRight: "10px" }}
                         src={image["content"]}
                         alt=""
-                        width="100"
-                        height={100}
+                        width={200}
+                        height={200}
                       />
+                    </Image.PreviewGroup>
+                    
                       <div className="image-item__btn-wrapper">
                         <button
                           style={{ marginTop: "10px" }}

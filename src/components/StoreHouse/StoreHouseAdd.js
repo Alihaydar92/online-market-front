@@ -65,7 +65,7 @@ export default function StoreHouseAdd(props) {
           name="price"
           rules={[{ required: false, message: "Qiymətini daxil edin!" }]}
         >
-          <InputNumber min={0} autoFocus="true" />
+          <InputNumber min={0} autoFocus={true} />
         </Form.Item>
         <Form.Item
           label="Satış qiyməti"

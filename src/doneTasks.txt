@@ -78,3 +78,5 @@ sellers add excel(teyyub terefde qaldi, hazir edende test etmek)+++
 mehsullar pagede cedvelin uzunlugunu duzeltmek(sidebar menu eybecer dusur buna gore)+++
 
 Cedvellerde axtarish (Axtaris Textboxda da trim qoymaq (teyyub,ali))+++
+
+form ilk input focus+++
