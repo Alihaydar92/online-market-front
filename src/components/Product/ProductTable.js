@@ -232,9 +232,11 @@ export default function ProductTable() {
     {
       title: "Əməliyyat",
       dataIndex: "operation",
+      width:"220px",
       render: (text, productData) => {
         return (
-          <Space size="middle">
+         
+ <Space size="middle" sty>
             <Button
               size="small"
               type="primary"
@@ -257,8 +259,11 @@ export default function ProductTable() {
               Şəkil
             </Button>
           </Space>
+     
+         
         );
       },
+      
     },
   ];
 
@@ -345,7 +350,7 @@ export default function ProductTable() {
       </Form>
 
       <Table
-        style={{ wordBreak: "break-word", marginTop: "20px" }}
+        style={{ wordBreak: "break-word", marginTop: "20px"}}
         dataSource={listOfProductDataByPage.pages}
         scroll={{ y: 420 }}
         columns={columns}
