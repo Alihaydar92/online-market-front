@@ -18,6 +18,7 @@ export default function App() {
     <div>
       <Layout style={{ height: "100%" }}>
         <SideBarMenu />
+        &nbsp;&nbsp;
         <Layout>
           <Navi />
           <Content>

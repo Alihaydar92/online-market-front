@@ -47,7 +47,7 @@ export default function Login({ Login, error }) {
           autoComplete="off"
         >
           <Form.Item
-            label="Username"
+            label="İstifadəçi adı"
             name="username"
             rules={[
               {
@@ -60,7 +60,7 @@ export default function Login({ Login, error }) {
           </Form.Item>
 
           <Form.Item
-            label="Password"
+            label="Şifrə"
             name="password"
             rules={[
               {

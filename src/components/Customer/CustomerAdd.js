@@ -32,10 +32,9 @@ export default function CustomerAdd(props) {
     });
   }, [form]);
   return (
-    <div key="add" rowKey="id">
+    <div>
       <Form
-        key="add"
-        rowKey="id"
+       
         form={form}
         name="basic"
         labelCol={{ span: 8 }}
@@ -44,8 +43,7 @@ export default function CustomerAdd(props) {
         autoComplete="off"
       >
         <Form.Item
-          key="add"
-          rowKey="id"
+          
           label="Müştəri adı"
           name="name"
           rules={[
