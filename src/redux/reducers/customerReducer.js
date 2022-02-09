@@ -29,6 +29,13 @@ import  initialState from "./initialState"
                 
             }
         }
+        case actionTypes.SEARCH_CUSTOMER: {
+            return {
+                ...state,
+                customerListData: action.payload
+                
+            }
+        }
         default:
             return state;
     }
