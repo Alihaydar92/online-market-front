@@ -59,3 +59,8 @@ export const DELETE_STOREHOUSE="DELETE_STOREHOUSE"
 
  export const PAGINATION="PAGINATION"
 
+ //page loader 
+
+ export const SHOW_LOADER="SHOW_LOADER"
+ export const HIDE_LOADER="HIDE_LOADER"
+

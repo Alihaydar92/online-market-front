@@ -75,17 +75,13 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 img ve diger filelarla bagli codelarin optimizasiyasi
 
-excel add zamani loading(waiting) yazmaq
-
 resetfields eslinde duz islemir, yalniz emeliyyat olduqdan sonra isleyir, halbuki modali elebele acib bagladiqda bele islemelidi (modal acarken reset olmalidi datalar)(useEffectLayout genis test edib yoxlamaq)
-
-login from duzeltmek
-
-login formla esas page daxil olmaq
 
 base auth tetbiq ederek login olmaq
 
 paginationda page ve pagesize ilkin deyerlerini global const deyisen kimi saxlamq(basqa pencerelerde de istifade etmek ucun)
+
+musteri pagination
 
 ### sonra
 Imkan varsa pencerelesi responsive etmek (Sonda da edile biler)

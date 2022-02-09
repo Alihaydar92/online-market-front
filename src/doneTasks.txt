@@ -80,3 +80,9 @@ mehsullar pagede cedvelin uzunlugunu duzeltmek(sidebar menu eybecer dusur buna g
 Cedvellerde axtarish (Axtaris Textboxda da trim qoymaq (teyyub,ali))+++
 
 form ilk input focus+++
+
+login form duzeltmek +++
+
+login formla esas page daxil olmaq +++
+
+excel add zamani loading(waiting) yazmaq +++

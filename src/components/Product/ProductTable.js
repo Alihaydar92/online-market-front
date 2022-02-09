@@ -8,19 +8,25 @@ import {
   listOfProductsByPage,
   searchProduct,
 } from "../../redux/actions/productActions";
-import { Space, Button, Table, Modal, Input, Row, Col, Form,Image } from "antd";
+import {
+  Space,
+  Button,
+  Table,
+  Modal,
+  Input,
+  Row,
+  Col,
+  Form,
+  Image,
+} from "antd";
 import ProductAdd from "./ProductAdd";
 import ProductEdit from "./ProductEdit";
 import ProductDelete from "./ProductDelete";
 import ImageUploading from "react-images-uploading";
 import "../../style.css";
 import { SearchOutlined } from "@ant-design/icons";
-
-
 export default function ProductTable() {
   const dispatch = useDispatch();
-//page loader 
-
 
   const [form] = Form.useForm();
   /////////////////////////////////////////////file upload
@@ -75,7 +81,7 @@ export default function ProductTable() {
       note: "",
     });
   }, [form]);
- 
+
   ////////////////////////////////////////////////////////////////////modals
   const [isElaveEtModalVisible, setIsElaveEtModalVisible] = useState(false);
   const [isRedakteEtModalVisible, setIsRedakteModalVisible] = useState(false);
@@ -232,11 +238,10 @@ export default function ProductTable() {
     {
       title: "Əməliyyat",
       dataIndex: "operation",
-      width:"220px",
+      width: "220px",
       render: (text, productData) => {
         return (
-         
- <Space size="middle" sty>
+          <Space size="middle" sty>
             <Button
               size="small"
               type="primary"
@@ -259,16 +264,21 @@ export default function ProductTable() {
               Şəkil
             </Button>
           </Space>
-     
-         
         );
       },
-      
     },
   ];
 
   return (
     <div>
+      {/* <Spin tip="Yuklenir" size="large" spinning={true}> */}
+      {/* <Alert
+          message="Məhsullar əlavə olunur..."
+          description="Məhsullar əlavə olunan zaman bir müddət gözləməyiniz xaiş olunur"
+          type="info"
+        /> */}
+      {/* </Spin> */}
+
       <Row style={{ marginTop: "20px" }}>
         <Space>
           Fayl seç:
@@ -310,8 +320,8 @@ export default function ProductTable() {
           <Form.Item label="Məhsul:" name="name">
             <Input allowClear />
           </Form.Item>
-          <Form.Item  label="Barkod:" name="barcode">
-            <Input  allowClear />
+          <Form.Item label="Barkod:" name="barcode">
+            <Input allowClear />
           </Form.Item>
           <Form.Item label="Qeyd:" name="note">
             <Input allowClear />
@@ -350,7 +360,7 @@ export default function ProductTable() {
       </Form>
 
       <Table
-        style={{ wordBreak: "break-word", marginTop: "20px"}}
+        style={{ wordBreak: "break-word", marginTop: "20px" }}
         dataSource={listOfProductDataByPage.pages}
         scroll={{ y: 420 }}
         columns={columns}
@@ -462,16 +472,16 @@ export default function ProductTable() {
                 {imageList.map((image, index) => (
                   <Col style={{ marginTop: "10px", marginRight: "10px" }}>
                     <div key={index} className="image-item">
-                    <Image.PreviewGroup>
-                    <Image
-                        // style={{ marginTop: "10px", marginRight: "10px" }}
-                        src={image["content"]}
-                        alt=""
-                        width={200}
-                        height={200}
-                      />
-                    </Image.PreviewGroup>
-                    
+                      <Image.PreviewGroup>
+                        <Image
+                          // style={{ marginTop: "10px", marginRight: "10px" }}
+                          src={image["content"]}
+                          alt=""
+                          width={200}
+                          height={200}
+                        />
+                      </Image.PreviewGroup>
+
                       <div className="image-item__btn-wrapper">
                         <button
                           style={{ marginTop: "10px" }}
