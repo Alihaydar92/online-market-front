@@ -3,27 +3,39 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   listOfStoreHouse,
   getStoreHouseById,
+  listOfQuantities,
+  getStoreHouseByQuantity,
+  getStoreHouseByBarcode
 } from "../../redux/actions/storeHouseActions";
-import { Space, Button, Table, Modal, Form, Input } from "antd";
+import { Space, Button, Table, Modal, Form, Input, Select } from "antd";
 import StoreHouseAdd from "./StoreHouseAdd";
 import StoreHouseEdit from "./StoreHouseEdit";
 import StoreHouseDelete from "./StoreHouseDelete";
 import "../../style.css";
 import { SearchOutlined } from "@ant-design/icons";
+const { Option } = Select;
 export default function StoreHouseTable() {
   const dispatch = useDispatch();
   const [form] = Form.useForm();
-  const storeHouseList = useSelector(
-    (state) => state.storeHouseReducers.storeHouseListData
-  );
 
-  
   const [pagination, setPagination] = useState({ page: 1, pageSize: 15 });
   const setfirstpage = () => {
     pagination.page = 1;
   };
+
+  const storeHouseList = useSelector(
+    (state) => state.storeHouseReducers?.storeHouseListData
+  );
+
+  const quantityList = useSelector(
+    (state) => state.storeHouseReducers?.listOfQuantities
+  );
   useEffect(() => {
-    dispatch(listOfStoreHouse(pagination.page,pagination.pageSize));
+    dispatch(listOfStoreHouse(pagination.page, pagination.pageSize));
+  }, []);
+
+  useEffect(() => {
+    dispatch(listOfQuantities());
   }, []);
   useEffect(() => {}, [storeHouseList]);
   const [isElaveEtModalVisible, setIsElaveEtModalVisible] = useState(false);
@@ -113,13 +125,25 @@ export default function StoreHouseTable() {
       },
     },
   ];
-
+  const onChangeQuantity = (value) => {
+    console.log(value);
+    form.setFieldsValue({
+      barcode: "",
+    });
+    dispatch(getStoreHouseByQuantity(value,pagination.page,pagination.pageSize));
+  };
   const onSearch = (e) => {
-    var searchData = {
-      name: form.getFieldsValue().productName.trim(),
-      barcode: form.getFieldsValue().barcode.trim(),
-    };
-    // dispatch(searchProduct(searchData, pagination));
+    form.setFieldsValue({
+      quantity: "",
+    });
+    if(form.getFieldsValue().barcode!==""){
+      dispatch(getStoreHouseByBarcode(form.getFieldsValue().barcode,pagination.page,pagination.pageSize))
+    }
+    else{
+      dispatch(listOfStoreHouse(pagination.page,pagination.pageSize))
+    }
+    
+    // dispatch(searchProduct(searchData, pagination)); 
     // setPagination({
     //   page: listOfProductDataByPage.currentPage + 1,
     //   pageSize: 15,
@@ -130,15 +154,14 @@ export default function StoreHouseTable() {
 
   const onClear = () => {
     form.setFieldsValue({
-      name: "",
       barcode: "",
-      note: "",
+      quantity: "",
     });
   };
 
   const onRefresh = () => {
     onClear();
-    // dispatch(listOfProductsByPage(pagination.page, pagination.pageSize));
+    dispatch(listOfStoreHouse(pagination.page, pagination.pageSize));
   };
 
   return (
@@ -151,7 +174,7 @@ export default function StoreHouseTable() {
         Əlavə et
       </Button>
 
-      {/* <Form
+      <Form
         form={form}
         name="basic"
         layout="inline"
@@ -162,15 +185,39 @@ export default function StoreHouseTable() {
         style={{ marginTop: "20px" }}
       >
         <Input.Group compact>
-          <Form.Item label="Məhsul adı:" name="productName">
-            <Input allowClear />
+          <Form.Item label="Say" name="quantity">
+            <Select
+              onChange={onChangeQuantity}
+              style={{ width: "100px" }}
+              showSearch
+              optionFilterProp="children"
+              filterOption={(input, option) => {
+                return (
+                  option.props.children
+                    .toString()
+                    .toLowerCase()
+                    .indexOf(input.toLowerCase()) >= 0 ||
+                  option.props.value
+                    .toString()
+                    .toLowerCase()
+                    .indexOf(input.toLowerCase()) >= 0
+                );
+              }}
+            >
+              {quantityList.map((quantityData) => (
+                <Option key={quantityData} value={quantityData}>
+                  {quantityData}
+                </Option>
+              ))}
+            </Select>
           </Form.Item>
+          <Form.Item>&nbsp;&nbsp;&nbsp;&nbsp;</Form.Item>
           <Form.Item label="Barkod:" name="barcode">
             <Input allowClear />
           </Form.Item>
-
           <Form.Item>
             <Button
+              style={{ left: "50px" }}
               icon={<SearchOutlined />}
               type="primary"
               htmlType="submit"
@@ -183,7 +230,7 @@ export default function StoreHouseTable() {
             <Button
               type="primary"
               htmlType="submit"
-              style={{ left: "20px" }}
+              style={{ left: "70px" }}
               onClick={onClear}
             >
               Təmizlə
@@ -193,14 +240,14 @@ export default function StoreHouseTable() {
             <Button
               type="primary"
               htmlType="submit"
-              style={{ left: "40px" }}
+              style={{ left: "90px" }}
               onClick={onRefresh}
             >
               Yenilə
             </Button>
           </Form.Item>
         </Input.Group>
-      </Form> */}
+      </Form>
 
       <Table
         scroll={{ y: 530 }}
@@ -212,7 +259,19 @@ export default function StoreHouseTable() {
           total: storeHouseList.totalItems,
           onChange: (page, pageSize) => {
             setPagination({ page, pageSize });
-            dispatch(listOfStoreHouse(page, pageSize));
+            if(form.getFieldsValue().barcode!==""){
+              console.log('1')
+              dispatch(getStoreHouseByBarcode(form.getFieldsValue().barcode,page,pageSize))
+            }
+            if(form.getFieldsValue().quantity!==""){
+              console.log('2')
+              dispatch(getStoreHouseByQuantity(form.getFieldsValue().quantity,page,pageSize))
+            }
+            if(form.getFieldsValue().barcode==="" & form.getFieldsValue().quantity===""){
+              console.log('3')
+              dispatch(listOfStoreHouse(page, pageSize));
+            }
+            
           },
         }}
         columns={columns}
@@ -230,7 +289,7 @@ export default function StoreHouseTable() {
         ]}
       >
         <StoreHouseAdd
-      firstPage={setfirstpage}
+          firstPage={setfirstpage}
           data={isElaveEtModalVisible}
           rowKey="id"
           handleCancel={handleCancel}

@@ -36,6 +36,7 @@ export default {
 
   storeHouseListData: [],
   storeHouseDataById: {},
+  listOfQuantities:[],
 
   loading:false
 };

@@ -94,3 +94,5 @@ anbar pagination +++
 anbar barkod column+++
 
 emekdaslar loading +++
+
+anbar page-de mehsullar combosu dolmur (ona gore ki mehsullar page ile gelir)+++

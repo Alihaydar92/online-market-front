@@ -17,6 +17,26 @@ export default function storeHouseReducers(state = initialState, action) {
       };
     }
 
+    case actionTypes.LIST_OF_QUANTITIES: {
+      return {
+        ...state,
+        listOfQuantities: action.payload,
+      };
+    }
+
+    case actionTypes.GET_STORE_HOUSE_BY_QUANTITY: {
+      return {
+        ...state,
+        storeHouseListData: action.payload,
+      };
+    }
+    case actionTypes.GET_STORE_HOUSE_BY_BARCODE: {
+      return {
+        ...state,
+        storeHouseListData: action.payload,
+      };
+    }
+    
     // case actionTypes.DELETE_PRODUCT: {
     //   return {
     //     ...state,

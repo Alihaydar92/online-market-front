@@ -79,15 +79,16 @@ base auth tetbiq ederek login olmaq
 
 paginationda page ve pagesize ilkin deyerlerini global const deyisen kimi saxlamq(basqa pencerelerde de istifade etmek ucun)
 
-paginationla bagli xirda buglari nezerden kecirmek (esasen de productda)
+paginationla bagli xirda buglari nezerden kecirmek (esasen de productda) 
 
-anbar page-de mehsullar combosu dolmur (ona gore ki mehsullar page ile gelir)
+anbar axtaris
 
 ### sonra
 
 Imkan varsa pencerelesi responsive etmek (Sonda da edile biler)
 
 label-larin textlerini file-dan oxumaq
+
 anbar add edit modallarda product listi axtarisla getirmek
 
 ### backend teyyub
