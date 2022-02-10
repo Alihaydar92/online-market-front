@@ -1,8 +1,9 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, Input, Button, InputNumber, Select, DatePicker } from "antd";
 import moment from "moment";
 import { addStoreHouse } from "../../redux/actions/storeHouseActions";
+import {listOfProducts} from "../../redux/actions/productActions"
 const { Option } = Select;
 const { TextArea } = Input;
 export default function StoreHouseAdd(props) {
@@ -11,9 +12,15 @@ export default function StoreHouseAdd(props) {
   const dispatch = useDispatch();
 
   const [form] = Form.useForm();
-  // const listOfProductData = useSelector(
-  //   (state) => state.productReducers?.productListDataByPage
-  // );
+  const productListData=useSelector(
+    (state) =>state.productReducers?.productListData
+  )
+useEffect(()=>{
+  dispatch(listOfProducts());
+},[])
+  useEffect(()=>{
+console.log('productListData ',productListData)
+  },[productListData])
   const onCreate = async (e) => {
     form
       .validateFields()
@@ -31,6 +38,7 @@ export default function StoreHouseAdd(props) {
         console.log("storehouse data", data);
         dispatch(addStoreHouse(data));
         props.handleCancel();
+        props.firstPage();
         form.resetFields();
       })
       .catch((err) => {
@@ -125,11 +133,11 @@ export default function StoreHouseAdd(props) {
               );
             }}
           >
-            {/* {listOfProductData.map((productData) => (
+            {productListData.map((productData) => (
               <Option key={productData.id} value={productData.id}>
                 {productData.name + " (" + productData.barcode + ")"}
               </Option>
-            ))} */}
+            ))}
           </Select>
         </Form.Item>
         <Form.Item

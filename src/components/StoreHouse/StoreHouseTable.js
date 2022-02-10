@@ -16,6 +16,8 @@ export default function StoreHouseTable() {
   const storeHouseList = useSelector(
     (state) => state.storeHouseReducers.storeHouseListData
   );
+
+  
   const [pagination, setPagination] = useState({ page: 1, pageSize: 15 });
   const setfirstpage = () => {
     pagination.page = 1;
@@ -47,7 +49,7 @@ export default function StoreHouseTable() {
   };
 
   const handleCancel = () => {
-    dispatch(listOfStoreHouse());
+    // dispatch(listOfStoreHouse());
     setIsElaveEtModalVisible(false);
     setIsRedakteModalVisible(false);
     setIsSilModalVisible(false);
@@ -228,6 +230,7 @@ export default function StoreHouseTable() {
         ]}
       >
         <StoreHouseAdd
+      firstPage={setfirstpage}
           data={isElaveEtModalVisible}
           rowKey="id"
           handleCancel={handleCancel}

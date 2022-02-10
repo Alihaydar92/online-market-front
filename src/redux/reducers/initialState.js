@@ -13,7 +13,7 @@ export default {
   expeditorUpdateData: {},
   expeditorAddData: {},
 
-  productListData: {},
+  productListData: [],
   productListDataByPage: {},
   productDataById: {},
   productDeleteData: {},

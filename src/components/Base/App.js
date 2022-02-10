@@ -1,6 +1,6 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Layout, Spin } from "antd";
+import { useSelector } from "react-redux";
+import { Layout } from "antd";
 import { Route, Routes, Outlet } from "react-router-dom";
 import CustomerTable from "../Customer/CustomerTable";
 import ExpeditorTable from "../Expeditor/ExpeditorTable";
@@ -18,7 +18,11 @@ const { Footer, Content } = Layout;
 export default function App() {
   const loading = useSelector((state) => state.loaderReducers?.loading);
   return (
-    <LoadingOverlay active={loading} spinner text="Əməliyyat gedir,xahiş edirik gözləyin...">
+    <LoadingOverlay
+      active={loading}
+      spinner
+      text="Əməliyyat gedir,xahiş edirik gözləyin..."
+    >
       <div>
         <Layout style={{ height: "100%" }}>
           <SideBarMenu />
@@ -47,6 +51,6 @@ export default function App() {
         </Layout>
         <Outlet />
       </div>
-      </LoadingOverlay>
+    </LoadingOverlay>
   );
 }

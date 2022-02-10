@@ -86,4 +86,11 @@ login form duzeltmek +++
 login formla esas page daxil olmaq +++
 
 excel add zamani loading(waiting) yazmaq +++
+
 musteri pagination +++
+
+anbar pagination +++
+
+anbar barkod column+++
+
+emekdaslar loading +++

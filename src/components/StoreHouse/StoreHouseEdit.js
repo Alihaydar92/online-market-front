@@ -3,11 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { Form, Input, Button, InputNumber, Select, DatePicker } from "antd";
 import moment from "moment";
 import {
-  listOfStoreHouse,
   updateStoreHouse,
 } from "../../redux/actions/storeHouseActions";
 
-// import { listOfProducts } from "../../redux/actions/productActions";
+import { listOfProducts } from "../../redux/actions/productActions";
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -17,19 +16,15 @@ export default function StoreHouseEdit(props) {
   const dispatch = useDispatch();
   const [addedDateValue, setAddedDateValue] = useState();
   const [form] = Form.useForm();
-  // const listOfProductData = useSelector(
-  //   (state) => state.productReducers?.productListData
-  // );
-
+  const productListData=useSelector(
+    (state) =>state.productReducers?.productListData
+  )
   const storeHouseDataById = useSelector(
     (state) => state.storeHouseReducers.storeHouseDataById
   );
-  useEffect(() => {
-    dispatch(listOfStoreHouse());
-  }, []);
 
   useEffect(() => {
-    // dispatch(listOfProducts());
+    dispatch(listOfProducts());
   }, []);
   const onUpdate = async (e) => {
     form
@@ -84,7 +79,7 @@ export default function StoreHouseEdit(props) {
           name="price"
           rules={[{ required: false, message: "Qiymətini daxil edin!" }]}
         >
-          <InputNumber min={0} autoFocus="true" />
+          <InputNumber min={0} autoFocus={true} />
         </Form.Item>
         <Form.Item
           label="Satış qiyməti"
@@ -144,11 +139,11 @@ export default function StoreHouseEdit(props) {
               );
             }}
           >
-            {/* {listOfProductData.map((productData) => (
+            {productListData.map((productData) => (
               <Option key={productData.id} value={productData.id}>
                 {productData.name}
               </Option>
-            ))} */}
+            ))}
           </Select>
         </Form.Item>
         <Form.Item

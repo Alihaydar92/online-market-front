@@ -7,10 +7,23 @@ import {message,notification} from "antd"
 export const listOfProductsByPage = (page, pageSize) => (dispatch) => {
   console.log("page and pagesize ", page + "//" + pageSize);
   axiosInstance
-    .get("/products?page=" + (page - 1) + "&size=" + pageSize)
+    .get("/products/paged?page=" + (page - 1) + "&size=" + pageSize)
     .then((response) => {
       dispatch({
         type: actionTypes.LIST_OF_PRODUCTS_BY_PAGE,
+        payload: response.data,
+      });
+    });
+};
+
+export const listOfProducts = () => (dispatch) => {
+
+  axiosInstance
+    .get("/products")
+    .then((response) => {
+      console.log(response.data)
+      dispatch({
+        type: actionTypes.LIST_OF_PRODUCTS,
         payload: response.data,
       });
     });

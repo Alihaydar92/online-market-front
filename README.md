@@ -69,8 +69,6 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-
-
 ### CODE
 
 img ve diger filelarla bagli codelarin optimizasiyasi
@@ -83,27 +81,19 @@ paginationda page ve pagesize ilkin deyerlerini global const deyisen kimi saxlam
 
 paginationla bagli xirda buglari nezerden kecirmek (esasen de productda)
 
-anbar pagination
-
-anbar barkod column+++
-
-emekdaslar loading +++
-
 anbar page-de mehsullar combosu dolmur (ona gore ki mehsullar page ile gelir)
 
-
-
 ### sonra
+
 Imkan varsa pencerelesi responsive etmek (Sonda da edile biler)
 
 label-larin textlerini file-dan oxumaq
-
+anbar add edit modallarda product listi axtarisla getirmek
 
 ### backend teyyub
 
-Anbar tableda  sort hemise anbara daxil olma tarixine gore desc getse yaxsidi
+Anbar tableda sort hemise anbara daxil olma tarixine gore desc getse yaxsidi
 
 mehsullar / Satis qiymeti maya deyerinden asagi ola biler bilmez deqiqlesdirmek, olmazsa kontrol qoymaq. (teyyub)
 
 paginationda 120ci pagede data olmadigi halda 120ci page-i qaytarir
-
