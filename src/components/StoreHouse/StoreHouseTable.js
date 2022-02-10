@@ -5,7 +5,7 @@ import {
   getStoreHouseById,
   listOfQuantities,
   getStoreHouseByQuantity,
-  getStoreHouseByBarcode
+  getStoreHouseByBarcode,
 } from "../../redux/actions/storeHouseActions";
 import { Space, Button, Table, Modal, Form, Input, Select } from "antd";
 import StoreHouseAdd from "./StoreHouseAdd";
@@ -19,6 +19,8 @@ export default function StoreHouseTable() {
   const [form] = Form.useForm();
 
   const [pagination, setPagination] = useState({ page: 1, pageSize: 15 });
+  const [barcodeData, setBarcode] = useState("");
+  const [quantityData, setQuantity] = useState("");
   const setfirstpage = () => {
     pagination.page = 1;
   };
@@ -130,20 +132,29 @@ export default function StoreHouseTable() {
     form.setFieldsValue({
       barcode: "",
     });
-    dispatch(getStoreHouseByQuantity(value,pagination.page,pagination.pageSize));
+    setQuantity(value);
+    dispatch(
+      getStoreHouseByQuantity(value, pagination.page, pagination.pageSize)
+    );
   };
   const onSearch = (e) => {
     form.setFieldsValue({
       quantity: "",
     });
-    if(form.getFieldsValue().barcode!==""){
-      dispatch(getStoreHouseByBarcode(form.getFieldsValue().barcode,pagination.page,pagination.pageSize))
+    setBarcode(form.getFieldsValue().barcode);
+    if (form.getFieldsValue().barcode !== "") {
+      dispatch(
+        getStoreHouseByBarcode(
+          form.getFieldsValue().barcode,
+          pagination.page,
+          pagination.pageSize
+        )
+      );
+    } else {
+      dispatch(listOfStoreHouse(pagination.page, pagination.pageSize));
     }
-    else{
-      dispatch(listOfStoreHouse(pagination.page,pagination.pageSize))
-    }
-    
-    // dispatch(searchProduct(searchData, pagination)); 
+
+    // dispatch(searchProduct(searchData, pagination));
     // setPagination({
     //   page: listOfProductDataByPage.currentPage + 1,
     //   pageSize: 15,
@@ -217,7 +228,7 @@ export default function StoreHouseTable() {
           </Form.Item>
           <Form.Item>
             <Button
-              style={{ left: "50px" }}
+              style={{ marginLeft: "50px" }}
               icon={<SearchOutlined />}
               type="primary"
               htmlType="submit"
@@ -230,7 +241,7 @@ export default function StoreHouseTable() {
             <Button
               type="primary"
               htmlType="submit"
-              style={{ left: "70px" }}
+              style={{ marginLeft: "70px" }}
               onClick={onClear}
             >
               Təmizlə
@@ -240,7 +251,7 @@ export default function StoreHouseTable() {
             <Button
               type="primary"
               htmlType="submit"
-              style={{ left: "90px" }}
+              style={{ marginLeft: "90px" }}
               onClick={onRefresh}
             >
               Yenilə
@@ -259,19 +270,21 @@ export default function StoreHouseTable() {
           total: storeHouseList.totalItems,
           onChange: (page, pageSize) => {
             setPagination({ page, pageSize });
-            if(form.getFieldsValue().barcode!==""){
-              console.log('1')
-              dispatch(getStoreHouseByBarcode(form.getFieldsValue().barcode,page,pageSize))
+
+            console.log(barcodeData);
+            console.log(quantityData);
+            if (barcodeData !== "") {
+              console.log("1");
+              dispatch(getStoreHouseByBarcode(barcodeData, page, pageSize));
             }
-            if(form.getFieldsValue().quantity!==""){
-              console.log('2')
-              dispatch(getStoreHouseByQuantity(form.getFieldsValue().quantity,page,pageSize))
+            if (quantityData !== "") {
+              console.log("2");
+              dispatch(getStoreHouseByQuantity(quantityData, page, pageSize));
             }
-            if(form.getFieldsValue().barcode==="" & form.getFieldsValue().quantity===""){
-              console.log('3')
+            if ((barcodeData === "") & (quantityData === "")) {
+              console.log("3");
               dispatch(listOfStoreHouse(page, pageSize));
             }
-            
           },
         }}
         columns={columns}
