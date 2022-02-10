@@ -16,7 +16,7 @@ import LoadingOverlay from "react-loading-overlay";
 const { Footer, Content } = Layout;
 
 export default function App() {
-  const loading = useSelector((state) => state.productReducers?.loading);
+  const loading = useSelector((state) => state.loaderReducers?.loading);
   return (
     <LoadingOverlay active={loading} spinner text="Məhsullar əlavə olunur, gözləyin...">
       <div>

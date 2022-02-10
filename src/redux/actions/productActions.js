@@ -1,5 +1,6 @@
 import * as actionTypes from "./actionTypes";
 import axiosInstance from "../../helpers/axios";
+import {showLoader,hideLoader} from "../actions/loaderActions"
 import {message,notification} from "antd"
 
 
@@ -76,9 +77,8 @@ export const addProductExcel = (data, paginationData) => (dispatch) => {
         type: actionTypes.ADD_PRODUCT_EXCEL,
         payload: response.data,
       });
-      dispatch(hideLoader());
+      dispatch(hideLoader()); 
       console.log(response)
-    //  message.success(response.data,3);
     notification['success']({message:response.data,description:''})
       dispatch(
         listOfProductsByPage(paginationData.page, paginationData.pageSize)
@@ -142,16 +142,4 @@ export const searchProduct = (searchData, paginationData) => (dispatch) => {
     });
 };
 
-export const showLoader =() =>(dispatch)=>{
-dispatch({
-  type:actionTypes.SHOW_LOADER,
-  payload:true
-})
-}
 
-export const hideLoader = () => (dispatch)=>{
-  dispatch({
-    type:actionTypes.HIDE_LOADER,
-    payload:false
-  })
-}

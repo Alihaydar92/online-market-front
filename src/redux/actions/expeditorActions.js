@@ -1,5 +1,7 @@
 import * as actionTypes from "./actionTypes";
 import axiosInstance from "../../helpers/axios";
+import { showLoader, hideLoader } from "../actions/loaderActions";
+import {notification} from "antd"
 export const listOfExpeditors = () => (dispatch) => {
   axiosInstance.get("/sellers").then((response) => {
     dispatch({
@@ -55,15 +57,17 @@ export const deleteExpeditor = (id) => (dispatch) => {
   });
 };
 
-
 export const addExpeditorExcel = (data) => (dispatch) => {
   console.log("excell data ", data);
+  dispatch(showLoader());
   axiosInstance.post("/sellers/excel", data).then((response) => {
     if (response.status === 200) {
       dispatch({
         type: actionTypes.ADD_EXPEDITOR_EXCEL,
         payload: response.data,
       });
+      dispatch(hideLoader());
+      notification['success']({message:response.data,description:''})
       dispatch(listOfExpeditors());
     }
   });

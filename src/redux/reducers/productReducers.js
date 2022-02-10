@@ -48,18 +48,6 @@ export default function productReducers(state = initialState, action) {
         productListDataByPage: action.payload,
       };
     }
-    case actionTypes.SHOW_LOADER:{
-      return{
-        ...state,
-        loading:action.payload
-      }
-    }
-    case actionTypes.HIDE_LOADER:{
-      return{
-        ...state,
-        loading:action.payload
-      }
-    }
     default:
       return state;
   }

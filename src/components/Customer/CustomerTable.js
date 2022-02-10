@@ -124,7 +124,7 @@ export default function CustomerTable() {
   const onClear = () => {
     form.setFieldsValue({
       name: "",
-    });
+    }); 
     setSearchCustomerData("");
     console.log(form.getFieldsValue().name);
   };

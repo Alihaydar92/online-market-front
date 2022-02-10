@@ -54,6 +54,10 @@ export default function StoreHouseTable() {
       dataIndex: "sellPrice",
     },
     {
+      title: "Barkod",
+      dataIndex: "barcode",
+    },
+    {
       title: "Qiymət",
       dataIndex: "price",
     },
@@ -117,6 +121,7 @@ export default function StoreHouseTable() {
         scroll={{ y: 530 }}
         style={{ marginTop: "20px", wordBreak: "break-word" }}
         dataSource={storeHouseList}
+        pagination={false}
         columns={columns}
         rowKey="id"
       ></Table>

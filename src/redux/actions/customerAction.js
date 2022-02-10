@@ -1,5 +1,6 @@
 import * as actionTypes from "./actionTypes";
 import axiosInstance from "../../helpers/axios";
+
 export const listOfCustomers = (page, pageSize) => (dispatch) => {
   axiosInstance
     .get("/customers?page=" + (page - 1) + "&size=" + pageSize)
