@@ -105,6 +105,7 @@ export default function StoreHouseTable() {
     {
       title: "Əməliyyat",
       dataIndex: "operation",
+      width: "220px",
       render: (text, storeHouse) => {
         return (
           <Space size="middle">
@@ -133,15 +134,15 @@ export default function StoreHouseTable() {
       barcode: "",
     });
     setQuantity(value);
-    dispatch(
-      getStoreHouseByQuantity(value, pagination.page, pagination.pageSize)
-    );
+    setPagination({ page: 1, pageSize: 15 });
+    dispatch(getStoreHouseByQuantity(value, 1, pagination.pageSize));
   };
   const onSearch = (e) => {
     form.setFieldsValue({
       quantity: "",
     });
     setBarcode(form.getFieldsValue().barcode);
+    setPagination({ page: 1, pageSize: 15 });
     if (form.getFieldsValue().barcode !== "") {
       dispatch(
         getStoreHouseByBarcode(
@@ -270,19 +271,13 @@ export default function StoreHouseTable() {
           total: storeHouseList.totalItems,
           onChange: (page, pageSize) => {
             setPagination({ page, pageSize });
-
-            console.log(barcodeData);
-            console.log(quantityData);
             if (barcodeData !== "") {
-              console.log("1");
               dispatch(getStoreHouseByBarcode(barcodeData, page, pageSize));
             }
             if (quantityData !== "") {
-              console.log("2");
               dispatch(getStoreHouseByQuantity(quantityData, page, pageSize));
             }
             if ((barcodeData === "") & (quantityData === "")) {
-              console.log("3");
               dispatch(listOfStoreHouse(page, pageSize));
             }
           },

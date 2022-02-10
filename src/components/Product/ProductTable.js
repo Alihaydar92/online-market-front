@@ -241,7 +241,7 @@ export default function ProductTable() {
       width: "220px",
       render: (text, productData) => {
         return (
-          <Space size="middle" sty>
+          <Space size="middle">
             <Button
               size="small"
               type="primary"
