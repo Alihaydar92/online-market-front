@@ -1,7 +1,7 @@
 import * as actionTypes from "./actionTypes";
 import axiosInstance from "../../helpers/axios";
-export const listOfStoreHouse = () => (dispatch) => {
-  axiosInstance.get("/storehouse").then((response) => {
+export const listOfStoreHouse = (page,pageSize) => (dispatch) => {
+  axiosInstance.get("/storehouse?page="+(page-1)+"&size="+pageSize).then((response) => {
     dispatch({
       type: actionTypes.LIST_OF_STOREHOUSE,
       payload: response.data,

@@ -4,22 +4,26 @@ import {
   listOfStoreHouse,
   getStoreHouseById,
 } from "../../redux/actions/storeHouseActions";
-import { Space, Button, Table, Modal } from "antd";
+import { Space, Button, Table, Modal, Form, Input } from "antd";
 import StoreHouseAdd from "./StoreHouseAdd";
 import StoreHouseEdit from "./StoreHouseEdit";
 import StoreHouseDelete from "./StoreHouseDelete";
 import "../../style.css";
-
+import { SearchOutlined } from "@ant-design/icons";
 export default function StoreHouseTable() {
   const dispatch = useDispatch();
+  const [form] = Form.useForm();
   const storeHouseList = useSelector(
     (state) => state.storeHouseReducers.storeHouseListData
   );
-
+  const [pagination, setPagination] = useState({ page: 1, pageSize: 15 });
+  const setfirstpage = () => {
+    pagination.page = 1;
+  };
   useEffect(() => {
-    dispatch(listOfStoreHouse());
+    dispatch(listOfStoreHouse(pagination.page,pagination.pageSize));
   }, []);
-
+  useEffect(() => {}, [storeHouseList]);
   const [isElaveEtModalVisible, setIsElaveEtModalVisible] = useState(false);
   const [isRedakteEtModalVisible, setIsRedakteModalVisible] = useState(false);
   const [isSilModalVisible, setIsSilModalVisible] = useState(false);
@@ -108,6 +112,33 @@ export default function StoreHouseTable() {
     },
   ];
 
+  const onSearch = (e) => {
+    var searchData = {
+      name: form.getFieldsValue().productName.trim(),
+      barcode: form.getFieldsValue().barcode.trim(),
+    };
+    // dispatch(searchProduct(searchData, pagination));
+    // setPagination({
+    //   page: listOfProductDataByPage.currentPage + 1,
+    //   pageSize: 15,
+    // });
+    // setDataSource(searchProductData.pages);
+    // setTotal(searchProductData.totalItems);
+  };
+
+  const onClear = () => {
+    form.setFieldsValue({
+      name: "",
+      barcode: "",
+      note: "",
+    });
+  };
+
+  const onRefresh = () => {
+    onClear();
+    // dispatch(listOfProductsByPage(pagination.page, pagination.pageSize));
+  };
+
   return (
     <div>
       <Button
@@ -117,11 +148,71 @@ export default function StoreHouseTable() {
       >
         Əlavə et
       </Button>
+
+      {/* <Form
+        form={form}
+        name="basic"
+        layout="inline"
+        labelCol={{ span: 8 }}
+        wrapperCol={{ span: 16 }}
+        initialValues={{ remember: true }}
+        autoComplete="off"
+        style={{ marginTop: "20px" }}
+      >
+        <Input.Group compact>
+          <Form.Item label="Məhsul adı:" name="productName">
+            <Input allowClear />
+          </Form.Item>
+          <Form.Item label="Barkod:" name="barcode">
+            <Input allowClear />
+          </Form.Item>
+
+          <Form.Item>
+            <Button
+              icon={<SearchOutlined />}
+              type="primary"
+              htmlType="submit"
+              onClick={onSearch}
+            >
+              Axtar
+            </Button>
+          </Form.Item>
+          <Form.Item>
+            <Button
+              type="primary"
+              htmlType="submit"
+              style={{ left: "20px" }}
+              onClick={onClear}
+            >
+              Təmizlə
+            </Button>
+          </Form.Item>
+          <Form.Item>
+            <Button
+              type="primary"
+              htmlType="submit"
+              style={{ left: "40px" }}
+              onClick={onRefresh}
+            >
+              Yenilə
+            </Button>
+          </Form.Item>
+        </Input.Group>
+      </Form> */}
+
       <Table
         scroll={{ y: 530 }}
         style={{ marginTop: "20px", wordBreak: "break-word" }}
-        dataSource={storeHouseList}
-        pagination={false}
+        dataSource={storeHouseList.pages}
+        pagination={{
+          current: pagination.page,
+          pageSize: pagination.pageSize,
+          total: storeHouseList.totalItems,
+          onChange: (page, pageSize) => {
+            setPagination({ page, pageSize });
+            dispatch(listOfStoreHouse(page, pageSize));
+          },
+        }}
         columns={columns}
         rowKey="id"
       ></Table>

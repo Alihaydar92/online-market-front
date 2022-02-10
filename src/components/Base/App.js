@@ -18,7 +18,7 @@ const { Footer, Content } = Layout;
 export default function App() {
   const loading = useSelector((state) => state.loaderReducers?.loading);
   return (
-    <LoadingOverlay active={loading} spinner text="Məhsullar əlavə olunur, gözləyin...">
+    <LoadingOverlay active={loading} spinner text="Əməliyyat gedir,xahiş edirik gözləyin...">
       <div>
         <Layout style={{ height: "100%" }}>
           <SideBarMenu />
