@@ -2,16 +2,17 @@ import * as actionTypes from "./actionTypes";
 import axiosInstance from "../../helpers/axios";
 import axios from "axios";
 const baseURL = process.env.REACT_APP_BACKEND_URL;
+const axiosInstance1 = axios.create({
+  baseURL: baseURL,
+  auth: {
+    username: window.localStorage.getItem("username"),
+    password: window.localStorage.getItem("password"),
+  },
+  
+}
+);
 export const listOfCategories = () => (dispatch) => {
-  const axiosInstance1 = axios.create({
-    baseURL: baseURL,
-    auth: {
-      username: window.localStorage.getItem("username"),
-      password: window.localStorage.getItem("password"),
-    },
-    
-  }
-  );
+  
   axiosInstance1.get("/categories").then((response) => {
     dispatch({
       type: actionTypes.LIST_OF_CATEGORIES,

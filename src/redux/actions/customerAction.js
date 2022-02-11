@@ -1,6 +1,6 @@
 import * as actionTypes from "./actionTypes";
 import axiosInstance from "../../helpers/axios";
-import axios from "axios";
+
 export const listOfCustomers = (page, pageSize) => (dispatch) => {
   
   axiosInstance

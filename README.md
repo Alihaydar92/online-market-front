@@ -85,6 +85,9 @@ paginationda page ve pagesize ilkin deyerlerini global const deyisen kimi saxlam
 
 paginationla bagli xirda buglari nezerden kecirmek (esasen de productda) 
 
+actionlarda (add delete update) dispatch listler cagirlir ,onlarin page parametri yoxdu onlari duzeldib test etmek
+
+axios create problemi
 
 ### sonra
 
