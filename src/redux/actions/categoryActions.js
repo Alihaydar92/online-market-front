@@ -1,9 +1,10 @@
 import * as actionTypes from "./actionTypes";
 import axiosInstance from "../../helpers/axios";
 import axios from "axios";
+const baseURL = process.env.REACT_APP_BACKEND_URL;
 export const listOfCategories = () => (dispatch) => {
   const axiosInstance1 = axios.create({
-    baseURL: 'http://localhost:8080',
+    baseURL: baseURL,
     auth: {
       username: window.localStorage.getItem("username"),
       password: window.localStorage.getItem("password"),
