@@ -58,24 +58,25 @@ export const deleteCustomer = (id) => (dispatch) => {
   });
 };
 
-export const searchCustomers = (customerData, page,pageSize) => (dispatch) => {
+export const searchCustomers = (customerData, page, pageSize) => (dispatch) => {
   var customerParams = new Object();
   if (customerData !== "") {
     customerParams.name = customerData;
   }
 
-  customerParams.page = page-1;
+  customerParams.page = page - 1;
 
   customerParams.size = pageSize;
 
   axiosInstance
-    .get("/customers" 
-    // +"?name=Huseyn&page=1&size=15"
-    , { params: customerParams }
+    .get(
+      "/customers",
+      // +"?name=Huseyn&page=1&size=15"
+      { params: customerParams }
     )
     .then((response) => {
       if (response.status === 200) {
-        console.log(response.data)
+        console.log(response.data);
         dispatch({
           type: actionTypes.SEARCH_CUSTOMER,
           payload: response.data,

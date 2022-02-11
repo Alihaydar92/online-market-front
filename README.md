@@ -81,7 +81,6 @@ paginationda page ve pagesize ilkin deyerlerini global const deyisen kimi saxlam
 
 paginationla bagli xirda buglari nezerden kecirmek (esasen de productda) 
 
-anbar axtaris
 
 ### sonra
 

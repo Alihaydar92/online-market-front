@@ -1,7 +1,8 @@
 import * as actionTypes from "./actionTypes";
 import axiosInstance from "../../helpers/axios";
 export const listOfProperties = () => (dispatch) => {
-  axiosInstance.get("/properties").then((response) => {
+  axiosInstance.get("/properties",{
+  }).then((response) => {
     dispatch({
       type: actionTypes.LIST_OF_PROPERTIES,
       payload: response.data,

@@ -57,10 +57,12 @@ export const GET_STORE_HOUSE_BY_BARCODE = "GET_STORE_HOUSE_BY_BARCODE";
 export const GET_STORE_HOUSE_BY_QUANTITY = "GET_STORE_HOUSE_BY_QUANTITY";
 
 //pagination
-
 export const PAGINATION = "PAGINATION";
 
 //page loader
 export const PAGE_LOADING = "PAGE_LOADING";
 export const SHOW_LOADER = "SHOW_LOADER";
 export const HIDE_LOADER = "HIDE_LOADER";
+
+//auth
+export const LOGIN_AUTH="LOGIN_AUTH"

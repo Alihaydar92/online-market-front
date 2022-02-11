@@ -1,25 +1,73 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { Form, Input, Button, Row } from "antd";
 import { useNavigate } from "react-router-dom";
-export default function Login({ Login, error }) {
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import { notification } from "antd";
+const baseURL = process.env.REACT_APP_BACKEND_URL;
+export default function Login() {
+  const dispatch = useDispatch();
   let navigate = useNavigate();
   const [form] = Form.useForm();
   const submitHandler = () => {
     form
       .validateFields()
       .then((values) => {
-        if (
-          (form.getFieldsValue().username === "admin") &
-          (form.getFieldsValue().password === "admin")
-        ) {
-          navigate("/home");
-        } else {
-          alert("İstifadəçi adı və ya şifrə yanlışdır");
-        }
+        // var userInfo = {
+        //   username: form.getFieldsValue().username,
+        //   password: form.getFieldsValue().password,
+        // };
+        // dispatch(loginAuth(userInfo));
+        // console.log("getLoginInfo ", getLoginInfo);
+        // if (getLoginInfo === 401) {
+        //   alert("İstifadəçi adı və ya şifrə yanlışdır");
+        // } else if (getLoginInfo === 200) {
+        //   window.localStorage.setItem(
+        //     "username",
+        //     form.getFieldsValue().username
+        //   );
+        //   window.localStorage.setItem(
+        //     "password",
+        //     form.getFieldsValue().password
+        //   );
+        //   navigate("/home");
+        // }
+        const axiosInstance = axios.create({
+          baseURL: baseURL,
+          auth: {
+            username: form.getFieldsValue().username,
+            password: form.getFieldsValue().password,
+          },
+        });
+
+        axiosInstance
+          .get("/basicauth")
+          .then((response) => {
+            if (response.status === 200) {
+              window.localStorage.setItem(
+                "username",
+                form.getFieldsValue().username
+              );
+              window.localStorage.setItem(
+                "password",
+                form.getFieldsValue().password
+              );
+              navigate("/home");
+            }
+          })
+          .catch((error) => {
+            if (error.response.status === 401) {
+              notification["error"]({
+                message: "İstifadəçi adı vəya şifrə yalnışdı",
+              });
+            }
+          });
       })
       .catch((err) => {
         console.log(err);
       });
+      console.log(window.localStorage.getItem("username"))
+      console.log(window.localStorage.getItem("password"))
   };
   return (
     <div className="container">
