@@ -2,6 +2,7 @@ import * as actionTypes from "./actionTypes";
 import axiosInstance from "../../helpers/axios";
 
 export const listOfCustomers = (page, pageSize) => (dispatch) => {
+  
   axiosInstance
     .get("/customers?page=" + (page - 1) + "&size=" + pageSize)
     .then((response) => {
@@ -59,6 +60,8 @@ export const deleteCustomer = (id) => (dispatch) => {
 };
 
 export const searchCustomers = (customerData, page, pageSize) => (dispatch) => {
+  console.log(window.localStorage.getItem("username"));
+  console.log(window.localStorage.getItem("password"));
   var customerParams = new Object();
   if (customerData !== "") {
     customerParams.name = customerData;
