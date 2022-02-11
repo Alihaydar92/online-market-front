@@ -1,19 +1,17 @@
 import * as actionTypes from "./actionTypes";
-import axiosInstance from "../../helpers/axios";
 import axios from "axios";
 const baseURL = process.env.REACT_APP_BACKEND_URL;
-const axiosInstance1 = axios.create({
-  baseURL: baseURL,
-  auth: {
-    username: window.localStorage.getItem("username"),
-    password: window.localStorage.getItem("password"),
-  },
-  
-}
-);
 export const listOfCategories = () => (dispatch) => {
-  
-  axiosInstance1.get("/categories").then((response) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+    
+  }
+  );
+  axiosInstance.get("/categories").then((response) => {
     dispatch({
       type: actionTypes.LIST_OF_CATEGORIES,
       payload: response.data,
@@ -22,6 +20,15 @@ export const listOfCategories = () => (dispatch) => {
 };
 
 export const getCategoryById = (id) => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+    
+  }
+  );
   axiosInstance.get("/categories/" + id).then((response) => {
     dispatch({
       type: actionTypes.GET_CATEGORY_BY_ID,
@@ -31,6 +38,15 @@ export const getCategoryById = (id) => (dispatch) => {
 };
 
 export const addCategory = (data) => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+    
+  }
+  );
   axiosInstance.post("/categories", data).then((response) => {
     if (response.status === 200) {
       dispatch({
@@ -42,7 +58,17 @@ export const addCategory = (data) => (dispatch) => {
   });
 };
 export const updateCategory = (data) => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+    
+  }
+  );
   axiosInstance.put("/categories/" + data.id, data).then((response) => {
+    
     if (response.status === 200) {
       dispatch({
         type: actionTypes.UPDATE_CATEGORY,
@@ -53,6 +79,15 @@ export const updateCategory = (data) => (dispatch) => {
   });
 };
 export const deleteCategory = (id) => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+    
+  }
+  );
   axiosInstance.delete("/categories/" + id).then((response) => {
     if (response.status === 200) {
       dispatch({

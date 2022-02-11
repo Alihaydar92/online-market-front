@@ -1,8 +1,19 @@
 import * as actionTypes from "./actionTypes";
-import axiosInstance from "../../helpers/axios";
+import axios from "axios";
+
 import { showLoader, hideLoader } from "../actions/loaderActions";
 import {notification} from "antd"
+const baseURL = process.env.REACT_APP_BACKEND_URL;
 export const listOfExpeditors = () => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+    
+  }
+  );
   axiosInstance.get("/sellers").then((response) => {
     dispatch({
       type: actionTypes.LIST_OF_EXPEDITORS,
@@ -11,6 +22,15 @@ export const listOfExpeditors = () => (dispatch) => {
   });
 };
 export const getExpeditorById = (id) => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+    
+  }
+  );
   axiosInstance.get("/sellers/" + id).then((response) => {
     dispatch({
       type: actionTypes.GET_EXPEDITOR_BY_ID,
@@ -20,6 +40,15 @@ export const getExpeditorById = (id) => (dispatch) => {
 };
 
 export const addExpeditor = (data) => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+    
+  }
+  );
   console.log("add customer ", data);
   axiosInstance.post("/sellers", data).then((response) => {
     if (response.status === 200) {
@@ -34,6 +63,15 @@ export const addExpeditor = (data) => (dispatch) => {
 };
 
 export const updateExpeditor = (data) => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+    
+  }
+  );
   axiosInstance.put("/sellers/" + data.id, data).then((response) => {
     if (response.status === 200) {
       dispatch({
@@ -46,6 +84,15 @@ export const updateExpeditor = (data) => (dispatch) => {
 };
 
 export const deleteExpeditor = (id) => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+    
+  }
+  );
   axiosInstance.delete("/sellers/" + id).then((response) => {
     if (response.status === 200) {
       dispatch({
@@ -58,7 +105,15 @@ export const deleteExpeditor = (id) => (dispatch) => {
 };
 
 export const addExpeditorExcel = (data) => (dispatch) => {
-  console.log("excell data ", data);
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+    
+  }
+  );
   dispatch(showLoader());
   axiosInstance.post("/sellers/excel", data).then((response) => {
     if (response.status === 200) {

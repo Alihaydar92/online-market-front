@@ -1,6 +1,16 @@
 import * as actionTypes from "./actionTypes";
-import axiosInstance from "../../helpers/axios";
+import axios from "axios";
+const baseURL = process.env.REACT_APP_BACKEND_URL;
 export const listOfProperties = () => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+    
+  }
+  );
   axiosInstance.get("/properties",{
   }).then((response) => {
     dispatch({
@@ -11,6 +21,15 @@ export const listOfProperties = () => (dispatch) => {
 };
 
 export const addProperty = (data) => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+    
+  }
+  );
   axiosInstance.post("/properties", data).then((response) => {
     if (response.status === 200) {
       dispatch({
@@ -23,6 +42,15 @@ export const addProperty = (data) => (dispatch) => {
 };
 
 export const getPropertyById = (id) => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+    
+  }
+  );
   axiosInstance.get("/properties/" + id).then((response) => {
     dispatch({
       type: actionTypes.GET_PROPERTY_BY_ID,
@@ -32,6 +60,15 @@ export const getPropertyById = (id) => (dispatch) => {
 };
 
 export const updateProperty = (data) => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+    
+  }
+  );
   axiosInstance.put("/properties/" + data.id, data).then((response) => {
     if (response.status === 200) {
       dispatch({
@@ -44,6 +81,15 @@ export const updateProperty = (data) => (dispatch) => {
 };
 
 export const deleteProperty = (id) => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+    
+  }
+  );
   axiosInstance.delete("/properties/" + id).then((response) => {
     if (response.status === 200) {
       dispatch({

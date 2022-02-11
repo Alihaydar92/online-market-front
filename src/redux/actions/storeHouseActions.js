@@ -1,6 +1,14 @@
 import * as actionTypes from "./actionTypes";
-import axiosInstance from "../../helpers/axios";
+import axios from "axios";
+const baseURL = process.env.REACT_APP_BACKEND_URL;
 export const listOfStoreHouse = (page, pageSize) => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+  });
   axiosInstance
     .get("/storehouse?page=" + (page - 1) + "&size=" + pageSize)
     .then((response) => {
@@ -11,6 +19,13 @@ export const listOfStoreHouse = (page, pageSize) => (dispatch) => {
     });
 };
 export const getStoreHouseById = (id) => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+  });
   axiosInstance.get("/storehouse/" + id).then((response) => {
     console.log("response ", response.data);
     dispatch({
@@ -21,6 +36,13 @@ export const getStoreHouseById = (id) => (dispatch) => {
 };
 
 export const addStoreHouse = (data) => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+  });
   axiosInstance.post("/storehouse", data).then((response) => {
     console.log("add store house ", response.status);
     if (response.status === 200) {
@@ -34,6 +56,13 @@ export const addStoreHouse = (data) => (dispatch) => {
 };
 
 export const updateStoreHouse = (data) => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+  });
   console.log("update product data ", data);
   axiosInstance.put("/storehouse/" + data.id, data).then((response) => {
     console.log(response.status);
@@ -49,6 +78,13 @@ export const updateStoreHouse = (data) => (dispatch) => {
 };
 
 export const deleteStoreHouse = (id) => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+  });
   axiosInstance.delete("/storehouse/" + id).then((response) => {
     if (response.status === 200) {
       dispatch({
@@ -61,6 +97,13 @@ export const deleteStoreHouse = (id) => (dispatch) => {
 };
 
 export const listOfQuantities = () => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+  });
   axiosInstance.get("/storehouse/quantities").then((response) => {
     if (response.status === 200) {
       dispatch({
@@ -71,34 +114,56 @@ export const listOfQuantities = () => (dispatch) => {
   });
 };
 
-export const getStoreHouseByBarcode = (barcode,page,pageSize) => (dispatch) => {
-  var storeHouseParams = new Object();
- 
-  storeHouseParams.page = page-1;
+export const getStoreHouseByBarcode =
+  (barcode, page, pageSize) => (dispatch) => {
+    const axiosInstance = axios.create({
+      baseURL: baseURL,
+      auth: {
+        username: window.localStorage.getItem("username"),
+        password: window.localStorage.getItem("password"),
+      },
+    });
+    var storeHouseParams = new Object();
 
-  storeHouseParams.size = pageSize;
-  axiosInstance.get("/storehouse/barcode/"+barcode,{params:storeHouseParams}).then((response) => {
-    if (response.status === 200) {
-      dispatch({
-        type: actionTypes.GET_STORE_HOUSE_BY_BARCODE,
-        payload: response.data,
+    storeHouseParams.page = page - 1;
+
+    storeHouseParams.size = pageSize;
+    axiosInstance
+      .get("/storehouse/barcode/" + barcode, { params: storeHouseParams })
+      .then((response) => {
+        if (response.status === 200) {
+          dispatch({
+            type: actionTypes.GET_STORE_HOUSE_BY_BARCODE,
+            payload: response.data,
+          });
+        }
       });
-    }
-  });
-};
+  };
 
-export const getStoreHouseByQuantity = (quantityData,page,pageSize) => (dispatch) => {
-  var storeHouseParams = new Object();
- 
-  storeHouseParams.page = page-1;
+export const getStoreHouseByQuantity =
+  (quantityData, page, pageSize) => (dispatch) => {
+    const axiosInstance = axios.create({
+      baseURL: baseURL,
+      auth: {
+        username: window.localStorage.getItem("username"),
+        password: window.localStorage.getItem("password"),
+      },
+    });
+    var storeHouseParams = new Object();
 
-  storeHouseParams.size = pageSize;
-  axiosInstance.get("/storehouse/quantities/"+quantityData,{params:storeHouseParams}).then((response) => {
-    if (response.status === 200) {
-      dispatch({
-        type: actionTypes.GET_STORE_HOUSE_BY_QUANTITY,
-        payload: response.data,
+    storeHouseParams.page = page - 1;
+
+    storeHouseParams.size = pageSize;
+    axiosInstance
+      .get("/storehouse/quantities/" + quantityData, {
+        params: storeHouseParams,
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          dispatch({
+            type: actionTypes.GET_STORE_HOUSE_BY_QUANTITY,
+            payload: response.data,
+          });
+        }
       });
-    }
-  });
-};
+  };

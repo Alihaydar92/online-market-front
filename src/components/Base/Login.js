@@ -1,12 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Form, Input, Button, Row } from "antd";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { notification } from "antd";
 const baseURL = process.env.REACT_APP_BACKEND_URL;
 export default function Login() {
-  const dispatch = useDispatch();
   let navigate = useNavigate();
   const [form] = Form.useForm();
   const submitHandler = () => {
@@ -33,13 +31,7 @@ export default function Login() {
                 "password",
                 form.getFieldsValue().password
               );
-              console.log(window.localStorage.getItem("username"));
-              console.log(window.localStorage.getItem("password"));
-              console.log(form.getFieldsValue().username);
               navigate("/home");
-              console.log(window.localStorage.getItem("username"));
-              console.log(window.localStorage.getItem("password"));
-              console.log(form.getFieldsValue().password);
             }
           })
           .catch((error) => {

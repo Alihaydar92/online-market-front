@@ -1,8 +1,17 @@
 import * as actionTypes from "./actionTypes";
-import axiosInstance from "../../helpers/axios";
+import axios from "axios";
+const baseURL = process.env.REACT_APP_BACKEND_URL;
 
 export const listOfCustomers = (page, pageSize) => (dispatch) => {
-  
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+    
+  }
+  ); 
   axiosInstance
     .get("/customers?page=" + (page - 1) + "&size=" + pageSize)
     .then((response) => {
@@ -13,6 +22,15 @@ export const listOfCustomers = (page, pageSize) => (dispatch) => {
     });
 };
 export const getCustomerById = (id) => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+    
+  }
+  );
   axiosInstance.get("/customers/" + id).then((response) => {
     dispatch({
       type: actionTypes.GET_CUSTOMER_BY_ID,
@@ -21,6 +39,15 @@ export const getCustomerById = (id) => (dispatch) => {
   });
 };
 export const addCustomer = (data) => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+    
+  }
+  );
   axiosInstance.post("/customers", data).then((response) => {
     if (response.status === 200) {
       dispatch({
@@ -34,6 +61,15 @@ export const addCustomer = (data) => (dispatch) => {
 };
 
 export const updateCustomer = (data) => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+    
+  }
+  );
   axiosInstance.put("/customers/" + data.id, data).then((response) => {
     if (response.status === 200) {
       dispatch({
@@ -47,6 +83,15 @@ export const updateCustomer = (data) => (dispatch) => {
 };
 
 export const deleteCustomer = (id) => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+    
+  }
+  );
   axiosInstance.delete("/customers/" + id).then((response) => {
     if (response.status === 200) {
       dispatch({
@@ -61,8 +106,15 @@ export const deleteCustomer = (id) => (dispatch) => {
 
 export const searchCustomers = (customerData, page, pageSize) => (dispatch) => {
  
-  console.log(window.localStorage.getItem("username"));
-  console.log(window.localStorage.getItem("password"));
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+    
+  }
+  );
   var customerParams = new Object();
   if (customerData !== "") {
     customerParams.name = customerData;

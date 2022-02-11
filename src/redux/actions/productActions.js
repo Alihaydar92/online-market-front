@@ -1,10 +1,19 @@
 import * as actionTypes from "./actionTypes";
-import axiosInstance from "../../helpers/axios";
 import {showLoader,hideLoader} from "../actions/loaderActions"
 import {message,notification} from "antd"
-
+import axios from "axios";
+const baseURL = process.env.REACT_APP_BACKEND_URL;
 
 export const listOfProductsByPage = (page, pageSize) => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+    
+  }
+  );
   console.log("page and pagesize ", page + "//" + pageSize);
   axiosInstance
     .get("/products/paged?page=" + (page - 1) + "&size=" + pageSize)
@@ -17,7 +26,15 @@ export const listOfProductsByPage = (page, pageSize) => (dispatch) => {
 };
 
 export const listOfProducts = () => (dispatch) => {
-
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+    
+  }
+  );
   axiosInstance
     .get("/products")
     .then((response) => {
@@ -30,6 +47,15 @@ export const listOfProducts = () => (dispatch) => {
 };
 
 export const getProductById = (id) => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+    
+  }
+  );
   axiosInstance.get("/products/" + id).then((response) => {
     console.log("response ", response.data);
     dispatch({
@@ -40,6 +66,15 @@ export const getProductById = (id) => (dispatch) => {
 };
 
 export const addProduct = (data, page, pageSize) => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+    
+  }
+  );
   axiosInstance.post("/products", data).then((response) => {
     if (response.status === 200) {
       dispatch({
@@ -52,8 +87,15 @@ export const addProduct = (data, page, pageSize) => (dispatch) => {
 };
 
 export const updateProduct = (data, paginationData) => (dispatch) => {
-  console.log("update product data ", data);
-  console.log("update paginationData data ", paginationData);
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+    
+  }
+  );
   axiosInstance.put("/products/" + data.id, data).then((response) => {
     console.log(response.status);
     console.log(response.data);
@@ -69,6 +111,15 @@ export const updateProduct = (data, paginationData) => (dispatch) => {
   });
 };
 export const deleteProduct = (id, paginationData) => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+    
+  }
+  );
   axiosInstance.delete("/products/" + id).then((response) => {
     if (response.status === 200) {
       dispatch({
@@ -83,6 +134,15 @@ export const deleteProduct = (id, paginationData) => (dispatch) => {
 };
 
 export const addProductExcel = (data, paginationData) => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+    
+  }
+  );
   dispatch(showLoader());
   axiosInstance.post("/products/excel", data).then((response) => {
     if (response.status === 200) {
@@ -101,6 +161,15 @@ export const addProductExcel = (data, paginationData) => (dispatch) => {
 };
 
 export const addProductImages = (id, data, paginationData) => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+    
+  }
+  );
   axiosInstance
     .post("/product/" + id + "/images/list", data)
     .then((response) => {
@@ -117,6 +186,15 @@ export const addProductImages = (id, data, paginationData) => (dispatch) => {
 };
 
 export const getProductImagesByProductId = (id) => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+    
+  }
+  );
   axiosInstance.get("/product/" + id + "/images").then((response) => {
     console.log("get product imgs by product id reposne data: ", response.data);
     if (response.status === 200) {
@@ -129,6 +207,15 @@ export const getProductImagesByProductId = (id) => (dispatch) => {
 };
 
 export const searchProduct = (searchData, paginationData) => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+    
+  }
+  );
   var productParams = new Object();
   if (searchData.name !== "") {
     productParams.name = searchData.name;
