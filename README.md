@@ -75,7 +75,11 @@ img ve diger filelarla bagli codelarin optimizasiyasi
 
 resetfields eslinde duz islemir, yalniz emeliyyat olduqdan sonra isleyir, halbuki modali elebele acib bagladiqda bele islemelidi (modal acarken reset olmalidi datalar)(useEffectLayout genis test edib yoxlamaq)
 
-base auth tetbiq ederek login olmaq
+base auth tetbiq ederek login olmaq +++
+
+route ile linkleri goruntuden yigisdirmaq, yalniz base link olacaq 
+
+window local storage clearde problem , bunu hell etmek
 
 paginationda page ve pagesize ilkin deyerlerini global const deyisen kimi saxlamq(basqa pencerelerde de istifade etmek ucun)
 

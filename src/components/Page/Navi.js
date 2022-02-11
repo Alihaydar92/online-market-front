@@ -16,8 +16,9 @@ export default function Navi() {
   const [isOpen, setIsOpen] = useState(false);
   const [btnDropleft, setBtnDropleft] = useState(false);
   const logout = () => {
-    navigate("/");
     window.localStorage.clear();
+    navigate("/");
+    
 
   };
   return (

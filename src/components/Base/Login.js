@@ -66,8 +66,6 @@ export default function Login() {
       .catch((err) => {
         console.log(err);
       });
-      console.log(window.localStorage.getItem("username"))
-      console.log(window.localStorage.getItem("password"))
   };
   return (
     <div className="container">
