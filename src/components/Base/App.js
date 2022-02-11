@@ -45,12 +45,12 @@ export default function App() {
               style={{ borderRight: 0, height: "100%" }}
             >
               <SubMenu key="sub1" icon={<UserOutlined />} title="Qeydiyyat">
-                <Menu.Item
+                {/* <Menu.Item
                   key="users"
                   onClick={(e) => <CustomerTable />}
                 >
                   İstifadəçilər
-                </Menu.Item>
+                </Menu.Item> */}
 
                 <Menu.Item
                   // onClick={navigate("customers")}

@@ -13,25 +13,6 @@ export default function Login() {
     form
       .validateFields()
       .then((values) => {
-        // var userInfo = {
-        //   username: form.getFieldsValue().username,
-        //   password: form.getFieldsValue().password,
-        // };
-        // dispatch(loginAuth(userInfo));
-        // console.log("getLoginInfo ", getLoginInfo);
-        // if (getLoginInfo === 401) {
-        //   alert("İstifadəçi adı və ya şifrə yanlışdır");
-        // } else if (getLoginInfo === 200) {
-        //   window.localStorage.setItem(
-        //     "username",
-        //     form.getFieldsValue().username
-        //   );
-        //   window.localStorage.setItem(
-        //     "password",
-        //     form.getFieldsValue().password
-        //   );
-        //   navigate("/home");
-        // }
         const axiosInstance = axios.create({
           baseURL: baseURL,
           auth: {
@@ -52,7 +33,13 @@ export default function Login() {
                 "password",
                 form.getFieldsValue().password
               );
+              console.log(window.localStorage.getItem("username"));
+              console.log(window.localStorage.getItem("password"));
+              console.log(form.getFieldsValue().username);
               navigate("/home");
+              console.log(window.localStorage.getItem("username"));
+              console.log(window.localStorage.getItem("password"));
+              console.log(form.getFieldsValue().password);
             }
           })
           .catch((error) => {
