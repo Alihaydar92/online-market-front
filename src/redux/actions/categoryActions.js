@@ -1,8 +1,17 @@
 import * as actionTypes from "./actionTypes";
 import axiosInstance from "../../helpers/axios";
-
+import axios from "axios";
 export const listOfCategories = () => (dispatch) => {
-  axiosInstance.get("/categories").then((response) => {
+  const axiosInstance1 = axios.create({
+    baseURL: 'http://localhost:8080',
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+    
+  }
+  );
+  axiosInstance1.get("/categories").then((response) => {
     dispatch({
       type: actionTypes.LIST_OF_CATEGORIES,
       payload: response.data,

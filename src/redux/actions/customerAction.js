@@ -1,6 +1,6 @@
 import * as actionTypes from "./actionTypes";
 import axiosInstance from "../../helpers/axios";
-
+import axios from "axios";
 export const listOfCustomers = (page, pageSize) => (dispatch) => {
   
   axiosInstance
@@ -60,6 +60,7 @@ export const deleteCustomer = (id) => (dispatch) => {
 };
 
 export const searchCustomers = (customerData, page, pageSize) => (dispatch) => {
+ 
   console.log(window.localStorage.getItem("username"));
   console.log(window.localStorage.getItem("password"));
   var customerParams = new Object();
