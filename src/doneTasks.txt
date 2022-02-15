@@ -98,3 +98,8 @@ emekdaslar loading +++
 anbar page-de mehsullar combosu dolmur (ona gore ki mehsullar page ile gelir)+++
 
 anbar axtaris+++
+
+window local storage clearde problem , bunu hell etmek+++
+
+
+base auth tetbiq ederek login olmaq +++
