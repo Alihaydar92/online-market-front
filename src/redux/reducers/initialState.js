@@ -5,6 +5,7 @@ export default {
   modalType: null,
   modalProps: {},
   customerListData: [],
+  customerDataListByExpeditorId: [],
   customerDataById: {},
   customerUpdateData: {},
   customerAddData: {},
@@ -15,6 +16,7 @@ export default {
 
   productListData: [],
   productListDataByPage: {},
+  productListDataByCategoryId:[],
   productDataById: {},
   productDeleteData: {},
   productAddData: {},
@@ -36,7 +38,7 @@ export default {
 
   storeHouseListData: [],
   storeHouseDataById: {},
-  listOfQuantities:[],
+  listOfQuantities: [],
 
-  loading:false
+  loading: false,
 };

@@ -18,3 +18,13 @@
     display: none !important;
   }
   
+
+  .ant-checkbox-inner {
+    width: 35px;
+    height: 35px;
+    margin-left: 50px;
+}
+
+ /* .ant-checkbox-inner, .ant-checkbox-input {
+  transform: scale(3)
+} */

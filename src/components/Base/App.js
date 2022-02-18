@@ -19,6 +19,7 @@ import {
   LaptopOutlined,
   NotificationOutlined,
 } from "@ant-design/icons";
+import CartList from "../Cart/CartList";
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
@@ -31,7 +32,7 @@ export default function App() {
     <LoadingOverlay
       active={loading}
       spinner
-      text="Əməliyyat gedir,xahiş edirik gözləyin..."
+      text="Əməliyyat gedir, xahiş edirik gözləyin..."
     >
       <div>
         <Layout style={{ height: "100%" }}>
@@ -76,18 +77,18 @@ export default function App() {
                 <Menu.Item key="5">
                   <Link to="products">Məhsullar</Link>
                 </Menu.Item>
-                {/* <Menu.Item key="6">
+                <Menu.Item key="6">
     <Link to="/carts">Cart</Link>
   </Menu.Item>
   <Menu.Item key="7">
     <Link to="/editableCartTable">EditableCartTable</Link>
-  </Menu.Item> */}
+  </Menu.Item>
                 <Menu.Item key="8">
                   <Link to="storeHouse">Anbar</Link>
                 </Menu.Item>
               </SubMenu>
               <SubMenu key="sub3" icon={<NotificationOutlined />} title="Digər">
-                <Menu.Item key="9">option9</Menu.Item>
+                <Menu.Item key="9"><Link to="/cartList">CartList</Link></Menu.Item>
                 <Menu.Item key="10">option10</Menu.Item>
                 <Menu.Item key="11">option11</Menu.Item>
                 <Menu.Item key="12">option12</Menu.Item>
@@ -109,6 +110,10 @@ export default function App() {
                 <Route
                   path="editableCartTable"
                   element={<AddDeleteTableRows />}
+                />
+                <Route
+                  path="cartList"
+                  element={<CartList />}
                 />
                 <Route path="storeHouse" element={<StoreHouseTable />} />
               </Routes>

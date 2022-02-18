@@ -3,6 +3,9 @@ import axios from "axios";
 const baseURL = process.env.REACT_APP_BACKEND_URL;
 
 export const listOfCustomers = (page, pageSize) => (dispatch) => {
+  var customerParams=new Object();
+  customerParams.page=page-1;
+  customerParams.size=pageSize;
   const axiosInstance = axios.create({
     baseURL: baseURL,
     auth: {
@@ -12,8 +15,9 @@ export const listOfCustomers = (page, pageSize) => (dispatch) => {
     
   }
   ); 
+  //?page=" + (page - 1) + "&size=" + pageSize
   axiosInstance
-    .get("/customers?page=" + (page - 1) + "&size=" + pageSize)
+    .get("/customers",{params:customerParams})
     .then((response) => {
       dispatch({
         type: actionTypes.LIST_OF_CUSTOMERS,
@@ -34,6 +38,24 @@ export const getCustomerById = (id) => (dispatch) => {
   axiosInstance.get("/customers/" + id).then((response) => {
     dispatch({
       type: actionTypes.GET_CUSTOMER_BY_ID,
+      payload: response.data,
+    });
+  });
+};
+export const getCustomerListByExpeditorId = (expeditorId) => (dispatch) => {
+  expeditorId=6;
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+    
+  }
+  );
+  axiosInstance.get("/sellers/"+expeditorId+"/customers").then((response) => {
+    dispatch({
+      type: actionTypes.GET_CUSTOMER_LIST_BY_EXPEDITOR_ID,
       payload: response.data,
     });
   });
@@ -142,3 +164,5 @@ export const searchCustomers = (customerData, page, pageSize) => (dispatch) => {
       }
     });
 };
+
+

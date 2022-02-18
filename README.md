@@ -88,6 +88,8 @@ actionlarda (add delete update) dispatch listler cagirlir ,onlarin page parametr
 
 axios create problemi
 
+servis connection xetasini mesajla gostermek
+
 ### sonra
 
 Imkan varsa pencerelesi responsive etmek (Sonda da edile biler)
@@ -96,6 +98,11 @@ label-larin textlerini file-dan oxumaq
 
 anbar add edit modallarda product listi axtarisla getirmek
 
+daxil olan userin(axpeditor) musteri siyahisi verilcek
+
+login olduqdan sonra user id-ye gore seller cagirilacaq 
+seller id-ye gore ise msteri siyahisi gelecek, helelik musteri siyahsini cagirmaq ucun seller id-ni elnen verirem
+ 
 ### backend teyyub
 
 Anbar tableda sort hemise anbara daxil olma tarixine gore desc getse yaxsidi
@@ -103,3 +110,6 @@ Anbar tableda sort hemise anbara daxil olma tarixine gore desc getse yaxsidi
 mehsullar / Satis qiymeti maya deyerinden asagi ola biler bilmez deqiqlesdirmek, olmazsa kontrol qoymaq. (teyyub)
 
 paginationda 120ci pagede data olmadigi halda 120ci page-i qaytarir
+
+
+product add update-de category ve property( diger fieldler de ola biler) insert update ollmur

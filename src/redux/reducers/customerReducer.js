@@ -29,6 +29,13 @@ import  initialState from "./initialState"
                 
             }
         }
+        case actionTypes.GET_CUSTOMER_LIST_BY_EXPEDITOR_ID: {
+            return {
+                ...state,
+                customerDataListByExpeditorId: action.payload
+                
+            }
+        }
         case actionTypes.SEARCH_CUSTOMER: {
             return {
                 ...state,

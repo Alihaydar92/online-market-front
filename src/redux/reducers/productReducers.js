@@ -23,6 +23,12 @@ export default function productReducers(state = initialState, action) {
         productDataById: action.payload,
       };
     }
+    case actionTypes.GET_PRODUCT_LIST_BY_CATEGORY_ID: {
+      return {
+        ...state,
+        productListDataByCategoryId: action.payload,
+      };
+    }
 
     case actionTypes.DELETE_PRODUCT: {
       return {
