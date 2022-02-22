@@ -66,6 +66,7 @@ export const getProductListByCategoryId = (categoryId) => (dispatch) => {
       password: window.localStorage.getItem("password"),
     },
   });
+  dispatch(showLoader());
   axiosInstance
     .get("/categories/" + categoryId + "/products")
     .then((response) => {
@@ -74,6 +75,7 @@ export const getProductListByCategoryId = (categoryId) => (dispatch) => {
         type: actionTypes.GET_PRODUCT_LIST_BY_CATEGORY_ID,
         payload: response.data,
       });
+      dispatch(hideLoader());
     });
 };
 

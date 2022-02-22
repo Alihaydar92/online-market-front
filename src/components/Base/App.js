@@ -7,9 +7,8 @@ import ExpeditorTable from "../Expeditor/ExpeditorTable";
 import ProductTable from "../Product/ProductTable";
 import CategoryTable from "../Category/CategoryTable";
 import PropertyTable from "../Property/PropertyTable";
-import CartAdd from "../Cart/CartAdd";
+import DynamicList from "../Cart/DynamicList"
 import Navi from "../Page/Navi";
-import AddDeleteTableRows from "../Cart/AddDeleteTableRows";
 import StoreHouseTable from "../StoreHouse/StoreHouseTable";
 import SideBarMenu from "../Page/SideBarMenu";
 import LoadingOverlay from "react-loading-overlay";
@@ -20,6 +19,7 @@ import {
   NotificationOutlined,
 } from "@ant-design/icons";
 import CartList from "../Cart/CartList";
+import FormList from "../Cart/FormList";
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
@@ -77,18 +77,18 @@ export default function App() {
                 <Menu.Item key="5">
                   <Link to="products">Məhsullar</Link>
                 </Menu.Item>
-                <Menu.Item key="6">
-    <Link to="/carts">Cart</Link>
-  </Menu.Item>
-  <Menu.Item key="7">
-    <Link to="/editableCartTable">EditableCartTable</Link>
-  </Menu.Item>
+                {/* <Menu.Item key="6">
+                  <Link to="/dynamic">Satis</Link>
+                </Menu.Item> */}
+                <Menu.Item key="7">
+                  <Link to="/cartList">CartList</Link>
+                </Menu.Item>
                 <Menu.Item key="8">
                   <Link to="storeHouse">Anbar</Link>
                 </Menu.Item>
               </SubMenu>
               <SubMenu key="sub3" icon={<NotificationOutlined />} title="Digər">
-                <Menu.Item key="9"><Link to="/cartList">CartList</Link></Menu.Item>
+                <Menu.Item key="9"><Link to="/formList">formList</Link></Menu.Item>
                 <Menu.Item key="10">option10</Menu.Item>
                 <Menu.Item key="11">option11</Menu.Item>
                 <Menu.Item key="12">option12</Menu.Item>
@@ -106,16 +106,10 @@ export default function App() {
                 <Route path="products" element={<ProductTable />} />
                 <Route path="categories" element={<CategoryTable />} />
                 <Route path="properties" element={<PropertyTable />} />
-                <Route path="carts" element={<CartAdd />} />
-                <Route
-                  path="editableCartTable"
-                  element={<AddDeleteTableRows />}
-                />
-                <Route
-                  path="cartList"
-                  element={<CartList />}
-                />
+                {/* <Route path="dynamic" element={<DynamicList />} /> */}
+                <Route path="cartList" element={<CartList />} />
                 <Route path="storeHouse" element={<StoreHouseTable />} />
+                <Route path="formList" element={<FormList />} />
               </Routes>
             </Content>
 

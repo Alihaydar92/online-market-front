@@ -78,8 +78,6 @@ resetfields eslinde duz islemir, yalniz emeliyyat olduqdan sonra isleyir, halbuk
 
 route ile linkleri goruntuden yigisdirmaq, yalniz base link olacaq 
 
-
-
 paginationda page ve pagesize ilkin deyerlerini global const deyisen kimi saxlamq(basqa pencerelerde de istifade etmek ucun)
 
 paginationla bagli xirda buglari nezerden kecirmek (esasen de productda) 
@@ -89,6 +87,10 @@ actionlarda (add delete update) dispatch listler cagirlir ,onlarin page parametr
 axios create problemi
 
 servis connection xetasini mesajla gostermek
+
+mehsul page-ye axtarisha kateqoriya fieldi elave etmek
+
+cart pagede mehsullar gec geldiyi ucun loading qoymaq
 
 ### sonra
 
@@ -100,8 +102,8 @@ anbar add edit modallarda product listi axtarisla getirmek
 
 daxil olan userin(axpeditor) musteri siyahisi verilcek
 
-login olduqdan sonra user id-ye gore seller cagirilacaq 
-seller id-ye gore ise msteri siyahisi gelecek, helelik musteri siyahsini cagirmaq ucun seller id-ni elnen verirem
+login olduqdan sonra user id-ye gore seller cagirilacaq (hem de goruntude gosterilecek)
+seller id-ye gore ise musteri siyahisi gelecek, helelik musteri siyahsini cagirmaq ucun seller id-ni elnen verirem (id 6)
  
 ### backend teyyub
 
@@ -112,4 +114,4 @@ mehsullar / Satis qiymeti maya deyerinden asagi ola biler bilmez deqiqlesdirmek,
 paginationda 120ci pagede data olmadigi halda 120ci page-i qaytarir
 
 
-product add update-de category ve property( diger fieldler de ola biler) insert update ollmur
+product add update-de category ve property( diger fieldler de ola biler) insert update ollmur +++
