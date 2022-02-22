@@ -92,6 +92,8 @@ mehsul page-ye axtarisha kateqoriya fieldi elave etmek
 
 cart pagede mehsullar gec geldiyi ucun loading qoymaq
 
+sekil gelmiyende by default shekil qoymaq
+
 ### sonra
 
 Imkan varsa pencerelesi responsive etmek (Sonda da edile biler)
