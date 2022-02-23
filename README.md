@@ -90,9 +90,11 @@ servis connection xetasini mesajla gostermek
 
 mehsul page-ye axtarisha kateqoriya fieldi elave etmek
 
-cart pagede mehsullar gec geldiyi ucun loading qoymaq
+cart pagede mehsullar gec geldiyi ucun loading qoymaq +++
 
-sekil gelmiyende by default shekil qoymaq
+sekil gelmiyende by default shekil qoymaq +++
+
+cardlist pagede category deyishdikde say inputunu deyismek
 
 ### sonra
 
@@ -102,7 +104,7 @@ label-larin textlerini file-dan oxumaq
 
 anbar add edit modallarda product listi axtarisla getirmek
 
-daxil olan userin(axpeditor) musteri siyahisi verilcek
+daxil olan userin(expeditor) musteri siyahisi verilcek
 
 login olduqdan sonra user id-ye gore seller cagirilacaq (hem de goruntude gosterilecek)
 seller id-ye gore ise musteri siyahisi gelecek, helelik musteri siyahsini cagirmaq ucun seller id-ni elnen verirem (id 6)

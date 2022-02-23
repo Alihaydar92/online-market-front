@@ -43,7 +43,7 @@ export const getCustomerById = (id) => (dispatch) => {
   });
 };
 export const getCustomerListByExpeditorId = (expeditorId) => (dispatch) => {
-  expeditorId=6;
+  expeditorId=6;//helelik elnen vermisem expeditor id-ni
   const axiosInstance = axios.create({
     baseURL: baseURL,
     auth: {

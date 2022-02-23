@@ -70,3 +70,6 @@ export const HIDE_LOADER = "HIDE_LOADER";
 
 //auth
 export const LOGIN_AUTH = "LOGIN_AUTH";
+
+//CART
+export const ADD_CART="ADD_CART"

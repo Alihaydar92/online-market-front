@@ -7,7 +7,7 @@ import ExpeditorTable from "../Expeditor/ExpeditorTable";
 import ProductTable from "../Product/ProductTable";
 import CategoryTable from "../Category/CategoryTable";
 import PropertyTable from "../Property/PropertyTable";
-import DynamicList from "../Cart/DynamicList"
+import DynamicList from "../Cart/DynamicList";
 import Navi from "../Page/Navi";
 import StoreHouseTable from "../StoreHouse/StoreHouseTable";
 import SideBarMenu from "../Page/SideBarMenu";
@@ -20,6 +20,7 @@ import {
 } from "@ant-design/icons";
 import CartList from "../Cart/CartList";
 import FormList from "../Cart/FormList";
+import Basket from "../Cart/Basket";
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
@@ -81,14 +82,14 @@ export default function App() {
                   <Link to="/dynamic">Satis</Link>
                 </Menu.Item> */}
                 <Menu.Item key="7">
-                  <Link to="/cartList">CartList</Link>
+                  <Link to="/cartList">Satış</Link>
                 </Menu.Item>
                 <Menu.Item key="8">
                   <Link to="storeHouse">Anbar</Link>
                 </Menu.Item>
               </SubMenu>
               <SubMenu key="sub3" icon={<NotificationOutlined />} title="Digər">
-                <Menu.Item key="9"><Link to="/formList">formList</Link></Menu.Item>
+                <Menu.Item key="9">option9</Menu.Item>
                 <Menu.Item key="10">option10</Menu.Item>
                 <Menu.Item key="11">option11</Menu.Item>
                 <Menu.Item key="12">option12</Menu.Item>
@@ -106,10 +107,9 @@ export default function App() {
                 <Route path="products" element={<ProductTable />} />
                 <Route path="categories" element={<CategoryTable />} />
                 <Route path="properties" element={<PropertyTable />} />
-                {/* <Route path="dynamic" element={<DynamicList />} /> */}
                 <Route path="cartList" element={<CartList />} />
                 <Route path="storeHouse" element={<StoreHouseTable />} />
-                <Route path="formList" element={<FormList />} />
+                <Route path="sebet" element={<Basket />} />
               </Routes>
             </Content>
 
