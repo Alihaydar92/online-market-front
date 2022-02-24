@@ -15,6 +15,7 @@ export default function CartList() {
   const [topForm] = Form.useForm();
   // const [countValue, setCountValue] = useState();
   const [customerId, setCustomerId] = useState(Number());
+  const [categoryDisable, setCategoryDisable] = useState(true);
   const [basketData, setBasketData] = useState([
     {
       id: Number(),
@@ -23,11 +24,7 @@ export default function CartList() {
       index: Number(),
     },
   ]);
-  // const [countDataList, setCountDataList] = useState([
-  //   { id: Number(), countState: Number() },
-  // ]);
 
-  const [listItems, setListItems] = useState([{}]);
   useEffect(() => {
     dispatch(listOfCategories());
   }, []);
@@ -42,27 +39,29 @@ export default function CartList() {
   const listOfProductDataByCategoryId = useSelector(
     (state) => state.productReducers?.productListDataByCategoryId
   );
-  useEffect(() => {
-    setListItems(listOfProductDataByCategoryId);
-  }, [listOfProductDataByCategoryId]);
   const listOfCustomerByExpeditorId = useSelector(
     (state) => state.customerReducer?.customerDataListByExpeditorId
   );
   var countDataList = [];
   const onChangeCategory = (value) => {
-    // setCountValue(0);
-    dispatch(getProductListByCategoryId(value));
-    // setListItems(listOfProductDataByCategoryId);
+    topForm
+      .validateFields()
+      .then(() => {
+        dispatch(getProductListByCategoryId(value));
 
-    console.log(listOfProductDataByCategoryId);
+        console.log(listOfProductDataByCategoryId);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   const onChangeCustomer = (value) => {
+    setCategoryDisable(false);
     setCustomerId(value);
   };
   var countDataJS = null;
 
   function handleCountChange(count, item) {
-    // setCountValue(count)
     countDataJS = new Object();
     countDataJS.id = item.id;
     countDataJS.countState = count;
@@ -77,14 +76,15 @@ export default function CartList() {
     console.log(countDataList);
     console.log(countDataJS);
   }
-  var items = [];
+  var items = []; //quantity, price ve product id data list
 
   const handleToggleComplete = (productItem) => {
+    if (countDataList.length === 0) return; //eger mehsulun sayi secilmeyibse o zaman elave etmesin
     console.log(countDataList);
     console.log(productItem.price);
 
-    var productItemJs = { quantity: 0, productDto: { id: 0, price: 0 } }; //umumi cart add-a gondereceyim data
-    var basketItemJs = new Object(); //yalniz seller ve cistomer id yigacagim data
+    var productItemJs = { quantity: 0, productDto: { id: 0, price: 0 } }; //yalniz itemsi yigacagim obj
+    var basketItemJs = new Object(); //umumi cart add-a gondereceyim data
 
     productItemJs.productDto.id = productItem.id;
     productItemJs.productDto.price = 0; //heleki 0 gonderilir sonra duzelecek
@@ -133,37 +133,6 @@ export default function CartList() {
           // onFinish={handleFinish}
         >
           <Form.Item
-            label="Kateqoriya"
-            name="category"
-            rules={[{ required: true, message: "Kateqoriyani seçin!" }]}
-          >
-            <Select
-              // style={{ width: "300px" }}
-              onChange={onChangeCategory}
-              showSearch
-              optionFilterProp="children"
-              // onSearch={onSearchCategory}
-              filterOption={(input, option) => {
-                return (
-                  option.props.children
-                    .toString()
-                    .toLowerCase()
-                    .indexOf(input.toLowerCase()) >= 0 ||
-                  option.props.value
-                    .toString()
-                    .toLowerCase()
-                    .indexOf(input.toLowerCase()) >= 0
-                );
-              }}
-            >
-              {listOfCategoryData.map((categoryData) => (
-                <Option key={categoryData.id} value={categoryData.id}>
-                  {categoryData.name}
-                </Option>
-              ))}
-            </Select>
-          </Form.Item>
-          <Form.Item
             label="Müştəri"
             name="customer"
             rules={[{ required: true, message: "Müştərini seçin!" }]}
@@ -189,6 +158,38 @@ export default function CartList() {
               {listOfCustomerByExpeditorId.map((customerData) => (
                 <Option key={customerData.id} value={customerData.id}>
                   {customerData.name}
+                </Option>
+              ))}
+            </Select>
+          </Form.Item>
+          <Form.Item
+            label="Kateqoriya"
+            name="category"
+            rules={[{ required: true, message: "Kateqoriyani seçin!" }]}
+          >
+            <Select
+              disabled={categoryDisable}
+              // style={{ width: "300px" }}
+              onChange={onChangeCategory}
+              showSearch
+              optionFilterProp="children"
+              // onSearch={onSearchCategory}
+              filterOption={(input, option) => {
+                return (
+                  option.props.children
+                    .toString()
+                    .toLowerCase()
+                    .indexOf(input.toLowerCase()) >= 0 ||
+                  option.props.value
+                    .toString()
+                    .toLowerCase()
+                    .indexOf(input.toLowerCase()) >= 0
+                );
+              }}
+            >
+              {listOfCategoryData.map((categoryData) => (
+                <Option key={categoryData.id} value={categoryData.id}>
+                  {categoryData.name}
                 </Option>
               ))}
             </Select>

@@ -18,7 +18,7 @@ export const addCart = (data) => (dispatch) => {
         console.log('response cart data ',response.data)
       dispatch({
         type: actionTypes.ADD_CART,
-        payload: response.data,
+        payload: response.data.items,
       });
     //   notification["success"]({ message: response.data, description: "" });
     //   dispatch(listOfCategories());

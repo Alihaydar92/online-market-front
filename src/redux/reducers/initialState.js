@@ -40,5 +40,7 @@ export default {
   storeHouseDataById: {},
   listOfQuantities: [],
 
+  basketData:[],
+
   loading: false,
 };
