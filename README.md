@@ -96,6 +96,18 @@ sekil gelmiyende by default shekil qoymaq +++
 
 cardlist pagede category deyishdikde say inputunu deyismek
 
+carlistde combo dizayna diqqet
+
+category secildikden sonra gelen mehsullara gore axtaris (cartlist)
+
+sebet tableda rowu silmek, say columundaki fieldi redakte etmek
+iki button duymesi. 1)cap edecek pdfe, 2) sebet datani bazaya insert
+
+sebete elave olunmus datadan response 200 qayitdisa o zaman sebet  tabledaki datani seilmek
+
+sebetde data var , sonra satis pageye qayidib yeniden sebete elave edende sebet datasi 0lanir ,bunu ele etmek lazimdirki data sifirlanmasin yalniz sebet insert gedende sifirlansin
+
+sebete get buttonunu icon ile evez etmek
 ### sonra
 
 Imkan varsa pencerelesi responsive etmek (Sonda da edile biler)
@@ -108,6 +120,8 @@ daxil olan userin(expeditor) musteri siyahisi verilcek
 
 login olduqdan sonra user id-ye gore seller cagirilacaq (hem de goruntude gosterilecek)
 seller id-ye gore ise musteri siyahisi gelecek, helelik musteri siyahsini cagirmaq ucun seller id-ni elnen verirem (id 6)
+
+
  
 ### backend teyyub
 

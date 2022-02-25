@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Card, Select, Row, Form, InputNumber, Image, Button, Col } from "antd";
+import { Card, Select, Row, Form, InputNumber, Image, Col } from "antd";
 import { listOfCategories } from "../../redux/actions/categoryActions";
 import { addCart } from "../../redux/actions/cartActions";
 import { getCustomerListByExpeditorId } from "../../redux/actions/customerAction";
 import { getProductListByCategoryId } from "../../redux/actions/productActions";
 import { useDispatch, useSelector } from "react-redux";
-import { BellFilled } from "@ant-design/icons";
+
 import { Link } from "react-router-dom";
+import Button from "antd-button-color";
+import "antd/dist/antd.css"; // or 'antd/dist/antd.less'
+import "antd-button-color/dist/css/style.css";
 const logo = require("../../helpers/no-image.png");
 
 const { Option } = Select;
@@ -120,10 +123,8 @@ export default function CartList() {
   };
   return (
     <div>
-      <Button>
-        <Link to="/sebet">Sebete get</Link>
-      </Button>
-      <Col span={6} offset={8}>
+     
+      <Col span={5} offset={8}>
         <Form
           form={topForm}
           name="basic"
@@ -139,7 +140,7 @@ export default function CartList() {
           >
             <Select
               onChange={onChangeCustomer}
-              style={{ width: "300px" }}
+              // style={{ width: "300px" }}
               showSearch
               optionFilterProp="children"
               filterOption={(input, option) => {
@@ -197,8 +198,8 @@ export default function CartList() {
         </Form>
         {listOfProductDataByCategoryId.map((item, index) => {
           return (
-            <div className="site-card-wrapper">
-              <Card>
+            <div className="site-card-wrapper" >
+              <Card style={{marginTop:"10px",width:"352px"}} >
                 {item.productImageDtos.length === 0 ? (
                   <Image
                     width={250}
@@ -216,9 +217,10 @@ export default function CartList() {
                         alt="logo"
                         // src={String(logo)}
                         src={
-                          value === null
-                            ? String(logo)
-                            : `data:image/jpeg;base64,${value.content}`
+                          // value === null
+                          //   ? String(logo)
+                          //   : 
+                            `data:image/jpeg;base64,${value.content}`
                         }
                       />
                     );
@@ -229,7 +231,18 @@ export default function CartList() {
                   <h4>Məhsul: {item.name}</h4>
                 </Row>
                 <Row>
-                  {/* <h4>Say: </h4> */}
+                  <h4>
+                    Anbardakı sayı:{" "}
+                    <b style={{ color: "red" }}>{item.quantity}</b>
+                  </h4>
+                </Row>
+                <Row>
+                  <h4>
+                    Qiymət:{" "}
+                    <b style={{ color: "red" }}>{item.price + " AZN"}</b>{" "}
+                  </h4>
+                </Row>
+                <Row>
                   <Form.Item label="Say">
                     <InputNumber
                       onChange={(e) => handleCountChange(e, item)}
@@ -240,18 +253,17 @@ export default function CartList() {
                     ></InputNumber>
                   </Form.Item>
 
-                  <span
-                    style={{
-                      textDecoration: item.isComplete ? "line-through" : "none",
-                    }}
-                  ></span>
                   <Button
-                    type="submit"
-                    htmlType="submit"
+                    style={{ marginLeft: "20px" }}
+                    // style={{color:"yellow"}}
+                    type="warning"
+                    // htmlType="submit"
                     onClick={() => handleToggleComplete(item)}
                   >
                     {item.isComplete ? "Səbətdən sil" : "Səbətə əlavə et"}
                   </Button>
+
+                  {/* <h4>Say: </h4> */}
                 </Row>
               </Card>
             </div>
