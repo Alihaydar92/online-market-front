@@ -90,13 +90,7 @@ servis connection xetasini mesajla gostermek
 
 mehsul page-ye axtarisha kateqoriya fieldi elave etmek
 
-cart pagede mehsullar gec geldiyi ucun loading qoymaq +++
-
-sekil gelmiyende by default shekil qoymaq +++
-
 cardlist pagede category deyishdikde say inputunu deyismek
-
-carlistde combo dizayna diqqet
 
 category secildikden sonra gelen mehsullara gore axtaris (cartlist)
 
@@ -107,7 +101,7 @@ sebete elave olunmus datadan response 200 qayitdisa o zaman sebet  tabledaki dat
 
 sebetde data var , sonra satis pageye qayidib yeniden sebete elave edende sebet datasi 0lanir ,bunu ele etmek lazimdirki data sifirlanmasin yalniz sebet insert gedende sifirlansin
 
-sebete get buttonunu icon ile evez etmek
+
 ### sonra
 
 Imkan varsa pencerelesi responsive etmek (Sonda da edile biler)

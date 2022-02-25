@@ -103,3 +103,11 @@ window local storage clearde problem , bunu hell etmek+++
 
 
 base auth tetbiq ederek login olmaq +++
+
+sebete get buttonunu icon ile evez etmek+++
+
+cart pagede mehsullar gec geldiyi ucun loading qoymaq +++
+
+sekil gelmiyende by default shekil qoymaq +++
+
+carlistde combo dizayna diqqet+++

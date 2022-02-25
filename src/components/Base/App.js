@@ -99,6 +99,7 @@ export default function App() {
           &nbsp;&nbsp;
           <Layout>
             <Navi />
+            
             <Content>
               <Routes>
                 <Route exact path="home" element={<CustomerTable />} />

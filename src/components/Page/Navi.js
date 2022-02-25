@@ -18,9 +18,7 @@ export default function Navi() {
   let navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [btnDropleft, setBtnDropleft] = useState(false);
-  const bastketReducerData = useSelector(
-    (state) => state.cartReducers?.basketData
-  );
+  
   const logout = () => {
     window.localStorage.clear();
     navigate("/");
@@ -32,11 +30,11 @@ export default function Navi() {
 
         {/* <NavbarBrand href="/">reactstrap</NavbarBrand> */}
         {/* <NavbarToggler onClick={this.toggle} /> */}
-        <Badge count={bastketReducerData.length}>
-        <Link to="/sebet">  <ShoppingCartOutlined
-            style={{ fontSize: "50px", color: "#08c", float: "right" }}
-          ></ShoppingCartOutlined> </Link>
-        </Badge>
+     
+
+         
+      
+      
         
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ms-auto" navbar>

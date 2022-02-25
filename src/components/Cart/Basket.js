@@ -2,7 +2,7 @@ import React from "react";
 import {  Table } from "antd";
 import { useSelector } from "react-redux";
 export default function Basket() {
-  const bastketReducerData = useSelector(
+  const basketReducerData = useSelector(
     (state) => state.cartReducers?.basketData
   );
   const columns = [
@@ -36,7 +36,7 @@ export default function Basket() {
         // components={components}
         rowClassName={() => "editable-row"}
         bordered
-        dataSource={bastketReducerData}
+        dataSource={basketReducerData}
         columns={columns}
       />
     </div>
