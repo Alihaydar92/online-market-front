@@ -101,7 +101,7 @@ sebete elave olunmus datadan response 200 qayitdisa o zaman sebet  tabledaki dat
 
 sebetde data var , sonra satis pageye qayidib yeniden sebete elave edende sebet datasi 0lanir ,bunu ele etmek lazimdirki data sifirlanmasin yalniz sebet insert gedende sifirlansin
 
-
+mouse focus menu uzerinde olmadiqda menu baglansin
 ### sonra
 
 Imkan varsa pencerelesi responsive etmek (Sonda da edile biler)

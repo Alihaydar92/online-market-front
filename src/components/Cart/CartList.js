@@ -49,7 +49,7 @@ export default function CartList() {
   const listOfCustomerByExpeditorId = useSelector(
     (state) => state.customerReducer?.customerDataListByExpeditorId
   );
- 
+
   var countDataList = [];
   var customerSellPriceDataList = [];
   var otherPriceDataList = [];
@@ -70,8 +70,8 @@ export default function CartList() {
     setCustomerId(value);
   };
   var countDataJS = null;
-var customerSellPriceDataJs=null;
-var otherPriceDataJs=null;
+  var customerSellPriceDataJs = null;
+  var otherPriceDataJs = null;
   function handleCountChange(count, item) {
     console.log(item);
     countDataJS = new Object();
@@ -94,7 +94,9 @@ var otherPriceDataJs=null;
     customerSellPriceDataJs.id = item.id;
     customerSellPriceDataJs.customerSellPrice = customerSellPrice;
 
-    const i = customerSellPriceDataList.findIndex((_element) => _element.id === item.id);
+    const i = customerSellPriceDataList.findIndex(
+      (_element) => _element.id === item.id
+    );
     if (i > -1) {
       customerSellPriceDataList[i] = customerSellPriceDataJs;
     } else {
@@ -110,7 +112,9 @@ var otherPriceDataJs=null;
     otherPriceDataJs.id = item.id;
     otherPriceDataJs.otherPrice = otherPrice;
 
-    const i = otherPriceDataList.findIndex((_element) => _element.id === item.id);
+    const i = otherPriceDataList.findIndex(
+      (_element) => _element.id === item.id
+    );
     if (i > -1) {
       otherPriceDataList[i] = otherPriceDataJs;
     } else {
@@ -127,7 +131,12 @@ var otherPriceDataJs=null;
     if (countDataList.length === 0) return; //eger mehsulun sayi secilmeyibse o zaman elave etmesin
     console.log(countDataList);
 
-    var productItemJs = { quantity: 0, storeHouseDto: { id: 0 } ,customerSellPrice:0,otherPrice:0}; //yalniz itemsi yigacagim obj
+    var productItemJs = {
+      quantity: 0,
+      storeHouseDto: { id: 0 },
+      customerSellPrice: 0,
+      otherPrice: 0,
+    }; //yalniz itemsi yigacagim obj
     var basketItemJs = new Object(); //umumi cart add-a gondereceyim data
 
     productItemJs.storeHouseDto.id = productItem.id;
@@ -143,7 +152,8 @@ var otherPriceDataJs=null;
       console.log(productItem.id);
       if (countDataList[i].id === productItem.id) {
         productItemJs.quantity = countDataList[i].countState;
-        productItemJs.customerSellPrice = customerSellPriceDataList[i].customerSellPrice;
+        productItemJs.customerSellPrice =
+          customerSellPriceDataList[i].customerSellPrice;
         productItemJs.otherPrice = otherPriceDataList[i].otherPrice;
         console.log("productItemJs.quantity ", productItemJs.quantity);
         console.log("countDataJS[i].count ", countDataList[i].countState);
@@ -176,7 +186,7 @@ var otherPriceDataJs=null;
     <div>
       <Header style={{ backgroundColor: "white" }}>
         <Col offset={23} style={{ marginTop: "10px" }}>
-          <Badge >
+          <Badge>
             <Link to="/sebet">
               {/* <Icon icon="emojione:shopping-cart" align="right" float="right" verticalAlign="right"/> */}
               <ShoppingCartOutlined
@@ -186,9 +196,9 @@ var otherPriceDataJs=null;
           </Badge>
         </Col>
       </Header>
-      <Row></Row>
+      
       <Row style={{ marginTop: "20px" }}>
-        <Col span={6} offset={8}>
+        <Col span={5} offset={8}>
           <Form
             form={topForm}
             name="basic"
@@ -266,8 +276,8 @@ var otherPriceDataJs=null;
                 <Card style={{ marginTop: "10px" }}>
                   {item.productImageDtos.length === 0 ? (
                     <Image
-                      width={250}
-                      // preview={false}
+                    width="100%"
+                      preview={false}
                       alt="logo"
                       // src={String(logo)}
                       src={String(logo)}
@@ -276,7 +286,7 @@ var otherPriceDataJs=null;
                     item.productImageDtos.map((value) => {
                       return (
                         <Image
-                          width={250}
+                          width="100%"
                           // preview={false}
                           alt="logo"
                           // src={String(logo)}
@@ -295,18 +305,25 @@ var otherPriceDataJs=null;
                     <h4>Məhsul: {item.name}</h4>
                   </Row>
                   <Row>
-                  <h4>
-                    Anbardakı sayı:{" "}
-                    <b style={{ color: "red" }}>{item.quantity}</b>
-                  </h4>
-                </Row>
+                    <h4>
+                      Anbardakı sayı:{" "}
+                      <b style={{ color: "red" }}>{item.quantity}</b>
+                    </h4>
+                  </Row>
                   <Row>
                     <h4>
                       Qiymət:{" "}
                       <b style={{ color: "red" }}>{item.sellPrice + " AZN"}</b>{" "}
                     </h4>
                   </Row>
-                  <Row>
+                  <Form
+                    form={topForm}
+                    name="priceForm"
+                    labelCol={{ span: 9 }}
+                    wrapperCol={{ span: 16 }}
+                    autoComplete="off"
+                    // onFinish={handleFinish}
+                  >
                     <Form.Item label="Say">
                       <InputNumber
                         onChange={(e) => handleCountChange(e, item)}
@@ -316,15 +333,9 @@ var otherPriceDataJs=null;
                         // value={countValue}
                       ></InputNumber>
                     </Form.Item>
-                    <Form.Item label="Müştəri satış qiyməti">
-                      <InputNumber
-                        onChange={(e) => handleCustomerSellPriceChange(e, item)}
-                        // onChange={setCountValues}
-                        defaultValue={0}
-                        min={0}
-                        // value={countValue}
-                      ></InputNumber>
-                    </Form.Item>
+
+                    {/* <h4>Say: </h4> */}
+
                     <Form.Item label="Digər qiymətlər">
                       <InputNumber
                         onChange={(e) => handleOtherPriceChange(e, item)}
@@ -335,6 +346,18 @@ var otherPriceDataJs=null;
                       ></InputNumber>
                     </Form.Item>
 
+                    <Form.Item label="Müştəri satış qiyməti">
+                      <InputNumber
+                        onChange={(e) => handleCustomerSellPriceChange(e, item)}
+                        // onChange={setCountValues}
+                        defaultValue={0}
+                        min={0}
+                        // value={countValue}
+                      ></InputNumber>
+                    </Form.Item>
+                  </Form>
+
+                  <Form.Item wrapperCol={{ offset: 6}}>
                     <Button
                       style={{ marginLeft: "20px" }}
                       type="warning"
@@ -343,9 +366,7 @@ var otherPriceDataJs=null;
                     >
                       {item.isComplete ? "Səbətdən sil" : "Səbətə əlavə et"}
                     </Button>
-
-                    {/* <h4>Say: </h4> */}
-                  </Row>
+                  </Form.Item>
                 </Card>
               </div>
             );
