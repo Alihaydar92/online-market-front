@@ -7,6 +7,7 @@ export default function Basket() {
   );
   const columns = [
     {
+      
       title: "Say",
       dataIndex: "quantity"
     },
