@@ -255,12 +255,12 @@ export default function CartList() {
                   <Row>
                     <h4>Məhsul: {item.name}</h4>
                   </Row>
-                  {/* <Row>
+                  <Row>
                   <h4>
                     Anbardakı sayı:{" "}
                     <b style={{ color: "red" }}>{item.quantity}</b>
                   </h4>
-                </Row> */}
+                </Row>
                   <Row>
                     <h4>
                       Qiymət:{" "}
