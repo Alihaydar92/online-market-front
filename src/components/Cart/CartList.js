@@ -264,7 +264,7 @@ export default function CartList() {
                   <Row>
                     <h4>
                       Qiymət:{" "}
-                      <b style={{ color: "red" }}>{item.price + " AZN"}</b>{" "}
+                      <b style={{ color: "red" }}>{item.sellPrice + " AZN"}</b>{" "}
                     </h4>
                   </Row>
                   <Row>

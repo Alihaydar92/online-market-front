@@ -7,13 +7,13 @@ export default function Basket() {
   );
   const columns = [
     {
-      
+
       title: "Say",
       dataIndex: "quantity"
     },
     {
       title: "Qiymət",
-      dataIndex: ["productDto","price"],
+      dataIndex: ["storeHouseDto","price"],
     },
     {
       title: "Ümumi cəm",
