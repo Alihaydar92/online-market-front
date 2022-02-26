@@ -51,6 +51,8 @@ export default function CartList() {
   );
  
   var countDataList = [];
+  var customerSellPriceDataList = [];
+  var otherPriceDataList = [];
   const onChangeCategory = (value) => {
     topForm
       .validateFields()
@@ -68,7 +70,8 @@ export default function CartList() {
     setCustomerId(value);
   };
   var countDataJS = null;
-
+var customerSellPriceDataJs=null;
+var otherPriceDataJs=null;
   function handleCountChange(count, item) {
     console.log(item);
     countDataJS = new Object();
@@ -85,6 +88,38 @@ export default function CartList() {
     console.log(countDataList);
     console.log(countDataJS);
   }
+  function handleCustomerSellPriceChange(customerSellPrice, item) {
+    console.log(item);
+    customerSellPriceDataJs = new Object();
+    customerSellPriceDataJs.id = item.id;
+    customerSellPriceDataJs.customerSellPrice = customerSellPrice;
+
+    const i = customerSellPriceDataList.findIndex((_element) => _element.id === item.id);
+    if (i > -1) {
+      customerSellPriceDataList[i] = customerSellPriceDataJs;
+    } else {
+      customerSellPriceDataList.push(customerSellPriceDataJs);
+    }
+
+    console.log(customerSellPriceDataList);
+    console.log(customerSellPriceDataJs);
+  }
+  function handleOtherPriceChange(otherPrice, item) {
+    console.log(item);
+    otherPriceDataJs = new Object();
+    otherPriceDataJs.id = item.id;
+    otherPriceDataJs.otherPrice = otherPrice;
+
+    const i = otherPriceDataList.findIndex((_element) => _element.id === item.id);
+    if (i > -1) {
+      otherPriceDataList[i] = otherPriceDataJs;
+    } else {
+      otherPriceDataList.push(otherPriceDataJs);
+    }
+
+    console.log(otherPriceDataList);
+    console.log(otherPriceDataJs);
+  }
   var items = []; //quantity, price ve product id data list
 
   const handleToggleComplete = (productItem) => {
@@ -92,7 +127,7 @@ export default function CartList() {
     if (countDataList.length === 0) return; //eger mehsulun sayi secilmeyibse o zaman elave etmesin
     console.log(countDataList);
 
-    var productItemJs = { quantity: 0, storeHouseDto: { id: 0 } }; //yalniz itemsi yigacagim obj
+    var productItemJs = { quantity: 0, storeHouseDto: { id: 0 } ,customerSellPrice:0,otherPrice:0}; //yalniz itemsi yigacagim obj
     var basketItemJs = new Object(); //umumi cart add-a gondereceyim data
 
     productItemJs.storeHouseDto.id = productItem.id;
@@ -103,9 +138,13 @@ export default function CartList() {
 
     for (var i = 0; i < countDataList.length; i++) {
       console.log(countDataList[i].id);
+      console.log(countDataList[i].id);
+      console.log(countDataList[i].id);
       console.log(productItem.id);
       if (countDataList[i].id === productItem.id) {
         productItemJs.quantity = countDataList[i].countState;
+        productItemJs.customerSellPrice = customerSellPriceDataList[i].customerSellPrice;
+        productItemJs.otherPrice = otherPriceDataList[i].otherPrice;
         console.log("productItemJs.quantity ", productItemJs.quantity);
         console.log("countDataJS[i].count ", countDataList[i].countState);
         console.log("countDataJS[i].id ", countDataList[i].id);
@@ -149,7 +188,7 @@ export default function CartList() {
       </Header>
       <Row></Row>
       <Row style={{ marginTop: "20px" }}>
-        <Col span={5} offset={8}>
+        <Col span={6} offset={8}>
           <Form
             form={topForm}
             name="basic"
@@ -271,6 +310,24 @@ export default function CartList() {
                     <Form.Item label="Say">
                       <InputNumber
                         onChange={(e) => handleCountChange(e, item)}
+                        // onChange={setCountValues}
+                        defaultValue={0}
+                        min={0}
+                        // value={countValue}
+                      ></InputNumber>
+                    </Form.Item>
+                    <Form.Item label="Müştəri satış qiyməti">
+                      <InputNumber
+                        onChange={(e) => handleCustomerSellPriceChange(e, item)}
+                        // onChange={setCountValues}
+                        defaultValue={0}
+                        min={0}
+                        // value={countValue}
+                      ></InputNumber>
+                    </Form.Item>
+                    <Form.Item label="Digər qiymətlər">
+                      <InputNumber
+                        onChange={(e) => handleOtherPriceChange(e, item)}
                         // onChange={setCountValues}
                         defaultValue={0}
                         min={0}
