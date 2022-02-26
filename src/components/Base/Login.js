@@ -35,11 +35,12 @@ export default function Login() {
             }
           })
           .catch((error) => {
-            if (error.response.status === 401) {
-              notification["error"]({
-                message: "İstifadəçi adı vəya şifrə yalnışdı",
-              });
-            }
+            console.log(error)
+            // if (error.response.status === 401) {
+            //   notification["error"]({
+            //     message: "İstifadəçi adı vəya şifrə yalnışdı",
+            //   });
+            // }
           });
       })
       .catch((err) => {
