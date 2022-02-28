@@ -128,6 +128,7 @@ export default function CartList() {
 
   const handleToggleComplete = (productItem) => {
     console.log(countDataList.length);
+    console.log(items);
     if (countDataList.length === 0) return; //eger mehsulun sayi secilmeyibse o zaman elave etmesin
     console.log(countDataList);
 
@@ -147,14 +148,12 @@ export default function CartList() {
 
     for (var i = 0; i < countDataList.length; i++) {
       console.log(countDataList[i].id);
-      console.log(countDataList[i].id);
-      console.log(countDataList[i].id);
       console.log(productItem.id);
+     
+     
       if (countDataList[i].id === productItem.id) {
         productItemJs.quantity = countDataList[i].countState;
-        productItemJs.customerSellPrice =
-          customerSellPriceDataList[i].customerSellPrice;
-        productItemJs.otherPrice = otherPriceDataList[i].otherPrice;
+        console.log("items ", items);
         console.log("productItemJs.quantity ", productItemJs.quantity);
         console.log("countDataJS[i].count ", countDataList[i].countState);
         console.log("countDataJS[i].id ", countDataList[i].id);
@@ -162,18 +161,82 @@ export default function CartList() {
           "productItemJs.storeHouseDto.id ",
           productItemJs.storeHouseDto.id
         );
-
         const o = items.findIndex(
-          (_element) => _element.id === productItemJs.storeHouseDto.id
+          (_element) => _element.storeHouseDto.id === productItemJs.storeHouseDto.id
         );
-        console.log("o ? ", o);
+      
         if (o > -1) {
+          
           items[o] = productItemJs;
+          console.log("o ? ", o);
         } else {
           items.push(productItemJs);
+          console.log("o ? ", o);
         }
       }
+      
     }
+    // for (var i = 0; i < customerSellPriceDataList.length; i++) {
+    //   console.log(customerSellPriceDataList[i].id);
+    //   console.log(productItem.id);
+    //   if (customerSellPriceDataList[i].id === productItem.id) {
+    //     productItemJs.customerSellPrice =
+    //       customerSellPriceDataList[i].customerSellPrice;
+
+    //     console.log("productItemJs.quantity ", productItemJs.customerSellPrice);
+    //     console.log(
+    //       "customerSellPriceDataList[i].customerSellPriceDataList ",
+    //       customerSellPriceDataList[i].customerSellPrice
+    //     );
+    //     console.log(
+    //       "customerSellPriceDataList[i].id ",
+    //       customerSellPriceDataList[i].id
+    //     );
+    //     console.log(
+    //       "productItemJs.storeHouseDto.id ",
+    //       productItemJs.storeHouseDto.id
+    //     );
+
+    //     const o = items.findIndex(
+    //       (_element) => _element.id === productItemJs.storeHouseDto.id
+    //     );
+    //     console.log("o ? ", o);
+    //     if (o > -1) {
+    //       items[o] = productItemJs;
+    //     } else {
+    //       items.push(productItemJs);
+    //     }
+    //   }
+    // }
+
+    // for (var i = 0; i < otherPriceDataList.length; i++) {
+    //   console.log(otherPriceDataList[i].id);
+
+    //   console.log(productItem.id);
+    //   if (otherPriceDataList[i].id === productItem.id) {
+    //     productItemJs.otherPrice = otherPriceDataList[i].otherPrice;
+    //     console.log("productItemJs.otherPrice ", productItemJs.otherPrice);
+    //     console.log(
+    //       "otherPriceDataList[i].count ",
+    //       otherPriceDataList[i].otherPrice
+    //     );
+    //     console.log("otherPriceDataList[i].id ", countDataList[i].id);
+    //     console.log(
+    //       "productItemJs.storeHouseDto.id ",
+    //       productItemJs.storeHouseDto.id
+    //     );
+
+    //     const o = items.findIndex(
+    //       (_element) => _element.id === productItemJs.storeHouseDto.id
+    //     );
+    //     console.log("o ? ", o);
+    //     if (o > -1) {
+    //       items[o] = productItemJs;
+    //     } else {
+    //       items.push(productItemJs);
+    //     }
+    //   }
+    // }
 
     console.log(productItemJs);
     console.log(items);
@@ -184,19 +247,19 @@ export default function CartList() {
   };
   return (
     <div>
-      <Header style={{ backgroundColor: "white" }}>
+      {/* <Header style={{ backgroundColor: "white" }}>
         <Col offset={23} style={{ marginTop: "10px" }}>
           <Badge>
             <Link to="/sebet">
-              {/* <Icon icon="emojione:shopping-cart" align="right" float="right" verticalAlign="right"/> */}
+           
               <ShoppingCartOutlined
                 style={{ fontSize: "50px", color: "#08c" }}
               />
             </Link>
           </Badge>
         </Col>
-      </Header>
-      
+      </Header> */}
+
       <Row style={{ marginTop: "20px" }}>
         <Col span={5} offset={8}>
           <Form
@@ -276,7 +339,7 @@ export default function CartList() {
                 <Card style={{ marginTop: "10px" }}>
                   {item.productImageDtos.length === 0 ? (
                     <Image
-                    width="100%"
+                      width="100%"
                       preview={false}
                       alt="logo"
                       // src={String(logo)}
@@ -357,7 +420,7 @@ export default function CartList() {
                     </Form.Item>
                   </Form>
 
-                  <Form.Item wrapperCol={{ offset: 6}}>
+                  <Form.Item wrapperCol={{ offset: 6 }}>
                     <Button
                       style={{ marginLeft: "20px" }}
                       type="warning"

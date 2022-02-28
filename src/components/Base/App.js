@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Layout, Menu, Image } from "antd";
-import { Route, Routes, Outlet, Link } from "react-router-dom";
+import { Route, Routes, Outlet, Link,useLocation } from "react-router-dom";
 import CustomerTable from "../Customer/CustomerTable";
 import ExpeditorTable from "../Expeditor/ExpeditorTable";
 import ProductTable from "../Product/ProductTable";
@@ -28,6 +28,9 @@ const logo = require("../../helpers/greenStreamImg.jpeg");
 const { Footer, Content } = Layout;
 
 export default function App() {
+  const location = useLocation();
+  console.log(location.pathname);
+  const showBasketIcon=true;
   const loading = useSelector((state) => state.loaderReducers?.loading);
   return (
     <LoadingOverlay
@@ -98,7 +101,7 @@ export default function App() {
           </Sider>
           &nbsp;&nbsp;
           <Layout>
-            <Navi />
+            <Navi location={location}/>
             
             <Content>
               <Routes>
