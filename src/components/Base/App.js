@@ -113,7 +113,7 @@ export default function App() {
                 <Route path="properties" element={<PropertyTable />} />
                 <Route path="cartList" element={<CartList />} />
                 <Route path="storeHouse" element={<StoreHouseTable />} />
-                <Route path="sebet" element={<Basket />} />
+                <Route path="basket" element={<Basket />} />
               </Routes>
             </Content>
 

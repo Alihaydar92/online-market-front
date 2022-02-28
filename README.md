@@ -86,7 +86,6 @@ actionlarda (add delete update) dispatch listler cagirlir ,onlarin page parametr
 
 axios create problemi
 
-servis connection xetasini mesajla gostermek
 
 mehsul page-ye axtarisha kateqoriya fieldi elave etmek
 
@@ -106,6 +105,8 @@ mouse focus menu uzerinde olmadiqda menu baglansin
 vacib: env faylindaki urli oz localimda localhost ile yazmaq lakin git ignora salmaq
 
 sebet ucun iconun yerlesdiyi header(veya panel) pencereni scroll ederken daima yuxarida qalsin
+
+headerin responsiveliyi
 ### sonra
 
 Imkan varsa pencerelesi responsive etmek (Sonda da edile biler)
@@ -119,7 +120,7 @@ daxil olan userin(expeditor) musteri siyahisi verilcek
 login olduqdan sonra user id-ye gore seller cagirilacaq (hem de goruntude gosterilecek)
 seller id-ye gore ise musteri siyahisi gelecek, helelik musteri siyahsini cagirmaq ucun seller id-ni elnen verirem (id 6)
 
-
+servis connection xetasini mesajla gostermek
  
 ### backend teyyub
 

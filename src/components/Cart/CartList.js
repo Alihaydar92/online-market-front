@@ -65,6 +65,20 @@ export default function CartList() {
         console.log(err);
       });
   };
+  
+
+  const onChangeProduct = (value) => {
+    topForm
+      .validateFields()
+      .then(() => {
+        // dispatch(getProductListByCategoryId(value));
+const filtered =listOfProductDataByCategoryId.filter
+        console.log(listOfProductDataByCategoryId);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   const onChangeCustomer = (value) => {
     setCategoryDisable(false);
     setCustomerId(value);
@@ -328,6 +342,38 @@ export default function CartList() {
                 {listOfCategoryData.map((categoryData) => (
                   <Option key={categoryData.id} value={categoryData.id}>
                     {categoryData.name}
+                  </Option>
+                ))}
+              </Select>
+            </Form.Item>
+            <Form.Item
+              label="Məhsul"
+              name="product"
+              // rules={[{ required: true, message: "Məhsulu seçin!" }]}
+            >
+              <Select
+                // disabled={categoryDisable}
+                // style={{ width: "300px" }}
+                onChange={onChangeProduct}
+                showSearch
+                optionFilterProp="children"
+                // onSearch={onSearchCategory}
+                filterOption={(input, option) => {
+                  return (
+                    option.props.children
+                      .toString()
+                      .toLowerCase()
+                      .indexOf(input.toLowerCase()) >= 0 ||
+                    option.props.value
+                      .toString()
+                      .toLowerCase()
+                      .indexOf(input.toLowerCase()) >= 0
+                  );
+                }}
+              >
+                {listOfProductDataByCategoryId.map((productData) => (
+                  <Option key={productData.id} value={productData.id}>
+                    {productData.name}
                   </Option>
                 ))}
               </Select>
