@@ -188,9 +188,7 @@ export default function ProductTable() {
   };
   const onSearch = (e) => {
     var searchData = {
-      name: form.getFieldsValue().name.trim(),
-      barcode: form.getFieldsValue().barcode.trim(),
-      note: form.getFieldsValue().note.trim(),
+      name: form.getFieldsValue().name,
     };
     dispatch(searchProduct(searchData, pagination));
     setPagination({
@@ -271,14 +269,6 @@ export default function ProductTable() {
 
   return (
     <div>
-      {/* <Spin tip="Yuklenir" size="large" spinning={true}> */}
-      {/* <Alert
-          message="Məhsullar əlavə olunur..."
-          description="Məhsullar əlavə olunan zaman bir müddət gözləməyiniz xaiş olunur"
-          type="info"
-        /> */}
-      {/* </Spin> */}
-
       <Row style={{ marginTop: "20px" }}>
         <Space>
           Fayl seç:
@@ -317,13 +307,7 @@ export default function ProductTable() {
         style={{ marginTop: "20px" }}
       >
         <Input.Group compact>
-          <Form.Item label="Məhsul:" name="name">
-            <Input allowClear />
-          </Form.Item>
-          <Form.Item label="Barkod:" name="barcode">
-            <Input allowClear />
-          </Form.Item>
-          <Form.Item label="Qeyd:" name="note">
+          <Form.Item label="Axtarış:" name="name">
             <Input allowClear />
           </Form.Item>
           <Form.Item>

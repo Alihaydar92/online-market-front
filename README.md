@@ -96,7 +96,7 @@ category secildikden sonra gelen mehsullara gore axtaris (cartlist)
 sebet tableda rowu silmek, say columundaki fieldi redakte etmek
 iki button duymesi. 1)cap edecek pdfe, 2) sebet datani bazaya insert
 
-sebete elave olunmus datadan response 200 qayitdisa o zaman sebet  tabledaki datani seilmek
+sebete elave olunmus datadan response 200 qayitdisa o zaman sebet  tabledaki datani silmek
 
 sebetde data var , sonra satis pageye qayidib yeniden sebete elave edende sebet datasi 0lanir ,bunu ele etmek lazimdirki data sifirlanmasin yalniz sebet insert gedende sifirlansin
 
@@ -106,7 +106,9 @@ vacib: env faylindaki urli oz localimda localhost ile yazmaq lakin git ignora sa
 
 sebet ucun iconun yerlesdiyi header(veya panel) pencereni scroll ederken daima yuxarida qalsin
 
-headerin responsiveliyi
+headerin responsiveliyi ve scrool ederken header itmesWin
+
+sebete elave ederken ikinci melumati sebete elave edende bele bir bir gondermek her birini ,bunu cartlistde duzeltmek
 ### sonra
 
 Imkan varsa pencerelesi responsive etmek (Sonda da edile biler)

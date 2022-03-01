@@ -218,16 +218,13 @@ export const searchProduct = (searchData, paginationData) => (dispatch) => {
   });
   var productParams = new Object();
   if (searchData.name !== "") {
-    productParams.name = searchData.name;
+    productParams.keyword = searchData.name;
+    productParams.page = paginationData.page;
+    productParams.size = paginationData.pageSize;
   }
-  if (searchData.note !== "") {
-    productParams.note = searchData.note;
-  }
-  if (searchData.barcode !== "") {
-    productParams.barcode = searchData.barcode;
-  }
+
   axiosInstance
-    .get("/products/v1", { params: productParams })
+    .get("/products/v2", { params: productParams })
     .then((response) => {
       console.log(
         "get product imgs by product id reposne data: ",

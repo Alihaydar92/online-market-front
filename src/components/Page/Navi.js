@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Badge, Image,Drawer } from "antd";
+import { Badge, Image,Drawer, Affix } from "antd";
 
 import {
   Collapse,
@@ -32,6 +32,7 @@ export default function Navi(props) {
  
   return (
     <div>
+      <Affix offsetTop={0}>
       <Navbar color="light" light expand="md">
         {/* <Image width={80} alt="logo" src={String(logo)} /> */}
         {
@@ -80,6 +81,8 @@ export default function Navi(props) {
         </Collapse> 
         
       </Navbar>
+      </Affix>
+      
     </div>
   );
 }
