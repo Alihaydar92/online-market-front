@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Layout, Menu, Image } from "antd";
-import { Route, Routes, Outlet, Link,useLocation } from "react-router-dom";
+import { Layout, Menu, Image, Button } from "antd";
+import { Route, Routes, Outlet, Link, useLocation } from "react-router-dom";
 import CustomerTable from "../Customer/CustomerTable";
 import ExpeditorTable from "../Expeditor/ExpeditorTable";
 import ProductTable from "../Product/ProductTable";
@@ -17,6 +17,13 @@ import {
   UserOutlined,
   LaptopOutlined,
   NotificationOutlined,
+  AppstoreOutlined,
+  MenuUnfoldOutlined,
+  MenuFoldOutlined,
+  PieChartOutlined,
+  DesktopOutlined,
+  ContainerOutlined,
+  MailOutlined,
 } from "@ant-design/icons";
 import CartList from "../Cart/CartList";
 import FormList from "../Cart/FormList";
@@ -30,8 +37,9 @@ const { Footer, Content } = Layout;
 export default function App() {
   const location = useLocation();
   console.log(location.pathname);
-  const showBasketIcon=true;
+
   const loading = useSelector((state) => state.loaderReducers?.loading);
+
   return (
     <LoadingOverlay
       active={loading}
@@ -42,7 +50,10 @@ export default function App() {
         <Layout style={{ height: "100%" }}>
           {/* <SideBarMenu /> */}
           <Sider width={200} className="site-layout-background">
-            <Image width={50} alt="logo" src={String(logo)} />
+            <Image width={200} alt="logo" src={String(logo)} />
+            {/* <Button type="primary" onClick={toggleCollapsed} style={{ marginBottom: 16 }}>
+          {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined)}
+        </Button> */}
             <Menu
               mode="inline"
               // defaultSelectedKeys={["1"]}
@@ -50,13 +61,6 @@ export default function App() {
               style={{ borderRight: 0, height: "100%" }}
             >
               <SubMenu key="sub1" icon={<UserOutlined />} title="Qeydiyyat">
-                {/* <Menu.Item
-                  key="users"
-                  onClick={(e) => <CustomerTable />}
-                >
-                  İstifadəçilər
-                </Menu.Item> */}
-
                 <Menu.Item
                   // onClick={navigate("customers")}
                   key="1"
@@ -81,28 +85,28 @@ export default function App() {
                 <Menu.Item key="5">
                   <Link to="products">Məhsullar</Link>
                 </Menu.Item>
-                {/* <Menu.Item key="6">
-                  <Link to="/dynamic">Satis</Link>
-                </Menu.Item> */}
-                <Menu.Item key="7">
+                <Menu.Item key="6">
                   <Link to="/cartList">Satış</Link>
                 </Menu.Item>
-                <Menu.Item key="8">
-                  <Link to="storeHouse">Anbar</Link>
+                <Menu.Item key="7">
+                  <Link to="/storeHouse">Anbar</Link>
                 </Menu.Item>
+                {/* <Menu.Item key="8">
+                  <Link to="option8">option8</Link>
+                </Menu.Item> */}
               </SubMenu>
-              <SubMenu key="sub3" icon={<NotificationOutlined />} title="Digər">
+              {/* <SubMenu key="sub3" icon={<NotificationOutlined />} title="Digər">
                 <Menu.Item key="9">option9</Menu.Item>
                 <Menu.Item key="10">option10</Menu.Item>
                 <Menu.Item key="11">option11</Menu.Item>
                 <Menu.Item key="12">option12</Menu.Item>
-              </SubMenu>
+              </SubMenu> */}
             </Menu>
           </Sider>
           &nbsp;&nbsp;
           <Layout>
-            <Navi location={location}/>
-            
+            <Navi location={location} />
+
             <Content>
               <Routes>
                 <Route exact path="home" element={<CustomerTable />} />

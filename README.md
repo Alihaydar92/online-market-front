@@ -104,7 +104,7 @@ mouse focus menu uzerinde olmadiqda menu baglansin
 
 vacib: env faylindaki urli oz localimda localhost ile yazmaq lakin git ignora salmaq
 
-sebet ucun iconun yerlesdiyi header(veya panel) pencereni scroll ederken daima yuxarida qalsin
+sebet ucun iconun yerlesdiyi header(veya panel) pencereni scroll ederken daima yuxarida qalsin +++
 
 headerin responsiveliyi ve scrool ederken header itmesWin
 

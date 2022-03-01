@@ -65,14 +65,13 @@ export default function CartList() {
         console.log(err);
       });
   };
-  
 
   const onChangeProduct = (value) => {
     topForm
       .validateFields()
       .then(() => {
         // dispatch(getProductListByCategoryId(value));
-const filtered =listOfProductDataByCategoryId.filter
+        const filtered = listOfProductDataByCategoryId.filter;
         console.log(listOfProductDataByCategoryId);
       })
       .catch((err) => {
@@ -163,8 +162,7 @@ const filtered =listOfProductDataByCategoryId.filter
     for (var i = 0; i < countDataList.length; i++) {
       console.log(countDataList[i].id);
       console.log(productItem.id);
-     
-     
+
       if (countDataList[i].id === productItem.id) {
         productItemJs.quantity = countDataList[i].countState;
         console.log("items ", items);
@@ -176,11 +174,11 @@ const filtered =listOfProductDataByCategoryId.filter
           productItemJs.storeHouseDto.id
         );
         const o = items.findIndex(
-          (_element) => _element.storeHouseDto.id === productItemJs.storeHouseDto.id
+          (_element) =>
+            _element.storeHouseDto.id === productItemJs.storeHouseDto.id
         );
-      
+
         if (o > -1) {
-          
           items[o] = productItemJs;
           console.log("o ? ", o);
         } else {
@@ -188,7 +186,6 @@ const filtered =listOfProductDataByCategoryId.filter
           console.log("o ? ", o);
         }
       }
-      
     }
     // for (var i = 0; i < customerSellPriceDataList.length; i++) {
     //   console.log(customerSellPriceDataList[i].id);
@@ -252,7 +249,7 @@ const filtered =listOfProductDataByCategoryId.filter
     //   }
     // }
 
-    console.log(productItemJs);
+    console.log(productItemJs); //bunu tek tek gondermek lazimdi(Teyyubla danis)
     console.log(items);
     basketItemJs["items"] = items;
 
@@ -261,19 +258,6 @@ const filtered =listOfProductDataByCategoryId.filter
   };
   return (
     <div>
-      {/* <Header style={{ backgroundColor: "white" }}>
-        <Col offset={23} style={{ marginTop: "10px" }}>
-          <Badge>
-            <Link to="/sebet">
-           
-              <ShoppingCartOutlined
-                style={{ fontSize: "50px", color: "#08c" }}
-              />
-            </Link>
-          </Badge>
-        </Col>
-      </Header> */}
-
       <Row style={{ marginTop: "20px" }}>
         <Col span={5} offset={8}>
           <Form
