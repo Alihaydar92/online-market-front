@@ -5,7 +5,6 @@ import {
   addProductExcel,
   addProductImages,
   getProductImagesByProductId,
-  listOfProductsByPage,
   searchProduct,
 } from "../../redux/actions/productActions";
 import {
@@ -65,7 +64,7 @@ export default function ProductTable() {
   );
 
   useEffect(() => {
-    dispatch(listOfProductsByPage(pagination.page, pagination.pageSize));
+    dispatch(searchProduct("",pagination.page, pagination.pageSize));
   }, []);
 
   useEffect(() => {}, [listOfProductDataByPage]);
@@ -187,10 +186,9 @@ export default function ProductTable() {
     handleCancel();
   };
   const onSearch = (e) => {
-    var searchData = {
-      name: form.getFieldsValue().name,
-    };
-    dispatch(searchProduct(searchData, pagination));
+    var searchData =form.getFieldsValue().name
+  
+    dispatch(searchProduct(searchData, pagination.page,pagination.pageSize));
     setPagination({
       page: listOfProductDataByPage.currentPage + 1,
       pageSize: 15,
@@ -209,7 +207,7 @@ export default function ProductTable() {
 
   const onRefresh = () => {
     onClear();
-    dispatch(listOfProductsByPage(pagination.page, pagination.pageSize));
+    dispatch(searchProduct("",pagination.page,pagination.pageSize));
   };
 
   const columns = [
@@ -356,7 +354,7 @@ export default function ProductTable() {
           total: listOfProductDataByPage.totalItems,
           onChange: (page, pageSize) => {
             setPagination({ page, pageSize });
-            dispatch(listOfProductsByPage(page, pageSize));
+            dispatch(searchProduct("",page, pageSize));
           },
         }}
       ></Table>

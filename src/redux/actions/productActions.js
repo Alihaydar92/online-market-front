@@ -4,25 +4,25 @@ import { message, notification } from "antd";
 import axios from "axios";
 const baseURL = process.env.REACT_APP_BACKEND_URL;
 
-export const listOfProductsByPage = (page, pageSize) => (dispatch) => {
-  const axiosInstance = axios.create({
-    baseURL: baseURL,
-    auth: {
-      username: window.localStorage.getItem("username"),
-      password: window.localStorage.getItem("password"),
-    },
-  });
-  console.log("page and pagesize ", page + "//" + pageSize);
-  axiosInstance
-    .get("/products/paged?page=" + (page - 1) + "&size=" + pageSize)
-    .then((response) => {
-      dispatch({
-        type: actionTypes.LIST_OF_PRODUCTS_BY_PAGE,
-        payload: response.data,
-      });
-      console.log("response product", response);
-    });
-};
+// export const listOfProductsByPage = (page, pageSize) => (dispatch) => {
+//   const axiosInstance = axios.create({
+//     baseURL: baseURL,
+//     auth: {
+//       username: window.localStorage.getItem("username"),
+//       password: window.localStorage.getItem("password"),
+//     },
+//   });
+//   console.log("page and pagesize ", page + "//" + pageSize);
+//   axiosInstance
+//     .get("/products/paged?page=" + (page - 1) + "&size=" + pageSize)
+//     .then((response) => {
+//       dispatch({
+//         type: actionTypes.LIST_OF_PRODUCTS_BY_PAGE,
+//         payload: response.data,
+//       });
+//       console.log("response product", response);
+//     });
+// };
 
 export const listOfProducts = () => (dispatch) => {
   const axiosInstance = axios.create({
@@ -93,7 +93,7 @@ export const addProduct = (data, page, pageSize) => (dispatch) => {
         type: actionTypes.ADD_PRODUCT,
         payload: response.data,
       });
-      dispatch(listOfProductsByPage(page, pageSize));
+      dispatch(searchProduct("", page, pageSize));
     }
   });
 };
@@ -114,9 +114,7 @@ export const updateProduct = (data, paginationData) => (dispatch) => {
         type: actionTypes.UPDATE_PRODUCT,
         payload: response.data,
       });
-      dispatch(
-        listOfProductsByPage(paginationData.page, paginationData.pageSize)
-      );
+      dispatch(searchProduct("", paginationData.page, paginationData.pageSize));
     }
   });
 };
@@ -134,9 +132,7 @@ export const deleteProduct = (id, paginationData) => (dispatch) => {
         type: actionTypes.DELETE_PRODUCT,
         payload: response.data,
       });
-      dispatch(
-        listOfProductsByPage(paginationData.page, paginationData.pageSize)
-      );
+      dispatch(searchProduct("", paginationData.page, paginationData.pageSize));
     }
   });
 };
@@ -159,9 +155,7 @@ export const addProductExcel = (data, paginationData) => (dispatch) => {
       dispatch(hideLoader());
       console.log(response);
       notification["success"]({ message: response.data, description: "" });
-      dispatch(
-        listOfProductsByPage(paginationData.page, paginationData.pageSize)
-      );
+      dispatch(searchProduct("", paginationData.page, paginationData.pageSize));
     }
   });
 };
@@ -183,7 +177,7 @@ export const addProductImages = (id, data, paginationData) => (dispatch) => {
           payload: response.data,
         });
         dispatch(
-          listOfProductsByPage(paginationData.page, paginationData.pageSize)
+          searchProduct("", paginationData.page, paginationData.pageSize)
         );
       }
     });
@@ -208,7 +202,7 @@ export const getProductImagesByProductId = (id) => (dispatch) => {
   });
 };
 
-export const searchProduct = (searchData, paginationData) => (dispatch) => {
+export const searchProduct = (searchData, page, pageSize) => (dispatch) => {
   const axiosInstance = axios.create({
     baseURL: baseURL,
     auth: {
@@ -217,12 +211,14 @@ export const searchProduct = (searchData, paginationData) => (dispatch) => {
     },
   });
   var productParams = new Object();
-  if (searchData.name !== "") {
-    productParams.keyword = searchData.name;
-    productParams.page = paginationData.page;
-    productParams.size = paginationData.pageSize;
+  console.log(searchData);
+  if (searchData !== "") {
+    productParams.keyword = searchData;
+    productParams.page = 0;
+  } else {
+    productParams.page = page - 1;
   }
-
+  productParams.size = pageSize;
   axiosInstance
     .get("/products/v2", { params: productParams })
     .then((response) => {
