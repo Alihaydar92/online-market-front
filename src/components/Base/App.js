@@ -36,7 +36,6 @@ const { Footer, Content } = Layout;
 
 export default function App() {
   const location = useLocation();
-  console.log(location.pathname);
 
   const loading = useSelector((state) => state.loaderReducers?.loading);
 

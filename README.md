@@ -109,6 +109,12 @@ sebet ucun iconun yerlesdiyi header(veya panel) pencereni scroll ederken daima y
 headerin responsiveliyi ve scrool ederken header itmesWin
 
 sebete elave ederken ikinci melumati sebete elave edende bele bir bir gondermek her birini ,bunu cartlistde duzeltmek
+
+satis penceresinde mehsul combosuna barkodu da elave etmek ve axtarisinda her ikisi islesin(anbardaki product combobox kimi eynen) combonu secdikden sonra HEMIN XOMBOYA AID OLAN TEK DATA satisda gorsensin
+
+jspdf utf problem
+
+sekli sil buttonunun altinda sekli servisde cagirib silmek
 ### sonra
 
 Imkan varsa pencerelesi responsive etmek (Sonda da edile biler)

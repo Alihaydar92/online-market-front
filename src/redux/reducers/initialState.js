@@ -16,7 +16,7 @@ export default {
 
   productListData: [],
   productListDataByPage: {},
-  productListDataByCategoryId:[],
+  productListDataByCategoryId: [],
   productDataById: {},
   productDeleteData: {},
   productAddData: {},
@@ -40,7 +40,8 @@ export default {
   storeHouseDataById: {},
   listOfQuantities: [],
 
-  basketData:[],
+  basketData: {},
+  basketGrandTotal: "",
 
   loading: false,
 };

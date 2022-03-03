@@ -10,16 +10,21 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import App from "./components/Base/App";
 import Login from "./components/Base/Login";
+import { CookiesProvider } from "react-cookie";
 const store = configureStore();
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Login />} exact></Route>
-        <Route exact path="/*" element={<App />}></Route>
-      </Routes>
+   
+        {" "}
+        <Routes>
+          <Route path="/" element={<Login />} exact></Route>
+          <Route exact path="/*" element={<App />}></Route>
+        </Routes>
+      
+
       {/* <App/> */}
     </BrowserRouter>
   </Provider>,

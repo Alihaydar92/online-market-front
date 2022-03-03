@@ -264,7 +264,9 @@ export default function ProductTable() {
       },
     },
   ];
-
+const onImageRemove =(index)=>{
+  console.log(index)
+}
   return (
     <div>
       <Row style={{ marginTop: "20px" }}>

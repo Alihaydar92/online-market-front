@@ -1,13 +1,27 @@
 import * as actionTypes from "../actions/actionTypes"
 import  initialState from "./initialState"
-
-
+import Cookies from "universal-cookie";
+var arr=[]
  export default function cartReducers(state = initialState, action) {
+    const cookies = new Cookies();
+    console.log(action.payload)
     switch (action.type) {
         case actionTypes.ADD_CART: {
-            return {
+        
+            if (Object.entries(action.payload).length > 0) {
+                for (let value of Object.values(action.payload.items)) {
+                  // setBasketDataState((oldArray) => [...oldArray, value]);
+                  arr.push(value);
+                }
+                var basketArrayString = JSON.stringify(arr);
+                cookies.set("basketArray", basketArrayString);
+                cookies.set("grandTotal",action.payload.grandTotal)
+              }
+              return {
                 ...state,
-                basketData: action.payload
+                // basketData: action.payload,
+                // basketItems:arr
+                // basketGrandTotal:action.payload.grandTotal
             }
         }
         

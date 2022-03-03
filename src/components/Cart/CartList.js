@@ -23,9 +23,11 @@ import "antd/dist/antd.css"; // or 'antd/dist/antd.less'
 import "antd-button-color/dist/css/style.css";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import { Icon } from "@iconify/react";
+import Cookies from "universal-cookie";
 const logo = require("../../helpers/no-image.png");
 const { Header, Footer, Sider, Content } = Layout;
 const { Option } = Select;
+
 export default function CartList() {
   const dispatch = useDispatch();
   const [topForm] = Form.useForm();
@@ -251,7 +253,8 @@ export default function CartList() {
 
     console.log(productItemJs); //bunu tek tek gondermek lazimdi(Teyyubla danis)
     console.log(items);
-    basketItemJs["items"] = items;
+    // basketItemJs["items"] = items;
+    basketItemJs["itemForAdd"] = productItemJs;
 
     console.log(basketItemJs);
     dispatch(addCart(basketItemJs));
