@@ -15,7 +15,10 @@ var arr=[]
                 }
                 var basketArrayString = JSON.stringify(arr);
                 cookies.set("basketArray", basketArrayString);
-                cookies.set("grandTotal",action.payload.grandTotal)
+                cookies.set("customerDto",action.payload.customerDto);
+                cookies.set("sellerDto",action.payload.sellerDto);
+                cookies.set("grandTotal",action.payload.grandTotal);
+                cookies.set("allBasketData",action.payload);
               }
               return {
                 ...state,

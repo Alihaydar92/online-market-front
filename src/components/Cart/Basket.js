@@ -8,17 +8,26 @@ import { renderToString } from "react-dom/server";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import fontTxt from "../../helpers/fontRobotoBase64";
+import moment from "moment"
 export default function Basket() {
-  var EDV=99;
+  
   const cookies = new Cookies();
   const dispatch = useDispatch();
   const [basketArray, setBasketArray] = useState();
-  const [grandTotal, setGrandTotal] = useState();
+  const [grandTotal, setGrandTotal] = useState(Number());
+  const [customerDto, setCustomerDto] = useState();
+  const [sellerDto, setSellerDto] = useState();
   // var arr = [];
+  const  EDVPersent=0.18;
+  const EDV=Number(Math.round((grandTotal  * EDVPersent )*100)/100 ) ;
 
+const totalPrice=EDV+grandTotal;
+const finalPrice=EDV+grandTotal;
   useEffect(() => {
     setBasketArray(cookies.get("basketArray"));
-    setGrandTotal(cookies.get("grandTotal"));
+    setGrandTotal(Number(cookies.get("grandTotal")) );
+    setCustomerDto(cookies.get("customerDto"));
+    setSellerDto(cookies.get("sellerDto"));
   }, []);
 
   const handleClear = () => {
@@ -73,16 +82,20 @@ export default function Basket() {
     pdf.addFont("Roboto-Regular-normal.ttf", "Roboto-Regular", "normal");
     ////////////////////////////// basliq yazilar
     pdf.setFont("Roboto-Regular");
-    pdf.text(15, 10, "Alıcı: ");
-    pdf.text(45, 10, "Bilgəh tikinti materialları 707(050-426-22-88 Vugar)");
-    pdf.text(15, 20, "Ekspeditor: ");
-    pdf.text(45, 20, "Zaur quliyev 055-208-49-46");
-    pdf.text(15, 30, "Anbar: ");
-    pdf.text(45, 30, "Əsas Anbar 1 (DƏRNƏGÜL)");
+        //date 
+        pdf.text(15, 10, "Tarix: "+moment().format("DD.MM.YYYY"));
+        pdf.text(140, 10, "Qaimə nömrə : "+"TESTNOMRE");
+/////
+    pdf.text(15, 20, "Alıcı: ");
+    pdf.text(45, 20, customerDto.name);
+    pdf.text(15, 30, "Ekspeditor: ");
+    pdf.text(45, 30, sellerDto.name);
+    pdf.text(15, 40, "Anbar: ");
+    pdf.text(45, 40, "TEST ANBAR");
     ///////////////////////////////////////////////////
 
     /////////////////////////cedvel
-    var col = ["Nomre","Say","Barkod", "Qiymet", "Ümumi cem"];
+    var col = ["Nomre","Say","Barkod","Ad", "Qiymet", "Ümumi cem"];
     var rows = [];
 
     basketArray.forEach((element,index) => {
@@ -90,7 +103,8 @@ export default function Basket() {
       var temp = [
         index+1,
         element.quantity,
-        element.barcode,
+        element.storeHouseDto.barcode,
+        element.name,
         element.storeHouseDto.price,
         element.totalPrice,
       ];
@@ -98,24 +112,43 @@ export default function Basket() {
       rows.push(temp);
     });
     let finalY = pdf.autoTable.previous.finalY;
-    pdf.autoTable(col, rows, { startY: 35 });
+    pdf.autoTable(col, rows, { startY: 55 });
+    // pdf.autoTable({
+    //   col,
+    //   // col:[
+    //   //   { header: 'Nomre', dataKey: 'index' },
+    //   //   { header: 'Say', dataKey: 'quantity' },
+    //   //   { header: 'Barkod', dataKey: 'barcode' },
+    //   //   { header: 'Ad', dataKey: 'productName' },
+    //   //   { header: 'Qiymet', dataKey: 'price' },
+    //   //   { header: 'Ümumi cem', dataKey: 'totalProce' },
+    //   // ],
+    //   col :["Nomre","Say","Barkod","Ad", "Qiymet", "Ümumi cem"],
+    //   body:rows,
+    //   margin:{top:35},
+    //   didDrawPage:function(data){
+    
+    // }})
+
+
     /////////////////////////////////////////////
     pdf.text(45, finalY + 10, "Məbləğ");
-    pdf.text(170, finalY + 10, grandTotal);
+    pdf.text(170, finalY + 10, grandTotal.toString());
     pdf.text(45, finalY + 20, "ƏDV");
-    pdf.text(170, finalY + 20, EDV.toString());
+    pdf.text(170, finalY + 20,EDV.toString());
     pdf.text(45, finalY + 30, "Məbləğ Cəm");
-    pdf.text(170, finalY + 30, (grandTotal+EDV).toString());
+    pdf.text(170, finalY + 30, totalPrice.toString());
    
     pdf.text(45, finalY + 40, "Yekun");
-    pdf.text(170, finalY + 40, (grandTotal+EDV).toString());
-    pdf.text(45, finalY + 50, "Kontragentin qalıq borcu");
-    pdf.text(170, finalY + 50, "1000");
+    pdf.text(170, finalY + 40, finalPrice.toString());
+    // pdf.text(45, finalY + 50, "Kontragentin qalıq borcu");
+    // pdf.text(170, finalY + 50, "1000");
     pdf.save("pdf");
   };
   return (
     <div>
       {" "}
+    
       <Row style={{ marginTop: "10px" }}>
         <Col span={2}>
           <Button
