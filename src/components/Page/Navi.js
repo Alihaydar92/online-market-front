@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Badge, Image, Drawer, Affix } from "antd";
 import Cookies from "universal-cookie";
@@ -22,7 +22,25 @@ export default function Navi(props) {
   let navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [btnDropleft, setBtnDropleft] = useState(false);
+  const [basketArray, setBasketArray] = useState();
+  // useEffect(() => {
+  //   console.log()
+  //   if(){
+  //     setBasketArray(null);
+  //   }else{
+  //     setBasketArray(cookies.get("basketArray"));
+  //   }
+   
+  
+  // }, []);
 
+  React.useEffect(() => {
+    const timeoutID = window.setTimeout(() => {
+      console.log(cookies.get("basketArray"))
+    }, 1000);
+
+    return () => window.clearTimeout(timeoutID );
+}, []);
   const logout = () => {
     window.localStorage.clear();
     navigate("/");
@@ -64,7 +82,7 @@ export default function Navi(props) {
                 </DropdownMenu>
               </Dropdown>
               {props.location.pathname === "/cartList" ? (
-                <Badge count={cookies.get("basketArray").length}>
+                <Badge count={typeof cookies.get("basketArray") === 'undefined'?Number(0):cookies.get("basketArray").length}>
                   <Link to="/basket">
                     {/* <Icon icon="emojione:shopping-cart" align="right" float="right" verticalAlign="right"/> */}
                     <ShoppingCartOutlined

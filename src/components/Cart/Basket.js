@@ -33,6 +33,7 @@ const finalPrice=EDV+grandTotal;
   const handleClear = () => {
     // setBasketDataState([]);
     cookies.remove("basketArray");
+    setBasketArray([]);
   };
 
   const removeBasketData = (basketDataId) => {
