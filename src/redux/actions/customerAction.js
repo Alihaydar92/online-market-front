@@ -60,7 +60,7 @@ export const getCustomerListByExpeditorId = (expeditorId) => (dispatch) => {
     });
   });
 };
-export const addCustomer = (data) => (dispatch) => {
+export const addCustomer = (data,page,pageSize) => (dispatch) => {
   const axiosInstance = axios.create({
     baseURL: baseURL,
     auth: {
@@ -77,12 +77,12 @@ export const addCustomer = (data) => (dispatch) => {
         payload: response.data,
       });
 
-      dispatch(listOfCustomers());
+      dispatch(listOfCustomers(page,pageSize));
     }
   });
 };
 
-export const updateCustomer = (data) => (dispatch) => {
+export const updateCustomer = (data,page,pageSize) => (dispatch) => {
   const axiosInstance = axios.create({
     baseURL: baseURL,
     auth: {
@@ -99,12 +99,12 @@ export const updateCustomer = (data) => (dispatch) => {
         payload: response.data,
       });
 
-      dispatch(listOfCustomers());
+      dispatch(listOfCustomers(page,pageSize));
     }
   });
 };
 
-export const deleteCustomer = (id) => (dispatch) => {
+export const deleteCustomer = (id,page,pageSize) => (dispatch) => {
   const axiosInstance = axios.create({
     baseURL: baseURL,
     auth: {
@@ -121,7 +121,7 @@ export const deleteCustomer = (id) => (dispatch) => {
         payload: response.data,
       });
 
-      dispatch(listOfCustomers());
+      dispatch(listOfCustomers(page,pageSize));
     }
   });
 };

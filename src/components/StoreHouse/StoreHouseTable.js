@@ -306,6 +306,7 @@ export default function StoreHouseTable() {
       <Modal
         title="Anbar məlumatına düzəliş edilməsi"
         visible={isRedakteEtModalVisible}
+        
         destroyOnClose={true}
         onCancel={handleCancel}
         footer={[
@@ -316,12 +317,14 @@ export default function StoreHouseTable() {
       >
         <StoreHouseEdit
           rowKey="id"
+          paginationData={pagination}
           handleCancel={handleCancel}
         ></StoreHouseEdit>
       </Modal>
       <Modal
         title="Anbar məlumatının silinməsi"
         visible={isSilModalVisible}
+        
         onCancel={handleCancel}
         footer={[
           <Button danger onClick={handleCancel}>
@@ -331,6 +334,7 @@ export default function StoreHouseTable() {
       >
         <StoreHouseDelete
           rowKey="id"
+          paginationData={pagination}
           handleCancel={handleCancel}
         ></StoreHouseDelete>
       </Modal>

@@ -22,7 +22,7 @@ export default function CustomerEdit(props) {
           note: form.getFieldsValue().note.trim(),
           id: customerDataById.id,
         };
-        dispatch(updateCustomer(data), [listOfCustomerData]);
+        dispatch(updateCustomer(data,props.paginationData.page,props.paginationData.pageSize), [listOfCustomerData]);
         props.handleCancel();
       })
       .catch((errorInfo) => {

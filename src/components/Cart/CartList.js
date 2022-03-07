@@ -29,10 +29,12 @@ const { Header, Footer, Sider, Content } = Layout;
 const { Option } = Select;
 
 export default function CartList() {
+
   const dispatch = useDispatch();
   const [topForm] = Form.useForm();
   const [customerId, setCustomerId] = useState(Number());
   const [categoryDisable, setCategoryDisable] = useState(true);
+ 
 
   useEffect(() => {
     dispatch(listOfCategories());
@@ -48,9 +50,15 @@ export default function CartList() {
   const listOfProductDataByCategoryId = useSelector(
     (state) => state.productReducers?.productListDataByCategoryId
   );
+ 
   const listOfCustomerByExpeditorId = useSelector(
     (state) => state.customerReducer?.customerDataListByExpeditorId
   );
+useEffect(()=>{
+console.log(listOfProductDataByCategoryId)
+},[listOfProductDataByCategoryId])
+
+
 
   var countDataList = [];
   var customerSellPriceDataList = [];
@@ -62,23 +70,25 @@ export default function CartList() {
         dispatch(getProductListByCategoryId(value));
 
         console.log(listOfProductDataByCategoryId);
+       
+     
+      
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  const onChangeProduct = (value) => {
-    topForm
-      .validateFields()
-      .then(() => {
-        // dispatch(getProductListByCategoryId(value));
-        const filtered = listOfProductDataByCategoryId.filter;
-        console.log(listOfProductDataByCategoryId);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const onChangeProduct = (e) => {
+   
+    // var productArrData=[{}];
+    // productArrData=listOfProductDataByCategoryId.filter((element)=>{
+      
+    // return element.id===e;
+    // })
+   
+   
+    
   };
   const onChangeCustomer = (value) => {
     setCategoryDisable(false);
@@ -338,6 +348,7 @@ export default function CartList() {
               name="product"
               // rules={[{ required: true, message: "Məhsulu seçin!" }]}
             >
+              
               <Select
                 // disabled={categoryDisable}
                 // style={{ width: "300px" }}
@@ -360,7 +371,7 @@ export default function CartList() {
               >
                 {listOfProductDataByCategoryId.map((productData) => (
                   <Option key={productData.id} value={productData.id}>
-                    {productData.name}
+                    {productData.name + "(" + productData.barcode + ")"}
                   </Option>
                 ))}
               </Select>
@@ -370,7 +381,7 @@ export default function CartList() {
             return (
               <div className="site-card-wrapper">
                 <Card style={{ marginTop: "10px" }}>
-                  {item.productImageDtos.length === 0 ? (
+                  {/* {item.productImageDtos.length === 0 ? (
                     <Image
                       width="100%"
                       preview={false}
@@ -395,7 +406,7 @@ export default function CartList() {
                         />
                       );
                     })
-                  )}
+                  )} */}
 
                   <Row>
                     <h4>Məhsul: {item.name}</h4>

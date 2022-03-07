@@ -64,7 +64,7 @@ export default function ProductTable() {
   );
 
   useEffect(() => {
-    dispatch(searchProduct("",pagination.page, pagination.pageSize));
+    dispatch(searchProduct("",pagination.page, pagination.pageSize,false));
   }, []);
 
   useEffect(() => {}, [listOfProductDataByPage]);
@@ -188,7 +188,7 @@ export default function ProductTable() {
   const onSearch = (e) => {
     var searchData =form.getFieldsValue().name
   
-    dispatch(searchProduct(searchData, pagination.page,pagination.pageSize));
+    dispatch(searchProduct(searchData, pagination.page,pagination.pageSize,false));
     setPagination({
       page: listOfProductDataByPage.currentPage + 1,
       pageSize: 15,
@@ -207,7 +207,8 @@ export default function ProductTable() {
 
   const onRefresh = () => {
     onClear();
-    dispatch(searchProduct("",pagination.page,pagination.pageSize));
+    pagination.page=1;
+    dispatch(searchProduct("",pagination.page,pagination.pageSize,false));
   };
 
   const columns = [
@@ -351,12 +352,14 @@ const onImageRemove =(index)=>{
         rowKey="id"
         pagination={{
           // defaultCurrent:0,
-          current: pagination.page,
+          current: listOfProductDataByPage.currentPage+1,
           pageSize: pagination.pageSize,
           total: listOfProductDataByPage.totalItems,
           onChange: (page, pageSize) => {
             setPagination({ page, pageSize });
-            dispatch(searchProduct("",page, pageSize));
+          var searchData =form.getFieldsValue().name
+  
+            dispatch(searchProduct(searchData,page, pageSize,true));
           },
         }}
       ></Table>

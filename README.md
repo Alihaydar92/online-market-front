@@ -75,19 +75,15 @@ img ve diger filelarla bagli codelarin optimizasiyasi
 
 resetfields eslinde duz islemir, yalniz emeliyyat olduqdan sonra isleyir, halbuki modali elebele acib bagladiqda bele islemelidi (modal acarken reset olmalidi datalar)(useEffectLayout genis test edib yoxlamaq)
 
-
 route ile linkleri goruntuden yigisdirmaq, yalniz base link olacaq 
 
 paginationda page ve pagesize ilkin deyerlerini global const deyisen kimi saxlamq(basqa pencerelerde de istifade etmek ucun)
 
-paginationla bagli xirda buglari nezerden kecirmek (esasen de productda) 
+
 
 actionlarda (add delete update) dispatch listler cagirlir ,onlarin page parametri yoxdu onlari duzeldib test etmek
 
-axios create problemi
 
-
-mehsul page-ye axtarisha kateqoriya fieldi elave etmek
 
 cardlist pagede category deyishdikde say inputunu deyismek 
 
@@ -98,15 +94,11 @@ iki button duymesi. 1)cap edecek pdfe, 2) sebet datani bazaya insert
 
 sebete elave olunmus datadan response 200 qayitdisa o zaman sebet  tabledaki datani silmek
 
-sebetde data var , sonra satis pageye qayidib yeniden sebete elave edende sebet datasi 0lanir ,bunu ele etmek lazimdirki data sifirlanmasin yalniz sebet insert gedende sifirlansin
-
 mouse focus menu uzerinde olmadiqda menu baglansin
 
 vacib: env faylindaki urli oz localimda localhost ile yazmaq lakin git ignora salmaq
 
-sebet ucun iconun yerlesdiyi header(veya panel) pencereni scroll ederken daima yuxarida qalsin +++
-
-headerin responsiveliyi ve scrool ederken header itmesWin
+headerin responsiveliyi
 
 sebete elave ederken ikinci melumati sebete elave edende bele bir bir gondermek her birini ,bunu cartlistde duzeltmek
 
@@ -115,6 +107,8 @@ satis penceresinde mehsul combosuna barkodu da elave etmek ve axtarisinda her ik
 jspdf utf problem
 
 sekli sil buttonunun altinda sekli servisde cagirib silmek
+
+cart list pagede problemler (meselen sebete elave etdikden sonra combolar bosalir ve axirinci product list pagede qalir)
 ### sonra
 
 Imkan varsa pencerelesi responsive etmek (Sonda da edile biler)
@@ -138,5 +132,6 @@ mehsullar / Satis qiymeti maya deyerinden asagi ola biler bilmez deqiqlesdirmek,
 
 paginationda 120ci pagede data olmadigi halda 120ci page-i qaytarir
 
+anbar page axtarisa duzelis (mehsullardaki kimi)
 
-product add update-de category ve property( diger fieldler de ola biler) insert update ollmur +++
+

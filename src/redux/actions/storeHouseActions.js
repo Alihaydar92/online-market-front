@@ -35,7 +35,7 @@ export const getStoreHouseById = (id) => (dispatch) => {
   });
 };
 
-export const addStoreHouse = (data) => (dispatch) => {
+export const addStoreHouse = (data,page,pageSize) => (dispatch) => {
   const axiosInstance = axios.create({
     baseURL: baseURL,
     auth: {
@@ -50,7 +50,7 @@ export const addStoreHouse = (data) => (dispatch) => {
         type: actionTypes.ADD_STOREHOUSE,
         payload: response.data,
       });
-      dispatch(listOfStoreHouse());
+      dispatch(listOfStoreHouse(page,pageSize));
     }
   });
 };
@@ -77,7 +77,7 @@ export const updateStoreHouse = (data) => (dispatch) => {
   });
 };
 
-export const deleteStoreHouse = (id) => (dispatch) => {
+export const deleteStoreHouse = (id,page,pageSize) => (dispatch) => {
   const axiosInstance = axios.create({
     baseURL: baseURL,
     auth: {
@@ -91,7 +91,7 @@ export const deleteStoreHouse = (id) => (dispatch) => {
         type: actionTypes.DELETE_STOREHOUSE,
         payload: response.data,
       });
-      dispatch(listOfStoreHouse());
+      dispatch(listOfStoreHouse(page,pageSize));
     }
   });
 };

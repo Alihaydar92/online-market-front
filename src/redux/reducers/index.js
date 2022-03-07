@@ -7,7 +7,7 @@ import propertyReducers from "./propertyReducers";
 import storeHouseReducers from "./storeHouseReducers";
 import loaderReducers from "./loaderReducers";
 import authReducers from "./authReducers";
-import cartReducers from "./cartReducers";
+// import cartReducers from "./cartReducers";
 const rootReducer = combineReducers({
   customerReducer,
   expeditorReducers,
@@ -17,7 +17,7 @@ const rootReducer = combineReducers({
   storeHouseReducers,
   loaderReducers,
   authReducers,
-  cartReducers
+  // cartReducers
 });
 
 export default rootReducer;

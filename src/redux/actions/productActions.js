@@ -202,35 +202,44 @@ export const getProductImagesByProductId = (id) => (dispatch) => {
   });
 };
 
-export const searchProduct = (searchData, page, pageSize) => (dispatch) => {
-  const axiosInstance = axios.create({
-    baseURL: baseURL,
-    auth: {
-      username: window.localStorage.getItem("username"),
-      password: window.localStorage.getItem("password"),
-    },
-  });
-  var productParams = new Object();
-  console.log(searchData);
-  if (searchData !== "") {
-    productParams.keyword = searchData;
-    productParams.page = 0;
-  } else {
-    productParams.page = page - 1;
-  }
-  productParams.size = pageSize;
-  axiosInstance
-    .get("/products/v2", { params: productParams })
-    .then((response) => {
-      console.log(
-        "get product imgs by product id reposne data: ",
-        response.data
-      );
-      if (response.status === 200) {
-        dispatch({
-          type: actionTypes.SEARCH_PRODUCT,
-          payload: response.data,
-        });
-      }
+export const searchProduct =
+  (searchData, page, pageSize, isFromSearchPagination) => (dispatch) => {
+    console.log(page);
+    console.log(isFromSearchPagination);
+    console.log('searchData',searchData);
+    const axiosInstance = axios.create({
+      baseURL: baseURL,
+      auth: {
+        username: window.localStorage.getItem("username"),
+        password: window.localStorage.getItem("password"),
+      },
     });
-};
+    var productParams = new Object();
+    console.log(searchData);
+    if (searchData !== "") {
+      productParams.keyword = searchData;
+
+      if (isFromSearchPagination) {
+        productParams.page = page - 1;
+      } else {
+        productParams.page = 0;
+      }
+    } else {
+      productParams.page = page - 1;
+    }
+    productParams.size = pageSize;
+    axiosInstance
+      .get("/products/v2", { params: productParams })
+      .then((response) => {
+        console.log(
+          "get product imgs by product id reposne data: ",
+          response.data
+        );
+        if (response.status === 200) {
+          dispatch({
+            type: actionTypes.SEARCH_PRODUCT,
+            payload: response.data,
+          });
+        }
+      });
+  };

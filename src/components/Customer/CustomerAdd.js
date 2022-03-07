@@ -16,7 +16,7 @@ export default function CustomerAdd(props) {
           note: form.getFieldsValue().note.trim(),
         };
         console.log("on create data", data);
-        dispatch(addCustomer(data));
+        dispatch(addCustomer(data,1,15));
         props.handleCancel();
         form.resetFields();
       })

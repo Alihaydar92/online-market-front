@@ -11,7 +11,7 @@ export default function CustomerDelete(props) {
     (state) => state.customerReducer?.customerListData
   );
   const onDelete = (id) => async (e) => {
-    dispatch(deleteCustomer(id), [listOfCustomerData]);
+    dispatch(deleteCustomer(id,props.paginationData.page,props.paginationData.pageSize), [listOfCustomerData]);
     props.handleCancel();
   };
 

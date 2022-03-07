@@ -7,7 +7,7 @@ export default function StoreHouseDelete(props) {
     (state) => state.storeHouseReducers.storeHouseDataById
   );
   const onDelete = (id) => async (e) => {
-    dispatch(deleteStoreHouse(id), []);
+    dispatch(deleteStoreHouse(id,props.paginationData.page,props.paginationData.pageSize), []);
     props.handleCancel();
   };
 

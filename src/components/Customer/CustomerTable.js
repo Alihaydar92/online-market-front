@@ -228,7 +228,7 @@ export default function CustomerTable() {
           </Button>,
         ]}
       >
-        <CustomerEdit rowKey="id" handleCancel={handleCancel}></CustomerEdit>
+        <CustomerEdit rowKey="id" paginationData={pagination} handleCancel={handleCancel}></CustomerEdit>
       </Modal>
       <Modal
         title="Müştəri məlumatının əlavə edilməsi"
@@ -251,6 +251,7 @@ export default function CustomerTable() {
       <Modal
         title="Müştəri məlumatının silinməsi"
         visible={isSilModalVisible}
+        pagin
         onCancel={handleCancel}
         footer={[
           <Button danger onClick={handleCancel}>
@@ -260,6 +261,7 @@ export default function CustomerTable() {
       >
         <CustomerDelete
           rowKey="id"
+          paginationData={pagination}
           handleCancel={handleCancel}
         ></CustomerDelete>
       </Modal>

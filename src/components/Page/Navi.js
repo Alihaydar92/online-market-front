@@ -16,9 +16,7 @@ import { ShoppingCartOutlined } from "@ant-design/icons";
 const logo = require("../../helpers/greenStreamImg.jpeg");
 export default function Navi(props) {
   const cookies = new Cookies();
-  const basketReducerData = useSelector(
-    (state) => state.cartReducers?.basketData
-  );
+  
   let navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [btnDropleft, setBtnDropleft] = useState(false);

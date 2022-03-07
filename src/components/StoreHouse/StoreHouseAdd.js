@@ -36,7 +36,7 @@ console.log('productListData ',productListData)
           addedDate: moment(form.getFieldsValue().dateAdded).format(dateFormat),
         };
         console.log("storehouse data", data);
-        dispatch(addStoreHouse(data));
+        dispatch(addStoreHouse(data,1,15));
         props.handleCancel();
         props.firstPage();
         form.resetFields();
