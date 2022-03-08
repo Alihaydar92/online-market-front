@@ -79,12 +79,6 @@ route ile linkleri goruntuden yigisdirmaq, yalniz base link olacaq
 
 paginationda page ve pagesize ilkin deyerlerini global const deyisen kimi saxlamq(basqa pencerelerde de istifade etmek ucun)
 
-
-
-actionlarda (add delete update) dispatch listler cagirlir ,onlarin page parametri yoxdu onlari duzeldib test etmek
-
-
-
 cardlist pagede category deyishdikde say inputunu deyismek 
 
 category secildikden sonra gelen mehsullara gore axtaris (cartlist)
@@ -98,7 +92,7 @@ mouse focus menu uzerinde olmadiqda menu baglansin
 
 vacib: env faylindaki urli oz localimda localhost ile yazmaq lakin git ignora salmaq
 
-headerin responsiveliyi
+headerin responsiveliyi (Imkan varsa pencerelesi responsive etmek (Sonda da edile biler))
 
 sebete elave ederken ikinci melumati sebete elave edende bele bir bir gondermek her birini ,bunu cartlistde duzeltmek
 
@@ -111,18 +105,14 @@ sekli sil buttonunun altinda sekli servisde cagirib silmek
 cart list pagede problemler (meselen sebete elave etdikden sonra combolar bosalir ve axirinci product list pagede qalir)
 ### sonra
 
-Imkan varsa pencerelesi responsive etmek (Sonda da edile biler)
-
 label-larin textlerini file-dan oxumaq
-
-anbar add edit modallarda product listi axtarisla getirmek
 
 daxil olan userin(expeditor) musteri siyahisi verilcek
 
 login olduqdan sonra user id-ye gore seller cagirilacaq (hem de goruntude gosterilecek)
 seller id-ye gore ise musteri siyahisi gelecek, helelik musteri siyahsini cagirmaq ucun seller id-ni elnen verirem (id 6)
 
-servis connection xetasini mesajla gostermek
+servis connection xetasini mesajla gostermek+++
  
 ### backend teyyub
 

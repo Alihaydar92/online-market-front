@@ -8,27 +8,33 @@ import { renderToString } from "react-dom/server";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import fontTxt from "../../helpers/fontRobotoBase64";
-import moment from "moment"
+import moment from "moment";
 export default function Basket() {
-  
   const cookies = new Cookies();
   const dispatch = useDispatch();
-  const [basketArray, setBasketArray] = useState();
+  // const [basketArray, setBasketArray] = useState();
+  const [basketArray, setBasketArray] = useState([{quantity:1,storeHouseDto:{barcode:'fsdfdsfdsf',price:2},totalPrice:12},
+  {quantity:2,storeHouseDto:{barcode:'fsdfdsfdsf',price:5},totalPrice:15}]);
+ 
   const [grandTotal, setGrandTotal] = useState(Number());
   const [customerDto, setCustomerDto] = useState();
   const [sellerDto, setSellerDto] = useState();
   // var arr = [];
-  const  EDVPersent=0.18;
-  const EDV=Number(Math.round((grandTotal  * EDVPersent )*100)/100 ) ;
+  const EDVPersent = 0.18;
+  const EDV = Number(Math.round(grandTotal * EDVPersent * 100) / 100);
 
-const totalPrice=EDV+grandTotal;
-const finalPrice=EDV+grandTotal;
+  const totalPrice = EDV + grandTotal;
+  const finalPrice = EDV + grandTotal;
   useEffect(() => {
-    setBasketArray(cookies.get("basketArray"));
-    setGrandTotal(Number(cookies.get("grandTotal")) );
+    // setBasketArray(cookies.get("basketArray"));
+    setGrandTotal(Number(cookies.get("grandTotal")));
     setCustomerDto(cookies.get("customerDto"));
     setSellerDto(cookies.get("sellerDto"));
   }, []);
+useEffect(()=>{
+
+},[basketArray])
+ 
 
   const handleClear = () => {
     // setBasketDataState([]);
@@ -83,10 +89,10 @@ const finalPrice=EDV+grandTotal;
     pdf.addFont("Roboto-Regular-normal.ttf", "Roboto-Regular", "normal");
     ////////////////////////////// basliq yazilar
     pdf.setFont("Roboto-Regular");
-        //date 
-        pdf.text(15, 10, "Tarix: "+moment().format("DD.MM.YYYY"));
-        pdf.text(140, 10, "Qaimə nömrə : "+"TESTNOMRE");
-/////
+    //date
+    pdf.text(15, 10, "Tarix: " + moment().format("DD.MM.YYYY"));
+    pdf.text(140, 10, "Qaimə nömrə : " + "TESTNOMRE");
+    /////
     pdf.text(15, 20, "Alıcı: ");
     pdf.text(45, 20, customerDto.name);
     pdf.text(15, 30, "Ekspeditor: ");
@@ -96,13 +102,13 @@ const finalPrice=EDV+grandTotal;
     ///////////////////////////////////////////////////
 
     /////////////////////////cedvel
-    var col = ["Nomre","Say","Barkod","Ad", "Qiymet", "Ümumi cem"];
+    var col = ["Nomre", "Say", "Barkod", "Ad", "Qiymet", "Ümumi cəm"];
     var rows = [];
 
-    basketArray.forEach((element,index) => {
+    basketArray.forEach((element, index) => {
       console.log(element);
       var temp = [
-        index+1,
+        index + 1,
         element.quantity,
         element.storeHouseDto.barcode,
         element.name,
@@ -113,7 +119,10 @@ const finalPrice=EDV+grandTotal;
       rows.push(temp);
     });
     let finalY = pdf.autoTable.previous.finalY;
-    pdf.autoTable(col, rows, { startY: 55 });
+    pdf.autoTable(col, rows, { startY: 55 },{styles: {
+      font: 'Roboto-Regular',
+      fontStyle: 'normal',
+    }});
     // pdf.autoTable({
     //   col,
     //   // col:[
@@ -128,18 +137,17 @@ const finalPrice=EDV+grandTotal;
     //   body:rows,
     //   margin:{top:35},
     //   didDrawPage:function(data){
-    
-    // }})
 
+    // }})
 
     /////////////////////////////////////////////
     pdf.text(45, finalY + 10, "Məbləğ");
     pdf.text(170, finalY + 10, grandTotal.toString());
     pdf.text(45, finalY + 20, "ƏDV");
-    pdf.text(170, finalY + 20,EDV.toString());
+    pdf.text(170, finalY + 20, EDV.toString());
     pdf.text(45, finalY + 30, "Məbləğ Cəm");
     pdf.text(170, finalY + 30, totalPrice.toString());
-   
+
     pdf.text(45, finalY + 40, "Yekun");
     pdf.text(170, finalY + 40, finalPrice.toString());
     // pdf.text(45, finalY + 50, "Kontragentin qalıq borcu");
@@ -149,7 +157,6 @@ const finalPrice=EDV+grandTotal;
   return (
     <div>
       {" "}
-    
       <Row style={{ marginTop: "10px" }}>
         <Col span={2}>
           <Button

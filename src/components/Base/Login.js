@@ -35,17 +35,25 @@ export default function Login() {
             }
           })
           .catch((error) => {
-            console.log(error)
+            if (!error.response) {
+              notification["error"]({
+                message: "Qoşulma xətası",
+              });
+              return Promise.reject(error);
+            }
+
             if (error.response.status === 401) {
               notification["error"]({
                 message: "İstifadəçi adı vəya şifrə yalnışdı",
               });
             }
+            console.log("second");
           });
       })
       .catch((err) => {
         console.log(err);
       });
+    console.log("first");
   };
   return (
     <div className="container">

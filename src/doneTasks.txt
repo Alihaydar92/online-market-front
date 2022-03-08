@@ -101,7 +101,6 @@ anbar axtaris+++
 
 window local storage clearde problem , bunu hell etmek+++
 
-
 base auth tetbiq ederek login olmaq +++
 
 sebete get buttonunu icon ile evez etmek+++
@@ -111,8 +110,11 @@ cart pagede mehsullar gec geldiyi ucun loading qoymaq +++
 sekil gelmiyende by default shekil qoymaq +++
 
 carlistde combo dizayna diqqet+++
+
 sebet ucun iconun yerlesdiyi header(veya panel) pencereni scroll ederken daima yuxarida qalsin +++
+
 sebetde data var , sonra satis pageye qayidib yeniden sebete elave edende sebet datasi 0lanir ,bunu ele etmek lazimdirki data sifirlanmasin yalniz sebet insert gedende sifirlansin+++
+
 mehsul page-ye axtarisha kateqoriya fieldi elave etmek(artiq axtaris parametri birdened ve herseyi axtarir)+++
 
 anbar editde problem+++
@@ -120,4 +122,11 @@ anbar editde problem+++
 product add update-de category ve property( diger fieldler de ola biler) insert update ollmur +++
 
 axios create problemi+++
+
 paginationla bagli xirda buglari nezerden kecirmek (esasen de productda) +++
+
+actionlarda (add delete update) dispatch listler cagirlir ,onlarin page parametri yoxdu onlari duzeldib test etmek+++
+
+anbar add edit modallarda product listi axtarisla getirmek +++
+
+servis connection xetasini mesajla gostermek+++

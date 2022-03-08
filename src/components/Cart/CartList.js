@@ -381,7 +381,7 @@ console.log(listOfProductDataByCategoryId)
             return (
               <div className="site-card-wrapper">
                 <Card style={{ marginTop: "10px" }}>
-                  {/* {item.productImageDtos.length === 0 ? (
+                  {item.content === "" ? (
                     <Image
                       width="100%"
                       preview={false}
@@ -390,8 +390,8 @@ console.log(listOfProductDataByCategoryId)
                       src={String(logo)}
                     />
                   ) : (
-                    item.productImageDtos.map((value) => {
-                      return (
+                    // item.productImageDtos.map((value) => {
+                      // return (
                         <Image
                           width="100%"
                           // preview={false}
@@ -401,26 +401,26 @@ console.log(listOfProductDataByCategoryId)
                             // value === null
                             //   ? String(logo)
                             //   :
-                            `data:image/jpeg;base64,${value.content}`
+                            `data:image/jpeg;base64,${item.content}`
                           }
                         />
-                      );
-                    })
-                  )} */}
+                      // );
+                    // })
+                  )}
 
                   <Row>
-                    <h4>Məhsul: {item.name}</h4>
+                    <h4>Məhsul: {item.productDto.name}</h4>
                   </Row>
                   <Row>
                     <h4>
                       Anbardakı sayı:{" "}
-                      <b style={{ color: "red" }}>{item.quantity}</b>
+                      <b style={{ color: "red" }}>{item.productDto.quantity}</b>
                     </h4>
                   </Row>
                   <Row>
                     <h4>
                       Qiymət:{" "}
-                      <b style={{ color: "red" }}>{item.sellPrice + " AZN"}</b>{" "}
+                      <b style={{ color: "red" }}>{item.productDto.sellPrice + " AZN"}</b>{" "}
                     </h4>
                   </Row>
                   <Form
