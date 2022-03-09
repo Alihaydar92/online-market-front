@@ -18,6 +18,7 @@ export const addCart = (data) => (dispatch) => {
         type: actionTypes.ADD_CART,
         payload: response.data,
       });
+      dispatch(showAddedBasketItems());
       //   notification["success"]({ message: response.data, description: "" });
       //   dispatch(listOfCategories());
     }
@@ -32,7 +33,7 @@ export const deleteCart = (id) => (dispatch) => {
       password: window.localStorage.getItem("password"),
     },
   });
-  axiosInstance.post("/carts/delete/" + id).then((response) => {
+  axiosInstance.delete("/carts/"+id).then((response) => {
     if (response.status === 200) {
       console.log("response cart delete  data ", response.data);
       dispatch({
@@ -40,7 +41,27 @@ export const deleteCart = (id) => (dispatch) => {
         payload: response.data,
       });
       notification["success"]({ message: response.data, description: "" });
-      //   dispatch(listOfCategories());
+        dispatch(showAddedBasketItems());
+    }
+  });
+};
+
+export const showAddedBasketItems = () => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+  });
+
+  axiosInstance.get("/carts/user/1").then((response) => {
+    console.log(response.data)
+    if (response.status === 200) {
+      dispatch({
+        type: actionTypes.SHOW_BASKET_ITEMS,
+        payload: response.data,
+      });
     }
   });
 };

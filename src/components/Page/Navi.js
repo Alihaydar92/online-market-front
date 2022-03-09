@@ -1,5 +1,5 @@
-import React, { useState,useEffect } from "react";
-import { useSelector } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Badge, Image, Drawer, Affix } from "antd";
 import Cookies from "universal-cookie";
 import {
@@ -13,32 +13,30 @@ import {
 } from "reactstrap";
 import { useNavigate, Link } from "react-router-dom";
 import { ShoppingCartOutlined } from "@ant-design/icons";
+import {showAddedBasketItems} from "../../redux/actions/cartActions"
 const logo = require("../../helpers/greenStreamImg.jpeg");
 export default function Navi(props) {
-  const cookies = new Cookies();
-  
+  const basketItems = useSelector(
+    (state) => state.cartReducers?.addBasketItems
+  );
+
   let navigate = useNavigate();
+
   const [isOpen, setIsOpen] = useState(false);
   const [btnDropleft, setBtnDropleft] = useState(false);
-  const [basketArray, setBasketArray] = useState();
-  // useEffect(() => {
-  //   console.log()
-  //   if(){
-  //     setBasketArray(null);
-  //   }else{
-  //     setBasketArray(cookies.get("basketArray"));
-  //   }
-   
-  
+  // const [basketItemsCount, setBasketItemsCount] = useState(0);
+
+  //   React.useEffect(() => {
+  //     const timeoutID = window.setTimeout(() => {
+  //       console.log(cookies.get("basketArray"))
+  //     }, 1000);
+
+  //     return () => window.clearTimeout(timeoutID );
   // }, []);
 
-  React.useEffect(() => {
-    const timeoutID = window.setTimeout(() => {
-      console.log(cookies.get("basketArray"))
-    }, 1000);
-
-    return () => window.clearTimeout(timeoutID );
-}, []);
+  // useEffect(() => {
+  //   setBasketItemsCount(basketItems.length);
+  // }, [basketItems]);
   const logout = () => {
     window.localStorage.clear();
     navigate("/");
@@ -80,7 +78,7 @@ export default function Navi(props) {
                 </DropdownMenu>
               </Dropdown>
               {props.location.pathname === "/cartList" ? (
-                <Badge count={typeof cookies.get("basketArray") === 'undefined'?Number(0):cookies.get("basketArray").length}>
+                <Badge count={basketItems.length}>
                   <Link to="/basket">
                     {/* <Icon icon="emojione:shopping-cart" align="right" float="right" verticalAlign="right"/> */}
                     <ShoppingCartOutlined

@@ -74,3 +74,4 @@ export const LOGIN_AUTH = "LOGIN_AUTH";
 //CART
 export const ADD_CART="ADD_CART"
 export const DELETE_CART="DELETE_CART"
+export const SHOW_BASKET_ITEMS="SHOW_BASKET_ITEMS"

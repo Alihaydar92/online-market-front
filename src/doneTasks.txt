@@ -130,3 +130,5 @@ actionlarda (add delete update) dispatch listler cagirlir ,onlarin page parametr
 anbar add edit modallarda product listi axtarisla getirmek +++
 
 servis connection xetasini mesajla gostermek+++
+
+servis connection xetasini mesajla gostermek+++

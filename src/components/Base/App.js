@@ -9,6 +9,7 @@ import CategoryTable from "../Category/CategoryTable";
 import PropertyTable from "../Property/PropertyTable";
 import DynamicList from "../Cart/DynamicList";
 import Navi from "../Page/Navi";
+import InfiniteScrool  from "../Cart/InfiniteScrool";
 import StoreHouseTable from "../StoreHouse/StoreHouseTable";
 import SideBarMenu from "../Page/SideBarMenu";
 import LoadingOverlay from "react-loading-overlay";
@@ -90,9 +91,9 @@ export default function App() {
                 <Menu.Item key="7">
                   <Link to="/storeHouse">Anbar</Link>
                 </Menu.Item>
-                {/* <Menu.Item key="8">
-                  <Link to="option8">option8</Link>
-                </Menu.Item> */}
+                <Menu.Item key="8">
+                  <Link to="infiniteScrool">infiniteScrool</Link>
+                </Menu.Item>
               </SubMenu>
               {/* <SubMenu key="sub3" icon={<NotificationOutlined />} title="Digər">
                 <Menu.Item key="9">option9</Menu.Item>
@@ -117,6 +118,7 @@ export default function App() {
                 <Route path="cartList" element={<CartList />} />
                 <Route path="storeHouse" element={<StoreHouseTable />} />
                 <Route path="basket" element={<Basket />} />
+                <Route path="infiniteScrool" element={<InfiniteScrool />} />
               </Routes>
             </Content>
 

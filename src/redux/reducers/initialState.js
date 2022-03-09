@@ -42,6 +42,8 @@ export default {
 
   basketData: {},
   basketGrandTotal: "",
+  addBasketItems: [],
+  basketAllData:{},
 
   loading: false,
 };

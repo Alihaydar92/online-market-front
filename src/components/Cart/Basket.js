@@ -1,45 +1,55 @@
 import React, { useState, useEffect } from "react";
-import { Table, Button, Space, Row, Col } from "antd";
+import { Table, Button, Space, Row, Col, Input, Form } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { deleteCart } from "../../redux/actions/cartActions";
-import Cookies from "universal-cookie";
-import { renderToString } from "react-dom/server";
+import {
+  deleteCart,
+  showAddedBasketItems,
+} from "../../redux/actions/cartActions";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import fontTxt from "../../helpers/fontRobotoBase64";
 import moment from "moment";
+
 export default function Basket() {
-  const cookies = new Cookies();
   const dispatch = useDispatch();
-  // const [basketArray, setBasketArray] = useState();
-  const [basketArray, setBasketArray] = useState([{quantity:1,storeHouseDto:{barcode:'fsdfdsfdsf',price:2},totalPrice:12},
-  {quantity:2,storeHouseDto:{barcode:'fsdfdsfdsf',price:5},totalPrice:15}]);
- 
-  const [grandTotal, setGrandTotal] = useState(Number());
-  const [customerDto, setCustomerDto] = useState();
-  const [sellerDto, setSellerDto] = useState();
+  const basketItems = useSelector(
+    (state) => state.cartReducers?.addBasketItems
+  );
+  const basketAllData = useSelector(
+    (state) => state.cartReducers?.basketAllData
+  );
+  const [basketArray, setBasketArray] = useState();
+  useEffect(() => {
+    dispatch(showAddedBasketItems());
+  }, [dispatch]);
+  useEffect(() => {
+    console.log(basketItems);
+  }, [basketItems]);
+
+  useEffect(() => {
+    setBasketArray(basketItems);
+  }, [basketItems]);
+
   // var arr = [];
   const EDVPersent = 0.18;
-  const EDV = Number(Math.round(grandTotal * EDVPersent * 100) / 100);
+  const EDV = Number(
+    Math.round(basketAllData.grandTotal * EDVPersent * 100) / 100
+  );
 
-  const totalPrice = EDV + grandTotal;
-  const finalPrice = EDV + grandTotal;
-  useEffect(() => {
-    // setBasketArray(cookies.get("basketArray"));
-    setGrandTotal(Number(cookies.get("grandTotal")));
-    setCustomerDto(cookies.get("customerDto"));
-    setSellerDto(cookies.get("sellerDto"));
-  }, []);
-useEffect(()=>{
-
-},[basketArray])
- 
+  const totalPrice = EDV + basketAllData.grandTotal;
+  const finalPrice = EDV + basketAllData.grandTotal;
+  // useEffect(() => {
+  //   setBasketArray(cookies.get("basketArray"));
+  //   setGrandTotal(Number(cookies.get("grandTotal")));
+  //   setCustomerDto(cookies.get("customerDto"));
+  //   setSellerDto(cookies.get("sellerDto"));
+  // }, []);
 
   const handleClear = () => {
     // setBasketDataState([]);
-    cookies.remove("basketArray");
-    setBasketArray([]);
+    // cookies.remove("basketArray");
+    // setBasketArray([]);
   };
 
   const removeBasketData = (basketDataId) => {
@@ -54,6 +64,10 @@ useEffect(()=>{
     {
       title: "Say",
       dataIndex: "quantity",
+      editable: true,
+      render: (text, record, index) => (
+        <Input value={text} onChange={onInputChange("quantity", index)} />
+      ),
     },
     {
       title: "Qiymət",
@@ -82,7 +96,12 @@ useEffect(()=>{
       },
     },
   ];
+  const onInputChange = (key, index) => (e) => {
+    const newData = [...basketArray];
+    newData[index][key] = Number(e.target.value);
 
+    setBasketArray(newData);
+  };
   const openPdf = () => {
     const pdf = new jsPDF("p", "mm", "a4");
     pdf.addFileToVFS("Roboto-Regular-normal.ttf", fontTxt);
@@ -94,9 +113,9 @@ useEffect(()=>{
     pdf.text(140, 10, "Qaimə nömrə : " + "TESTNOMRE");
     /////
     pdf.text(15, 20, "Alıcı: ");
-    pdf.text(45, 20, customerDto.name);
+    pdf.text(45, 20, basketAllData.customerDto.name);
     pdf.text(15, 30, "Ekspeditor: ");
-    pdf.text(45, 30, sellerDto.name);
+    pdf.text(45, 30, basketAllData.sellerDto.name);
     pdf.text(15, 40, "Anbar: ");
     pdf.text(45, 40, "TEST ANBAR");
     ///////////////////////////////////////////////////
@@ -111,7 +130,7 @@ useEffect(()=>{
         index + 1,
         element.quantity,
         element.storeHouseDto.barcode,
-        element.name,
+        element.storeHouseDto.productDto.name,
         element.storeHouseDto.price,
         element.totalPrice,
       ];
@@ -119,10 +138,17 @@ useEffect(()=>{
       rows.push(temp);
     });
     let finalY = pdf.autoTable.previous.finalY;
-    pdf.autoTable(col, rows, { startY: 55 },{styles: {
-      font: 'Roboto-Regular',
-      fontStyle: 'normal',
-    }});
+    pdf.autoTable(
+      col,
+      rows,
+      { startY: 55 },
+      // {
+      //   styles: {
+      //     font: "Roboto-Regular",
+      //     fontStyle: "normal",
+      //   },
+      // }
+    );
     // pdf.autoTable({
     //   col,
     //   // col:[
@@ -142,7 +168,7 @@ useEffect(()=>{
 
     /////////////////////////////////////////////
     pdf.text(45, finalY + 10, "Məbləğ");
-    pdf.text(170, finalY + 10, grandTotal.toString());
+    pdf.text(170, finalY + 10, basketAllData.grandTotal.toString());
     pdf.text(45, finalY + 20, "ƏDV");
     pdf.text(170, finalY + 20, EDV.toString());
     pdf.text(45, finalY + 30, "Məbləğ Cəm");
@@ -153,6 +179,9 @@ useEffect(()=>{
     // pdf.text(45, finalY + 50, "Kontragentin qalıq borcu");
     // pdf.text(170, finalY + 50, "1000");
     pdf.save("pdf");
+  };
+  const endSales = () => {
+    console.log(basketArray);
   };
   return (
     <div>
@@ -190,7 +219,7 @@ useEffect(()=>{
       />
       <Row style={{ marginTop: "10px" }}>
         <Col span={6} offset={18}>
-          <h3>Yekun qiymət: {grandTotal}</h3>
+          <h3>Yekun qiymət: {basketAllData.grandTotal}</h3>
         </Col>
       </Row>
       <Row>
@@ -203,6 +232,18 @@ useEffect(()=>{
           >
             {/* <LeftSquareTwoTone style={{ fontSize: "50px", color: "#08c" }}/> */}
             <Link to="/cartList">Satışa davam et</Link>
+          </Button>
+        </Col>
+        <Col span={6} offset={20}>
+          <Button
+            onClick={endSales}
+            type="primary"
+            style={{
+              marginBottom: 16,
+            }}
+          >
+            {/* <LeftSquareTwoTone style={{ fontSize: "50px", color: "#08c" }}/> */}
+            Satışı yekunlaşdır
           </Button>
         </Col>
       </Row>

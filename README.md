@@ -88,13 +88,15 @@ iki button duymesi. 1)cap edecek pdfe, 2) sebet datani bazaya insert
 
 sebete elave olunmus datadan response 200 qayitdisa o zaman sebet  tabledaki datani silmek
 
+sebete elave ederken ikinci melumati sebete elave edende bele bir bir gondermek her birini ,bunu cartlistde duzeltmek
+
 mouse focus menu uzerinde olmadiqda menu baglansin
 
 vacib: env faylindaki urli oz localimda localhost ile yazmaq lakin git ignora salmaq
 
 headerin responsiveliyi (Imkan varsa pencerelesi responsive etmek (Sonda da edile biler))
 
-sebete elave ederken ikinci melumati sebete elave edende bele bir bir gondermek her birini ,bunu cartlistde duzeltmek
+
 
 satis penceresinde mehsul combosuna barkodu da elave etmek ve axtarisinda her ikisi islesin(anbardaki product combobox kimi eynen) combonu secdikden sonra HEMIN XOMBOYA AID OLAN TEK DATA satisda gorsensin
 
@@ -112,7 +114,7 @@ daxil olan userin(expeditor) musteri siyahisi verilcek
 login olduqdan sonra user id-ye gore seller cagirilacaq (hem de goruntude gosterilecek)
 seller id-ye gore ise musteri siyahisi gelecek, helelik musteri siyahsini cagirmaq ucun seller id-ni elnen verirem (id 6)
 
-servis connection xetasini mesajla gostermek+++
+
  
 ### backend teyyub
 
