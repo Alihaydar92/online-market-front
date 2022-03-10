@@ -132,3 +132,11 @@ anbar add edit modallarda product listi axtarisla getirmek +++
 servis connection xetasini mesajla gostermek+++
 
 servis connection xetasini mesajla gostermek+++
+
+sebet tableda rowu silmek, say columundaki fieldi redakte etmek+++
+
+sebete elave ederken ikinci melumati sebete elave edende bele bir bir gondermek her birini ,bunu cartlistde duzeltmek+++
+
+iki button duymesi. 1)cap edecek pdfe, 2) sebet datani bazaya insert+++
+
+jspdf utf problem+++

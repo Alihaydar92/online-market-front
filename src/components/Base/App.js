@@ -1,15 +1,30 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Layout, Menu, Image, Button } from "antd";
-import { Route, Routes, Outlet, Link, useLocation } from "react-router-dom";
+import { Layout, Menu, Image, Button, Affix, Badge } from "antd";
+import {
+  Collapse,
+  Navbar,
+  Nav,
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from "reactstrap";
+import {
+  Route,
+  Routes,
+  Outlet,
+  Link,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 import CustomerTable from "../Customer/CustomerTable";
 import ExpeditorTable from "../Expeditor/ExpeditorTable";
 import ProductTable from "../Product/ProductTable";
 import CategoryTable from "../Category/CategoryTable";
 import PropertyTable from "../Property/PropertyTable";
-import DynamicList from "../Cart/DynamicList";
 import Navi from "../Page/Navi";
-import InfiniteScrool  from "../Cart/InfiniteScrool";
+import InfiniteScrool from "../Cart/InfiniteScrool";
 import StoreHouseTable from "../StoreHouse/StoreHouseTable";
 import SideBarMenu from "../Page/SideBarMenu";
 import LoadingOverlay from "react-loading-overlay";
@@ -17,17 +32,11 @@ import LoadingOverlay from "react-loading-overlay";
 import {
   UserOutlined,
   LaptopOutlined,
-  NotificationOutlined,
-  AppstoreOutlined,
-  MenuUnfoldOutlined,
   MenuFoldOutlined,
-  PieChartOutlined,
-  DesktopOutlined,
-  ContainerOutlined,
-  MailOutlined,
+  MenuUnfoldOutlined,
+  ShoppingCartOutlined,
 } from "@ant-design/icons";
 import CartList from "../Cart/CartList";
-import FormList from "../Cart/FormList";
 import Basket from "../Cart/Basket";
 
 const { Sider } = Layout;
@@ -37,9 +46,23 @@ const { Footer, Content } = Layout;
 
 export default function App() {
   const location = useLocation();
-
+  let navigate = useNavigate();
+  const [collapsed, setCollapsed] = useState(false);
   const loading = useSelector((state) => state.loaderReducers?.loading);
-
+  const [isOpen, setIsOpen] = useState(false);
+  const [btnDropleft, setBtnDropleft] = useState(false);
+  const basketItems = useSelector(
+    (state) => state.cartReducers?.addBasketItems
+  );
+  const toggleCollapsed = () => {
+    console.log(collapsed);
+    console.log("fdfd");
+    setCollapsed(!collapsed);
+  };
+  const logout = () => {
+    window.localStorage.clear();
+    navigate("/");
+  };
   return (
     <LoadingOverlay
       active={loading}
@@ -47,19 +70,46 @@ export default function App() {
       text="Əməliyyat gedir, xahiş edirik gözləyin..."
     >
       <div>
-        <Layout style={{ height: "100%" }}>
+        <Layout
+        // style={{ height: "100%" }}
+        >
           {/* <SideBarMenu /> */}
-          <Sider width={200} className="site-layout-background">
-            <Image width={200} alt="logo" src={String(logo)} />
-            {/* <Button type="primary" onClick={toggleCollapsed} style={{ marginBottom: 16 }}>
-          {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined)}
-        </Button> */}
-            <Menu
-              mode="inline"
-              // defaultSelectedKeys={["1"]}
-              defaultOpenKeys={["sub1"]}
-              style={{ borderRight: 0, height: "100%" }}
+          {/* <Button
+              type="primary"
+              onClick={toggleCollapsed}
+              style={{ marginBottom: 16 }}
             >
+              {React.createElement(
+                collapsed ? MenuUnfoldOutlined : MenuFoldOutlined
+              )}
+            </Button> */}
+          {/* <Sider   width={200}   className="site-layout-background"> */}
+          <Affix offsetTop={5}>
+            <Menu
+              mode="horizontal"
+              // defaultSelectedKeys={["1"]}
+              // defaultOpenKeys={["sub1"]}
+              style={{ borderRight: 0, height: "100%" }}
+              inlineCollapsed={collapsed}
+            >
+              {/* <Menu.Item>
+              <Image width={50} alt="logo" src={String(logo)} />
+            </Menu.Item> */}
+              <Menu.Item>
+                {
+                  {
+                    "/customers": <h3>Müştərilər</h3>,
+                    "/sellers": <h3>Əməkdaşlar</h3>,
+                    "/categories": <h3>Kateqoriya</h3>,
+                    "/properties": <h3>Xüsusiyyət</h3>,
+                    "/products": <h3>Məhsullar</h3>,
+                    "/storeHouse": <h3>Anbar</h3>,
+                    "/cartList": <h3>Satış</h3>,
+                    "/basket": <h3>Səbət</h3>,
+                    "/home": <h3>Əsas</h3>,
+                  }[location.pathname]
+                }
+              </Menu.Item>
               <SubMenu key="sub1" icon={<UserOutlined />} title="Qeydiyyat">
                 <Menu.Item
                   // onClick={navigate("customers")}
@@ -95,17 +145,36 @@ export default function App() {
                   <Link to="infiniteScrool">infiniteScrool</Link>
                 </Menu.Item>
               </SubMenu>
-              {/* <SubMenu key="sub3" icon={<NotificationOutlined />} title="Digər">
-                <Menu.Item key="9">option9</Menu.Item>
-                <Menu.Item key="10">option10</Menu.Item>
-                <Menu.Item key="11">option11</Menu.Item>
-                <Menu.Item key="12">option12</Menu.Item>
-              </SubMenu> */}
+
+              <SubMenu key="sub3" icon={<UserOutlined />} title="İstifadəçi">
+                <Menu.Item
+                  // onClick={navigate("customers")}
+                  key="10"
+                >
+                  Profil
+                  <Outlet />
+                </Menu.Item>
+                <Menu.Item onClick={logout} key="11">
+                  Çıxış
+                </Menu.Item>
+              </SubMenu>
+              <Menu.Item>
+                {location.pathname === "/cartList" ? (
+                  <Badge count={basketItems.length}>
+                    <Link to="/basket">
+                      {/* <Icon icon="emojione:shopping-cart" align="right" float="right" verticalAlign="right"/> */}
+                      <ShoppingCartOutlined
+                        style={{ fontSize: "30px", color: "#08c" }}
+                      />
+                    </Link>
+                  </Badge>
+                ) : null}
+              </Menu.Item>
             </Menu>
-          </Sider>
-          &nbsp;&nbsp;
+          </Affix>
+
           <Layout>
-            <Navi location={location} />
+            {/* <Navi location={location} /> */}
 
             <Content>
               <Routes>

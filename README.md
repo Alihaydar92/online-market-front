@@ -71,40 +71,30 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ### CODE
 
-img ve diger filelarla bagli codelarin optimizasiyasi
-
-resetfields eslinde duz islemir, yalniz emeliyyat olduqdan sonra isleyir, halbuki modali elebele acib bagladiqda bele islemelidi (modal acarken reset olmalidi datalar)(useEffectLayout genis test edib yoxlamaq)
-
-route ile linkleri goruntuden yigisdirmaq, yalniz base link olacaq 
-
-paginationda page ve pagesize ilkin deyerlerini global const deyisen kimi saxlamq(basqa pencerelerde de istifade etmek ucun)
-
-cardlist pagede category deyishdikde say inputunu deyismek 
-
-category secildikden sonra gelen mehsullara gore axtaris (cartlist)
-
-sebet tableda rowu silmek, say columundaki fieldi redakte etmek
-iki button duymesi. 1)cap edecek pdfe, 2) sebet datani bazaya insert
-
-sebete elave olunmus datadan response 200 qayitdisa o zaman sebet  tabledaki datani silmek
-
-sebete elave ederken ikinci melumati sebete elave edende bele bir bir gondermek her birini ,bunu cartlistde duzeltmek
-
-mouse focus menu uzerinde olmadiqda menu baglansin
-
 vacib: env faylindaki urli oz localimda localhost ile yazmaq lakin git ignora salmaq
 
 headerin responsiveliyi (Imkan varsa pencerelesi responsive etmek (Sonda da edile biler))
 
+resetfields eslinde duz islemir, yalniz emeliyyat olduqdan sonra isleyir, halbuki modali elebele acib bagladiqda bele islemelidi (modal acarken reset olmalidi datalar)(useEffectLayout genis test edib yoxlamaq)
 
+route ile linkleri goruntuden yigisdirmaq, yalniz base link olacaq
+
+mouse focus menu uzerinde olmadiqda menu baglansin
+
+cardlist pagede category deyishdikde say inputunu deyismek
+
+category secildikden sonra gelen mehsullara gore axtaris (cartlist)
+
+cart list pagede problemler (meselen sebete elave etdikden sonra combolar bosalir ve axirinci product list pagede qalir)
 
 satis penceresinde mehsul combosuna barkodu da elave etmek ve axtarisinda her ikisi islesin(anbardaki product combobox kimi eynen) combonu secdikden sonra HEMIN XOMBOYA AID OLAN TEK DATA satisda gorsensin
 
-jspdf utf problem
-
 sekli sil buttonunun altinda sekli servisde cagirib silmek
 
-cart list pagede problemler (meselen sebete elave etdikden sonra combolar bosalir ve axirinci product list pagede qalir)
+basketde qiymet float deyer oldugu ucun duzgun islemir
+
+pdf capda birinci defede error var
+
 ### sonra
 
 label-larin textlerini file-dan oxumaq
@@ -114,8 +104,10 @@ daxil olan userin(expeditor) musteri siyahisi verilcek
 login olduqdan sonra user id-ye gore seller cagirilacaq (hem de goruntude gosterilecek)
 seller id-ye gore ise musteri siyahisi gelecek, helelik musteri siyahsini cagirmaq ucun seller id-ni elnen verirem (id 6)
 
+paginationda page ve pagesize ilkin deyerlerini global const deyisen kimi saxlamq(basqa pencerelerde de istifade etmek ucun)
 
- 
+img ve diger filelarla bagli codelarin optimizasiyasi
+
 ### backend teyyub
 
 Anbar tableda sort hemise anbara daxil olma tarixine gore desc getse yaxsidi
@@ -125,5 +117,3 @@ mehsullar / Satis qiymeti maya deyerinden asagi ola biler bilmez deqiqlesdirmek,
 paginationda 120ci pagede data olmadigi halda 120ci page-i qaytarir
 
 anbar page axtarisa duzelis (mehsullardaki kimi)
-
-

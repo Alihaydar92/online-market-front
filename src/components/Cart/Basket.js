@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Table, Button, Space, Row, Col, Input, Form } from "antd";
+import { Table, Button, Space, Row, Col, Input, Form, InputNumber } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
@@ -62,16 +62,35 @@ export default function Basket() {
       dataIndex: ["storeHouseDto", "id"],
     },
     {
+      title: "Barkod",
+      dataIndex: ["storeHouseDto", "barcode"],
+    },
+    {
+      title: "Məhsulun adı",
+      dataIndex: ["storeHouseDto", "productDto", "name"],
+    },
+    {
       title: "Say",
       dataIndex: "quantity",
       editable: true,
       render: (text, record, index) => (
-        <Input value={text} onChange={onInputChange("quantity", index)} />
+        <InputNumber
+          value={text}
+          onChange={onInputQuantityChange("quantity", index)}
+        />
       ),
     },
     {
       title: "Qiymət",
       dataIndex: ["storeHouseDto", "price"],
+      editable: true,
+      render: (text, record, index) => (
+        <InputNumber
+        step="0.01"
+          value={text}
+          onChange={onInputPriceChange("price", index)}
+        />
+      ),
     },
     {
       title: "Ümumi cəm",
@@ -96,9 +115,16 @@ export default function Basket() {
       },
     },
   ];
-  const onInputChange = (key, index) => (e) => {
+  const onInputQuantityChange = (key, index) => (e) => {
     const newData = [...basketArray];
-    newData[index][key] = Number(e.target.value);
+    newData[index][key] = Number(e);
+
+    setBasketArray(newData);
+  };
+  const onInputPriceChange = (key, index) => (e) => {
+    console.log(e);
+    const newData = [...basketArray];
+    newData[index][key] = Number(e);
 
     setBasketArray(newData);
   };
@@ -137,11 +163,12 @@ export default function Basket() {
 
       rows.push(temp);
     });
+
     let finalY = pdf.autoTable.previous.finalY;
     pdf.autoTable(
       col,
       rows,
-      { startY: 55 },
+      { startY: 55 }
       // {
       //   styles: {
       //     font: "Roboto-Regular",

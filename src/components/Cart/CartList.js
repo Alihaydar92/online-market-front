@@ -64,6 +64,7 @@ console.log(listOfProductDataByCategoryId)
   var customerSellPriceDataList = [];
   var otherPriceDataList = [];
   const onChangeCategory = (value) => {
+    console.log(value)
     topForm
       .validateFields()
       .then(() => {
@@ -409,18 +410,18 @@ console.log(listOfProductDataByCategoryId)
                   )}
 
                   <Row>
-                    <h4>Məhsul: {item.productDto.name}</h4>
+                    <h4>Məhsul: {item.name}</h4>
                   </Row>
                   <Row>
                     <h4>
                       Anbardakı sayı:{" "}
-                      <b style={{ color: "red" }}>{item.productDto.quantity}</b>
+                      <b style={{ color: "red" }}>{item.quantity}</b>
                     </h4>
                   </Row>
                   <Row>
                     <h4>
                       Qiymət:{" "}
-                      <b style={{ color: "red" }}>{item.productDto.sellPrice + " AZN"}</b>{" "}
+                      <b style={{ color: "red" }}>{item.sellPrice + " AZN"}</b>{" "}
                     </h4>
                   </Row>
                   <Form
