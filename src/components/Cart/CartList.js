@@ -471,7 +471,8 @@ export default function CartList() {
 
           <br />
           <Row>
-            {productListTotalPages !== page + 1 && (
+         
+            {(productListTotalPages !== (page + 1) && listOfProductDataByCategoryId.length>0) && (
               <Button
                 style={{ width: "100%" }}
                 onClick={() => setPage(page + 1)}

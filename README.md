@@ -79,8 +79,6 @@ resetfields eslinde duz islemir, yalniz emeliyyat olduqdan sonra isleyir, halbuk
 
 route ile linkleri goruntuden yigisdirmaq, yalniz base link olacaq
 
-mouse focus menu uzerinde olmadiqda menu baglansin
-
 cardlist pagede category deyishdikde say inputunu deyismek
 
 category secildikden sonra gelen mehsullara gore axtaris (cartlist)
@@ -95,7 +93,7 @@ basketde qiymet float deyer oldugu ucun duzgun islemir
 
 pdf capda birinci defede error var
 
-infinite scrool satis
+infinite scrool satis +++ (buttunsuz elemek---)
 
 ### sonra
 
