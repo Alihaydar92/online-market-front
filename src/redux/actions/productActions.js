@@ -58,7 +58,8 @@ export const getProductById = (id) => (dispatch) => {
   });
 };
 
-export const getProductListByCategoryId = (categoryId) => (dispatch) => {
+export const getProductListByCategoryId = (categoryId,page,isChangeCategory) => (dispatch) => {
+  console.log('getProductListByCategoryId metod call')
   const axiosInstance = axios.create({
     baseURL: baseURL,
     auth: {
@@ -68,13 +69,21 @@ export const getProductListByCategoryId = (categoryId) => (dispatch) => {
   });
   dispatch(showLoader());
   axiosInstance
-    .get("/categories/" + categoryId + "/products")
+    .get("/categories/" +page + "/" + categoryId + "/products")
     .then((response) => {
       console.log("response ", response.data);
-      dispatch({
-        type: actionTypes.GET_PRODUCT_LIST_BY_CATEGORY_ID,
-        payload: response.data,
-      });
+      if(isChangeCategory){
+        dispatch({
+          type: actionTypes.GET_PRODUCT_LIST_BY_CATEGORY_ID_IS_CHANGED,
+          payload: response.data,
+        });
+      }else{
+        dispatch({
+          type: actionTypes.GET_PRODUCT_LIST_BY_CATEGORY_ID_IS_NOT_CHANGED,
+          payload: response.data,
+        });
+      }
+     
       dispatch(hideLoader());
     });
 };

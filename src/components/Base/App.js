@@ -23,23 +23,18 @@ import ExpeditorTable from "../Expeditor/ExpeditorTable";
 import ProductTable from "../Product/ProductTable";
 import CategoryTable from "../Category/CategoryTable";
 import PropertyTable from "../Property/PropertyTable";
-import Navi from "../Page/Navi";
 import InfiniteScrool from "../Cart/InfiniteScrool";
 import StoreHouseTable from "../StoreHouse/StoreHouseTable";
-import SideBarMenu from "../Page/SideBarMenu";
+import LoadMorePagination from "../Cart/LoadMorePagination"
 import LoadingOverlay from "react-loading-overlay";
 
 import {
   UserOutlined,
   LaptopOutlined,
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
   ShoppingCartOutlined,
 } from "@ant-design/icons";
 import CartList from "../Cart/CartList";
 import Basket from "../Cart/Basket";
-
-const { Sider } = Layout;
 const { SubMenu } = Menu;
 const logo = require("../../helpers/greenStreamImg.jpeg");
 const { Footer, Content } = Layout;
@@ -47,18 +42,10 @@ const { Footer, Content } = Layout;
 export default function App() {
   const location = useLocation();
   let navigate = useNavigate();
-  const [collapsed, setCollapsed] = useState(false);
   const loading = useSelector((state) => state.loaderReducers?.loading);
-  const [isOpen, setIsOpen] = useState(false);
-  const [btnDropleft, setBtnDropleft] = useState(false);
   const basketItems = useSelector(
     (state) => state.cartReducers?.addBasketItems
   );
-  const toggleCollapsed = () => {
-    console.log(collapsed);
-    console.log("fdfd");
-    setCollapsed(!collapsed);
-  };
   const logout = () => {
     window.localStorage.clear();
     navigate("/");
@@ -90,12 +77,11 @@ export default function App() {
               // defaultSelectedKeys={["1"]}
               // defaultOpenKeys={["sub1"]}
               style={{ borderRight: 0, height: "100%" }}
-              inlineCollapsed={collapsed}
             >
               {/* <Menu.Item>
               <Image width={50} alt="logo" src={String(logo)} />
             </Menu.Item> */}
-              <Menu.Item>
+              <Menu.Item key="99">
                 {
                   {
                     "/customers": <h3>Müştərilər</h3>,
@@ -144,6 +130,9 @@ export default function App() {
                 <Menu.Item key="8">
                   <Link to="infiniteScrool">infiniteScrool</Link>
                 </Menu.Item>
+                <Menu.Item key="9">
+                  <Link to="loadMore">loadMore</Link>
+                </Menu.Item>
               </SubMenu>
 
               <SubMenu key="sub3" icon={<UserOutlined />} title="İstifadəçi">
@@ -158,7 +147,7 @@ export default function App() {
                   Çıxış
                 </Menu.Item>
               </SubMenu>
-              <Menu.Item>
+              <Menu.Item key="12">
                 {location.pathname === "/cartList" ? (
                   <Badge count={basketItems.length}>
                     <Link to="/basket">
@@ -188,6 +177,7 @@ export default function App() {
                 <Route path="storeHouse" element={<StoreHouseTable />} />
                 <Route path="basket" element={<Basket />} />
                 <Route path="infiniteScrool" element={<InfiniteScrool />} />
+                <Route path="loadMore" element={<LoadMorePagination />} />
               </Routes>
             </Content>
 

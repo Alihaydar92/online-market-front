@@ -17,6 +17,8 @@ export default {
   productListData: [],
   productListDataByPage: {},
   productListDataByCategoryId: [],
+  totalPages:Number(),
+  totalItems:Number(),
   productDataById: {},
   productDeleteData: {},
   productAddData: {},

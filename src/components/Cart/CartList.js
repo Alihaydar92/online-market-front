@@ -1,40 +1,25 @@
 import React, { useEffect, useState } from "react";
-import {
-  Card,
-  Select,
-  Row,
-  Form,
-  InputNumber,
-  Image,
-  Col,
-  Input,
-  Layout,
-  Badge,
-} from "antd";
+import { Card, Select, Row, Form, InputNumber, Image, Col } from "antd";
 import { listOfCategories } from "../../redux/actions/categoryActions";
 import { addCart } from "../../redux/actions/cartActions";
 import { getCustomerListByExpeditorId } from "../../redux/actions/customerAction";
 import { getProductListByCategoryId } from "../../redux/actions/productActions";
 import { useDispatch, useSelector } from "react-redux";
-
-import { Link } from "react-router-dom";
 import Button from "antd-button-color";
 import "antd/dist/antd.css"; // or 'antd/dist/antd.less'
 import "antd-button-color/dist/css/style.css";
-import { ShoppingCartOutlined } from "@ant-design/icons";
-import { Icon } from "@iconify/react";
-import Cookies from "universal-cookie";
-const logo = require("../../helpers/no-image.png");
-const { Header, Footer, Sider, Content } = Layout;
+const logo = require("../../helpers/no-img.png");
+// const { Header, Footer, Sider, Content } = Layout;
 const { Option } = Select;
 
 export default function CartList() {
-
   const dispatch = useDispatch();
   const [topForm] = Form.useForm();
   const [customerId, setCustomerId] = useState(Number());
+  const [categoryId, setCategoryId] = useState(Number());
   const [categoryDisable, setCategoryDisable] = useState(true);
- 
+  const [page, setPage] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     dispatch(listOfCategories());
@@ -50,30 +35,34 @@ export default function CartList() {
   const listOfProductDataByCategoryId = useSelector(
     (state) => state.productReducers?.productListDataByCategoryId
   );
- 
+  const productListTotalPages = useSelector(
+    (state) => state.productReducers?.totalPages
+  );
+
+  const productListTotalItems = useSelector(
+    (state) => state.productReducers?.totalItems
+  );
+  const currentPage = useSelector(
+    (state) => state.productReducers?.currentPage
+  );
+  
   const listOfCustomerByExpeditorId = useSelector(
     (state) => state.customerReducer?.customerDataListByExpeditorId
   );
-useEffect(()=>{
-console.log(listOfProductDataByCategoryId)
-},[listOfProductDataByCategoryId])
-
-
 
   var countDataList = [];
   var customerSellPriceDataList = [];
   var otherPriceDataList = [];
   const onChangeCategory = (value) => {
-    console.log(value)
+    console.log(value);
+    setCategoryId(value);
     topForm
       .validateFields()
       .then(() => {
-        dispatch(getProductListByCategoryId(value));
+        dispatch(getProductListByCategoryId(value, 0, true));
 
+        setLoading(false);
         console.log(listOfProductDataByCategoryId);
-       
-     
-      
       })
       .catch((err) => {
         console.log(err);
@@ -81,15 +70,10 @@ console.log(listOfProductDataByCategoryId)
   };
 
   const onChangeProduct = (e) => {
-   
     // var productArrData=[{}];
     // productArrData=listOfProductDataByCategoryId.filter((element)=>{
-      
     // return element.id===e;
     // })
-   
-   
-    
   };
   const onChangeCustomer = (value) => {
     setCategoryDisable(false);
@@ -270,6 +254,12 @@ console.log(listOfProductDataByCategoryId)
     console.log(basketItemJs);
     dispatch(addCart(basketItemJs));
   };
+
+  useEffect(() => {
+    dispatch(getProductListByCategoryId(categoryId, page, false));
+
+    setLoading(false);
+  }, [page]);
   return (
     <div>
       <Row style={{ marginTop: "20px" }}>
@@ -349,7 +339,6 @@ console.log(listOfProductDataByCategoryId)
               name="product"
               // rules={[{ required: true, message: "Məhsulu seçin!" }]}
             >
-              
               <Select
                 // disabled={categoryDisable}
                 // style={{ width: "300px" }}
@@ -370,45 +359,38 @@ console.log(listOfProductDataByCategoryId)
                   );
                 }}
               >
-                {listOfProductDataByCategoryId.map((productData) => (
+                {/* {listOfProductDataByCategoryId.pages.map((productData) => (
                   <Option key={productData.id} value={productData.id}>
                     {productData.name + "(" + productData.barcode + ")"}
                   </Option>
-                ))}
+                ))} */}
               </Select>
             </Form.Item>
+            <Form.Item></Form.Item>
           </Form>
+
           {listOfProductDataByCategoryId.map((item, index) => {
             return (
               <div className="site-card-wrapper">
-                <Card style={{ marginTop: "10px" }}>
-                  {item.content === "" ? (
-                    <Image
-                      width="100%"
-                      preview={false}
-                      alt="logo"
-                      // src={String(logo)}
-                      src={String(logo)}
-                    />
-                  ) : (
-                    // item.productImageDtos.map((value) => {
-                      // return (
-                        <Image
-                          width="100%"
-                          // preview={false}
-                          alt="logo"
-                          // src={String(logo)}
-                          src={
-                            // value === null
-                            //   ? String(logo)
-                            //   :
-                            `data:image/jpeg;base64,${item.content}`
-                          }
-                        />
-                      // );
-                    // })
-                  )}
-
+                <Card style={{ marginTop: "10px" }} key="cardList">
+                  <Row>
+                    <h4>
+                      <b style={{ color: "red" }}>
+                        {item.isNew ? "Yeni məhsul" : ""}
+                      </b>
+                    </h4>
+                  </Row>
+                  <Image
+                    width="100%"
+                    preview={false}
+                    alt="logo"
+                    // src={String(logo)}
+                    src={
+                      item.image === null
+                        ? String(logo)
+                        : `data:image/jpeg;base64,${item.image}`
+                    }
+                  />
                   <Row>
                     <h4>Məhsul: {item.name}</h4>
                   </Row>
@@ -464,10 +446,9 @@ console.log(listOfProductDataByCategoryId)
                       ></InputNumber>
                     </Form.Item>
                   </Form>
-
-                  <Form.Item wrapperCol={{ offset: 6 }}>
+                  <Form.Item wrapperCol={{ offset: 2 }}>
                     <Button
-                      style={{ marginLeft: "20px" }}
+                      style={{ width: "100%" }}
                       type="warning"
                       htmlType="submit"
                       onClick={() => handleToggleComplete(item)}
@@ -479,25 +460,26 @@ console.log(listOfProductDataByCategoryId)
               </div>
             );
           })}
+          <br />
+          {/* <Row style={{ width: "100%" }}>
+            Ümumi Məhsul sayı: {productListTotalItems}
+          </Row>
+          <Row style={{ width: "100%" }}>
+            Ümumi səhifə say: {productListTotalPages}
+          </Row>
+          <Row style={{ width: "100%" }}>Səhifə: {currentPage}</Row> */}
 
-          {/* <List
-        grid={{
-          gutter: 16,
-          column: 1,
-          // xs: 1,
-          // sm: 2,
-          // md: 4,
-          // lg: 4,
-          // xl: 6,
-          // xxl: 3,
-        }}
-        dataSource={listItems}
-        renderItem={(item, index) => (
-          <List.Item style={{ width: "300px" }}>
-            
-          </List.Item>
-        )}
-      /> */}
+          <br />
+          <Row>
+            {productListTotalPages !== page + 1 && (
+              <Button
+                style={{ width: "100%" }}
+                onClick={() => setPage(page + 1)}
+              >
+                {loading ? "Yüklənir..." : "Daha Çox"}
+              </Button>
+            )}
+          </Row>
         </Col>
       </Row>
     </div>

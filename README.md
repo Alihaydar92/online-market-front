@@ -95,6 +95,8 @@ basketde qiymet float deyer oldugu ucun duzgun islemir
 
 pdf capda birinci defede error var
 
+infinite scrool satis
+
 ### sonra
 
 label-larin textlerini file-dan oxumaq
