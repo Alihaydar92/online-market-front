@@ -7,7 +7,7 @@ import propertyReducers from "./propertyReducers";
 import storeHouseReducers from "./storeHouseReducers";
 import loaderReducers from "./loaderReducers";
 import authReducers from "./authReducers";
-// import cartReducers from "./cartReducers";
+import cartReducers from "./cartReducers";
 import blackListReducers from "./blackListReducers"
 const rootReducer = combineReducers({
   customerReducer,
@@ -18,7 +18,7 @@ const rootReducer = combineReducers({
   storeHouseReducers,
   loaderReducers,
   authReducers,
-  // cartReducers,
+  cartReducers,
   blackListReducers
 });
 
