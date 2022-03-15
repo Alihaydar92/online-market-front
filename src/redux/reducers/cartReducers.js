@@ -24,4 +24,4 @@ export default function cartReducers(state = initialState, action) {
     default:
       return state;
   }
-// }
+}
