@@ -25,7 +25,10 @@ import CategoryTable from "../Category/CategoryTable";
 import PropertyTable from "../Property/PropertyTable";
 import InfiniteScrool from "../Cart/InfiniteScrool";
 import StoreHouseTable from "../StoreHouse/StoreHouseTable";
-import LoadMorePagination from "../Cart/LoadMorePagination"
+import Numerate from "../Numerate/Numerate";
+import NumerateResult from "../Numerate/NumerateResult";
+import CustomerBlakcList from "../BlackList/CustomerBlakcList";
+import LoadMorePagination from "../Cart/LoadMorePagination";
 import LoadingOverlay from "react-loading-overlay";
 
 import {
@@ -60,17 +63,6 @@ export default function App() {
         <Layout
         // style={{ height: "100%" }}
         >
-          {/* <SideBarMenu /> */}
-          {/* <Button
-              type="primary"
-              onClick={toggleCollapsed}
-              style={{ marginBottom: 16 }}
-            >
-              {React.createElement(
-                collapsed ? MenuUnfoldOutlined : MenuFoldOutlined
-              )}
-            </Button> */}
-          {/* <Sider   width={200}   className="site-layout-background"> */}
           <Affix offsetTop={5}>
             <Menu
               mode="horizontal"
@@ -81,7 +73,7 @@ export default function App() {
               {/* <Menu.Item>
               <Image width={50} alt="logo" src={String(logo)} />
             </Menu.Item> */}
-              <Menu.Item key="99">
+              <Menu.Item key="101">
                 {
                   {
                     "/customers": <h3>Müştərilər</h3>,
@@ -93,6 +85,9 @@ export default function App() {
                     "/cartList": <h3>Satış</h3>,
                     "/basket": <h3>Səbət</h3>,
                     "/home": <h3>Əsas</h3>,
+                    "/numerate": <h3>Sayım</h3>,
+                    "/numerateResult": <h3>Sayım nəticəsi</h3>,
+                    "/customerBlackList": <h3>Qara siyahı</h3>,
                   }[location.pathname]
                 }
               </Menu.Item>
@@ -118,36 +113,39 @@ export default function App() {
                 </Menu.Item>
               </SubMenu>
               <SubMenu key="sub2" icon={<LaptopOutlined />} title="Əməliyyat">
-                <Menu.Item key="5">
+                <Menu.Item key="10">
                   <Link to="products">Məhsullar</Link>
                 </Menu.Item>
-                <Menu.Item key="6">
+                <Menu.Item key="11">
                   <Link to="/cartList">Satış</Link>
                 </Menu.Item>
-                <Menu.Item key="7">
+                <Menu.Item key="12">
                   <Link to="/storeHouse">Anbar</Link>
                 </Menu.Item>
-                <Menu.Item key="8">
-                  <Link to="infiniteScrool">infiniteScrool</Link>
+                <Menu.Item key="13">
+                  <Link to="numerate">Sayım</Link>
                 </Menu.Item>
-                <Menu.Item key="9">
-                  <Link to="loadMore">loadMore</Link>
+                <Menu.Item key="14">
+                  <Link to="numerateResult">Sayım nəticəsi</Link>
+                </Menu.Item>
+                <Menu.Item key="15">
+                  <Link to="customerBlackList">Qara siyahı</Link>
                 </Menu.Item>
               </SubMenu>
 
               <SubMenu key="sub3" icon={<UserOutlined />} title="İstifadəçi">
                 <Menu.Item
                   // onClick={navigate("customers")}
-                  key="10"
+                  key="20"
                 >
                   Profil
                   <Outlet />
                 </Menu.Item>
-                <Menu.Item onClick={logout} key="11">
+                <Menu.Item onClick={logout} key="21">
                   Çıxış
                 </Menu.Item>
               </SubMenu>
-              <Menu.Item key="12">
+              <Menu.Item key="100">
                 {location.pathname === "/cartList" ? (
                   <Badge count={basketItems.length}>
                     <Link to="/basket">
@@ -176,12 +174,11 @@ export default function App() {
                 <Route path="cartList" element={<CartList />} />
                 <Route path="storeHouse" element={<StoreHouseTable />} />
                 <Route path="basket" element={<Basket />} />
-                <Route path="infiniteScrool" element={<InfiniteScrool />} />
-                <Route path="loadMore" element={<LoadMorePagination />} />
+                <Route path="numerate" element={<Numerate />} />
+                <Route path="numerateResult" element={<NumerateResult />} />
+                <Route path="customerBlackList" element={<CustomerBlakcList />} />
               </Routes>
             </Content>
-
-            <Footer>Footer</Footer>
           </Layout>
         </Layout>
         <Outlet />

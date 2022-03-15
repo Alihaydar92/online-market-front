@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Form, Input, Button, InputNumber, Select, DatePicker } from "antd";
-import moment from "moment";
 import {
-  updateStoreHouse,
-} from "../../redux/actions/storeHouseActions";
+  Form,
+  Input,
+  Button,
+  InputNumber,
+  Select,
+  DatePicker,
+  Checkbox,
+} from "antd";
+import moment from "moment";
+import { updateStoreHouse } from "../../redux/actions/storeHouseActions";
 
 import { listOfProducts } from "../../redux/actions/productActions";
 
@@ -16,9 +22,9 @@ export default function StoreHouseEdit(props) {
   const dispatch = useDispatch();
   const [addedDateValue, setAddedDateValue] = useState();
   const [form] = Form.useForm();
-  const productListData=useSelector(
-    (state) =>state.productReducers?.productListData
-  )
+  const productListData = useSelector(
+    (state) => state.productReducers?.productListData
+  );
   const storeHouseDataById = useSelector(
     (state) => state.storeHouseReducers.storeHouseDataById
   );
@@ -39,6 +45,7 @@ export default function StoreHouseEdit(props) {
           customerSellPrice: form.getFieldsValue().customerSellPrice,
           note: form.getFieldsValue().note.trim(),
           addedDate: moment(form.getFieldsValue().dateAdded).format(dateFormat),
+          isNew: form.getFieldsValue().isNew,
           id: storeHouseDataById.id,
         };
         console.log("rpoduct data add: ", data);
@@ -51,7 +58,7 @@ export default function StoreHouseEdit(props) {
   };
   useEffect(() => {
     form.setFieldsValue({
-      product: storeHouseDataById?.productDtos?.id,
+      product: storeHouseDataById?.productDto?.id,
       quantity: storeHouseDataById?.quantity,
       price: storeHouseDataById?.price,
       sellPrice: storeHouseDataById?.sellPrice,
@@ -62,6 +69,7 @@ export default function StoreHouseEdit(props) {
         storeHouseDataById?.addedDate === null
           ? moment()
           : moment(storeHouseDataById?.addedDate, dateFormat),
+      isNew: storeHouseDataById?.isNew,
     });
   }, [form, storeHouseDataById]);
   return (
@@ -153,6 +161,14 @@ export default function StoreHouseEdit(props) {
           rules={[{ required: true, message: "Tarixi daxil edin!" }]}
         >
           <DatePicker value={addedDateValue} format={dateFormat} />
+        </Form.Item>
+        <Form.Item
+          name="isNew"
+          label="Status"
+          valuePropName="checked"
+          initialValue={false}
+        >
+          <Checkbox />
         </Form.Item>
         <Form.Item>
           <Button

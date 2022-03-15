@@ -95,6 +95,22 @@ pdf capda birinci defede error var
 
 infinite scrool satis +++ (buttunsuz elemek---)
 
+sayim page, mehsul combobox (comboboxa gore data geleck) => hemin datada say deyislirek post edilecek
+
+sayimin neticesi page (get data)
+
+qara siyahi(musteri combo ) secilmisin id-sini servise gondermek +++
+
+qara siyahini tableda gostermek +++
+
+satisda category combonu property ile evez etmek +++
+
+login user input focus
+
+anbarda redakte modalda isneww fieldini gostermek ve add updatede o fieldi gondermek +++
+
+card reducerin dexlisiz cagirilma bug-i (bunu arasddirmaq)
+
 ### sonra
 
 label-larin textlerini file-dan oxumaq
@@ -102,6 +118,7 @@ label-larin textlerini file-dan oxumaq
 daxil olan userin(expeditor) musteri siyahisi verilcek
 
 login olduqdan sonra user id-ye gore seller cagirilacaq (hem de goruntude gosterilecek)
+
 seller id-ye gore ise musteri siyahisi gelecek, helelik musteri siyahsini cagirmaq ucun seller id-ni elnen verirem (id 6)
 
 paginationda page ve pagesize ilkin deyerlerini global const deyisen kimi saxlamq(basqa pencerelerde de istifade etmek ucun)

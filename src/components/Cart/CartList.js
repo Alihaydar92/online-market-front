@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Card, Select, Row, Form, InputNumber, Image, Col } from "antd";
-import { listOfCategories } from "../../redux/actions/categoryActions";
+import { listOfProperties } from "../../redux/actions/propertyActions";
 import { addCart } from "../../redux/actions/cartActions";
 import { getCustomerListByExpeditorId } from "../../redux/actions/customerAction";
-import { getProductListByCategoryId } from "../../redux/actions/productActions";
+import { getProductListByPropertyId } from "../../redux/actions/productActions";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "antd-button-color";
 import "antd/dist/antd.css"; // or 'antd/dist/antd.less'
@@ -16,24 +16,24 @@ export default function CartList() {
   const dispatch = useDispatch();
   const [topForm] = Form.useForm();
   const [customerId, setCustomerId] = useState(Number());
-  const [categoryId, setCategoryId] = useState(Number());
-  const [categoryDisable, setCategoryDisable] = useState(true);
+  const [propertyId, setPropertyId] = useState(Number());
+  const [propertyDisable, setPropertyDisable] = useState(true);
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    dispatch(listOfCategories());
+    dispatch(listOfProperties());
   }, []);
 
   useEffect(() => {
     dispatch(getCustomerListByExpeditorId());
   }, []);
 
-  const listOfCategoryData = useSelector(
-    (state) => state.categoryReducers?.categoryListData
+  const listOfPropertyData = useSelector(
+    (state) => state.propertyReducers?.propertyListData
   );
-  const listOfProductDataByCategoryId = useSelector(
-    (state) => state.productReducers?.productListDataByCategoryId
+  const listOfProductDataByPropertyId = useSelector(
+    (state) => state.productReducers?.productListDataByPropertyId
   );
   const productListTotalPages = useSelector(
     (state) => state.productReducers?.totalPages
@@ -53,16 +53,16 @@ export default function CartList() {
   var countDataList = [];
   var customerSellPriceDataList = [];
   var otherPriceDataList = [];
-  const onChangeCategory = (value) => {
+  const onChangeProperty = (value) => {
     console.log(value);
-    setCategoryId(value);
+    setPropertyId(value);
     topForm
       .validateFields()
       .then(() => {
-        dispatch(getProductListByCategoryId(value, 0, true));
+        dispatch(getProductListByPropertyId(value, 0, true));
 
         setLoading(false);
-        console.log(listOfProductDataByCategoryId);
+       
       })
       .catch((err) => {
         console.log(err);
@@ -71,12 +71,12 @@ export default function CartList() {
 
   const onChangeProduct = (e) => {
     // var productArrData=[{}];
-    // productArrData=listOfProductDataByCategoryId.filter((element)=>{
+    // productArrData=listOfProductDataBypropertyId.filter((element)=>{
     // return element.id===e;
     // })
   };
   const onChangeCustomer = (value) => {
-    setCategoryDisable(false);
+    setPropertyDisable(false);
     setCustomerId(value);
   };
   var countDataJS = null;
@@ -256,7 +256,7 @@ export default function CartList() {
   };
 
   useEffect(() => {
-    dispatch(getProductListByCategoryId(categoryId, page, false));
+    dispatch(getProductListByPropertyId(propertyId, page, false));
 
     setLoading(false);
   }, [page]);
@@ -303,17 +303,17 @@ export default function CartList() {
               </Select>
             </Form.Item>
             <Form.Item
-              label="Kateqoriya"
-              name="category"
-              rules={[{ required: true, message: "Kateqoriyani seçin!" }]}
+              label="Xüsusiyyət"
+              name="property"
+              rules={[{ required: true, message: "Xüsusiyyəti seçin!" }]}
             >
               <Select
-                disabled={categoryDisable}
+                disabled={propertyDisable}
                 // style={{ width: "300px" }}
-                onChange={onChangeCategory}
+                onChange={onChangeProperty}
                 showSearch
                 optionFilterProp="children"
-                // onSearch={onSearchCategory}
+                // onSearch={onSearchproperty}
                 filterOption={(input, option) => {
                   return (
                     option.props.children
@@ -327,9 +327,9 @@ export default function CartList() {
                   );
                 }}
               >
-                {listOfCategoryData.map((categoryData) => (
-                  <Option key={categoryData.id} value={categoryData.id}>
-                    {categoryData.name}
+                {listOfPropertyData.map((propertyData) => (
+                  <Option key={propertyData.id} value={propertyData.id}>
+                    {propertyData.name}
                   </Option>
                 ))}
               </Select>
@@ -340,12 +340,12 @@ export default function CartList() {
               // rules={[{ required: true, message: "Məhsulu seçin!" }]}
             >
               <Select
-                // disabled={categoryDisable}
+                // disabled={propertyDisable}
                 // style={{ width: "300px" }}
                 onChange={onChangeProduct}
                 showSearch
                 optionFilterProp="children"
-                // onSearch={onSearchCategory}
+                // onSearch={onSearchproperty}
                 filterOption={(input, option) => {
                   return (
                     option.props.children
@@ -359,17 +359,17 @@ export default function CartList() {
                   );
                 }}
               >
-                {/* {listOfProductDataByCategoryId.pages.map((productData) => (
+                {/* {listOfProductDataBypropertyId.pages.map((productData) => (
                   <Option key={productData.id} value={productData.id}>
                     {productData.name + "(" + productData.barcode + ")"}
                   </Option>
                 ))} */}
               </Select>
             </Form.Item>
-            <Form.Item></Form.Item>
+            
           </Form>
 
-          {listOfProductDataByCategoryId.map((item, index) => {
+          {listOfProductDataByPropertyId.map((item, index) => {
             return (
               <div className="site-card-wrapper">
                 <Card style={{ marginTop: "10px" }} key="cardList">
@@ -416,37 +416,36 @@ export default function CartList() {
                     labelCol={{ span: 9 }}
                     wrapperCol={{ span: 16 }}
                     autoComplete="off"
-                    // onFinish={handleFinish}
+              
                   >
                     <Form.Item label="Say">
                       <InputNumber
                         onChange={(e) => handleCountChange(e, item)}
-                        // onChange={setCountValues}
+                    
                         defaultValue={0}
                         min={0}
-                        // value={countValue}
+                    
                       ></InputNumber>
                     </Form.Item>
 
-                    {/* <h4>Say: </h4> */}
-
+        
                     <Form.Item label="Digər qiymətlər">
                       <InputNumber
                         onChange={(e) => handleOtherPriceChange(e, item)}
-                        // onChange={setCountValues}
+                        
                         defaultValue={0}
                         min={0}
-                        // value={countValue}
+                    
                       ></InputNumber>
                     </Form.Item>
 
                     <Form.Item label="Müştəri satış qiyməti">
                       <InputNumber
                         onChange={(e) => handleCustomerSellPriceChange(e, item)}
-                        // onChange={setCountValues}
+                      
                         defaultValue={0}
                         min={0}
-                        // value={countValue}
+                     
                       ></InputNumber>
                     </Form.Item>
                   </Form>
@@ -465,18 +464,10 @@ export default function CartList() {
             );
           })}
           <br />
-          {/* <Row style={{ width: "100%" }}>
-            Ümumi Məhsul sayı: {productListTotalItems}
-          </Row>
-          <Row style={{ width: "100%" }}>
-            Ümumi səhifə say: {productListTotalPages}
-          </Row>
-          <Row style={{ width: "100%" }}>Səhifə: {currentPage}</Row> */}
-
           <br />
           <Row>
             {productListTotalPages !== page + 1 &&
-              listOfProductDataByCategoryId.length > 0 && (
+              listOfProductDataByPropertyId.length > 0 && (
                 <Button
                   style={{ width: "100%" }}
                   onClick={() => setPage(page + 1)}

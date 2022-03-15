@@ -88,6 +88,36 @@ export const getProductListByCategoryId = (categoryId,page,isChangeCategory) => 
     });
 };
 
+export const getProductListByPropertyId = (propertyId,page,isChangeProperty) => (dispatch) => {
+  console.log('getProductListByPropertyId metod call')
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+  });
+  dispatch(showLoader());
+  axiosInstance
+    .get("/properties/" +page + "/" + propertyId + "/products")
+    .then((response) => {
+      console.log("response ", response.data);
+      if(isChangeProperty){
+        dispatch({
+          type: actionTypes.GET_PRODUCT_LIST_BY_PROPERTY_ID_IS_CHANGED,
+          payload: response.data,
+        });
+      }else{
+        dispatch({
+          type: actionTypes.GET_PRODUCT_LIST_BY_PROPERTY_ID_IS_NOT_CHANGED,
+          payload: response.data,
+        });
+      }
+     
+      dispatch(hideLoader());
+    });
+};
+
 export const addProduct = (data, page, pageSize) => (dispatch) => {
   const axiosInstance = axios.create({
     baseURL: baseURL,

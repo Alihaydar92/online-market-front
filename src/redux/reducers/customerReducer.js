@@ -10,6 +10,12 @@ import  initialState from "./initialState"
                 customerListData: action.payload
             }
         }
+        case actionTypes.FETCH_CUSTOMERS: {
+            return {
+                ...state,
+                fetchCustomerData: action.payload
+            }
+        }
         case actionTypes.ADD_CUSTOMER: {
             return {
                 ...state,

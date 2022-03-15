@@ -5,6 +5,7 @@ export default {
   modalType: null,
   modalProps: {},
   customerListData: [],
+  fetchCustomerData:[],
   customerDataListByExpeditorId: [],
   customerDataById: {},
   customerUpdateData: {},
@@ -17,6 +18,7 @@ export default {
   productListData: [],
   productListDataByPage: {},
   productListDataByCategoryId: [],
+  productListDataByPropertyId:[],
   totalPages:Number(),
   totalItems:Number(),
   productDataById: {},
@@ -48,4 +50,6 @@ export default {
   basketAllData:{},
 
   loading: false,
+
+  showBlackListData:[],
 };

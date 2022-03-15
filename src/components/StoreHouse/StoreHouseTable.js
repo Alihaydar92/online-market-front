@@ -95,7 +95,7 @@ export default function StoreHouseTable() {
     },
     {
       title: "Məhsul",
-      dataIndex: ["productDtos", "name"],
+      dataIndex: ["productDto", "name"],
     },
 
     {

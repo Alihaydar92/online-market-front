@@ -46,6 +46,29 @@ export default function productReducers(state = initialState, action) {
       };
     }
 
+    case actionTypes.GET_PRODUCT_LIST_BY_PROPERTY_ID_IS_NOT_CHANGED: {
+      let temp = initialState.productListDataByPropertyId;
+      action.payload.pages.forEach((element) => {
+        temp.push(element);
+      });
+      // temp=[...initialState.productListDataByCategoryId, ...action.payload.pages]
+      return {
+        // ...state,
+        productListDataByPropertyId: temp,
+        totalPages: action.payload.totalPages,
+        totalItems: action.payload.totalItems,
+        currentPage:action.payload.currentPage
+      };
+    }
+    case actionTypes.GET_PRODUCT_LIST_BY_PROPERTY_ID_IS_CHANGED: {
+      return {
+        productListDataByPropertyId: action.payload.pages,
+        totalPages: action.payload.totalPages,
+        totalItems: action.payload.totalItems,
+        currentPage:action.payload.currentPage
+      };
+    }
+
     case actionTypes.DELETE_PRODUCT: {
       return {
         ...state,
