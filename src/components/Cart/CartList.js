@@ -45,7 +45,7 @@ export default function CartList() {
   const currentPage = useSelector(
     (state) => state.productReducers?.currentPage
   );
-  
+
   const listOfCustomerByExpeditorId = useSelector(
     (state) => state.customerReducer?.customerDataListByExpeditorId
   );
@@ -375,9 +375,7 @@ export default function CartList() {
                 <Card style={{ marginTop: "10px" }} key="cardList">
                   <Row>
                     <h4>
-                      <b style={{ color: "red" }}>
-                        {item.isNew ? "Yeni məhsul" : ""}
-                      </b>
+                      <b style={{ color: "red" }}>{item.isNew ? "Yeni" : ""}</b>
                     </h4>
                   </Row>
                   <Image
@@ -395,6 +393,9 @@ export default function CartList() {
                     <h4>Məhsul: {item.name}</h4>
                   </Row>
                   <Row>
+                    <h4>Barkod: {item.barcode}</h4>
+                  </Row>
+                  <Row>
                     <h4>
                       Anbardakı sayı:{" "}
                       <b style={{ color: "red" }}>{item.quantity}</b>
@@ -405,6 +406,9 @@ export default function CartList() {
                       Qiymət:{" "}
                       <b style={{ color: "red" }}>{item.sellPrice + " AZN"}</b>{" "}
                     </h4>
+                  </Row>
+                  <Row>
+                    <h4>Qeyd:{item.note}</h4>
                   </Row>
                   <Form
                     form={topForm}
@@ -471,15 +475,15 @@ export default function CartList() {
 
           <br />
           <Row>
-         
-            {(productListTotalPages !== (page + 1) && listOfProductDataByCategoryId.length>0) && (
-              <Button
-                style={{ width: "100%" }}
-                onClick={() => setPage(page + 1)}
-              >
-                {loading ? "Yüklənir..." : "Daha Çox"}
-              </Button>
-            )}
+            {productListTotalPages !== page + 1 &&
+              listOfProductDataByCategoryId.length > 0 && (
+                <Button
+                  style={{ width: "100%" }}
+                  onClick={() => setPage(page + 1)}
+                >
+                  {loading ? "Yüklənir..." : "Daha Çox"}
+                </Button>
+              )}
           </Row>
         </Col>
       </Row>
