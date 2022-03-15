@@ -380,7 +380,7 @@ export default function CartList() {
                   </Row>
                   <Image
                     width="100%"
-                    preview={false}
+                    preview={true}
                     alt="logo"
                     // src={String(logo)}
                     src={
