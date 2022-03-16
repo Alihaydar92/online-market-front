@@ -5,7 +5,7 @@ export default {
   modalType: null,
   modalProps: {},
   customerListData: [],
-  fetchCustomerData:[],
+  fetchCustomerData: [],
   customerDataListByExpeditorId: [],
   customerDataById: {},
   customerUpdateData: {},
@@ -18,9 +18,9 @@ export default {
   productListData: [],
   productListDataByPage: {},
   productListDataByCategoryId: [],
-  productListDataByPropertyId:[],
-  totalPages:Number(),
-  totalItems:Number(),
+  productListDataByPropertyId: [],
+  totalPages: Number(),
+  totalItems: Number(),
   productDataById: {},
   productDeleteData: {},
   productAddData: {},
@@ -41,15 +41,17 @@ export default {
   propertyAddData: {},
 
   storeHouseListData: [],
+  storeHouseCountCombo: [],
+  storeHouseNumerateResult:{},
   storeHouseDataById: {},
   listOfQuantities: [],
 
   basketData: {},
   basketGrandTotal: "",
   addBasketItems: [],
-  basketAllData:{},
+  basketAllData: {},
 
   loading: false,
 
-  showBlackListData:[],
+  showBlackListData: [],
 };

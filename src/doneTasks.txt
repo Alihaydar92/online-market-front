@@ -140,3 +140,15 @@ sebete elave ederken ikinci melumati sebete elave edende bele bir bir gondermek 
 iki button duymesi. 1)cap edecek pdfe, 2) sebet datani bazaya insert+++
 
 jspdf utf problem+++
+
+qara siyahi(musteri combo ) secilmisin id-sini servise gondermek +++
+
+qara siyahini tableda gostermek +++
+
+satisda category combonu property ile evez etmek +++
+
+login user input focus +++
+
+anbarda redakte modalda isneww fieldini gostermek ve add updatede o fieldi gondermek +++
+
+anbar checkbox label "status" to "yeni" +++

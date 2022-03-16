@@ -159,7 +159,7 @@ export default function StoreHouseAdd(props) {
         </Form.Item>
         <Form.Item
           name="isNew"
-          label="Status"
+          label="Yeni"
           valuePropName="checked"
           initialValue={false}
         >

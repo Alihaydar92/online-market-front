@@ -99,17 +99,11 @@ sayim page, mehsul combobox (comboboxa gore data geleck) => hemin datada say dey
 
 sayimin neticesi page (get data)
 
-qara siyahi(musteri combo ) secilmisin id-sini servise gondermek +++
-
-qara siyahini tableda gostermek +++
-
-satisda category combonu property ile evez etmek +++
-
-login user input focus
-
-anbarda redakte modalda isneww fieldini gostermek ve add updatede o fieldi gondermek +++
-
 card reducerin dexlisiz cagirilma bug-i (bunu arasddirmaq)
+
+product pagede list error var ikinci defeden acilir
+
+comboboxlarda scrolling data 
 
 ### sonra
 

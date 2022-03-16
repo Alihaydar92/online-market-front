@@ -36,6 +36,18 @@ export default function storeHouseReducers(state = initialState, action) {
         storeHouseListData: action.payload,
       };
     }
+    case actionTypes.STOREHOUSE_COUNT_COMBO: {
+      return {
+        ...state,
+        storeHouseCountCombo: action.payload,
+      };
+    }
+    case actionTypes.STOREHOUSE_NUMERATE_RESULT: {
+      return {
+        ...state,
+        storeHouseNumerateResult: action.payload,
+      };
+    }
     
     // case actionTypes.DELETE_PRODUCT: {
     //   return {

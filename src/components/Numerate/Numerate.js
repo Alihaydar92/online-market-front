@@ -1,22 +1,34 @@
-import { Form, Select } from "antd";
-import React, { useEffect } from "react";
+import { Button, Card, Form, InputNumber, Select } from "antd";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { listOfProducts } from "../../redux/actions/productActions";
+import {
+  storeHouseNumerate,
+  storeHouseCountCombo,
+} from "../../redux/actions/storeHouseActions";
 const { Option } = Select;
 export default function Numerate() {
   const [form] = Form.useForm();
   const dispatch = useDispatch();
+  const [productData, setProductData] = useState(null);
+  const [count, setCount] = useState(Number());
   useEffect(() => {
-    dispatch(listOfProducts());
+    dispatch(storeHouseCountCombo());
   }, [dispatch]);
-  const listOfProductData = useSelector(
-    (state) => state.productReducers?.productListData
+  const storeHouseCountComboData = useSelector(
+    (state) => state.storeHouseReducers?.storeHouseCountCombo
   );
-  useEffect(()=>{
-    console.log(listOfProductData)
-  },[listOfProductData])
-  const onChangeProduct = (value) => {
-    console.log(value);
+  useEffect(() => {
+    console.log(storeHouseCountComboData);
+  }, [storeHouseCountComboData]);
+  const onChangeProduct = (e) => {
+    console.log(storeHouseCountComboData[e]);
+    setProductData(storeHouseCountComboData[e]);
+  };
+
+  const onClickAdd = (data) => {
+    console.log(data.id);
+    console.log(count);
+    dispatch(storeHouseNumerate(data, count));
   };
   return (
     <div>
@@ -51,13 +63,31 @@ export default function Numerate() {
               );
             }}
           >
-            {listOfProductData.map((productData) => (
-              <Option key={productData.id} value={productData.id}>
-                {productData.name + "(" + productData.barcode + ")"}
+            {storeHouseCountComboData.map((productData, index) => (
+              <Option value={index} key={index}>
+                {productData.productName + "(" + productData.barcode + ")"}
               </Option>
             ))}
           </Select>
         </Form.Item>
+        {productData == null ? (
+          <p>Məlumat yoxdur</p>
+        ) : (
+          <Card style={{ width: 300 }}>
+            <p>Məhsul: {productData.productName}</p>
+            <p>Barkod: {productData.barcode}</p>
+            <p>Anbardakı say: {productData.quantity}</p>
+            Say:{" "}
+            <InputNumber min={0} onChange={(e) => setCount(e)}></InputNumber>
+            <Button
+              disabled={count <= 0 ? true : false}
+              type="primary"
+              onClick={() => onClickAdd(productData)}
+            >
+              Əlavə et
+            </Button>
+          </Card>
+        )}
       </Form>
     </div>
   );

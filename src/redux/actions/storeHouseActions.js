@@ -35,7 +35,7 @@ export const getStoreHouseById = (id) => (dispatch) => {
   });
 };
 
-export const addStoreHouse = (data,page,pageSize) => (dispatch) => {
+export const addStoreHouse = (data, page, pageSize) => (dispatch) => {
   const axiosInstance = axios.create({
     baseURL: baseURL,
     auth: {
@@ -50,7 +50,7 @@ export const addStoreHouse = (data,page,pageSize) => (dispatch) => {
         type: actionTypes.ADD_STOREHOUSE,
         payload: response.data,
       });
-      dispatch(listOfStoreHouse(page,pageSize));
+      dispatch(listOfStoreHouse(page, pageSize));
     }
   });
 };
@@ -77,7 +77,7 @@ export const updateStoreHouse = (data) => (dispatch) => {
   });
 };
 
-export const deleteStoreHouse = (id,page,pageSize) => (dispatch) => {
+export const deleteStoreHouse = (id, page, pageSize) => (dispatch) => {
   const axiosInstance = axios.create({
     baseURL: baseURL,
     auth: {
@@ -91,7 +91,7 @@ export const deleteStoreHouse = (id,page,pageSize) => (dispatch) => {
         type: actionTypes.DELETE_STOREHOUSE,
         payload: response.data,
       });
-      dispatch(listOfStoreHouse(page,pageSize));
+      dispatch(listOfStoreHouse(page, pageSize));
     }
   });
 };
@@ -167,3 +167,58 @@ export const getStoreHouseByQuantity =
         }
       });
   };
+
+export const storeHouseNumerate = (data, count) => (dispatch) => {
+  var storeHouseData = new Object();
+  storeHouseData.quantity = count;
+  storeHouseData.storeHouseId = data.storeHouseId;
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+  });
+  console.log(storeHouseData);
+  axiosInstance.post("/storehouse/count", storeHouseData).then((response) => {
+    console.log(" store house count status ", response.status);
+    if (response.status === 200) {
+      dispatch({
+        type: actionTypes.STOREHOUSE_NUMERATE,
+        payload: response.data,
+      });
+    }
+  });
+};
+
+export const storeHouseCountCombo = () => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+  });
+  axiosInstance.get("/storehouse/count/combo").then((response) => {
+    dispatch({
+      type: actionTypes.STOREHOUSE_COUNT_COMBO,
+      payload: response.data,
+    });
+  });
+};
+
+export const storeHouseNumerateResult = () => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+  });
+  axiosInstance.get("/storehouse/count").then((response) => {
+    dispatch({
+      type: actionTypes.STOREHOUSE_NUMERATE_RESULT,
+      payload: response.data,
+    });
+  });
+};

@@ -90,7 +90,7 @@ export default function Login() {
               },
             ]}
           >
-            <Input />
+            <Input autoFocus="true" />
           </Form.Item>
 
           <Form.Item
