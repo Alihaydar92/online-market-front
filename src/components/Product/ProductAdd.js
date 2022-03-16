@@ -96,9 +96,9 @@ export default function ProductAdd(props) {
         </Form.Item>
 
         <Form.Item
-          label="Kateqoriya"
+          label="Tip"
           name="category"
-          rules={[{ required: true, message: "Kateqoriyani seçin!" }]}
+          rules={[{ required: true, message: "Tipi seçin!" }]}
         >
           <Select>
             {listOfCategoryData.map((categoryData) => (

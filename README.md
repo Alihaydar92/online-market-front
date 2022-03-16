@@ -89,21 +89,19 @@ satis penceresinde mehsul combosuna barkodu da elave etmek ve axtarisinda her ik
 
 sekli sil buttonunun altinda sekli servisde cagirib silmek
 
-basketde qiymet float deyer oldugu ucun duzgun islemir
+basketde qiymet float deyer oldugu ucun duzgun islemir+++
 
-pdf capda birinci defede error var
+pdf capda birinci defede error var+++
 
 infinite scrool satis +++ (buttunsuz elemek---)
 
-sayim page, mehsul combobox (comboboxa gore data geleck) => hemin datada say deyislirek post edilecek
-
-sayimin neticesi page (get data)
-
 card reducerin dexlisiz cagirilma bug-i (bunu arasddirmaq)
 
-product pagede list error var ikinci defeden acilir
+product pagede list error var ikinci defeden acilir (pages error)
 
-comboboxlarda scrolling data 
+comboboxlarda scrolling data
+
+
 
 ### sonra
 

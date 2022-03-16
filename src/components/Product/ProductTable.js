@@ -51,10 +51,69 @@ export default function ProductTable() {
     setImages(imageList);
   };
   //////////////////////////////////////////////////image upload
-
+  const columns = [
+    {
+      title: "Məhusulun adı",
+      dataIndex: "name",
+    },
+    {
+      title: "Barkod",
+      dataIndex: "barcode",
+    },
+    {
+      title: "Qeyd",
+      dataIndex: "note",
+    },
+    {
+      title: "Tip",
+      dataIndex: ["categoryDto", "name"],
+    },
+    {
+      title: "Xüsusiyyət",
+      dataIndex: ["propertyDto", "name"],
+    },
+    {
+      title: "Əməliyyat",
+      dataIndex: "operation",
+      width: "220px",
+      render: (text, productData) => {
+        return (
+          <Space size="middle">
+            <Button
+              size="small"
+              type="primary"
+              onClick={() => showEditModal(productData)}
+            >
+              Redaktə et
+            </Button>
+            <Button
+              size="small"
+              type="danger"
+              onClick={() => showRemoveModal(productData.id)}
+            >
+              Sil
+            </Button>
+            <Button
+              size="small"
+              type="danger"
+              onClick={() => showImgPanel(productData.id)}
+            >
+              Şəkil
+            </Button>
+          </Space>
+        );
+      },
+    },
+  ];
   const listOfProductDataByPage = useSelector(
     (state) => state.productReducers?.productListDataByPage
   );
+  useEffect(() => {
+    console.log('first')
+    dispatch(searchProduct("",pagination.page, pagination.pageSize,false));
+  
+  }, []);
+ 
   const productDataById = useSelector(
     (state) => state.productReducers?.productDataById
   );
@@ -63,11 +122,9 @@ export default function ProductTable() {
     (state) => state.productReducers?.productImagesDataByProductId
   );
 
-  useEffect(() => {
-    dispatch(searchProduct("",pagination.page, pagination.pageSize,false));
-  }, []);
+  
 
-  useEffect(() => {}, [listOfProductDataByPage]);
+  
 
   useEffect(() => {
     setImages(productImagesDataByProductId.images);
@@ -75,9 +132,7 @@ export default function ProductTable() {
 
   useEffect(() => {
     form.setFieldsValue({
-      name: "",
-      barcode: "",
-      note: "",
+      name: ""
     });
   }, [form]);
 
@@ -211,60 +266,7 @@ export default function ProductTable() {
     dispatch(searchProduct("",pagination.page,pagination.pageSize,false));
   };
 
-  const columns = [
-    {
-      title: "Məhusulun adı",
-      dataIndex: "name",
-    },
-    {
-      title: "Barkod",
-      dataIndex: "barcode",
-    },
-    {
-      title: "Qeyd",
-      dataIndex: "note",
-    },
-    {
-      title: "Kateqoriya",
-      dataIndex: ["categoryDto", "name"],
-    },
-    {
-      title: "Xüsusiyyət",
-      dataIndex: ["propertyDto", "name"],
-    },
-    {
-      title: "Əməliyyat",
-      dataIndex: "operation",
-      width: "220px",
-      render: (text, productData) => {
-        return (
-          <Space size="middle">
-            <Button
-              size="small"
-              type="primary"
-              onClick={() => showEditModal(productData)}
-            >
-              Redaktə et
-            </Button>
-            <Button
-              size="small"
-              type="danger"
-              onClick={() => showRemoveModal(productData.id)}
-            >
-              Sil
-            </Button>
-            <Button
-              size="small"
-              type="danger"
-              onClick={() => showImgPanel(productData.id)}
-            >
-              Şəkil
-            </Button>
-          </Space>
-        );
-      },
-    },
-  ];
+  
 const onImageRemove =(index)=>{
   console.log(index)
 }
@@ -346,8 +348,9 @@ const onImageRemove =(index)=>{
 
       <Table
         style={{ wordBreak: "break-word", marginTop: "20px" }}
-        dataSource={listOfProductDataByPage.pages}
         scroll={{ y: 420 }}
+        dataSource={listOfProductDataByPage.pages}
+        
         columns={columns}
         rowKey="id"
         pagination={{

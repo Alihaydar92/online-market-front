@@ -114,7 +114,7 @@ export default function App() {
               </SubMenu>
               <SubMenu key="sub2" icon={<LaptopOutlined />} title="Əməliyyat">
                 <Menu.Item key="10">
-                  <Link to="products">Məhsullar</Link>
+                  <Link to="/products">Məhsullar</Link>
                 </Menu.Item>
                 <Menu.Item key="11">
                   <Link to="/cartList">Satış</Link>

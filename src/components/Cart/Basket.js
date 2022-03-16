@@ -13,6 +13,7 @@ import moment from "moment";
 
 export default function Basket() {
   const dispatch = useDispatch();
+
   const basketItems = useSelector(
     (state) => state.cartReducers?.addBasketItems
   );
@@ -56,6 +57,7 @@ export default function Basket() {
     console.log("basketDataId", basketDataId);
     dispatch(deleteCart(basketDataId));
   };
+
   const columns = [
     {
       title: "ID",
@@ -86,8 +88,11 @@ export default function Basket() {
       editable: true,
       render: (text, record, index) => (
         <InputNumber
-        step="0.01"
-          value={text}
+          defaultValue={text}
+          formatter={(value) =>
+            `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+          }
+          parser={(value) => value.replace(/\$\s?|(,*)/g, "")}
           onChange={onInputPriceChange("price", index)}
         />
       ),
@@ -116,6 +121,8 @@ export default function Basket() {
     },
   ];
   const onInputQuantityChange = (key, index) => (e) => {
+    console.log(e);
+    console.log(key);
     const newData = [...basketArray];
     newData[index][key] = Number(e);
 
@@ -123,8 +130,10 @@ export default function Basket() {
   };
   const onInputPriceChange = (key, index) => (e) => {
     console.log(e);
+    console.log(key);
+
     const newData = [...basketArray];
-    newData[index][key] = Number(e);
+    newData[index].storeHouseDto[key] = Number(e);
 
     setBasketArray(newData);
   };
@@ -149,7 +158,7 @@ export default function Basket() {
     /////////////////////////cedvel
     var col = ["Nomre", "Say", "Barkod", "Ad", "Qiymet", "Ümumi cəm"];
     var rows = [];
-
+    console.log(basketArray);
     basketArray.forEach((element, index) => {
       console.log(element);
       var temp = [
@@ -157,14 +166,13 @@ export default function Basket() {
         element.quantity,
         element.storeHouseDto.barcode,
         element.storeHouseDto.productDto.name,
-        element.storeHouseDto.price,
+        element.price,
         element.totalPrice,
       ];
 
       rows.push(temp);
     });
 
-    let finalY = pdf.autoTable.previous.finalY;
     pdf.autoTable(
       col,
       rows,
@@ -192,8 +200,9 @@ export default function Basket() {
     //   didDrawPage:function(data){
 
     // }})
+    let finalY = pdf.autoTable.previous.finalY;
 
-    /////////////////////////////////////////////
+    /////////////////////////////
     pdf.text(45, finalY + 10, "Məbləğ");
     pdf.text(170, finalY + 10, basketAllData.grandTotal.toString());
     pdf.text(45, finalY + 20, "ƏDV");

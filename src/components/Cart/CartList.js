@@ -1,9 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { Card, Select, Row, Form, InputNumber, Image, Col } from "antd";
+import {
+  Card,
+  Select,
+  Row,
+  Form,
+  InputNumber,
+  Image,
+  Col,
+  Checkbox,
+} from "antd";
 import { listOfProperties } from "../../redux/actions/propertyActions";
+import { listOfCategories } from "../../redux/actions/categoryActions";
 import { addCart } from "../../redux/actions/cartActions";
 import { getCustomerListByExpeditorId } from "../../redux/actions/customerAction";
-import { getProductListByPropertyId } from "../../redux/actions/productActions";
+import { getProductListByPropertyId,getProductListByCategoryId } from "../../redux/actions/productActions";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "antd-button-color";
 import "antd/dist/antd.css"; // or 'antd/dist/antd.less'
@@ -16,24 +26,29 @@ export default function CartList() {
   const dispatch = useDispatch();
   const [topForm] = Form.useForm();
   const [customerId, setCustomerId] = useState(Number());
-  const [propertyId, setPropertyId] = useState(Number());
-  const [propertyDisable, setPropertyDisable] = useState(true);
+  const [dataId, setDataId] = useState(Number());
+  const [disable, setDisable] = useState(true);
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     dispatch(listOfProperties());
-  }, []);
+    dispatch(listOfCategories());
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(getCustomerListByExpeditorId());
-  }, []);
+  }, [dispatch]);
 
   const listOfPropertyData = useSelector(
     (state) => state.propertyReducers?.propertyListData
   );
-  const listOfProductDataByPropertyId = useSelector(
-    (state) => state.productReducers?.productListDataByPropertyId
+
+  const listOfCategoryData = useSelector(
+    (state) => state.categoryReducers?.categoryListData
+  );
+  const listOfProductDataById = useSelector(
+    (state) => state.productReducers?.productListDataById
   );
   const productListTotalPages = useSelector(
     (state) => state.productReducers?.totalPages
@@ -55,18 +70,34 @@ export default function CartList() {
   var otherPriceDataList = [];
   const onChangeProperty = (value) => {
     console.log(value);
-    setPropertyId(value);
-    topForm
-      .validateFields()
-      .then(() => {
-        dispatch(getProductListByPropertyId(value, 0, true));
+    setDataId(value);
+    dispatch(getProductListByPropertyId(value, 0, true));
 
-        setLoading(false);
+    setLoading(false);
+    // topForm
+    //   .validateFields()
+    //   .then(() => {
        
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+  };
+
+  const onChangeCategory = (value) => {
+    console.log(value);
+    setDataId(value);
+    dispatch(getProductListByCategoryId(value, 0, true));
+
+    setLoading(false);
+    // topForm
+    //   .validateFields()
+    //   .then(() => {
+     
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   };
 
   const onChangeProduct = (e) => {
@@ -76,7 +107,7 @@ export default function CartList() {
     // })
   };
   const onChangeCustomer = (value) => {
-    setPropertyDisable(false);
+    setDisable(false);
     setCustomerId(value);
   };
   var countDataJS = null;
@@ -256,10 +287,14 @@ export default function CartList() {
   };
 
   useEffect(() => {
-    dispatch(getProductListByPropertyId(propertyId, page, false));
+    dispatch(getProductListByPropertyId(dataId, page, false));
 
     setLoading(false);
   }, [page]);
+
+  const onClickNewProducts = () => {};
+
+  const onClickAllProducts = () => {};
   return (
     <div>
       <Row style={{ marginTop: "20px" }}>
@@ -308,7 +343,7 @@ export default function CartList() {
               rules={[{ required: true, message: "Xüsusiyyəti seçin!" }]}
             >
               <Select
-                disabled={propertyDisable}
+                disabled={disable}
                 // style={{ width: "300px" }}
                 onChange={onChangeProperty}
                 showSearch
@@ -335,6 +370,36 @@ export default function CartList() {
               </Select>
             </Form.Item>
             <Form.Item
+              label="Tip"
+              name="category"
+              rules={[{ required: true, message: "Tipi seçin!" }]}
+            >
+              <Select
+                disabled={disable}
+                onChange={onChangeCategory}
+                showSearch
+                optionFilterProp="children"
+                filterOption={(input, option) => {
+                  return (
+                    option.props.children
+                      .toString()
+                      .toLowerCase()
+                      .indexOf(input.toLowerCase()) >= 0 ||
+                    option.props.value
+                      .toString()
+                      .toLowerCase()
+                      .indexOf(input.toLowerCase()) >= 0
+                  );
+                }}
+              >
+                {listOfCategoryData.map((categoryData) => (
+                  <Option key={categoryData.id} value={categoryData.id}>
+                    {categoryData.name}
+                  </Option>
+                ))}
+              </Select>
+            </Form.Item>
+            <Form.Item
               label="Məhsul"
               name="product"
               // rules={[{ required: true, message: "Məhsulu seçin!" }]}
@@ -342,6 +407,7 @@ export default function CartList() {
               <Select
                 // disabled={propertyDisable}
                 // style={{ width: "300px" }}
+                disabled={disable}
                 onChange={onChangeProduct}
                 showSearch
                 optionFilterProp="children"
@@ -366,10 +432,30 @@ export default function CartList() {
                 ))} */}
               </Select>
             </Form.Item>
-            
+            <Form.Item wrapperCol={{ offset: 8 }}>
+              <Button
+                disabled={disable}
+                danger
+                type="primary"
+                onClick={onClickNewProducts}
+              >
+                Yeni məhsullar
+              </Button>
+            </Form.Item>
+
+            <Form.Item wrapperCol={{ offset: 8 }}>
+              <Button
+                disabled={disable}
+                danger
+                type="primary"
+                onClick={onClickAllProducts}
+              >
+                Bütün məhsullar
+              </Button>
+            </Form.Item>
           </Form>
 
-          {listOfProductDataByPropertyId.map((item, index) => {
+          {listOfProductDataById.map((item, index) => {
             return (
               <div className="site-card-wrapper">
                 <Card style={{ marginTop: "10px" }} key="cardList">
@@ -416,36 +502,28 @@ export default function CartList() {
                     labelCol={{ span: 9 }}
                     wrapperCol={{ span: 16 }}
                     autoComplete="off"
-              
                   >
                     <Form.Item label="Say">
                       <InputNumber
                         onChange={(e) => handleCountChange(e, item)}
-                    
                         defaultValue={0}
                         min={0}
-                    
                       ></InputNumber>
                     </Form.Item>
 
-        
                     <Form.Item label="Digər qiymətlər">
                       <InputNumber
                         onChange={(e) => handleOtherPriceChange(e, item)}
-                        
                         defaultValue={0}
                         min={0}
-                    
                       ></InputNumber>
                     </Form.Item>
 
                     <Form.Item label="Müştəri satış qiyməti">
                       <InputNumber
                         onChange={(e) => handleCustomerSellPriceChange(e, item)}
-                      
                         defaultValue={0}
                         min={0}
-                     
                       ></InputNumber>
                     </Form.Item>
                   </Form>
@@ -467,7 +545,7 @@ export default function CartList() {
           <br />
           <Row>
             {productListTotalPages !== page + 1 &&
-              listOfProductDataByPropertyId.length > 0 && (
+              listOfProductDataById.length > 0 && (
                 <Button
                   style={{ width: "100%" }}
                   onClick={() => setPage(page + 1)}

@@ -58,8 +58,69 @@ export const getProductById = (id) => (dispatch) => {
   });
 };
 
-export const getProductListByCategoryId = (categoryId,page,isChangeCategory) => (dispatch) => {
-  console.log('getProductListByCategoryId metod call')
+export const getProductListByCategoryId =
+  (categoryId, page, isChangeCategory) => (dispatch) => {
+    console.log("getProductListByCategoryId metod call");
+    const axiosInstance = axios.create({
+      baseURL: baseURL,
+      auth: {
+        username: window.localStorage.getItem("username"),
+        password: window.localStorage.getItem("password"),
+      },
+    });
+    dispatch(showLoader());
+    axiosInstance
+      .get("/categories/" + page + "/" + categoryId + "/products")
+      .then((response) => {
+        console.log("response ", response.data);
+        if (isChangeCategory) {
+          dispatch({
+            type: actionTypes.GET_PRODUCT_LIST_BY_ID_IS_CHANGED,
+            payload: response.data,
+          });
+        } else {
+          dispatch({
+            type: actionTypes.GET_PRODUCT_LIST_BY_ID_IS_NOT_CHANGED,
+            payload: response.data,
+          });
+        }
+
+        dispatch(hideLoader());
+      });
+  };
+
+export const getProductListByPropertyId =
+  (propertyId, page, isChangeProperty) => (dispatch) => {
+    console.log("getProductListByPropertyId metod call");
+    const axiosInstance = axios.create({
+      baseURL: baseURL,
+      auth: {
+        username: window.localStorage.getItem("username"),
+        password: window.localStorage.getItem("password"),
+      },
+    });
+    dispatch(showLoader());
+    axiosInstance
+      .get("/properties/" + page + "/" + propertyId + "/products")
+      .then((response) => {
+        console.log("response ", response.data);
+        if (isChangeProperty) {
+          dispatch({
+            type: actionTypes.GET_PRODUCT_LIST_BY_ID_IS_CHANGED,
+            payload: response.data,
+          });
+        } else {
+          dispatch({
+            type: actionTypes.GET_PRODUCT_LIST_BY_ID_IS_NOT_CHANGED,
+            payload: response.data,
+          });
+        }
+
+        dispatch(hideLoader());
+      });
+  };
+export const getProductListAll = (page, isChangeProperty) => (dispatch) => {
+  console.log("getProductListAll metod call");
   const axiosInstance = axios.create({
     baseURL: baseURL,
     auth: {
@@ -68,28 +129,26 @@ export const getProductListByCategoryId = (categoryId,page,isChangeCategory) => 
     },
   });
   dispatch(showLoader());
-  axiosInstance
-    .get("/categories/" +page + "/" + categoryId + "/products")
-    .then((response) => {
-      console.log("response ", response.data);
-      if(isChangeCategory){
-        dispatch({
-          type: actionTypes.GET_PRODUCT_LIST_BY_CATEGORY_ID_IS_CHANGED,
-          payload: response.data,
-        });
-      }else{
-        dispatch({
-          type: actionTypes.GET_PRODUCT_LIST_BY_CATEGORY_ID_IS_NOT_CHANGED,
-          payload: response.data,
-        });
-      }
-     
-      dispatch(hideLoader());
-    });
+  axiosInstance.get("/" + page + "/products/all").then((response) => {
+    console.log("response ", response.data);
+    if (isChangeProperty) {
+      dispatch({
+        type: actionTypes.GET_PRODUCT_LIST_BY_ID_IS_CHANGED,
+        payload: response.data,
+      });
+    } else {
+      dispatch({
+        type: actionTypes.GET_PRODUCT_LIST_BY_ID_IS_NOT_CHANGED,
+        payload: response.data,
+      });
+    }
+
+    dispatch(hideLoader());
+  });
 };
 
-export const getProductListByPropertyId = (propertyId,page,isChangeProperty) => (dispatch) => {
-  console.log('getProductListByPropertyId metod call')
+export const getProductListNew = (page, isChangeProperty) => (dispatch) => {
+  console.log("getProductListNew metod call");
   const axiosInstance = axios.create({
     baseURL: baseURL,
     auth: {
@@ -98,24 +157,22 @@ export const getProductListByPropertyId = (propertyId,page,isChangeProperty) => 
     },
   });
   dispatch(showLoader());
-  axiosInstance
-    .get("/properties/" +page + "/" + propertyId + "/products")
-    .then((response) => {
-      console.log("response ", response.data);
-      if(isChangeProperty){
-        dispatch({
-          type: actionTypes.GET_PRODUCT_LIST_BY_PROPERTY_ID_IS_CHANGED,
-          payload: response.data,
-        });
-      }else{
-        dispatch({
-          type: actionTypes.GET_PRODUCT_LIST_BY_PROPERTY_ID_IS_NOT_CHANGED,
-          payload: response.data,
-        });
-      }
-     
-      dispatch(hideLoader());
-    });
+  axiosInstance.get("/" + page + "/products/new").then((response) => {
+    console.log("response ", response.data);
+    if (isChangeProperty) {
+      dispatch({
+        type: actionTypes.GET_PRODUCT_LIST_BY_ID_IS_CHANGED,
+        payload: response.data,
+      });
+    } else {
+      dispatch({
+        type: actionTypes.GET_PRODUCT_LIST_BY_ID_IS_NOT_CHANGED,
+        payload: response.data,
+      });
+    }
+
+    dispatch(hideLoader());
+  });
 };
 
 export const addProduct = (data, page, pageSize) => (dispatch) => {
@@ -245,7 +302,7 @@ export const searchProduct =
   (searchData, page, pageSize, isFromSearchPagination) => (dispatch) => {
     console.log(page);
     console.log(isFromSearchPagination);
-    console.log('searchData',searchData);
+    console.log("searchData", searchData);
     const axiosInstance = axios.create({
       baseURL: baseURL,
       auth: {

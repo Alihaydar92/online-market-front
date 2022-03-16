@@ -3,12 +3,12 @@ import * as actionTypes from "../actions/actionTypes";
 
 export default function productReducers(state = initialState, action) {
   switch (action.type) {
-    case actionTypes.LIST_OF_PRODUCTS_BY_PAGE: {
-      return {
-        ...state,
-        productListDataByPage: action.payload,
-      };
-    }
+    // case actionTypes.LIST_OF_PRODUCTS_BY_PAGE: {
+    //   return {
+    //     ...state,
+    //     productListDataByPage: action.payload,
+    //   };
+    // }
 
     case actionTypes.LIST_OF_PRODUCTS: {
       return {
@@ -23,51 +23,51 @@ export default function productReducers(state = initialState, action) {
         productDataById: action.payload,
       };
     }
-    case actionTypes.GET_PRODUCT_LIST_BY_CATEGORY_ID_IS_NOT_CHANGED: {
-      let temp = initialState.productListDataByCategoryId;
+    case actionTypes.GET_PRODUCT_LIST_BY_ID_IS_NOT_CHANGED: {
+      let temp = initialState.productListDataById;
       action.payload.pages.forEach((element) => {
         temp.push(element);
       });
       // temp=[...initialState.productListDataByCategoryId, ...action.payload.pages]
       return {
         // ...state,
-        productListDataByCategoryId: temp,
+        productListDataById: temp,
         totalPages: action.payload.totalPages,
         totalItems: action.payload.totalItems,
         currentPage:action.payload.currentPage
       };
     }
-    case actionTypes.GET_PRODUCT_LIST_BY_CATEGORY_ID_IS_CHANGED: {
+    case actionTypes.GET_PRODUCT_LIST_BY_ID_IS_CHANGED: {
       return {
-        productListDataByCategoryId: action.payload.pages,
+        productListDataById: action.payload.pages,
         totalPages: action.payload.totalPages,
         totalItems: action.payload.totalItems,
         currentPage:action.payload.currentPage
       };
     }
 
-    case actionTypes.GET_PRODUCT_LIST_BY_PROPERTY_ID_IS_NOT_CHANGED: {
-      let temp = initialState.productListDataByPropertyId;
-      action.payload.pages.forEach((element) => {
-        temp.push(element);
-      });
-      // temp=[...initialState.productListDataByCategoryId, ...action.payload.pages]
-      return {
-        // ...state,
-        productListDataByPropertyId: temp,
-        totalPages: action.payload.totalPages,
-        totalItems: action.payload.totalItems,
-        currentPage:action.payload.currentPage
-      };
-    }
-    case actionTypes.GET_PRODUCT_LIST_BY_PROPERTY_ID_IS_CHANGED: {
-      return {
-        productListDataByPropertyId: action.payload.pages,
-        totalPages: action.payload.totalPages,
-        totalItems: action.payload.totalItems,
-        currentPage:action.payload.currentPage
-      };
-    }
+    // case actionTypes.GET_PRODUCT_LIST_BY_PROPERTY_ID_IS_NOT_CHANGED: {
+    //   let temp = initialState.productListDataById;
+    //   action.payload.pages.forEach((element) => {
+    //     temp.push(element);
+    //   });
+    //   // temp=[...initialState.productListDataByCategoryId, ...action.payload.pages]
+    //   return {
+    //     // ...state,
+    //     productListDataById: temp,
+    //     totalPages: action.payload.totalPages,
+    //     totalItems: action.payload.totalItems,
+    //     currentPage:action.payload.currentPage
+    //   };
+    // }
+    // case actionTypes.GET_PRODUCT_LIST_BY_PROPERTY_ID_IS_CHANGED: {
+    //   return {
+    //     productListDataById: action.payload.pages,
+    //     totalPages: action.payload.totalPages,
+    //     totalItems: action.payload.totalItems,
+    //     currentPage:action.payload.currentPage
+    //   };
+    // }
 
     case actionTypes.DELETE_PRODUCT: {
       return {
