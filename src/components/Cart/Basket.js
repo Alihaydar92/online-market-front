@@ -10,7 +10,7 @@ import jsPDF from "jspdf";
 import "jspdf-autotable";
 import fontTxt from "../../helpers/fontRobotoBase64";
 import moment from "moment";
-
+const logo = require("../../helpers/greenStreamImg.jpeg");
 export default function Basket() {
   const dispatch = useDispatch();
 
@@ -146,17 +146,26 @@ export default function Basket() {
     jsPDF.API.events.push(["addFonts", callAddFont]);
     ////////////////////////////// basliq yazilar
     const pdf = new jsPDF("p", "mm", "a4");
+
+    pdf.addImage(String(logo), "jpeg", 15, 10, 20, 20);
     pdf.setFont("Roboto-Regular");
     //date
-    pdf.text(15, 10, "Tarix: " + moment().format("DD.MM.YYYY"));
-    pdf.text(140, 10, "Qaimə nömrə : " + "TESTNOMRE");
+    pdf.text(15, 40, "Tarix: " + moment().format("DD.MM.YYYY"));
+    pdf.line(15,42,195,42)
+    pdf.line(15,34,195,34)
+    pdf.text("Satış", 195, 15, { align: "right" });
+    pdf.text("Ofis: " + "055 203-60-10", 195, 30, { align: "right" });
+    pdf.text("Qaimə nömrə : " + "01234567", 195, 40, { align: "right" });
     /////
-    pdf.text(15, 20, "Alıcı: ");
-    pdf.text(45, 20, basketAllData.customerDto.name);
-    pdf.text(15, 30, "Ekspeditor: ");
-    pdf.text(45, 30, basketAllData.sellerDto.name);
-    pdf.text(15, 40, "Anbar: ");
-    pdf.text(45, 40, "TEST ANBAR");
+    pdf.text(15, 50, "Alıcı: ");
+    pdf.text(45, 50, basketAllData.customerDto.name);
+    pdf.line(45,51,195,51)
+    pdf.text(15, 60, "Ekspeditor: ");
+    pdf.text(45, 60, basketAllData.sellerDto.name);
+    pdf.line(45,61,195,61)
+    pdf.text(15, 70, "Anbar: ");
+    pdf.text(45, 70, "TEST ANBAR");
+    pdf.line(45,71,195,71)
     ///////////////////////////////////////////////////
 
     /////////////////////////cedvel
@@ -181,7 +190,7 @@ export default function Basket() {
         element.storeHouseDto.productDto.name,
         element.quantity,
         element.storeHouseDto.price,
-        '0',
+        "0",
         "0%",
         "0%",
         element.totalPrice,
@@ -192,7 +201,7 @@ export default function Basket() {
     pdf.autoTable({
       head: [col],
       body: rows,
-      startY: 55,
+      startY: 80,
       styles: {
         font: "Roboto-Regular", // <-- place name of your font here
         fontStyle: "normal",
@@ -202,17 +211,37 @@ export default function Basket() {
     let finalY = pdf.autoTable.previous.finalY;
 
     /////////////////////////////
+    pdf.setDrawColor(0,0,0)
     pdf.text(45, finalY + 10, "Məbləğ");
     pdf.text(170, finalY + 10, basketAllData.grandTotal.toString());
+    pdf.line(150,finalY + 11,195,finalY + 11)
+    
     pdf.text(45, finalY + 20, "ƏDV");
     pdf.text(170, finalY + 20, EDV.toString());
+    pdf.line(150,finalY + 21,195,finalY + 21)
     pdf.text(45, finalY + 30, "Məbləğ Cəm");
     pdf.text(170, finalY + 30, totalPrice.toString());
-
+    pdf.line(150,finalY + 31,195,finalY + 31)
     pdf.text(45, finalY + 40, "Yekun");
     pdf.text(170, finalY + 40, finalPrice.toString());
+    pdf.line(150,finalY + 41,195,finalY + 41)
     pdf.text(45, finalY + 50, "Kontragentin qalıq borcu");
     pdf.text(170, finalY + 50, "1000");
+    pdf.line(150,finalY + 51,195,finalY + 51)
+   
+
+    pdf.setLineDash([2, 2], 0);
+    pdf.line(15, finalY +55, 195, finalY+55);
+    pdf.text(15, finalY + 80, "Təhvil verdi");
+    pdf.text(15, finalY + 90, "Təhvil aldı");
+    pdf.setLineDash();
+    pdf.setDrawColor(0,0,0)
+    pdf.line(140,finalY + 80,195,finalY + 80)
+    pdf.line(140,finalY + 90,195,finalY+90)
+    pdf.setFontSize(7);
+    // pdf.setFontStyle("italic")
+    pdf.text("Imza",165, finalY + 83, );
+    pdf.text("Imza",165, finalY + 93, );
     pdf.save("Qaimə");
   };
   const endSales = () => {
