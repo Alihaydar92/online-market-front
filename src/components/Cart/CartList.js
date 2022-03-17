@@ -34,7 +34,7 @@ export default function CartList() {
   const [disable, setDisable] = useState(true);
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(false);
-
+  const [visibleState, setVisibleState] = useState({visible:false});
   useEffect(() => {
     dispatch(listOfProperties());
     dispatch(listOfCategories());
@@ -299,6 +299,13 @@ export default function CartList() {
   const onClickNewProducts = () => {};
 
   const onClickAllProducts = () => {};
+
+  const hide = () => {
+    setVisibleState({visible:false});
+  };
+  const handleVisibleChange = (v) => {
+    setVisibleState({v});
+  };
   return (
     <div>
       <Row style={{ marginTop: "20px" }}>
@@ -498,17 +505,17 @@ export default function CartList() {
                       <b style={{ color: "red" }}>{item.sellPrice + " AZN"}</b>{" "}
                     </h4>
                   </Row>
-                  <Row>
-                    {/* <Popover
-                      content={<a onClick={hide}>Close</a>}
+                  <Row> <h4>Qeyd:
+                    <Popover
+                      content={item.note}
                       // title="Title"
                       trigger="click"
-                      visible={visible}
+                      visible={visibleState.visible}
                       onVisibleChange={handleVisibleChange}
                     >
-                      <Button type="primary">Qeyd</Button>
-                    </Popover> */}
-                    <h4>Qeyd:{item.note}</h4>
+                      <Button disabled={item.note===null} onClick={hide} type="primary">Bax</Button>
+                    </Popover>
+                    </h4>
                   </Row>
                   <Form
                     form={topForm}
