@@ -7,7 +7,7 @@ import {
   showAddedBasketItems,
 } from "../../redux/actions/cartActions";
 import jsPDF from "jspdf";
-import autoTable from "jspdf-autotable";
+import "jspdf-autotable";
 import fontTxt from "../../helpers/fontRobotoBase64";
 import moment from "moment";
 
@@ -138,10 +138,14 @@ export default function Basket() {
     setBasketArray(newData);
   };
   const openPdf = () => {
-    const pdf = new jsPDF("p", "mm", "a4");
-    pdf.addFileToVFS("Roboto-Regular-normal.ttf", fontTxt);
-    pdf.addFont("Roboto-Regular-normal.ttf", "Roboto-Regular", "normal");
+    var callAddFont = function () {
+      this.addFileToVFS("Roboto-Regular-normal.ttf", fontTxt);
+      this.addFont("Roboto-Regular-normal.ttf", "Roboto-Regular", "normal");
+    };
+
+    jsPDF.API.events.push(["addFonts", callAddFont]);
     ////////////////////////////// basliq yazilar
+    const pdf = new jsPDF("p", "mm", "a4");
     pdf.setFont("Roboto-Regular");
     //date
     pdf.text(15, 10, "Tarix: " + moment().format("DD.MM.YYYY"));
@@ -156,7 +160,7 @@ export default function Basket() {
     ///////////////////////////////////////////////////
 
     /////////////////////////cedvel
-    var col = ["Nomre", "Say", "Barkod", "Ad", "Qiymet", "Ümumi cəm"];
+    var col = ["Nömrə", "Say", "Barkod", "Ad", "Qiymət", "Ümumi cəm"];
     var rows = [];
     console.log(basketArray);
     basketArray.forEach((element, index) => {
@@ -172,34 +176,16 @@ export default function Basket() {
 
       rows.push(temp);
     });
-
-    pdf.autoTable(
-      col,
-      rows,
-      { startY: 55 }
-      // {
-      //   styles: {
-      //     font: "Roboto-Regular",
-      //     fontStyle: "normal",
-      //   },
-      // }
-    );
-    // pdf.autoTable({
-    //   col,
-    //   // col:[
-    //   //   { header: 'Nomre', dataKey: 'index' },
-    //   //   { header: 'Say', dataKey: 'quantity' },
-    //   //   { header: 'Barkod', dataKey: 'barcode' },
-    //   //   { header: 'Ad', dataKey: 'productName' },
-    //   //   { header: 'Qiymet', dataKey: 'price' },
-    //   //   { header: 'Ümumi cem', dataKey: 'totalProce' },
-    //   // ],
-    //   col :["Nomre","Say","Barkod","Ad", "Qiymet", "Ümumi cem"],
-    //   body:rows,
-    //   margin:{top:35},
-    //   didDrawPage:function(data){
-
-    // }})
+    pdf.autoTable({
+      head: [col],
+      body: rows,
+      startY: 55,
+      styles: {
+        font: "Roboto-Regular", // <-- place name of your font here
+        fontStyle: "normal",
+      },
+      // margin: { bottom: 60 },
+    });
     let finalY = pdf.autoTable.previous.finalY;
 
     /////////////////////////////
@@ -214,7 +200,7 @@ export default function Basket() {
     pdf.text(170, finalY + 40, finalPrice.toString());
     // pdf.text(45, finalY + 50, "Kontragentin qalıq borcu");
     // pdf.text(170, finalY + 50, "1000");
-    pdf.save("pdf");
+    pdf.save("Qaimə");
   };
   const endSales = () => {
     console.log(basketArray);

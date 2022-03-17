@@ -89,20 +89,25 @@ satis penceresinde mehsul combosuna barkodu da elave etmek ve axtarisinda her ik
 
 sekli sil buttonunun altinda sekli servisde cagirib silmek
 
-basketde qiymet float deyer oldugu ucun duzgun islemir+++
-
-pdf capda birinci defede error var+++
-
 infinite scrool satis +++ (buttunsuz elemek---)
 
 card reducerin dexlisiz cagirilma bug-i (bunu arasddirmaq)
 
-product pagede list error var ikinci defeden acilir (pages error)
-
-comboboxlarda scrolling data
 
 
 
+
+satisda xususiyet secildikde tip comboboxu  bosaltmaq ve eksine 
+
+basketde gorutnude idni cixarmaq
+
+basketde say  ve  qiymet deyisende umumi cem deyissin (basket table redakte et )
+
+basketde pdf autotable utf problemi
+
+anbar editde ilk defeden editde error
+
+yalniz satisda sebete elave ederken sebet isaresi gorsenir ,sonra itir 
 ### sonra
 
 label-larin textlerini file-dan oxumaq
@@ -116,6 +121,10 @@ seller id-ye gore ise musteri siyahisi gelecek, helelik musteri siyahsini cagirm
 paginationda page ve pagesize ilkin deyerlerini global const deyisen kimi saxlamq(basqa pencerelerde de istifade etmek ucun)
 
 img ve diger filelarla bagli codelarin optimizasiyasi
+
+butun pagelerde cagirilan reducer objectlerin icinde ayri field ya object cagirilirsa "?" isharesi qoymaq
+
+comboboxlarda scrolling data(ya da loadingi xombobox ucun de tetbiq etmek)
 
 ### backend teyyub
 

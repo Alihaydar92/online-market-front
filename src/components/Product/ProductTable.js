@@ -127,7 +127,7 @@ export default function ProductTable() {
   
 
   useEffect(() => {
-    setImages(productImagesDataByProductId.images);
+    setImages(productImagesDataByProductId?.images);
   }, [productImagesDataByProductId]);
 
   useEffect(() => {
@@ -245,7 +245,7 @@ export default function ProductTable() {
   
     dispatch(searchProduct(searchData, pagination.page,pagination.pageSize,false));
     setPagination({
-      page: listOfProductDataByPage.currentPage + 1,
+      page: listOfProductDataByPage?.currentPage + 1,
       pageSize: 15,
     });
     // setDataSource(searchProductData.pages);
@@ -349,15 +349,15 @@ const onImageRemove =(index)=>{
       <Table
         style={{ wordBreak: "break-word", marginTop: "20px" }}
         scroll={{ y: 420 }}
-        dataSource={listOfProductDataByPage.pages}
+        dataSource={listOfProductDataByPage?.pages}
         
         columns={columns}
         rowKey="id"
         pagination={{
           // defaultCurrent:0,
-          current: listOfProductDataByPage.currentPage+1,
+          current: listOfProductDataByPage?.currentPage+1,
           pageSize: pagination.pageSize,
-          total: listOfProductDataByPage.totalItems,
+          total: listOfProductDataByPage?.totalItems,
           onChange: (page, pageSize) => {
             setPagination({ page, pageSize });
           var searchData =form.getFieldsValue().name

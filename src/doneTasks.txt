@@ -162,3 +162,9 @@ satisda category artirmaq (kohneni) +++
 satisda yeni mehsullari getirmek ucun yeni adinda button qoymaq +++
 
 satisda butun datani getirmek ucun hamisi button qoymaq +++
+
+basketde qiymet float deyer oldugu ucun duzgun islemir+++
+
+pdf capda birinci defede error var+++
+
+product pagede list error var ikinci defeden acilir (pages error)+++
