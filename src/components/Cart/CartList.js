@@ -8,12 +8,16 @@ import {
   Image,
   Col,
   Checkbox,
+  Popover,
 } from "antd";
 import { listOfProperties } from "../../redux/actions/propertyActions";
 import { listOfCategories } from "../../redux/actions/categoryActions";
 import { addCart } from "../../redux/actions/cartActions";
 import { getCustomerListByExpeditorId } from "../../redux/actions/customerAction";
-import { getProductListByPropertyId,getProductListByCategoryId } from "../../redux/actions/productActions";
+import {
+  getProductListByPropertyId,
+  getProductListByCategoryId,
+} from "../../redux/actions/productActions";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "antd-button-color";
 import "antd/dist/antd.css"; // or 'antd/dist/antd.less'
@@ -77,7 +81,7 @@ export default function CartList() {
     // topForm
     //   .validateFields()
     //   .then(() => {
-       
+
     //   })
     //   .catch((err) => {
     //     console.log(err);
@@ -93,7 +97,7 @@ export default function CartList() {
     // topForm
     //   .validateFields()
     //   .then(() => {
-     
+
     //   })
     //   .catch((err) => {
     //     console.log(err);
@@ -338,6 +342,36 @@ export default function CartList() {
               </Select>
             </Form.Item>
             <Form.Item
+              label="Tip"
+              name="category"
+              rules={[{ required: false, message: "Tipi seçin!" }]}
+            >
+              <Select
+                disabled={disable}
+                onChange={onChangeCategory}
+                showSearch
+                optionFilterProp="children"
+                filterOption={(input, option) => {
+                  return (
+                    option.props.children
+                      .toString()
+                      .toLowerCase()
+                      .indexOf(input.toLowerCase()) >= 0 ||
+                    option.props.value
+                      .toString()
+                      .toLowerCase()
+                      .indexOf(input.toLowerCase()) >= 0
+                  );
+                }}
+              >
+                {listOfCategoryData.map((categoryData) => (
+                  <Option key={categoryData.id} value={categoryData.id}>
+                    {categoryData.name}
+                  </Option>
+                ))}
+              </Select>
+            </Form.Item>
+            <Form.Item
               label="Xüsusiyyət"
               name="property"
               rules={[{ required: false, message: "Xüsusiyyəti seçin!" }]}
@@ -369,36 +403,7 @@ export default function CartList() {
                 ))}
               </Select>
             </Form.Item>
-            <Form.Item
-              label="Tip"
-              name="category"
-              rules={[{ required: false, message: "Tipi seçin!" }]}
-            >
-              <Select
-                disabled={disable}
-                onChange={onChangeCategory}
-                showSearch
-                optionFilterProp="children"
-                filterOption={(input, option) => {
-                  return (
-                    option.props.children
-                      .toString()
-                      .toLowerCase()
-                      .indexOf(input.toLowerCase()) >= 0 ||
-                    option.props.value
-                      .toString()
-                      .toLowerCase()
-                      .indexOf(input.toLowerCase()) >= 0
-                  );
-                }}
-              >
-                {listOfCategoryData.map((categoryData) => (
-                  <Option key={categoryData.id} value={categoryData.id}>
-                    {categoryData.name}
-                  </Option>
-                ))}
-              </Select>
-            </Form.Item>
+
             <Form.Item
               label="Məhsul"
               name="product"
@@ -494,6 +499,15 @@ export default function CartList() {
                     </h4>
                   </Row>
                   <Row>
+                    {/* <Popover
+                      content={<a onClick={hide}>Close</a>}
+                      // title="Title"
+                      trigger="click"
+                      visible={visible}
+                      onVisibleChange={handleVisibleChange}
+                    >
+                      <Button type="primary">Qeyd</Button>
+                    </Popover> */}
                     <h4>Qeyd:{item.note}</h4>
                   </Row>
                   <Form
