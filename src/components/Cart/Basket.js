@@ -160,17 +160,30 @@ export default function Basket() {
     ///////////////////////////////////////////////////
 
     /////////////////////////cedvel
-    var col = ["Nömrə", "Say", "Barkod", "Ad", "Qiymət", "Ümumi cəm"];
+    var col = [
+      "Nömrə",
+      "Barkod",
+      "Adı",
+      "Sayı",
+      "Qiyməti",
+      "Məbləğ",
+      "Güzəşt",
+      "Güzəştli qiyməti",
+      "Cəmi",
+    ];
     var rows = [];
     console.log(basketArray);
     basketArray.forEach((element, index) => {
       console.log(element);
       var temp = [
         index + 1,
-        element.quantity,
         element.storeHouseDto.barcode,
         element.storeHouseDto.productDto.name,
-        element.price,
+        element.quantity,
+        element.storeHouseDto.price,
+        '0',
+        "0%",
+        "0%",
         element.totalPrice,
       ];
 
@@ -198,8 +211,8 @@ export default function Basket() {
 
     pdf.text(45, finalY + 40, "Yekun");
     pdf.text(170, finalY + 40, finalPrice.toString());
-    // pdf.text(45, finalY + 50, "Kontragentin qalıq borcu");
-    // pdf.text(170, finalY + 50, "1000");
+    pdf.text(45, finalY + 50, "Kontragentin qalıq borcu");
+    pdf.text(170, finalY + 50, "1000");
     pdf.save("Qaimə");
   };
   const endSales = () => {

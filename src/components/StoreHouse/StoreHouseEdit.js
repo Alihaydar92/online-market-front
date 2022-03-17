@@ -26,7 +26,7 @@ export default function StoreHouseEdit(props) {
     (state) => state.productReducers?.productListData
   );
   const storeHouseDataById = useSelector(
-    (state) => state.storeHouseReducers.storeHouseDataById
+    (state) => state.storeHouseReducers?.storeHouseDataById
   );
 
   useEffect(() => {
@@ -46,7 +46,7 @@ export default function StoreHouseEdit(props) {
           note: form.getFieldsValue().note.trim(),
           addedDate: moment(form.getFieldsValue().dateAdded).format(dateFormat),
           isNew: form.getFieldsValue().isNew,
-          id: storeHouseDataById.id,
+          id: storeHouseDataById?.id,
         };
         console.log("rpoduct data add: ", data);
         dispatch(updateStoreHouse(data));

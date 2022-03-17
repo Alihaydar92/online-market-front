@@ -168,3 +168,9 @@ basketde qiymet float deyer oldugu ucun duzgun islemir+++
 pdf capda birinci defede error var+++
 
 product pagede list error var ikinci defeden acilir (pages error)+++
+
+basketde pdf autotable utf problemi+++
+
+anbar editde ilk defeden editde error+++
+
+vacib: env faylindaki urli oz localimda localhost ile yazmaq lakin git ignora salmaq+++

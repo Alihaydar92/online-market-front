@@ -340,7 +340,7 @@ export default function CartList() {
             <Form.Item
               label="Xüsusiyyət"
               name="property"
-              rules={[{ required: true, message: "Xüsusiyyəti seçin!" }]}
+              rules={[{ required: false, message: "Xüsusiyyəti seçin!" }]}
             >
               <Select
                 disabled={disable}
@@ -372,7 +372,7 @@ export default function CartList() {
             <Form.Item
               label="Tip"
               name="category"
-              rules={[{ required: true, message: "Tipi seçin!" }]}
+              rules={[{ required: false, message: "Tipi seçin!" }]}
             >
               <Select
                 disabled={disable}

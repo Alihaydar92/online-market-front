@@ -71,8 +71,6 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ### CODE
 
-vacib: env faylindaki urli oz localimda localhost ile yazmaq lakin git ignora salmaq
-
 headerin responsiveliyi (Imkan varsa pencerelesi responsive etmek (Sonda da edile biler))
 
 resetfields eslinde duz islemir, yalniz emeliyyat olduqdan sonra isleyir, halbuki modali elebele acib bagladiqda bele islemelidi (modal acarken reset olmalidi datalar)(useEffectLayout genis test edib yoxlamaq)
@@ -93,19 +91,11 @@ infinite scrool satis +++ (buttunsuz elemek---)
 
 card reducerin dexlisiz cagirilma bug-i (bunu arasddirmaq)
 
-
-
-
-
 satisda xususiyet secildikde tip comboboxu  bosaltmaq ve eksine 
 
 basketde gorutnude idni cixarmaq
 
 basketde say  ve  qiymet deyisende umumi cem deyissin (basket table redakte et )
-
-basketde pdf autotable utf problemi
-
-anbar editde ilk defeden editde error
 
 yalniz satisda sebete elave ederken sebet isaresi gorsenir ,sonra itir 
 ### sonra
