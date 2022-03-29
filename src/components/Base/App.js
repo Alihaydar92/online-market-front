@@ -1,15 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
-import { Layout, Menu, Image, Button, Affix, Badge } from "antd";
-import {
-  Collapse,
-  Navbar,
-  Nav,
-  Dropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-} from "reactstrap";
+import { Layout, Menu, Affix, Badge } from "antd";
 import {
   Route,
   Routes,
@@ -23,12 +14,10 @@ import ExpeditorTable from "../Expeditor/ExpeditorTable";
 import ProductTable from "../Product/ProductTable";
 import CategoryTable from "../Category/CategoryTable";
 import PropertyTable from "../Property/PropertyTable";
-import InfiniteScrool from "../Cart/InfiniteScrool";
 import StoreHouseTable from "../StoreHouse/StoreHouseTable";
 import Numerate from "../Numerate/Numerate";
 import NumerateResult from "../Numerate/NumerateResult";
 import CustomerBlakcList from "../BlackList/CustomerBlakcList";
-import LoadMorePagination from "../Cart/LoadMorePagination";
 import LoadingOverlay from "react-loading-overlay";
 
 import {
@@ -147,7 +136,7 @@ export default function App() {
               </SubMenu>
               <Menu.Item key="100">
                 {location.pathname === "/cartList" ? (
-                  <Badge count={basketItems.length}>
+                  <Badge count={basketItems?.length}>
                     <Link to="/basket">
                       {/* <Icon icon="emojione:shopping-cart" align="right" float="right" verticalAlign="right"/> */}
                       <ShoppingCartOutlined
@@ -176,7 +165,10 @@ export default function App() {
                 <Route path="basket" element={<Basket />} />
                 <Route path="numerate" element={<Numerate />} />
                 <Route path="numerateResult" element={<NumerateResult />} />
-                <Route path="customerBlackList" element={<CustomerBlakcList />} />
+                <Route
+                  path="customerBlackList"
+                  element={<CustomerBlakcList />}
+                />
               </Routes>
             </Content>
           </Layout>

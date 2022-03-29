@@ -12,11 +12,11 @@ export default function ProductAdd(props) {
 
   const [form] = Form.useForm();
   const listOfCategoryData = useSelector(
-    (state) => state.categoryReducers.categoryListData
+    (state) => state.categoryReducers?.categoryListData
   );
 
   const listOfPropertyData = useSelector(
-    (state) => state.propertyReducers.propertyListData
+    (state) => state.propertyReducers?.propertyListData
   );
   useEffect(() => {
     dispatch(listOfCategories());

@@ -6,7 +6,7 @@ const { TextArea } = Input;
 export default function PropertyEdit(props) {
   const dispatch = useDispatch();
   const propertyDataById = useSelector(
-    (state) => state.propertyReducers.propertyDataById
+    (state) => state.propertyReducers?.propertyDataById
   );
   const [form] = Form.useForm();
   const onUpdate = () => {
@@ -15,7 +15,7 @@ export default function PropertyEdit(props) {
       .then((values) => {
         var data = {
           name: form.getFieldsValue().name.trim(),
-          id: propertyDataById.id,
+          id: propertyDataById?.id,
         };
         console.log("update property data", data);
         dispatch(updateProperty(data), []);

@@ -20,7 +20,7 @@ export default function ProductDelete(props) {
             type="submit"
             htmlType="submit"
             style={{ position: "absolute", left: "320px", bottom: "-90px" }}
-            onClick={onDelete(productDataById.id)}
+            onClick={onDelete(productDataById?.id)}
           >
             Bəli
           </Button>

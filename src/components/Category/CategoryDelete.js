@@ -5,7 +5,7 @@ import { deleteCategory } from "../../redux/actions/categoryActions";
 export default function CategoryDelete(props) {
   const dispatch = useDispatch();
   const categoryDataById = useSelector(
-    (state) => state.categoryReducers.categoryDataById
+    (state) => state.categoryReducers?.categoryDataById
   );
   const onDelete = (id) => async (e) => {
     dispatch(deleteCategory(id), []);
@@ -21,7 +21,7 @@ export default function CategoryDelete(props) {
             type="submit"
             htmlType="submit"
             style={{ position: "absolute", left: "320px", bottom: "-90px" }}
-            onClick={onDelete(categoryDataById.id)}
+            onClick={onDelete(categoryDataById?.id)}
           >
             Bəli
           </Button>

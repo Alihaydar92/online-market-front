@@ -237,7 +237,7 @@ export default function ProductTable() {
     };
 
     console.log(" images data: ", data);
-    dispatch(addProductImages(productDataById.id, data, pagination));
+    dispatch(addProductImages(productDataById?.id, data, pagination));
     handleCancel();
   };
   const onSearch = (e) => {

@@ -35,11 +35,11 @@ export default function Basket() {
   // var arr = [];
   const EDVPersent = 0.18;
   const EDV = Number(
-    Math.round(basketAllData.grandTotal * EDVPersent * 100) / 100
+    Math.round(basketAllData?.grandTotal * EDVPersent * 100) / 100
   );
 
-  const totalPrice = EDV + basketAllData.grandTotal;
-  const finalPrice = EDV + basketAllData.grandTotal;
+  const totalPrice = EDV + basketAllData?.grandTotal;
+  const finalPrice = EDV + basketAllData?.grandTotal;
   // useEffect(() => {
   //   setBasketArray(cookies.get("basketArray"));
   //   setGrandTotal(Number(cookies.get("grandTotal")));
@@ -59,10 +59,6 @@ export default function Basket() {
   };
 
   const columns = [
-    {
-      title: "ID",
-      dataIndex: ["storeHouseDto", "id"],
-    },
     {
       title: "Barkod",
       dataIndex: ["storeHouseDto", "barcode"],
@@ -158,10 +154,10 @@ export default function Basket() {
     pdf.text("Qaimə nömrə : " + "01234567", 195, 40, { align: "right" });
     /////
     pdf.text(15, 50, "Alıcı: ");
-    pdf.text(45, 50, basketAllData.customerDto.name);
+    pdf.text(45, 50, basketAllData?.customerDto?.name);
     pdf.line(45,51,195,51)
     pdf.text(15, 60, "Ekspeditor: ");
-    pdf.text(45, 60, basketAllData.sellerDto.name);
+    pdf.text(45, 60, basketAllData?.sellerDto?.name);
     pdf.line(45,61,195,61)
     pdf.text(15, 70, "Anbar: ");
     pdf.text(45, 70, "TEST ANBAR");
@@ -213,7 +209,7 @@ export default function Basket() {
     /////////////////////////////
     pdf.setDrawColor(0,0,0)
     pdf.text(45, finalY + 10, "Məbləğ");
-    pdf.text(170, finalY + 10, basketAllData.grandTotal.toString());
+    pdf.text(170, finalY + 10, basketAllData?.grandTotal.toString());
     pdf.line(150,finalY + 11,195,finalY + 11)
     
     pdf.text(45, finalY + 20, "ƏDV");
@@ -283,7 +279,7 @@ export default function Basket() {
       />
       <Row style={{ marginTop: "10px" }}>
         <Col span={6} offset={18}>
-          <h3>Yekun qiymət: {basketAllData.grandTotal}</h3>
+          <h3>Yekun qiymət: {basketAllData?.grandTotal}</h3>
         </Col>
       </Row>
       <Row>

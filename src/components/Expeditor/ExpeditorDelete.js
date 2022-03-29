@@ -7,7 +7,7 @@ import {
 export default function ExpeditorDelete(props) {
   const dispatch = useDispatch();
   const expeditorDataById = useSelector(
-    (state) => state.expeditorReducers.expeditorDataById
+    (state) => state.expeditorReducers?.expeditorDataById
   );
   const listOfExpeditorData = useSelector(
     (state) => state.expeditorReducers?.expeditorListData
@@ -28,7 +28,7 @@ export default function ExpeditorDelete(props) {
             type="submit"
             htmlType="submit"
             style={{ position: "absolute", left: "320px", bottom: "-90px" }}
-            onClick={onDelete(expeditorDataById.id)}
+            onClick={onDelete(expeditorDataById?.id)}
           >
             Bəli
           </Button>

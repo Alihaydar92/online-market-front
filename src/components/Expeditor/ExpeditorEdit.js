@@ -10,7 +10,7 @@ export default function ExpeditorEdit(props) {
   );
   const [form] = Form.useForm();
   const listOfExpeditorData = useSelector(
-    (state) => state.expeditorReducers.expeditorListData
+    (state) => state.expeditorReducers?.expeditorListData
   );
   const onUpdate = async (e) => {
     form
@@ -20,7 +20,7 @@ export default function ExpeditorEdit(props) {
           name: form.getFieldsValue().name.trim(),
           surname: form.getFieldsValue().surname.trim(),
           note: form.getFieldsValue().note.trim(),
-          id: expeditorDataById.id,
+          id: expeditorDataById?.id,
         };
         dispatch(updateExpeditor(data), [listOfExpeditorData]);
         props.handleCancel();

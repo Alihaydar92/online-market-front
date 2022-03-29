@@ -6,7 +6,7 @@ const { TextArea } = Input;
 export default function CustomerEdit(props) {
   const dispatch = useDispatch();
   const customerDataById = useSelector(
-    (state) => state.customerReducer.customerDataById
+    (state) => state.customerReducer?.customerDataById
   );
   const [form] = Form.useForm();
   const listOfCustomerData = useSelector(
@@ -20,7 +20,7 @@ export default function CustomerEdit(props) {
           name: form.getFieldsValue().name.trim(),
           surname: form.getFieldsValue().surname.trim(),
           note: form.getFieldsValue().note.trim(),
-          id: customerDataById.id,
+          id: customerDataById?.id,
         };
         dispatch(updateCustomer(data,props.paginationData.page,props.paginationData.pageSize), [listOfCustomerData]);
         props.handleCancel();

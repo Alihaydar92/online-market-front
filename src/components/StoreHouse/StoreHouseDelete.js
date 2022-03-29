@@ -4,7 +4,7 @@ import { deleteStoreHouse } from "../../redux/actions/storeHouseActions";
 export default function StoreHouseDelete(props) {
   const dispatch = useDispatch();
   const storeHouseDataById = useSelector(
-    (state) => state.storeHouseReducers.storeHouseDataById
+    (state) => state.storeHouseReducers?.storeHouseDataById
   );
   const onDelete = (id) => async (e) => {
     dispatch(deleteStoreHouse(id,props.paginationData.page,props.paginationData.pageSize), []);
@@ -20,7 +20,7 @@ export default function StoreHouseDelete(props) {
             type="submit"
             htmlType="submit"
             style={{ position: "absolute", left: "320px", bottom: "-90px" }}
-            onClick={onDelete(storeHouseDataById.id)}
+            onClick={onDelete(storeHouseDataById?.id)}
           >
             Bəli
           </Button>

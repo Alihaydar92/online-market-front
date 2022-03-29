@@ -8,7 +8,7 @@ import PropertyEdit from "./PropertyEdit";
 export default function PropertyTable() {
     const dispatch = useDispatch();
     const listOfPropertyData= useSelector(
-        (state) => state.propertyReducers.propertyListData
+        (state) => state.propertyReducers?.propertyListData
     );
     const [isElaveEtModalVisible, setIsElaveEtModalVisible] = useState(false);
     const [isRedakteEtModalVisible, setIsRedakteModalVisible] = useState(false);

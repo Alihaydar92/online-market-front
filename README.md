@@ -93,7 +93,7 @@ card reducerin dexlisiz cagirilma bug-i (bunu arasddirmaq)
 
 satisda xususiyet secildikde tip comboboxu  bosaltmaq ve eksine 
 
-basketde gorutnude idni cixarmaq
+basketde gorutnude idni cixarmaq +++
 
 basketde say  ve  qiymet deyisende umumi cem deyissin (basket table redakte et )
 

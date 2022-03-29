@@ -5,7 +5,7 @@ import {deleteProperty} from "../../redux/actions/propertyActions"
 export default function PropertyDelete(props) {
     const dispatch = useDispatch();
     const propertyDataById = useSelector(
-      (state) => state.propertyReducers.propertyDataById
+      (state) => state.propertyReducers?.propertyDataById
     );
     const onDelete = (id) => async (e) => {
       dispatch(deleteProperty(id), []);
@@ -21,7 +21,7 @@ export default function PropertyDelete(props) {
               type="submit"
               htmlType="submit"
               style={{ position: "absolute", left: "320px", bottom: "-90px" }}
-              onClick={onDelete(propertyDataById.id)}
+              onClick={onDelete(propertyDataById?.id)}
             >
               Bəli
             </Button>

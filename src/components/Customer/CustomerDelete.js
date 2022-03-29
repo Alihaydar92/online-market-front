@@ -5,7 +5,7 @@ import { deleteCustomer } from "../../redux/actions/customerAction";
 export default function CustomerDelete(props) {
   const dispatch = useDispatch();
   const customerDataById = useSelector(
-    (state) => state.customerReducer.customerDataById
+    (state) => state.customerReducer?.customerDataById
   );
   const listOfCustomerData = useSelector(
     (state) => state.customerReducer?.customerListData
@@ -24,7 +24,7 @@ export default function CustomerDelete(props) {
             type="submit"
             htmlType="submit"
             style={{ position: "absolute", left: "320px", bottom: "-90px" }}
-            onClick={onDelete(customerDataById.id)}
+            onClick={onDelete(customerDataById?.id)}
           >
             Bəli
           </Button>

@@ -264,11 +264,11 @@ export default function StoreHouseTable() {
       <Table
         scroll={{ y: 530 }}
         style={{ marginTop: "20px", wordBreak: "break-word" }}
-        dataSource={storeHouseList.pages}
+        dataSource={storeHouseList?.pages}
         pagination={{
           current: pagination.page,
           pageSize: pagination.pageSize,
-          total: storeHouseList.totalItems,
+          total: storeHouseList?.totalItems,
           onChange: (page, pageSize) => {
             setPagination({ page, pageSize });
             if (barcodeData !== "") {

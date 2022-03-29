@@ -15,7 +15,7 @@ export default function ProductEdit(props) {
   );
 
   const listOfPropertyData = useSelector(
-    (state) => state.propertyReducers.propertyListData
+    (state) => state.propertyReducers?.propertyListData
   );
   const productDataById = useSelector(
     (state) => state.productReducers?.productDataById
@@ -37,7 +37,7 @@ export default function ProductEdit(props) {
           categoryId: form.getFieldsValue().category,
           propertyId: form.getFieldsValue().property,
           note: form.getFieldsValue().note.trim(),
-          id: productDataById.id,
+          id: productDataById?.id,
         };
         console.log('paginationData : ',props.paginationData)
         dispatch(updateProduct(data,props.paginationData));

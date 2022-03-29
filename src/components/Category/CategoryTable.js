@@ -11,7 +11,7 @@ import CategoryAdd from "./CategoryAdd";
 export default function CategoryTable() {
   const dispatch = useDispatch();
   const listOfCategoryData = useSelector(
-    (state) => state.categoryReducers.categoryListData
+    (state) => state.categoryReducers?.categoryListData
   );
   const [isElaveEtModalVisible, setIsElaveEtModalVisible] = useState(false);
   const [isRedakteEtModalVisible, setIsRedakteModalVisible] = useState(false);
@@ -52,9 +52,6 @@ export default function CategoryTable() {
   ];
   useEffect(() => {
     dispatch(listOfCategories());
-  }, []);
-  useEffect(() => {
-    console.log("listOfCategoryData", listOfCategoryData);
   }, []);
   const showAddModal = () => {
     setIsElaveEtModalVisible(true);
@@ -100,7 +97,7 @@ export default function CategoryTable() {
       <Modal
         title="Kateqoriya məlumatına düzəliş edilməsi"
         visible={isRedakteEtModalVisible}
-        destroyOnClose={true} 
+        destroyOnClose={true}
         onCancel={handleCancel}
         footer={[
           <Button danger onClick={handleCancel}>
@@ -114,7 +111,7 @@ export default function CategoryTable() {
       <Modal
         title="Kateqoriya məlumatının əlavə edilməsi"
         visible={isElaveEtModalVisible}
-        destroyOnClose={true} 
+        destroyOnClose={true}
         onCancel={handleCancel}
         footer={[
           <Button danger onClick={handleCancel}>

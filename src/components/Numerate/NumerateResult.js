@@ -29,7 +29,7 @@ export default function NumerateResult() {
   ];
   return (
     <div>
-      <Table columns={columns} dataSource={numerateResultData.pages}></Table>
+      <Table columns={columns} dataSource={numerateResultData?.pages}></Table>
     </div>
   );
 }

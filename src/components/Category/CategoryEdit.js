@@ -10,7 +10,7 @@ export default function CategoryEdit(props) {
   const dispatch = useDispatch();
   const [form] = Form.useForm();
   const categoryDataById = useSelector(
-    (state) => state.categoryReducers.categoryDataById
+    (state) => state.categoryReducers?.categoryDataById
   );
   const onUpdate = async (e) => {
     form
@@ -19,7 +19,7 @@ export default function CategoryEdit(props) {
         var data = {
           name: form.getFieldsValue().name.trim(),
           note: form.getFieldsValue().note.trim(),
-          id: categoryDataById.id,
+          id: categoryDataById?.id,
         };
         dispatch(updateCategory(data), []);
         props.handleCancel();

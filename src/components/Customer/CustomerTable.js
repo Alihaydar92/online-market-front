@@ -111,7 +111,7 @@ export default function CustomerTable() {
       searchCustomers(searchCustomerData, pagination.page, pagination.pageSize)
     );
     setPagination({
-      page: listOfCustomerData.currentPage + 1,
+      page: listOfCustomerData?.currentPage + 1,
       pageSize: 15,
     });
     // setDataSource(searchProductData.pages);
@@ -202,14 +202,14 @@ export default function CustomerTable() {
       <Table
         style={{ marginTop: "20px", wordBreak: "break-word" }}
         scroll={{ y: 530 }}
-        dataSource={listOfCustomerData.pages}
+        dataSource={listOfCustomerData?.pages}
         columns={columns}
         rowKey="id"
         pagination={{
           defaultCurrent:1,
-          current: listOfCustomerData.currentPage+1,
+          current: listOfCustomerData?.currentPage+1,
           pageSize: pagination.pageSize,
-          total: listOfCustomerData.totalItems,
+          total: listOfCustomerData?.totalItems,
           onChange: (page, pageSize) => {
             setPagination({ page, pageSize });
             setSearchCustomerData(form.getFieldsValue().name);
