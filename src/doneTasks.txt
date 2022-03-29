@@ -174,3 +174,16 @@ basketde pdf autotable utf problemi+++
 anbar editde ilk defeden editde error+++
 
 vacib: env faylindaki urli oz localimda localhost ile yazmaq lakin git ignora salmaq+++
+
+butun pagelerde cagirilan reducer objectlerin icinde ayri field ya object cagirilirsa "?" isharesi qoymaq+++
+
+basketde gorutnude idni cixarmaq +++
+
+cardlist pagede category deyishdikde say inputunu deyismek +++
+
+satisda xususiyet secildikde tip comboboxu bosaltmaq ve eksine +++
+
+resetfields eslinde duz islemir, yalniz emeliyyat olduqdan sonra isleyir, 
+halbuki modali elebele acib bagladiqda bele islemelidi (modal acarken reset olmalidi datalar)(useEffectLayout genis test edib yoxlamaq)+++
+
+paginationda page ve pagesize ilkin deyerlerini global const deyisen kimi saxlamq(basqa pencerelerde de istifade etmek ucun) (bu lazim deyil) +++

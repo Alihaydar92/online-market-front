@@ -73,31 +73,16 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 headerin responsiveliyi (Imkan varsa pencerelesi responsive etmek (Sonda da edile biler))
 
-resetfields eslinde duz islemir, yalniz emeliyyat olduqdan sonra isleyir, halbuki modali elebele acib bagladiqda bele islemelidi (modal acarken reset olmalidi datalar)(useEffectLayout genis test edib yoxlamaq)
-
 route ile linkleri goruntuden yigisdirmaq, yalniz base link olacaq
-
-cardlist pagede category deyishdikde say inputunu deyismek
-
-category secildikden sonra gelen mehsullara gore axtaris (cartlist)
-
-cart list pagede problemler (meselen sebete elave etdikden sonra combolar bosalir ve axirinci product list pagede qalir)
-
-satis penceresinde mehsul combosuna barkodu da elave etmek ve axtarisinda her ikisi islesin(anbardaki product combobox kimi eynen) combonu secdikden sonra HEMIN XOMBOYA AID OLAN TEK DATA satisda gorsensin
 
 sekli sil buttonunun altinda sekli servisde cagirib silmek
 
 infinite scrool satis +++ (buttunsuz elemek---)
 
-card reducerin dexlisiz cagirilma bug-i (bunu arasddirmaq)
+basketde say ve qiymet deyisende umumi cem deyissin (basket table redakte et )
 
-satisda xususiyet secildikde tip comboboxu  bosaltmaq ve eksine 
+yalniz satisda sebete elave ederken sebet isaresi gorsenir ,sonra itir
 
-basketde gorutnude idni cixarmaq +++
-
-basketde say  ve  qiymet deyisende umumi cem deyissin (basket table redakte et )
-
-yalniz satisda sebete elave ederken sebet isaresi gorsenir ,sonra itir 
 ### sonra
 
 label-larin textlerini file-dan oxumaq
@@ -108,13 +93,15 @@ login olduqdan sonra user id-ye gore seller cagirilacaq (hem de goruntude goster
 
 seller id-ye gore ise musteri siyahisi gelecek, helelik musteri siyahsini cagirmaq ucun seller id-ni elnen verirem (id 6)
 
-paginationda page ve pagesize ilkin deyerlerini global const deyisen kimi saxlamq(basqa pencerelerde de istifade etmek ucun)
-
 img ve diger filelarla bagli codelarin optimizasiyasi
 
-butun pagelerde cagirilan reducer objectlerin icinde ayri field ya object cagirilirsa "?" isharesi qoymaq
+category secildikden sonra gelen mehsullara gore axtaris (cartlist)
+
+satis penceresinde mehsul combosuna barkodu da elave etmek ve axtarisinda her ikisi islesin(anbardaki product combobox kimi eynen) combonu secdikden sonra HEMIN XOMBOYA AID OLAN TEK DATA satisda gorsensin
 
 comboboxlarda scrolling data(ya da loadingi xombobox ucun de tetbiq etmek)
+
+card reducerin dexlisiz cagirilma bug-i (bunu arasddirmaq)
 
 ### backend teyyub
 

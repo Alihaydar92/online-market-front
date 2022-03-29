@@ -29,12 +29,14 @@ const { Option } = Select;
 export default function CartList() {
   const dispatch = useDispatch();
   const [topForm] = Form.useForm();
+  const [baseForm] = Form.useForm();
   const [customerId, setCustomerId] = useState(Number());
   const [dataId, setDataId] = useState(Number());
   const [disable, setDisable] = useState(true);
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(false);
-  const [visibleState, setVisibleState] = useState({visible:false});
+  const [visibleState, setVisibleState] = useState({ visible: false });
+  const [formKey, setFormKey] = useState(Number(0));
   useEffect(() => {
     dispatch(listOfProperties());
     dispatch(listOfCategories());
@@ -74,34 +76,23 @@ export default function CartList() {
   var otherPriceDataList = [];
   const onChangeProperty = (value) => {
     console.log(value);
+    baseForm.resetFields(["category"]);
+    setFormKey((formKey || 0) + 1);
     setDataId(value);
     dispatch(getProductListByPropertyId(value, 0, true));
 
     setLoading(false);
-    // topForm
-    //   .validateFields()
-    //   .then(() => {
-
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
   };
 
   const onChangeCategory = (value) => {
     console.log(value);
+    baseForm.resetFields(["property"]);
+    console.log("formKey", formKey);
+    setFormKey((formKey || 0) + 1);
     setDataId(value);
     dispatch(getProductListByCategoryId(value, 0, true));
 
     setLoading(false);
-    // topForm
-    //   .validateFields()
-    //   .then(() => {
-
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
   };
 
   const onChangeProduct = (e) => {
@@ -301,17 +292,17 @@ export default function CartList() {
   const onClickAllProducts = () => {};
 
   const hide = () => {
-    setVisibleState({visible:false});
+    setVisibleState({ visible: false });
   };
   const handleVisibleChange = (v) => {
-    setVisibleState({v});
+    setVisibleState({ v });
   };
   return (
     <div>
       <Row style={{ marginTop: "20px" }}>
         <Col span={5} offset={8}>
           <Form
-            form={topForm}
+            form={baseForm}
             name="basic"
             labelCol={{ span: 8 }}
             wrapperCol={{ span: 16 }}
@@ -505,16 +496,25 @@ export default function CartList() {
                       <b style={{ color: "red" }}>{item.sellPrice + " AZN"}</b>{" "}
                     </h4>
                   </Row>
-                  <Row> <h4>Qeyd:
-                    <Popover
-                      content={item.note}
-                      // title="Title"
-                      trigger="click"
-                      visible={visibleState.visible}
-                      onVisibleChange={handleVisibleChange}
-                    >
-                      <Button disabled={item.note===null} onClick={hide} type="primary">Bax</Button>
-                    </Popover>
+                  <Row>
+                    {" "}
+                    <h4>
+                      Qeyd:
+                      <Popover
+                        content={item.note}
+                        // title="Title"
+                        trigger="click"
+                        visible={visibleState.visible}
+                        onVisibleChange={handleVisibleChange}
+                      >
+                        <Button
+                          disabled={item.note === null}
+                          onClick={hide}
+                          type="primary"
+                        >
+                          Bax
+                        </Button>
+                      </Popover>
                     </h4>
                   </Row>
                   <Form
@@ -523,6 +523,7 @@ export default function CartList() {
                     labelCol={{ span: 9 }}
                     wrapperCol={{ span: 16 }}
                     autoComplete="off"
+                    key={formKey}
                   >
                     <Form.Item label="Say">
                       <InputNumber
