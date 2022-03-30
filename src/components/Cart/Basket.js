@@ -12,10 +12,7 @@ import {
 } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import {
-  
-  showAddedBasketItems,
-} from "../../redux/actions/cartActions";
+import { showAddedBasketItems } from "../../redux/actions/cartActions";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import fontTxt from "../../helpers/fontRobotoBase64";
@@ -152,6 +149,7 @@ export default function Basket() {
 
     pdf.addImage(String(logo), "jpeg", 15, 10, 20, 20);
     pdf.setFont("Roboto-Regular");
+    pdf.setFontSize(12);
     //date
     pdf.text(15, 40, "Tarix: " + moment().format("DD.MM.YYYY"));
     pdf.line(15, 42, 195, 42);
@@ -205,10 +203,38 @@ export default function Basket() {
       head: [col],
       body: rows,
       startY: 80,
+      theme: "grid",
+
+      headStyles: {
+        textColor: [0, 0, 0],
+        lineColor: [0, 0, 0],
+        // fillColor: [33, 150, 243],
+        lineWidth: 0.5,
+        fillColor: [255, 255, 255],
+        // lineColor: [255, 255, 255],
+      },
       styles: {
         font: "Roboto-Regular", // <-- place name of your font here
         fontStyle: "normal",
       },
+      bodyStyles: {
+        lineColor: [0, 0, 0],
+        lineWidth: 0.5,
+      },
+      columnStyles: {
+        0: { cellWidth: 15 },
+        1: { cellWidth: 30 },
+        2: { cellWidth: 45 },
+        3: { cellWidth: 15 },
+        4: { cellWidth: 16 },
+        5: { cellWidth: 15 },
+        6: { cellWidth: 15 },
+        7: { cellWidth: 16 },
+        8: { cellWidth: 15 },
+
+        // etc
+      },
+
       // margin: { bottom: 60 },
     });
     let finalY = pdf.autoTable.previous.finalY;

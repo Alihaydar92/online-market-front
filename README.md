@@ -83,6 +83,11 @@ basketde say ve qiymet deyisende umumi cem deyissin (basket table redakte et )
 
 yalniz satisda sebete elave ederken sebet isaresi gorsenir ,sonra itir
 
+Qaimede ad boyuk olarsa onu wrap elesin.+++
+qaimede table header yasil reng olmasin rengsiz olsun+++
+Qaimede srifti azaltmak+++
+Qaime sekline baxmaq ve excel kimi gorunmeyini temin elemek.+++
+
 ### sonra
 
 label-larin textlerini file-dan oxumaq
@@ -114,3 +119,5 @@ mehsullar / Satis qiymeti maya deyerinden asagi ola biler bilmez deqiqlesdirmek,
 paginationda 120ci pagede data olmadigi halda 120ci page-i qaytarir
 
 anbar page axtarisa duzelis (mehsullardaki kimi)
+
+17.qaimede 0,00 formatinda gostermek
