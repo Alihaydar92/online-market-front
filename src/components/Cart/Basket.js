@@ -1,19 +1,31 @@
 import React, { useState, useEffect } from "react";
-import { Table, Button, Space, Row, Col, Input, Form, InputNumber } from "antd";
+import {
+  Table,
+  Button,
+  Space,
+  Row,
+  Col,
+  Input,
+  Form,
+  InputNumber,
+  Modal,
+} from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
-  deleteCart,
+  
   showAddedBasketItems,
 } from "../../redux/actions/cartActions";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import fontTxt from "../../helpers/fontRobotoBase64";
 import moment from "moment";
+import BasketDelete from "./BasketDelete";
 const logo = require("../../helpers/greenStreamImg.jpeg");
 export default function Basket() {
   const dispatch = useDispatch();
-
+  const [isSilModalVisible, setIsSilModalVisible] = useState(false);
+  const [basketId, setBasketId] = useState();
   const basketItems = useSelector(
     (state) => state.cartReducers?.addBasketItems
   );
@@ -32,7 +44,6 @@ export default function Basket() {
     setBasketArray(basketItems);
   }, [basketItems]);
 
-  // var arr = [];
   const EDVPersent = 0.18;
   const EDV = Number(
     Math.round(basketAllData?.grandTotal * EDVPersent * 100) / 100
@@ -40,24 +51,20 @@ export default function Basket() {
 
   const totalPrice = EDV + basketAllData?.grandTotal;
   const finalPrice = EDV + basketAllData?.grandTotal;
-  // useEffect(() => {
-  //   setBasketArray(cookies.get("basketArray"));
-  //   setGrandTotal(Number(cookies.get("grandTotal")));
-  //   setCustomerDto(cookies.get("customerDto"));
-  //   setSellerDto(cookies.get("sellerDto"));
-  // }, []);
 
   const handleClear = () => {
     // setBasketDataState([]);
     // cookies.remove("basketArray");
     // setBasketArray([]);
   };
+  const showRemoveModal = (id) => {
+    setBasketId(id);
 
-  const removeBasketData = (basketDataId) => {
-    console.log("basketDataId", basketDataId);
-    dispatch(deleteCart(basketDataId));
+    setIsSilModalVisible(true);
   };
-
+  const handleCancel = () => {
+    setIsSilModalVisible(false);
+  };
   const columns = [
     {
       title: "Barkod",
@@ -107,7 +114,7 @@ export default function Basket() {
             <Button
               size="small"
               type="danger"
-              onClick={() => removeBasketData(basketData.storeHouseDto.id)}
+              onClick={() => showRemoveModal(basketData.storeHouseDto.id)}
             >
               Sil
             </Button>
@@ -147,21 +154,21 @@ export default function Basket() {
     pdf.setFont("Roboto-Regular");
     //date
     pdf.text(15, 40, "Tarix: " + moment().format("DD.MM.YYYY"));
-    pdf.line(15,42,195,42)
-    pdf.line(15,34,195,34)
+    pdf.line(15, 42, 195, 42);
+    pdf.line(15, 34, 195, 34);
     pdf.text("Satış", 195, 15, { align: "right" });
     pdf.text("Ofis: " + "055 203-60-10", 195, 30, { align: "right" });
     pdf.text("Qaimə nömrə : " + "01234567", 195, 40, { align: "right" });
     /////
     pdf.text(15, 50, "Alıcı: ");
     pdf.text(45, 50, basketAllData?.customerDto?.name);
-    pdf.line(45,51,195,51)
+    pdf.line(45, 51, 195, 51);
     pdf.text(15, 60, "Ekspeditor: ");
     pdf.text(45, 60, basketAllData?.sellerDto?.name);
-    pdf.line(45,61,195,61)
+    pdf.line(45, 61, 195, 61);
     pdf.text(15, 70, "Anbar: ");
     pdf.text(45, 70, "TEST ANBAR");
-    pdf.line(45,71,195,71)
+    pdf.line(45, 71, 195, 71);
     ///////////////////////////////////////////////////
 
     /////////////////////////cedvel
@@ -207,37 +214,36 @@ export default function Basket() {
     let finalY = pdf.autoTable.previous.finalY;
 
     /////////////////////////////
-    pdf.setDrawColor(0,0,0)
+    pdf.setDrawColor(0, 0, 0);
     pdf.text(45, finalY + 10, "Məbləğ");
     pdf.text(170, finalY + 10, basketAllData?.grandTotal.toString());
-    pdf.line(150,finalY + 11,195,finalY + 11)
-    
+    pdf.line(150, finalY + 11, 195, finalY + 11);
+
     pdf.text(45, finalY + 20, "ƏDV");
     pdf.text(170, finalY + 20, EDV.toString());
-    pdf.line(150,finalY + 21,195,finalY + 21)
+    pdf.line(150, finalY + 21, 195, finalY + 21);
     pdf.text(45, finalY + 30, "Məbləğ Cəm");
     pdf.text(170, finalY + 30, totalPrice.toString());
-    pdf.line(150,finalY + 31,195,finalY + 31)
+    pdf.line(150, finalY + 31, 195, finalY + 31);
     pdf.text(45, finalY + 40, "Yekun");
     pdf.text(170, finalY + 40, finalPrice.toString());
-    pdf.line(150,finalY + 41,195,finalY + 41)
+    pdf.line(150, finalY + 41, 195, finalY + 41);
     pdf.text(45, finalY + 50, "Kontragentin qalıq borcu");
     pdf.text(170, finalY + 50, "1000");
-    pdf.line(150,finalY + 51,195,finalY + 51)
-   
+    pdf.line(150, finalY + 51, 195, finalY + 51);
 
     pdf.setLineDash([2, 2], 0);
-    pdf.line(15, finalY +55, 195, finalY+55);
+    pdf.line(15, finalY + 55, 195, finalY + 55);
     pdf.text(15, finalY + 80, "Təhvil verdi");
     pdf.text(15, finalY + 90, "Təhvil aldı");
     pdf.setLineDash();
-    pdf.setDrawColor(0,0,0)
-    pdf.line(140,finalY + 80,195,finalY + 80)
-    pdf.line(140,finalY + 90,195,finalY+90)
+    pdf.setDrawColor(0, 0, 0);
+    pdf.line(140, finalY + 80, 195, finalY + 80);
+    pdf.line(140, finalY + 90, 195, finalY + 90);
     pdf.setFontSize(7);
     // pdf.setFontStyle("italic")
-    pdf.text("Imza",165, finalY + 83, );
-    pdf.text("Imza",165, finalY + 93, );
+    pdf.text("Imza", 165, finalY + 83);
+    pdf.text("Imza", 165, finalY + 93);
     pdf.save("Qaimə");
   };
   const endSales = () => {
@@ -307,6 +313,23 @@ export default function Basket() {
           </Button>
         </Col>
       </Row>
+      <Modal
+        title="Səbət məlumatının silinməsi"
+        visible={isSilModalVisible}
+        pagin
+        onCancel={handleCancel}
+        footer={[
+          <Button danger onClick={handleCancel}>
+            Geri
+          </Button>,
+        ]}
+      >
+        <BasketDelete
+          rowKey="id"
+          basketIdProps={basketId}
+          handleCancel={handleCancel}
+        ></BasketDelete>
+      </Modal>
     </div>
   );
 }

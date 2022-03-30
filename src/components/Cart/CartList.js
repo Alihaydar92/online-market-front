@@ -49,10 +49,15 @@ export default function CartList() {
   }, [dispatch]);
 
   useEffect(() => {
+    console.log(cookies.customerCookieId);
     baseForm.setFieldsValue({
-      customer:Number(cookies.customerCookieId) ,
+      customer:
+        cookies.customerCookieId === undefined
+          ? null
+          : Number(cookies.customerCookieId),
     });
     setCustomerId(cookies.customerCookieId);
+    setDisable(false);
   }, [baseForm, cookies]);
 
   const listOfPropertyData = useSelector(

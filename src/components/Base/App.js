@@ -27,6 +27,7 @@ import {
 } from "@ant-design/icons";
 import CartList from "../Cart/CartList";
 import Basket from "../Cart/Basket";
+import { useCookies } from "react-cookie";
 const { SubMenu } = Menu;
 const logo = require("../../helpers/greenStreamImg.jpeg");
 const { Footer, Content } = Layout;
@@ -35,12 +36,14 @@ export default function App() {
   const location = useLocation();
   let navigate = useNavigate();
   const loading = useSelector((state) => state.loaderReducers?.loading);
+  const [cookies, setCookie, removeCookie] = useCookies(["customerCookieId"]);
   const basketItems = useSelector(
     (state) => state.cartReducers?.addBasketItems
   );
   const logout = () => {
     window.localStorage.clear();
     navigate("/");
+    removeCookie("customerCookieId");
   };
   return (
     <LoadingOverlay
