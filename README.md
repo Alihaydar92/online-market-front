@@ -93,6 +93,8 @@ login olduqdan sonra user id-ye gore seller cagirilacaq (hem de goruntude goster
 
 seller id-ye gore ise musteri siyahisi gelecek, helelik musteri siyahsini cagirmaq ucun seller id-ni elnen verirem (id 6)
 
+musteri id-ni cokilerde saxlayiram(cardlistden basqa pencereye keciden sonra geri qayidanda birde musteri secmesin deye)
+
 img ve diger filelarla bagli codelarin optimizasiyasi
 
 category secildikden sonra gelen mehsullara gore axtaris (cartlist)

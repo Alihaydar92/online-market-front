@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import { useCookies } from "react-cookie";
 import {
   Card,
   Select,
@@ -37,6 +38,7 @@ export default function CartList() {
   const [loading, setLoading] = useState(false);
   const [visibleState, setVisibleState] = useState({ visible: false });
   const [formKey, setFormKey] = useState(Number(0));
+  const [cookies, setCookie] = useCookies(["customerCookieId"]);
   useEffect(() => {
     dispatch(listOfProperties());
     dispatch(listOfCategories());
@@ -45,6 +47,13 @@ export default function CartList() {
   useEffect(() => {
     dispatch(getCustomerListByExpeditorId());
   }, [dispatch]);
+
+  useEffect(() => {
+    baseForm.setFieldsValue({
+      customer:Number(cookies.customerCookieId) ,
+    });
+    setCustomerId(cookies.customerCookieId);
+  }, [baseForm, cookies]);
 
   const listOfPropertyData = useSelector(
     (state) => state.propertyReducers?.propertyListData
@@ -104,6 +113,7 @@ export default function CartList() {
   const onChangeCustomer = (value) => {
     setDisable(false);
     setCustomerId(value);
+    setCookie("customerCookieId", value);
   };
   var countDataJS = null;
   var customerSellPriceDataJs = null;
@@ -297,8 +307,24 @@ export default function CartList() {
   const handleVisibleChange = (v) => {
     setVisibleState({ v });
   };
+  // const listInnerRef = useRef();
+
+  // const onScroll = () => {
+  //   if (listInnerRef.current) {
+  //     const { scrollTop, scrollHeight, clientHeight } = listInnerRef.current;
+  //     if (scrollTop + clientHeight === scrollHeight && productListTotalPages>currentPage) {
+  //       setPage(page+1);
+  //       // dispatch(getProductListByPropertyId(dataId, page, false));
+  //       console.log("reached bottom");
+  //     }
+  //   }
+  // };
   return (
-    <div>
+    <div
+    //   onScroll={onScroll }
+    // ref={listInnerRef}
+    // style={{ height: "800px", overflowY: "auto" }}
+    >
       <Row style={{ marginTop: "20px" }}>
         <Col span={5} offset={8}>
           <Form

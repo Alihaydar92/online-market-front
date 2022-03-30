@@ -26,7 +26,6 @@ import "../../style.css";
 import { SearchOutlined } from "@ant-design/icons";
 export default function ProductTable() {
   const dispatch = useDispatch();
-
   const [form] = Form.useForm();
   /////////////////////////////////////////////file upload
   const [selectedFile, setSelectedFile] = useState({
@@ -109,11 +108,10 @@ export default function ProductTable() {
     (state) => state.productReducers?.productListDataByPage
   );
   useEffect(() => {
-    console.log('first')
-    dispatch(searchProduct("",pagination.page, pagination.pageSize,false));
-  
+    console.log("first");
+    dispatch(searchProduct("", pagination.page, pagination.pageSize, false));
   }, []);
- 
+
   const productDataById = useSelector(
     (state) => state.productReducers?.productDataById
   );
@@ -122,17 +120,13 @@ export default function ProductTable() {
     (state) => state.productReducers?.productImagesDataByProductId
   );
 
-  
-
-  
-
   useEffect(() => {
     setImages(productImagesDataByProductId?.images);
   }, [productImagesDataByProductId]);
 
   useEffect(() => {
     form.setFieldsValue({
-      name: ""
+      name: "",
     });
   }, [form]);
 
@@ -241,9 +235,11 @@ export default function ProductTable() {
     handleCancel();
   };
   const onSearch = (e) => {
-    var searchData =form.getFieldsValue().name
-  
-    dispatch(searchProduct(searchData, pagination.page,pagination.pageSize,false));
+    var searchData = form.getFieldsValue().name;
+
+    dispatch(
+      searchProduct(searchData, pagination.page, pagination.pageSize, false)
+    );
     setPagination({
       page: listOfProductDataByPage?.currentPage + 1,
       pageSize: 15,
@@ -262,14 +258,13 @@ export default function ProductTable() {
 
   const onRefresh = () => {
     onClear();
-    pagination.page=1;
-    dispatch(searchProduct("",pagination.page,pagination.pageSize,false));
+    pagination.page = 1;
+    dispatch(searchProduct("", pagination.page, pagination.pageSize, false));
   };
 
-  
-const onImageRemove =(index)=>{
-  console.log(index)
-}
+  const onImageRemove = (index) => {
+    console.log(index);
+  };
   return (
     <div>
       <Row style={{ marginTop: "20px" }}>
@@ -350,19 +345,18 @@ const onImageRemove =(index)=>{
         style={{ wordBreak: "break-word", marginTop: "20px" }}
         scroll={{ y: 420 }}
         dataSource={listOfProductDataByPage?.pages}
-        
         columns={columns}
         rowKey="id"
         pagination={{
           // defaultCurrent:0,
-          current: listOfProductDataByPage?.currentPage+1,
+          current: listOfProductDataByPage?.currentPage + 1,
           pageSize: pagination.pageSize,
           total: listOfProductDataByPage?.totalItems,
           onChange: (page, pageSize) => {
             setPagination({ page, pageSize });
-          var searchData =form.getFieldsValue().name
-  
-            dispatch(searchProduct(searchData,page, pageSize,true));
+            var searchData = form.getFieldsValue().name;
+
+            dispatch(searchProduct(searchData, page, pageSize, true));
           },
         }}
       ></Table>

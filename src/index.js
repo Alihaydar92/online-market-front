@@ -17,14 +17,19 @@ const rootElement = document.getElementById("root");
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-   
-        {" "}
-        <Routes>
-          <Route path="/" element={<Login />} exact></Route>
-          <Route exact path="/*" element={<App />}></Route>
-        </Routes>
-      
-
+      {" "}
+      <Routes>
+        <Route path="/" element={<Login />} exact></Route>
+        <Route
+          exact
+          path="/*"
+          element={
+            <CookiesProvider>
+              <App />
+            </CookiesProvider>
+          }
+        ></Route>
+      </Routes>
       {/* <App/> */}
     </BrowserRouter>
   </Provider>,

@@ -70,16 +70,24 @@ export default function StoreHouseTable() {
   };
   const columns = [
     {
-      title: "Satış qiyməti",
-      dataIndex: "sellPrice",
-    },
-    {
       title: "Barkod",
       dataIndex: "barcode",
     },
     {
+      title: "Məhsul",
+      dataIndex: ["productDto", "name"],
+    },
+    {
+      title: "Say",
+      dataIndex: "quantity",
+    },
+    {
       title: "Qiymət",
       dataIndex: "price",
+    },
+    {
+      title: "Satış qiyməti",
+      dataIndex: "sellPrice",
     },
     {
       title: "Müştəri satış qiyməti",
@@ -89,15 +97,6 @@ export default function StoreHouseTable() {
       title: "Digər qiymətlər",
       dataIndex: "customerOfferedPrice",
     },
-    {
-      title: "Say",
-      dataIndex: "quantity",
-    },
-    {
-      title: "Məhsul",
-      dataIndex: ["productDto", "name"],
-    },
-
     {
       title: "Əlavə olunma tarixi",
       dataIndex: "addedDate",
@@ -306,7 +305,6 @@ export default function StoreHouseTable() {
       <Modal
         title="Anbar məlumatına düzəliş edilməsi"
         visible={isRedakteEtModalVisible}
-        
         destroyOnClose={true}
         onCancel={handleCancel}
         footer={[
@@ -324,7 +322,6 @@ export default function StoreHouseTable() {
       <Modal
         title="Anbar məlumatının silinməsi"
         visible={isSilModalVisible}
-        
         onCancel={handleCancel}
         footer={[
           <Button danger onClick={handleCancel}>
