@@ -18,7 +18,8 @@ import "jspdf-autotable";
 import fontTxt from "../../helpers/fontRobotoBase64";
 import moment from "moment";
 import BasketDelete from "./BasketDelete";
-const logo = require("../../helpers/greenStreamImg.jpeg");
+// const logo = require("../../helpers/greenStreamImg.jpeg");
+const logo = require("../../helpers/greenstream.jpeg");
 export default function Basket() {
   const dispatch = useDispatch();
   const [isSilModalVisible, setIsSilModalVisible] = useState(false);
@@ -62,6 +63,9 @@ export default function Basket() {
   const handleCancel = () => {
     setIsSilModalVisible(false);
   };
+  function addZeroes(num) {
+    return num.toFixed(Math.max(((num+'').split(".")[1]||"").length, 2));
+ }
   const columns = [
     {
       title: "Barkod",
@@ -99,7 +103,7 @@ export default function Basket() {
     },
     {
       title: "Ümumi cəm",
-      dataIndex: "totalPrice",
+      dataIndex:"totalPrice"
     },
     {
       title: "Əməliyyat",
@@ -147,7 +151,7 @@ export default function Basket() {
     ////////////////////////////// basliq yazilar
     const pdf = new jsPDF("p", "mm", "a4");
 
-    pdf.addImage(String(logo), "jpeg", 15, 10, 20, 20);
+    pdf.addImage(String(logo), "jpeg", 15, 10, 50, 15);
     pdf.setFont("Roboto-Regular");
     pdf.setFontSize(12);
     //date

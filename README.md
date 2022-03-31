@@ -110,6 +110,8 @@ comboboxlarda scrolling data(ya da loadingi xombobox ucun de tetbiq etmek)
 
 card reducerin dexlisiz cagirilma bug-i (bunu arasddirmaq)
 
+qaimede mebleg cem ve yekunu yuvarlaqlasdirmaq ( vergulden sonra 2 reqem)
+
 ### backend teyyub
 
 Anbar tableda sort hemise anbara daxil olma tarixine gore desc getse yaxsidi

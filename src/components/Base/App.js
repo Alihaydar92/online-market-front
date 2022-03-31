@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Layout, Menu, Affix, Badge } from "antd";
+import { Layout, Menu, Affix, Badge,Image } from "antd";
 import {
   Route,
   Routes,
@@ -29,7 +29,7 @@ import CartList from "../Cart/CartList";
 import Basket from "../Cart/Basket";
 import { useCookies } from "react-cookie";
 const { SubMenu } = Menu;
-const logo = require("../../helpers/greenStreamImg.jpeg");
+const logo = require("../../helpers/greenstream.jpeg");
 const { Footer, Content } = Layout;
 
 export default function App() {
@@ -62,9 +62,9 @@ export default function App() {
               // defaultOpenKeys={["sub1"]}
               style={{ borderRight: 0, height: "100%" }}
             >
-              {/* <Menu.Item>
-              <Image width={50} alt="logo" src={String(logo)} />
-            </Menu.Item> */}
+              <Menu.Item>
+              <Image width={150} height={45} alt="logo" src={String(logo)} preview={false} />
+            </Menu.Item>
               <Menu.Item key="101">
                 {
                   {
