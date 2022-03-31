@@ -47,8 +47,8 @@ export default function Basket() {
     Math.round(basketAllData?.grandTotal * EDVPersent * 100) / 100
   );
 
-  const totalPrice = EDV + basketAllData?.grandTotal;
-  const finalPrice = EDV + basketAllData?.grandTotal;
+  const totalPrice =basketAllData?.grandTotal- EDV  ;
+  const finalPrice = basketAllData?.grandTotal;
 
   const handleClear = () => {
     // setBasketDataState([]);
@@ -63,9 +63,7 @@ export default function Basket() {
   const handleCancel = () => {
     setIsSilModalVisible(false);
   };
-  function addZeroes(num) {
-    return num.toFixed(Math.max(((num+'').split(".")[1]||"").length, 2));
- }
+
   const columns = [
     {
       title: "Barkod",
@@ -103,7 +101,7 @@ export default function Basket() {
     },
     {
       title: "Ümumi cəm",
-      dataIndex:"totalPrice"
+      dataIndex: "totalPrice",
     },
     {
       title: "Əməliyyat",
@@ -246,14 +244,14 @@ export default function Basket() {
     /////////////////////////////
     pdf.setDrawColor(0, 0, 0);
     pdf.text(45, finalY + 10, "Məbləğ");
-    pdf.text(170, finalY + 10, basketAllData?.grandTotal.toString());
+    pdf.text(170, finalY + 10, totalPrice.toString());
     pdf.line(150, finalY + 11, 195, finalY + 11);
 
     pdf.text(45, finalY + 20, "ƏDV");
     pdf.text(170, finalY + 20, EDV.toString());
     pdf.line(150, finalY + 21, 195, finalY + 21);
     pdf.text(45, finalY + 30, "Məbləğ Cəm");
-    pdf.text(170, finalY + 30, totalPrice.toString());
+    pdf.text(170, finalY + 30, basketAllData?.grandTotal.toString());
     pdf.line(150, finalY + 31, 195, finalY + 31);
     pdf.text(45, finalY + 40, "Yekun");
     pdf.text(170, finalY + 40, finalPrice.toString());

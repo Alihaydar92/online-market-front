@@ -112,6 +112,10 @@ card reducerin dexlisiz cagirilma bug-i (bunu arasddirmaq)
 
 qaimede mebleg cem ve yekunu yuvarlaqlasdirmaq ( vergulden sonra 2 reqem)
 
+baskete gelen umumi cem 0a tamamlanmis olmalidi( backendden duzgun gelir ama axios 0i tullayir)
+
+anbar page redaktede error verir(ola bilsin product list comboya dolmamis acilir)
+
 ### backend teyyub
 
 Anbar tableda sort hemise anbara daxil olma tarixine gore desc getse yaxsidi
