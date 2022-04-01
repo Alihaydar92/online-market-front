@@ -173,7 +173,7 @@ export default function Basket() {
 
     /////////////////////////cedvel
     var col = [
-      "Nömrə",
+      "№",
       "Barkod",
       "Adı",
       "Sayı",
@@ -224,15 +224,15 @@ export default function Basket() {
         lineWidth: 0.5,
       },
       columnStyles: {
-        0: { cellWidth: 15 },
-        1: { cellWidth: 30 },
+        0: { cellWidth: 8 },
+        1: { cellWidth: 27 },
         2: { cellWidth: 45 },
-        3: { cellWidth: 15 },
+        3: { cellWidth: 14 },
         4: { cellWidth: 16 },
-        5: { cellWidth: 15 },
+        5: { cellWidth: 20 },
         6: { cellWidth: 15 },
         7: { cellWidth: 16 },
-        8: { cellWidth: 15 },
+        8: { cellWidth: 20 },
 
         // etc
       },

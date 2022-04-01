@@ -10,7 +10,11 @@ import {
   Col,
   Checkbox,
   Popover,
+  Space,
 } from "antd";
+import {
+ClearOutlined 
+} from "@ant-design/icons";
 import { listOfProperties } from "../../redux/actions/propertyActions";
 import { listOfCategories } from "../../redux/actions/categoryActions";
 import { addCart } from "../../redux/actions/cartActions";
@@ -379,6 +383,7 @@ export default function CartList() {
                 disabled={disable}
                 onChange={onChangeCategory}
                 showSearch
+                allowClear={true}
                 optionFilterProp="children"
                 filterOption={(input, option) => {
                   return (
@@ -405,11 +410,14 @@ export default function CartList() {
               name="property"
               rules={[{ required: false, message: "Xüsusiyyəti seçin!" }]}
             >
+              
+              
               <Select
                 disabled={disable}
                 // style={{ width: "300px" }}
                 onChange={onChangeProperty}
                 showSearch
+                allowClear={true}
                 optionFilterProp="children"
                 // onSearch={onSearchproperty}
                 filterOption={(input, option) => {
@@ -431,8 +439,19 @@ export default function CartList() {
                   </Option>
                 ))}
               </Select>
+            
+             
             </Form.Item>
-
+            <Form.Item wrapperCol={{ offset: 8 }}>
+              <Button
+                disabled={disable}
+                danger
+                type="primary"
+                onClick={onClickAllProducts}
+              >
+                Tip vəya Xüsusiyyət-ə görə
+              </Button>
+            </Form.Item>
             <Form.Item
               label="Məhsul"
               name="product"
