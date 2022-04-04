@@ -116,6 +116,9 @@ baskete gelen umumi cem 0a tamamlanmis olmalidi( backendden duzgun gelir ama axi
 
 anbar page redaktede error verir(ola bilsin product list comboya dolmamis acilir)
 
+satisi yekunlasdiri yazmaq
+
+
 ### backend teyyub
 
 Anbar tableda sort hemise anbara daxil olma tarixine gore desc getse yaxsidi

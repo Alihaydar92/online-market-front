@@ -25,6 +25,28 @@ export const addCart = (data) => (dispatch) => {
   });
 };
 
+export const endSale = (data) => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+  });
+  axiosInstance.post("/carts", data).then((response) => {
+    if (response.status === 200) {
+      console.log("response end sale cart data ", response.data);
+      dispatch({
+        type: actionTypes.END_SALE,
+        payload: response.data,
+      });
+      dispatch(showAddedBasketItems());
+      //   notification["success"]({ message: response.data, description: "" });
+      //   dispatch(listOfCategories());
+    }
+  });
+};
+
 export const deleteCart = (id) => (dispatch) => {
   const axiosInstance = axios.create({
     baseURL: baseURL,

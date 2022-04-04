@@ -510,8 +510,8 @@ export default function CartList() {
 
           {listOfProductDataById.map((item, index) => {
             return (
-              <div className="site-card-wrapper">
-                <Card style={{ marginTop: "10px" }} key="cardList">
+              <div >
+                <Card  style={{ marginTop: "10px" ,overflowWrap:'break-word'}} key="cardList">
                   <Row>
                     <h4>
                       <b style={{ color: "red" }}>{item.isNew ? "Yeni" : ""}</b>
@@ -528,8 +528,8 @@ export default function CartList() {
                         : `data:image/jpeg;base64,${item.image}`
                     }
                   />
-                  <Row>
-                    <h4>Məhsul: {item.name}</h4>
+                  <Row style={{overflowWrap:'break-word'}}>
+                    <h4 style={{overflowWrap:'break-word'}}>Məhsul: {item.name}</h4>
                   </Row>
                   <Row>
                     <h4>Barkod: {item.barcode}</h4>

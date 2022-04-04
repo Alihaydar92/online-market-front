@@ -12,18 +12,20 @@ import {
 } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { showAddedBasketItems } from "../../redux/actions/cartActions";
+import { showAddedBasketItems, endSale } from "../../redux/actions/cartActions";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import fontTxt from "../../helpers/fontRobotoBase64";
 import moment from "moment";
 import BasketDelete from "./BasketDelete";
+import TextArea from "antd/lib/input/TextArea";
 // const logo = require("../../helpers/greenStreamImg.jpeg");
 const logo = require("../../helpers/greenstream.jpeg");
 export default function Basket() {
   const dispatch = useDispatch();
   const [isSilModalVisible, setIsSilModalVisible] = useState(false);
   const [basketId, setBasketId] = useState();
+  const [basketNote, setBasketNote] = useState();
   const basketItems = useSelector(
     (state) => state.cartReducers?.addBasketItems
   );
@@ -47,7 +49,7 @@ export default function Basket() {
     Math.round(basketAllData?.grandTotal * EDVPersent * 100) / 100
   );
 
-  const totalPrice =basketAllData?.grandTotal- EDV  ;
+  const totalPrice = basketAllData?.grandTotal - EDV;
   const finalPrice = basketAllData?.grandTotal;
 
   const handleClear = () => {
@@ -92,9 +94,13 @@ export default function Basket() {
         <InputNumber
           defaultValue={text}
           formatter={(value) =>
-            `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+            // `${value}`.replace(/(\.\d{2})\d*/, "$1").replace(/(\d)(?=(\d{3})+\b)/g, "$1,")
+            (parseFloat(value).toFixed(2)).replace(/(\d)(?=(\d{2})+(?!\d))/g, "$1,").replace(".00","")
+            
           }
-          parser={(value) => value.replace(/\$\s?|(,*)/g, "")}
+         
+          parser={(value) => value.replace(/(\d)(?=(\d{2})+(?!\d))/g, "$1,").replace(".00","")}
+          
           onChange={onInputPriceChange("price", index)}
         />
       ),
@@ -275,8 +281,30 @@ export default function Basket() {
     pdf.save("Qaimə");
   };
   const endSales = () => {
+    var endSalesData = new Object();
+    endSalesData.customerId = basketAllData.customerId;
+    endSalesData.customerDto = basketAllData.customerDto;
+    endSalesData.sellerDto = basketAllData.sellerDto;
+    endSalesData.sellerId = basketAllData.sellerId;
+    endSalesData.note = basketNote === undefined ? "" : basketNote;
+    endSalesData.grandTotal = basketAllData.grandTotal;
+  
+    var result  = basketArray.reduce(function(map, obj) {
+      map[obj.storeHouseDto.id] = obj;
+      return map;
+  }, {});
+  // endSalesData.items= JSON.stringify({...result});
+  endSalesData.items=result;
     console.log(basketArray);
+    
+    console.log(endSalesData);
+   
+
+    dispatch(endSale(endSalesData));
   };
+  const onChangeNote = (note) => [
+    setBasketNote(note.target.value === undefined ? "" : note.target.value),
+  ];
   return (
     <div>
       {" "}
@@ -311,6 +339,11 @@ export default function Basket() {
         dataSource={basketArray}
         columns={columns}
       />
+      <Row>
+        <h4>Qeyd:</h4>
+
+        <TextArea onChange={onChangeNote}></TextArea>
+      </Row>
       <Row style={{ marginTop: "10px" }}>
         <Col span={6} offset={18}>
           <h3>Yekun qiymət: {basketAllData?.grandTotal}</h3>
@@ -328,7 +361,7 @@ export default function Basket() {
             <Link to="/cartList">Satışa davam et</Link>
           </Button>
         </Col>
-        <Col span={6} offset={20}>
+        <Col span={6} offset={12}>
           <Button
             onClick={endSales}
             type="primary"
