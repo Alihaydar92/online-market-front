@@ -83,11 +83,21 @@ basketde say ve qiymet deyisende umumi cem deyissin (basket table redakte et )
 
 yalniz satisda sebete elave ederken sebet isaresi gorsenir ,sonra itir
 
-Qaimede ad boyuk olarsa onu wrap elesin.+++
-qaimede table header yasil reng olmasin rengsiz olsun+++
-Qaimede srifti azaltmak+++
-Qaime sekline baxmaq ve excel kimi gorunmeyini temin elemek.+++
+baskete gelen umumi cem 0a tamamlanmis olmalidi( backendden duzgun gelir ama axios 0i tullayir)
 
+anbar page redaktede error verir(ola bilsin product list comboya dolmamis acilir)
+
+satisi yekunlasdiranda sebet temizlensin backendde(frontda ise use effecte yenilemek)+++
+
+qaimede ikinci sehifeye kecid problem
+
+basket table row qiymetde NAN yazilir onu duzeltmek
+
+basket clear metodunun yazilmasi
+
+basketi yekunlasdir servisinden qayidan messagi gostermek
+
+cart list pagede property ve tip servisleri birlesdi, bunlari nezere alib birlesdirmek
 ### sonra
 
 label-larin textlerini file-dan oxumaq
@@ -111,12 +121,6 @@ comboboxlarda scrolling data(ya da loadingi xombobox ucun de tetbiq etmek)
 card reducerin dexlisiz cagirilma bug-i (bunu arasddirmaq)
 
 qaimede mebleg cem ve yekunu yuvarlaqlasdirmaq ( vergulden sonra 2 reqem)
-
-baskete gelen umumi cem 0a tamamlanmis olmalidi( backendden duzgun gelir ama axios 0i tullayir)
-
-anbar page redaktede error verir(ola bilsin product list comboya dolmamis acilir)
-
-satisi yekunlasdiri yazmaq
 
 
 ### backend teyyub

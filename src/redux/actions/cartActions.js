@@ -47,6 +47,28 @@ export const endSale = (data) => (dispatch) => {
   });
 };
 
+export const clearBasket = () => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+  });
+  axiosInstance.get("/carts/clear").then((response) => {
+    if (response.status === 200) {
+      console.log("response end sale cart data ", response.data);
+      dispatch({
+        type: actionTypes.CLEAR_BASKET,
+        payload: response.data,
+      });
+      dispatch(showAddedBasketItems());
+      //   notification["success"]({ message: response.data, description: "" });
+      //   dispatch(listOfCategories());
+    }
+  });
+};
+
 export const deleteCart = (id) => (dispatch) => {
   const axiosInstance = axios.create({
     baseURL: baseURL,

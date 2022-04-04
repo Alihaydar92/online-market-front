@@ -187,3 +187,13 @@ resetfields eslinde duz islemir, yalniz emeliyyat olduqdan sonra isleyir,
 halbuki modali elebele acib bagladiqda bele islemelidi (modal acarken reset olmalidi datalar)(useEffectLayout genis test edib yoxlamaq)+++
 
 paginationda page ve pagesize ilkin deyerlerini global const deyisen kimi saxlamq(basqa pencerelerde de istifade etmek ucun) (bu lazim deyil) +++
+
+Qaimede ad boyuk olarsa onu wrap elesin.+++
+
+qaimede table header yasil reng olmasin rengsiz olsun+++
+
+Qaimede srifti azaltmak+++
+
+Qaime sekline baxmaq ve excel kimi gorunmeyini temin elemek.+++
+
+satisi yekunlasdiri yazmaq +++

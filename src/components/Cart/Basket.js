@@ -12,7 +12,7 @@ import {
 } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { showAddedBasketItems, endSale } from "../../redux/actions/cartActions";
+import { showAddedBasketItems, endSale,clearBasket} from "../../redux/actions/cartActions";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import fontTxt from "../../helpers/fontRobotoBase64";
@@ -42,6 +42,7 @@ export default function Basket() {
 
   useEffect(() => {
     setBasketArray(basketItems);
+    console.log(basketItems);
   }, [basketItems]);
 
   const EDVPersent = 0.18;
@@ -53,9 +54,7 @@ export default function Basket() {
   const finalPrice = basketAllData?.grandTotal;
 
   const handleClear = () => {
-    // setBasketDataState([]);
-    // cookies.remove("basketArray");
-    // setBasketArray([]);
+    dispatch(clearBasket())
   };
   const showRemoveModal = (id) => {
     setBasketId(id);
@@ -95,12 +94,14 @@ export default function Basket() {
           defaultValue={text}
           formatter={(value) =>
             // `${value}`.replace(/(\.\d{2})\d*/, "$1").replace(/(\d)(?=(\d{3})+\b)/g, "$1,")
-            (parseFloat(value).toFixed(2)).replace(/(\d)(?=(\d{2})+(?!\d))/g, "$1,").replace(".00","")
-            
+            parseFloat(value)
+              .toFixed(2)
+              .replace(/(\d)(?=(\d{2})+(?!\d))/g, "$1,")
+              .replace(".00", "")
           }
-         
-          parser={(value) => value.replace(/(\d)(?=(\d{2})+(?!\d))/g, "$1,").replace(".00","")}
-          
+          parser={(value) =>
+            value.replace(/(\d)(?=(\d{2})+(?!\d))/g, "$1,").replace(".00", "")
+          }
           onChange={onInputPriceChange("price", index)}
         />
       ),
@@ -198,7 +199,7 @@ export default function Basket() {
         element.storeHouseDto.barcode,
         element.storeHouseDto.productDto.name,
         element.quantity,
-        element.storeHouseDto.price,
+        element.storeHouseDto.price.toFixed(2),
         "0",
         "0%",
         "0%",
@@ -288,17 +289,17 @@ export default function Basket() {
     endSalesData.sellerId = basketAllData.sellerId;
     endSalesData.note = basketNote === undefined ? "" : basketNote;
     endSalesData.grandTotal = basketAllData.grandTotal;
-  
-    var result  = basketArray.reduce(function(map, obj) {
-      map[obj.storeHouseDto.id] = obj;
+
+    var result = basketArray.reduce(function (map, obj) {
+      let key=obj.storeHouseDto.id.toString();
+      map[key] = obj;
       return map;
-  }, {});
-  // endSalesData.items= JSON.stringify({...result});
-  endSalesData.items=result;
+    }, {});
+    // endSalesData.items= JSON.stringify({...result});
+    endSalesData.items = result;
     console.log(basketArray);
-    
+
     console.log(endSalesData);
-   
 
     dispatch(endSale(endSalesData));
   };
