@@ -203,3 +203,9 @@ basket clear metodunun yazilmasi+++
 satisi yekunlasdiranda sebet temizlensin backendde(frontda ise use effecte yenilemek)+++
 
 cart list pagede property ve tip servisleri birlesdi, bunlari nezere alib birlesdirmek +++
+
+basket table row qiymetde NAN yazilir onu duzeltmek +++
+
+basketi yekunlasdir servisinden qayidan messagi gostermek +++
+
+basketde qiymetle bagli update servisin yazilmasi +++

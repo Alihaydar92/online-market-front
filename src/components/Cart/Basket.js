@@ -117,7 +117,7 @@ export default function Basket() {
               .replace(/(\d)(?=(\d{2})+(?!\d))/g, "$1,")
               .replace(".00", "")
           }
-          onChange={onInputPriceChange("price", index)}
+          onChange={onInputPriceChange("sellPrice", index)}
         />
       ),
     },

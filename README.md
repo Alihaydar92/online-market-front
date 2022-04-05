@@ -87,13 +87,13 @@ baskete gelen umumi cem 0a tamamlanmis olmalidi( backendden duzgun gelir ama axi
 
 anbar page redaktede error verir(ola bilsin product list comboya dolmamis acilir)
 
-basket table row qiymetde NAN yazilir onu duzeltmek +++
-
-basketi yekunlasdir servisinden qayidan messagi gostermek +++
-
-basketde qiymetle bagli update servisin yazilmasi +++
-
 mehsula gore mehsullarin listi cart list
+
+cart list page acilarken musteri adindan qabaq id gorsenir, bu cookie ile baglidi( cenki cokkie stringde saxlanir onu numbere cevirirem) loginde musteri id geldikde bu problem aradan qalxacaq
+
+basketde umumi cem kesr to fixed problem
+
+basketde deyishikliyi tesdiqleyende gonderilen pricede tofixed problemi
 ### sonra
 
 label-larin textlerini file-dan oxumaq
