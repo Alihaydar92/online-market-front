@@ -93,11 +93,13 @@ qaimede ikinci sehifeye kecid problem
 
 basket table row qiymetde NAN yazilir onu duzeltmek
 
-basket clear metodunun yazilmasi
+basket clear metodunun yazilmasi+++
 
 basketi yekunlasdir servisinden qayidan messagi gostermek
 
 cart list pagede property ve tip servisleri birlesdi, bunlari nezere alib birlesdirmek
+
+basketde qiymetle bagli update servisin yazilmasi
 ### sonra
 
 label-larin textlerini file-dan oxumaq

@@ -119,6 +119,7 @@ export const getProductListByPropertyId =
         dispatch(hideLoader());
       });
   };
+
 export const getProductListAll = (page, isChangeProperty) => (dispatch) => {
   console.log("getProductListAll metod call");
   const axiosInstance = axios.create({
@@ -338,4 +339,42 @@ export const searchProduct =
           });
         }
       });
+  };
+
+export const getProductListByProAndCatId =
+  (proId, catId, cartPage, isChange) => (dispatch) => {
+    console.log("getProductListByPropertyId metod call");
+    var cartParams = new Object();
+    cartParams.page = cartPage;
+    if (proId !== null && proId !== undefined) {
+      cartParams.propertyId = proId;
+    }
+    if (catId !== null && catId !== undefined) {
+      cartParams.categoryId = catId;
+    }
+    const axiosInstance = axios.create({
+      baseURL: baseURL,
+      auth: {
+        username: window.localStorage.getItem("username"),
+        password: window.localStorage.getItem("password"),
+      },
+    });
+    console.log(cartParams);
+    dispatch(showLoader());
+    axiosInstance.get("/sells?", { params: cartParams }).then((response) => {
+      console.log("response ", response.data);
+      if (isChange) {
+        dispatch({
+          type: actionTypes.GET_PRODUCT_LIST_BY_ID_IS_CHANGED,
+          payload: response.data,
+        });
+      } else {
+        dispatch({
+          type: actionTypes.GET_PRODUCT_LIST_BY_ID_IS_NOT_CHANGED,
+          payload: response.data,
+        });
+      }
+
+      dispatch(hideLoader());
+    });
   };

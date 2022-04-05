@@ -12,9 +12,7 @@ import {
   Popover,
   Space,
 } from "antd";
-import {
-ClearOutlined 
-} from "@ant-design/icons";
+import { ClearOutlined } from "@ant-design/icons";
 import { listOfProperties } from "../../redux/actions/propertyActions";
 import { listOfCategories } from "../../redux/actions/categoryActions";
 import { addCart } from "../../redux/actions/cartActions";
@@ -22,6 +20,7 @@ import { getCustomerListByExpeditorId } from "../../redux/actions/customerAction
 import {
   getProductListByPropertyId,
   getProductListByCategoryId,
+  getProductListByProAndCatId,
 } from "../../redux/actions/productActions";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "antd-button-color";
@@ -38,11 +37,15 @@ export default function CartList() {
   const [customerId, setCustomerId] = useState(Number());
   const [dataId, setDataId] = useState(Number());
   const [disable, setDisable] = useState(true);
+  const [disableForProAndCatCombo, setDisableForProAndCatCombo] =
+    useState(true);
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(false);
   const [visibleState, setVisibleState] = useState({ visible: false });
   const [formKey, setFormKey] = useState(Number(0));
   const [cookies, setCookie] = useCookies(["customerCookieId"]);
+  const [proId, setProId] = useState(undefined);
+  const [catId, setCatId] = useState(undefined);
   useEffect(() => {
     dispatch(listOfProperties());
     dispatch(listOfCategories());
@@ -92,23 +95,36 @@ export default function CartList() {
   var countDataList = [];
   var customerSellPriceDataList = [];
   var otherPriceDataList = [];
-  const onChangeProperty = (value) => {
-    console.log(value);
-    baseForm.resetFields(["category"]);
+  const onChangeProperty = (proValue) => {
+    setProId(proValue);
+    if (proValue === undefined && catId === undefined) {
+      setDisableForProAndCatCombo(true);
+    } else {
+      setDisableForProAndCatCombo(false);
+    }
+    console.log(proValue);
+    // baseForm.resetFields(["category"]);
     setFormKey((formKey || 0) + 1);
-    setDataId(value);
-    dispatch(getProductListByPropertyId(value, 0, true));
+    // setDataId(value);
+    // dispatch(getProductListByPropertyId(value, 0, true));
 
     setLoading(false);
   };
 
-  const onChangeCategory = (value) => {
-    console.log(value);
-    baseForm.resetFields(["property"]);
+  const onChangeCategory = (catValue) => {
+    setCatId(catValue);
+    console.log(proId);
+    if (catValue === undefined && proId === undefined) {
+      setDisableForProAndCatCombo(true);
+    } else {
+      setDisableForProAndCatCombo(false);
+    }
+    console.log(catValue);
+    // baseForm.resetFields(["property"]);
     console.log("formKey", formKey);
     setFormKey((formKey || 0) + 1);
-    setDataId(value);
-    dispatch(getProductListByCategoryId(value, 0, true));
+    // setDataId(value);
+    // dispatch(getProductListByCategoryId(value, 0, true));
 
     setLoading(false);
   };
@@ -301,10 +317,23 @@ export default function CartList() {
   };
 
   useEffect(() => {
-    dispatch(getProductListByPropertyId(dataId, page, false));
+    console.log(proId, catId);
+    if (proId !== undefined || catId !== undefined) {
+      dispatch(getProductListByProAndCatId(proId, catId, page, false));
+    }
 
     setLoading(false);
   }, [page]);
+  const onClickForPropertyAndCategoryCombo = () => {
+    baseForm
+      .validateFields()
+      .then((values) => {
+        dispatch(getProductListByProAndCatId(proId, catId, 0, true));
+      })
+      .catch((errorInfo) => {
+        console.log("validate fields");
+      });
+  };
 
   const onClickNewProducts = () => {};
 
@@ -410,8 +439,6 @@ export default function CartList() {
               name="property"
               rules={[{ required: false, message: "Xüsusiyyəti seçin!" }]}
             >
-              
-              
               <Select
                 disabled={disable}
                 // style={{ width: "300px" }}
@@ -439,15 +466,13 @@ export default function CartList() {
                   </Option>
                 ))}
               </Select>
-            
-             
             </Form.Item>
             <Form.Item wrapperCol={{ offset: 8 }}>
               <Button
-                disabled={disable}
+                disabled={disableForProAndCatCombo}
                 danger
                 type="primary"
-                onClick={onClickAllProducts}
+                onClick={onClickForPropertyAndCategoryCombo}
               >
                 Tip vəya Xüsusiyyət-ə görə
               </Button>
@@ -510,8 +535,11 @@ export default function CartList() {
 
           {listOfProductDataById.map((item, index) => {
             return (
-              <div >
-                <Card  style={{ marginTop: "10px" ,overflowWrap:'break-word'}} key="cardList">
+              <div>
+                <Card
+                  style={{ marginTop: "10px", overflowWrap: "break-word" }}
+                  key="cardList"
+                >
                   <Row>
                     <h4>
                       <b style={{ color: "red" }}>{item.isNew ? "Yeni" : ""}</b>
@@ -528,8 +556,10 @@ export default function CartList() {
                         : `data:image/jpeg;base64,${item.image}`
                     }
                   />
-                  <Row style={{overflowWrap:'break-word'}}>
-                    <h4 style={{overflowWrap:'break-word'}}>Məhsul: {item.name}</h4>
+                  <Row style={{ overflowWrap: "break-word" }}>
+                    <h4 style={{ overflowWrap: "break-word" }}>
+                      Məhsul: {item.name}
+                    </h4>
                   </Row>
                   <Row>
                     <h4>Barkod: {item.barcode}</h4>
