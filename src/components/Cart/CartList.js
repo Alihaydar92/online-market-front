@@ -474,7 +474,7 @@ export default function CartList() {
                 type="primary"
                 onClick={onClickForPropertyAndCategoryCombo}
               >
-                Tip vəya Xüsusiyyət-ə görə
+                Axtar
               </Button>
             </Form.Item>
             <Form.Item

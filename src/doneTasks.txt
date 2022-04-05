@@ -197,3 +197,9 @@ Qaimede srifti azaltmak+++
 Qaime sekline baxmaq ve excel kimi gorunmeyini temin elemek.+++
 
 satisi yekunlasdiri yazmaq +++
+
+basket clear metodunun yazilmasi+++
+
+satisi yekunlasdiranda sebet temizlensin backendde(frontda ise use effecte yenilemek)+++
+
+cart list pagede property ve tip servisleri birlesdi, bunlari nezere alib birlesdirmek +++

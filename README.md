@@ -87,19 +87,13 @@ baskete gelen umumi cem 0a tamamlanmis olmalidi( backendden duzgun gelir ama axi
 
 anbar page redaktede error verir(ola bilsin product list comboya dolmamis acilir)
 
-satisi yekunlasdiranda sebet temizlensin backendde(frontda ise use effecte yenilemek)+++
+basket table row qiymetde NAN yazilir onu duzeltmek +++
 
-qaimede ikinci sehifeye kecid problem
+basketi yekunlasdir servisinden qayidan messagi gostermek +++
 
-basket table row qiymetde NAN yazilir onu duzeltmek
+basketde qiymetle bagli update servisin yazilmasi +++
 
-basket clear metodunun yazilmasi+++
-
-basketi yekunlasdir servisinden qayidan messagi gostermek
-
-cart list pagede property ve tip servisleri birlesdi, bunlari nezere alib birlesdirmek
-
-basketde qiymetle bagli update servisin yazilmasi
+mehsula gore mehsullarin listi cart list
 ### sonra
 
 label-larin textlerini file-dan oxumaq
@@ -124,6 +118,7 @@ card reducerin dexlisiz cagirilma bug-i (bunu arasddirmaq)
 
 qaimede mebleg cem ve yekunu yuvarlaqlasdirmaq ( vergulden sonra 2 reqem)
 
+qaimede ikinci sehifeye kecid problem
 
 ### backend teyyub
 

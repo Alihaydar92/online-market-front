@@ -12,7 +12,12 @@ import {
 } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { showAddedBasketItems, endSale,clearBasket} from "../../redux/actions/cartActions";
+import {
+  showAddedBasketItems,
+  endSale,
+  clearBasket,
+  updateBasket,
+} from "../../redux/actions/cartActions";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import fontTxt from "../../helpers/fontRobotoBase64";
@@ -54,7 +59,7 @@ export default function Basket() {
   const finalPrice = basketAllData?.grandTotal;
 
   const handleClear = () => {
-    dispatch(clearBasket())
+    dispatch(clearBasket());
   };
   const showRemoveModal = (id) => {
     setBasketId(id);
@@ -63,6 +68,12 @@ export default function Basket() {
   };
   const handleCancel = () => {
     setIsSilModalVisible(false);
+  };
+
+  const editBasketData = (basketData) => {
+
+    console.log(basketData);
+    dispatch(updateBasket(basketData));
   };
 
   const columns = [
@@ -87,10 +98,11 @@ export default function Basket() {
     },
     {
       title: "Qiymət",
-      dataIndex: ["storeHouseDto", "price"],
+      dataIndex: ["storeHouseDto", "sellPrice"],
       editable: true,
       render: (text, record, index) => (
         <InputNumber
+          min={0}
           defaultValue={text}
           formatter={(value) =>
             // `${value}`.replace(/(\.\d{2})\d*/, "$1").replace(/(\d)(?=(\d{3})+\b)/g, "$1,")
@@ -100,7 +112,10 @@ export default function Basket() {
               .replace(".00", "")
           }
           parser={(value) =>
-            value.replace(/(\d)(?=(\d{2})+(?!\d))/g, "$1,").replace(".00", "")
+            parseFloat(value)
+              .toFixed(2)
+              .replace(/(\d)(?=(\d{2})+(?!\d))/g, "$1,")
+              .replace(".00", "")
           }
           onChange={onInputPriceChange("price", index)}
         />
@@ -123,6 +138,13 @@ export default function Basket() {
               onClick={() => showRemoveModal(basketData.storeHouseDto.id)}
             >
               Sil
+            </Button>
+            <Button
+              size="small"
+              type="primary"
+              onClick={() => editBasketData(basketData)}
+            >
+              Dəyişikliyi təsdiqlə
             </Button>
           </Space>
         );
@@ -291,7 +313,7 @@ export default function Basket() {
     endSalesData.grandTotal = basketAllData.grandTotal;
 
     var result = basketArray.reduce(function (map, obj) {
-      let key=obj.storeHouseDto.id.toString();
+      let key = obj.storeHouseDto.id.toString();
       map[key] = obj;
       return map;
     }, {});

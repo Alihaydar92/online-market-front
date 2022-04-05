@@ -84,6 +84,7 @@ export const LOGIN_AUTH = "LOGIN_AUTH";
 export const ADD_CART = "ADD_CART";
 export const END_SALE = "END_SALE";
 export const CLEAR_BASKET = "CLEAR_BASKET";
+export const UPDATE_BASKET = "UPDATE_BASKET";
 export const DELETE_CART = "DELETE_CART";
 export const SHOW_BASKET_ITEMS = "SHOW_BASKET_ITEMS";
 

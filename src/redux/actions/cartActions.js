@@ -41,7 +41,7 @@ export const endSale = (data) => (dispatch) => {
         payload: response.data,
       });
       dispatch(showAddedBasketItems());
-      //   notification["success"]({ message: response.data, description: "" });
+        notification["success"]({ message: response.data, description: "" });
       //   dispatch(listOfCategories());
     }
   });
@@ -57,9 +57,30 @@ export const clearBasket = () => (dispatch) => {
   });
   axiosInstance.get("/carts/clear").then((response) => {
     if (response.status === 200) {
-      console.log("response end sale cart data ", response.data);
+      console.log("response clear basket data ", response.data);
       dispatch({
         type: actionTypes.CLEAR_BASKET,
+        payload: response.data,
+      });
+      dispatch(showAddedBasketItems());
+      //   notification["success"]({ message: response.data, description: "" });
+      //   dispatch(listOfCategories());
+    }
+  });
+};
+export const updateBasket = (basketData) => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+  });
+  axiosInstance.put("/carts/updatePrice",basketData).then((response) => {
+    if (response.status === 200) {
+      console.log("response updatebasket data ", response.data);
+      dispatch({
+        type: actionTypes.UPDATE_BASKET,
         payload: response.data,
       });
       dispatch(showAddedBasketItems());
