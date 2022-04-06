@@ -243,7 +243,7 @@ export default function Basket() {
         element.storeHouseDto.barcode,
         element.storeHouseDto.productDto.name,
         element.quantity,
-        element.storeHouseDto.price.toFixed(2),
+        element.storeHouseDto.sellPrice.toFixed(2),
         "0",
         "0%",
         "0%",
