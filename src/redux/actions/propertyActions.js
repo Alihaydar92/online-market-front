@@ -59,6 +59,24 @@ export const getPropertyById = (id) => (dispatch) => {
   });
 };
 
+export const getPropertyByCategoryId = (categoryId) => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+    
+  }
+  );
+  axiosInstance.get("/properties/category/" + categoryId).then((response) => {
+    dispatch({
+      type: actionTypes.GET_PROPERTY_BY_CATEGORY_ID,
+      payload: response.data,
+    });
+  });
+};
+
 export const updateProperty = (data) => (dispatch) => {
   const axiosInstance = axios.create({
     baseURL: baseURL,

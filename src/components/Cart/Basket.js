@@ -124,6 +124,28 @@ export default function Basket() {
     {
       title: "Ümumi cəm",
       dataIndex: "totalPrice",
+      render: (text, record, index) => (
+        <InputNumber
+          min={0}
+          defaultValue={text}
+          editable={false}
+          disabled={true}
+          formatter={(value) =>
+            // `${value}`.replace(/(\.\d{2})\d*/, "$1").replace(/(\d)(?=(\d{3})+\b)/g, "$1,")
+            parseFloat(value)
+              .toFixed(2)
+              .replace(/(\d)(?=(\d{2})+(?!\d))/g, "$1,")
+              .replace(".00", "")
+          }
+          parser={(value) =>
+            parseFloat(value)
+              .toFixed(2)
+              .replace(/(\d)(?=(\d{2})+(?!\d))/g, "$1,")
+              .replace(".00", "")
+          }
+        
+        />
+      ),
     },
     {
       title: "Əməliyyat",

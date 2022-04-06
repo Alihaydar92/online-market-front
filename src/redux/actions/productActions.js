@@ -378,3 +378,38 @@ export const getProductListByProAndCatId =
       dispatch(hideLoader());
     });
   };
+
+  export const getProductListByProduct =
+  (productInput, cartPage, isChange) => (dispatch) => {
+    console.log("getProductListByProduct metod call");
+    var cartParams = new Object();
+    cartParams.page = cartPage;
+   if(productInput!==""){
+    cartParams.param=productInput;
+   }
+    const axiosInstance = axios.create({
+      baseURL: baseURL,
+      auth: {
+        username: window.localStorage.getItem("username"),
+        password: window.localStorage.getItem("password"),
+      },
+    });
+    console.log(cartParams);
+    dispatch(showLoader());
+    axiosInstance.get("/sells/anyparam?", { params: cartParams }).then((response) => {
+      console.log("response ", response.data);
+      if (isChange) {
+        dispatch({
+          type: actionTypes.GET_PRODUCT_LIST_BY_ID_IS_CHANGED,
+          payload: response.data,
+        });
+      } else {
+        dispatch({
+          type: actionTypes.GET_PRODUCT_LIST_BY_ID_IS_NOT_CHANGED,
+          payload: response.data,
+        });
+      }
+
+      dispatch(hideLoader());
+    });
+  };

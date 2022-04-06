@@ -94,6 +94,12 @@ cart list page acilarken musteri adindan qabaq id gorsenir, bu cookie ile baglid
 basketde umumi cem kesr to fixed problem
 
 basketde deyishikliyi tesdiqleyende gonderilen pricede tofixed problemi
+
+satis penceresinde comboya xususiyyeti all data dolur , bunu deyisib categorye gore dolmasini temin etmek
+
+qaimede price-i deyisib sellprice etmek, bezi reqem hesablamalaridna yuvarlaqlasdirmaq
+
+satis penceresinde mehsulu input etmek ve axtar duymesinde yuxarida vermek ,mehsul inpuut dolanda diger iki componeneti clear etmek ve eksine  
 ### sonra
 
 label-larin textlerini file-dan oxumaq

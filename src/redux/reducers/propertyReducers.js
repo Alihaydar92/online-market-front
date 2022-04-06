@@ -28,6 +28,12 @@ import  initialState from "./initialState"
                 propertyDataById: action.payload
                 
             }
+        }case actionTypes.GET_PROPERTY_BY_CATEGORY_ID: {
+            return {
+                ...state,
+                propertyListData: action.payload
+                
+            }
         }
 
         case actionTypes.DELETE_PROPERTY: {
@@ -37,6 +43,7 @@ import  initialState from "./initialState"
                 
             }
         }
+        
         default:
             return state;
     }

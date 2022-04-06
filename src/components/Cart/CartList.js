@@ -11,9 +11,13 @@ import {
   Checkbox,
   Popover,
   Space,
+  Input,
 } from "antd";
 import { ClearOutlined } from "@ant-design/icons";
-import { listOfProperties } from "../../redux/actions/propertyActions";
+import {
+  listOfProperties,
+  getPropertyByCategoryId,
+} from "../../redux/actions/propertyActions";
 import { listOfCategories } from "../../redux/actions/categoryActions";
 import { addCart } from "../../redux/actions/cartActions";
 import { getCustomerListByExpeditorId } from "../../redux/actions/customerAction";
@@ -21,6 +25,7 @@ import {
   getProductListByPropertyId,
   getProductListByCategoryId,
   getProductListByProAndCatId,
+  getProductListByProduct,
 } from "../../redux/actions/productActions";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "antd-button-color";
@@ -39,6 +44,7 @@ export default function CartList() {
   const [disable, setDisable] = useState(true);
   const [disableForProAndCatCombo, setDisableForProAndCatCombo] =
     useState(true);
+  const [disablePropertyCombo, setDisablePropertyCombo] = useState(true);
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(false);
   const [visibleState, setVisibleState] = useState({ visible: false });
@@ -47,7 +53,7 @@ export default function CartList() {
   const [proId, setProId] = useState(undefined);
   const [catId, setCatId] = useState(undefined);
   useEffect(() => {
-    dispatch(listOfProperties());
+    // dispatch(listOfProperties());
     dispatch(listOfCategories());
   }, [dispatch]);
 
@@ -68,6 +74,9 @@ export default function CartList() {
   }, [baseForm, cookies]);
 
   const listOfPropertyData = useSelector(
+    (state) => state.propertyReducers?.propertyListData
+  );
+  const propertyDataByCategoryId = useSelector(
     (state) => state.propertyReducers?.propertyListData
   );
 
@@ -112,6 +121,12 @@ export default function CartList() {
   };
 
   const onChangeCategory = (catValue) => {
+    if (catValue === undefined) {
+      setDisablePropertyCombo(true);
+    } else {
+      dispatch(getPropertyByCategoryId(catValue));
+      setDisablePropertyCombo(false);
+    }
     setCatId(catValue);
     console.log(proId);
     if (catValue === undefined && proId === undefined) {
@@ -317,18 +332,42 @@ export default function CartList() {
   };
 
   useEffect(() => {
+    var productParam = baseForm.getFieldsValue().product;
     console.log(proId, catId);
-    if (proId !== undefined || catId !== undefined) {
-      dispatch(getProductListByProAndCatId(proId, catId, page, false));
+    console.log(baseForm.getFieldsValue().product);
+    
+    if (
+      productParam !== "" &&
+      productParam !== undefined &&
+      productParam !== null
+    ) {
+      console.log("product param is not empty");
+      dispatch(getProductListByProduct(productParam, page, false));
+    } else {
+      if (proId !== undefined || catId !== undefined) {
+        dispatch(getProductListByProAndCatId(proId, catId, page, false));
+      }
+      console.log("product param is  empty");
+      
     }
-
     setLoading(false);
   }, [page]);
   const onClickForPropertyAndCategoryCombo = () => {
     baseForm
       .validateFields()
       .then((values) => {
-        dispatch(getProductListByProAndCatId(proId, catId, 0, true));
+        var productParam = baseForm.getFieldsValue().product;
+        console.log(productParam);
+        console.log(proId);
+        console.log(catId);
+        if (productParam !== "") {
+          console.log("product param is not empty");
+          dispatch(getProductListByProduct(productParam, 0, true));
+        } else {
+          console.log("product param is  empty");
+          dispatch(getProductListByProAndCatId(proId, catId, 0, true));
+        }
+        //
       })
       .catch((errorInfo) => {
         console.log("validate fields");
@@ -339,6 +378,27 @@ export default function CartList() {
 
   const onClickAllProducts = () => {};
 
+  const focusProductInput = () => {
+    setPage(0);
+    baseForm.setFieldsValue({
+      category: null,
+      property: null,
+    });
+  };
+
+  const onFocusCategory = () => {
+    setPage(0);
+    baseForm.setFieldsValue({
+      product: "",
+    });
+  };
+
+  const onFocusProperty = () => {
+    setPage(0);
+    baseForm.setFieldsValue({
+      product: "",
+    });
+  };
   const hide = () => {
     setVisibleState({ visible: false });
   };
@@ -411,6 +471,7 @@ export default function CartList() {
               <Select
                 disabled={disable}
                 onChange={onChangeCategory}
+                onFocus={onFocusCategory}
                 showSearch
                 allowClear={true}
                 optionFilterProp="children"
@@ -440,9 +501,10 @@ export default function CartList() {
               rules={[{ required: false, message: "Xüsusiyyəti seçin!" }]}
             >
               <Select
-                disabled={disable}
+                disabled={disableForProAndCatCombo}
                 // style={{ width: "300px" }}
                 onChange={onChangeProperty}
+                onFocus={onFocusProperty}
                 showSearch
                 allowClear={true}
                 optionFilterProp="children"
@@ -460,12 +522,20 @@ export default function CartList() {
                   );
                 }}
               >
-                {listOfPropertyData.map((propertyData) => (
+                {propertyDataByCategoryId.map((propertyData) => (
                   <Option key={propertyData.id} value={propertyData.id}>
                     {propertyData.name}
                   </Option>
                 ))}
               </Select>
+            </Form.Item>
+            <Form.Item
+              label="Məhsul"
+              name="product"
+
+              // rules={[{ required: true, message: "Məhsulu seçin!" }]}
+            >
+              <Input onFocus={focusProductInput}></Input>
             </Form.Item>
             <Form.Item wrapperCol={{ offset: 8 }}>
               <Button
@@ -477,39 +547,7 @@ export default function CartList() {
                 Axtar
               </Button>
             </Form.Item>
-            <Form.Item
-              label="Məhsul"
-              name="product"
-              // rules={[{ required: true, message: "Məhsulu seçin!" }]}
-            >
-              <Select
-                // disabled={propertyDisable}
-                // style={{ width: "300px" }}
-                disabled={disable}
-                onChange={onChangeProduct}
-                showSearch
-                optionFilterProp="children"
-                // onSearch={onSearchproperty}
-                filterOption={(input, option) => {
-                  return (
-                    option.props.children
-                      .toString()
-                      .toLowerCase()
-                      .indexOf(input.toLowerCase()) >= 0 ||
-                    option.props.value
-                      .toString()
-                      .toLowerCase()
-                      .indexOf(input.toLowerCase()) >= 0
-                  );
-                }}
-              >
-                {/* {listOfProductDataBypropertyId.pages.map((productData) => (
-                  <Option key={productData.id} value={productData.id}>
-                    {productData.name + "(" + productData.barcode + ")"}
-                  </Option>
-                ))} */}
-              </Select>
-            </Form.Item>
+
             <Form.Item wrapperCol={{ offset: 8 }}>
               <Button
                 disabled={disable}
