@@ -393,7 +393,7 @@ export default function CartList() {
     setCartSearchMode("new");
     dispatch(getAllNewProducts(0,true));
   };
-
+ 
   const onClickAllProducts = () => {
     setPage(0);
     setCartSearchMode("all");
@@ -579,8 +579,8 @@ export default function CartList() {
             <Form.Item wrapperCol={{ offset: 8 }}>
               <Button
                 disabled={disable}
-                danger
-                type="primary"
+                
+                type="link"
                 onClick={onClickNewProducts}
               >
                 Yeni məhsullar
@@ -588,10 +588,11 @@ export default function CartList() {
             </Form.Item>
 
             <Form.Item wrapperCol={{ offset: 8 }}>
+              
               <Button
                 disabled={disable}
-                danger
-                type="primary"
+                
+                type="link"
                 onClick={onClickAllProducts}
               >
                 Bütün məhsullar
