@@ -79,23 +79,15 @@ sekli sil buttonunun altinda sekli servisde cagirib silmek
 
 infinite scrool satis +++ (buttunsuz elemek---)
 
-basketde say ve qiymet deyisende umumi cem deyissin (basket table redakte et )
-
 yalniz satisda sebete elave ederken sebet isaresi gorsenir ,sonra itir
-
-baskete gelen umumi cem 0a tamamlanmis olmalidi( backendden duzgun gelir ama axios 0i tullayir)
 
 anbar page redaktede error verir(ola bilsin product list comboya dolmamis acilir)
 
-qaimede mebleg cem ve yekunu yuvarlaqlasdirmaq ( vergulden sonra 2 reqem)
-
-basketde umumi cem kesr to fixed problem
-
-basketde deyishikliyi tesdiqleyende gonderilen pricede tofixed problemi
-
 qaimede bezi reqem hesablamalaridna yuvarlaqlasdirmaq
 
+cartlistde qiymet shrifte bir de nezer yetirmek
 
+butun buttonlarin rengini teyyubun shatsapda atdigi kimi css-le etmek
 
 ### sonra
 
@@ -118,8 +110,6 @@ satis penceresinde mehsul combosuna barkodu da elave etmek ve axtarisinda her ik
 comboboxlarda scrolling data(ya da loadingi xombobox ucun de tetbiq etmek)
 
 card reducerin dexlisiz cagirilma bug-i (bunu arasddirmaq)
-
-
 
 qaimede ikinci sehifeye kecid problem
 

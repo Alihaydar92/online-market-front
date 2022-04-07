@@ -624,28 +624,29 @@ export default function CartList() {
                     }
                   />
                   <Row style={{ overflowWrap: "break-word" }}>
-                    <h4 style={{ overflowWrap: "break-word" }}>
+                    <h6 style={{ overflowWrap: "break-word" }}>
                       Məhsul: {item.name}
-                    </h4>
+                    </h6>
                   </Row>
                   <Row>
-                    <h4>Barkod: {item.barcode}</h4>
+                    <h6>Barkod: {item.barcode}</h6>
                   </Row>
                   <Row>
-                    <h4>
+                    <h6>
                       Anbardakı sayı:{" "}
                       <b style={{ color: "red" }}>{item.quantity}</b>
-                    </h4>
+                    </h6>
                   </Row>
                   <Row>
-                    <h4>
-                      Qiymət:{" "}
+                   
+                 <h6>Qiymət:{" "}</h6>     
+                      <h4>
                       <b style={{ color: "red" }}>{item.sellPrice + " AZN"}</b>{" "}
                     </h4>
                   </Row>
                   <Row>
                     {" "}
-                    <h4>
+                    <h6>
                       Qeyd:
                       <Popover
                         content={item.note}
@@ -662,7 +663,7 @@ export default function CartList() {
                           Bax
                         </Button>
                       </Popover>
-                    </h4>
+                    </h6>
                   </Row>
                   <Form
                     form={topForm}

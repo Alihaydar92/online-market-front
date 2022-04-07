@@ -217,3 +217,13 @@ qaimede price-i deyisib sellprice etmek +++
 satis penceresinde mehsulu input etmek ve axtar duymesinde yuxarida vermek ,mehsul inpuut dolanda diger iki componeneti clear etmek ve eksine  +++
 
 cartlistde mehsul axtaris +++
+
+baskete gelen umumi cem 0a tamamlanmis olmalidi( backendden duzgun gelir ama axios 0i tullayir)+++
+
+basketde say ve qiymet deyisende umumi cem deyissin (basket table redakte et )+++
+
+qaimede mebleg cem ve yekunu yuvarlaqlasdirmaq ( vergulden sonra 2 reqem)+++
+
+basketde umumi cem kesr to fixed problem+++
+
+basketde deyishikliyi tesdiqleyende gonderilen pricede tofixed problemi+++
