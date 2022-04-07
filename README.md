@@ -87,19 +87,14 @@ baskete gelen umumi cem 0a tamamlanmis olmalidi( backendden duzgun gelir ama axi
 
 anbar page redaktede error verir(ola bilsin product list comboya dolmamis acilir)
 
-cart list page acilarken musteri adindan qabaq id gorsenir, bu cookie ile baglidi( cenki cokkie stringde saxlanir onu numbere cevirirem) loginde musteri id geldikde bu problem aradan qalxacaq
+qaimede mebleg cem ve yekunu yuvarlaqlasdirmaq ( vergulden sonra 2 reqem)
 
 basketde umumi cem kesr to fixed problem
 
 basketde deyishikliyi tesdiqleyende gonderilen pricede tofixed problemi
 
-satis penceresinde comboya xususiyyeti all data dolur , bunu deyisib categorye gore dolmasini temin etmek +++
+qaimede bezi reqem hesablamalaridna yuvarlaqlasdirmaq
 
-qaimede price-i deyisib sellprice etmek, bezi reqem hesablamalaridna yuvarlaqlasdirmaq
-
-satis penceresinde mehsulu input etmek ve axtar duymesinde yuxarida vermek ,mehsul inpuut dolanda diger iki componeneti clear etmek ve eksine  +++
-
-cartlistde mehsul axtaris +++
 ### sonra
 
 label-larin textlerini file-dan oxumaq
@@ -122,9 +117,11 @@ comboboxlarda scrolling data(ya da loadingi xombobox ucun de tetbiq etmek)
 
 card reducerin dexlisiz cagirilma bug-i (bunu arasddirmaq)
 
-qaimede mebleg cem ve yekunu yuvarlaqlasdirmaq ( vergulden sonra 2 reqem)
+
 
 qaimede ikinci sehifeye kecid problem
+
+cart list page acilarken musteri adindan qabaq id gorsenir, bu cookie ile baglidi( cenki cokkie stringde saxlanir onu numbere cevirirem) loginde musteri id geldikde bu problem aradan qalxacaq
 
 ### backend teyyub
 

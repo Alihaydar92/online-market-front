@@ -52,6 +52,7 @@ export default function CartList() {
   const [cookies, setCookie] = useCookies(["customerCookieId"]);
   const [proId, setProId] = useState(undefined);
   const [catId, setCatId] = useState(undefined);
+  const [productParam, setProductParam] = useState();
   useEffect(() => {
     // dispatch(listOfProperties());
     dispatch(listOfCategories());
@@ -134,6 +135,7 @@ export default function CartList() {
     } else {
       setDisableForProAndCatCombo(false);
     }
+
     console.log(catValue);
     // baseForm.resetFields(["property"]);
     console.log("formKey", formKey);
@@ -335,7 +337,7 @@ export default function CartList() {
     var productParam = baseForm.getFieldsValue().product;
     console.log(proId, catId);
     console.log(baseForm.getFieldsValue().product);
-    
+
     if (
       productParam !== "" &&
       productParam !== undefined &&
@@ -348,7 +350,6 @@ export default function CartList() {
         dispatch(getProductListByProAndCatId(proId, catId, page, false));
       }
       console.log("product param is  empty");
-      
     }
     setLoading(false);
   }, [page]);
@@ -356,13 +357,15 @@ export default function CartList() {
     baseForm
       .validateFields()
       .then((values) => {
-        var productParam = baseForm.getFieldsValue().product;
+        setProductParam(baseForm.getFieldsValue().product);
         console.log(productParam);
         console.log(proId);
         console.log(catId);
-        if (productParam !== "") {
+        if (baseForm.getFieldsValue().product !== "") {
           console.log("product param is not empty");
-          dispatch(getProductListByProduct(productParam, 0, true));
+          dispatch(
+            getProductListByProduct(baseForm.getFieldsValue().product, 0, true)
+          );
         } else {
           console.log("product param is  empty");
           dispatch(getProductListByProAndCatId(proId, catId, 0, true));
@@ -378,12 +381,18 @@ export default function CartList() {
 
   const onClickAllProducts = () => {};
 
-  const focusProductInput = () => {
+  const changeProductInput = (e) => {
+    console.log(e.target.value)
     setPage(0);
     baseForm.setFieldsValue({
       category: null,
       property: null,
     });
+    if(e.target.value!==""){
+      setDisableForProAndCatCombo(false);
+    }else{
+      setDisableForProAndCatCombo(true);
+    }
   };
 
   const onFocusCategory = () => {
@@ -535,7 +544,7 @@ export default function CartList() {
 
               // rules={[{ required: true, message: "Məhsulu seçin!" }]}
             >
-              <Input onFocus={focusProductInput}></Input>
+              <Input onChange={changeProductInput}></Input>
             </Form.Item>
             <Form.Item wrapperCol={{ offset: 8 }}>
               <Button

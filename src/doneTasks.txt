@@ -209,3 +209,11 @@ basket table row qiymetde NAN yazilir onu duzeltmek +++
 basketi yekunlasdir servisinden qayidan messagi gostermek +++
 
 basketde qiymetle bagli update servisin yazilmasi +++
+
+satis penceresinde comboya xususiyyeti all data dolur , bunu deyisib categorye gore dolmasini temin etmek +++
+
+qaimede price-i deyisib sellprice etmek +++
+
+satis penceresinde mehsulu input etmek ve axtar duymesinde yuxarida vermek ,mehsul inpuut dolanda diger iki componeneti clear etmek ve eksine  +++
+
+cartlistde mehsul axtaris +++
