@@ -95,6 +95,8 @@ basketde deyishikliyi tesdiqleyende gonderilen pricede tofixed problemi
 
 qaimede bezi reqem hesablamalaridna yuvarlaqlasdirmaq
 
+
+
 ### sonra
 
 label-larin textlerini file-dan oxumaq

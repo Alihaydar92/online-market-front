@@ -26,6 +26,8 @@ import {
   getProductListByCategoryId,
   getProductListByProAndCatId,
   getProductListByProduct,
+  getAllProducts,
+  getAllNewProducts,
 } from "../../redux/actions/productActions";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "antd-button-color";
@@ -53,6 +55,8 @@ export default function CartList() {
   const [proId, setProId] = useState(undefined);
   const [catId, setCatId] = useState(undefined);
   const [productParam, setProductParam] = useState();
+
+  const [cartSearchMode, setCartSearchMode] = useState("");
   useEffect(() => {
     // dispatch(listOfProperties());
     dispatch(listOfCategories());
@@ -337,20 +341,27 @@ export default function CartList() {
     var productParam = baseForm.getFieldsValue().product;
     console.log(proId, catId);
     console.log(baseForm.getFieldsValue().product);
-
-    if (
-      productParam !== "" &&
-      productParam !== undefined &&
-      productParam !== null
-    ) {
-      console.log("product param is not empty");
-      dispatch(getProductListByProduct(productParam, page, false));
+    if (cartSearchMode === "new") {
+      dispatch(getAllNewProducts(page,false));
+    } else if (cartSearchMode === "all") {
+      dispatch(getAllProducts(page,false));
     } else {
-      if (proId !== undefined || catId !== undefined) {
-        dispatch(getProductListByProAndCatId(proId, catId, page, false));
+      if (
+        productParam !== "" &&
+        productParam !== undefined &&
+        productParam !== null
+      ) {
+        console.log("product param is not empty");
+        dispatch(getProductListByProduct(productParam, page, false));
+      } else {
+        if (proId !== undefined || catId !== undefined) {
+          dispatch(getProductListByProAndCatId(proId, catId, page, false));
+        }
+        console.log("product param is  empty");
       }
-      console.log("product param is  empty");
     }
+
+    
     setLoading(false);
   }, [page]);
   const onClickForPropertyAndCategoryCombo = () => {
@@ -377,20 +388,28 @@ export default function CartList() {
       });
   };
 
-  const onClickNewProducts = () => {};
+  const onClickNewProducts = () => {
+    setPage(0);
+    setCartSearchMode("new");
+    dispatch(getAllNewProducts(0,true));
+  };
 
-  const onClickAllProducts = () => {};
+  const onClickAllProducts = () => {
+    setPage(0);
+    setCartSearchMode("all");
+    dispatch(getAllProducts(0,true));
+  };
 
   const changeProductInput = (e) => {
-    console.log(e.target.value)
+    console.log(e.target.value);
     setPage(0);
     baseForm.setFieldsValue({
       category: null,
       property: null,
     });
-    if(e.target.value!==""){
+    if (e.target.value !== "") {
       setDisableForProAndCatCombo(false);
-    }else{
+    } else {
       setDisableForProAndCatCombo(true);
     }
   };

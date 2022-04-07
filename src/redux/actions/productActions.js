@@ -413,3 +413,59 @@ export const getProductListByProAndCatId =
       dispatch(hideLoader());
     });
   };
+
+  export const getAllProducts = (cartPage,isChange) => (dispatch) => {
+    var cartParams = new Object();
+    cartParams.page = cartPage;
+    const axiosInstance = axios.create({
+      baseURL: baseURL,
+      auth: {
+        username: window.localStorage.getItem("username"),
+        password: window.localStorage.getItem("password"),
+      },
+    });
+    axiosInstance.get("/sells/products?",{params:cartParams}).then((response) => {
+      console.log("response ", response.data);
+      if (isChange) {
+        dispatch({
+          type: actionTypes.GET_PRODUCT_LIST_BY_ID_IS_CHANGED,
+          payload: response.data,
+        });
+      } else {
+        dispatch({
+          type: actionTypes.GET_PRODUCT_LIST_BY_ID_IS_NOT_CHANGED,
+          payload: response.data,
+        });
+      }
+
+      dispatch(hideLoader());
+    });
+  };
+
+  export const getAllNewProducts = (cartPage,isChange) => (dispatch) => {
+    var cartParams = new Object();
+    cartParams.page = cartPage;
+    const axiosInstance = axios.create({
+      baseURL: baseURL,
+      auth: {
+        username: window.localStorage.getItem("username"),
+        password: window.localStorage.getItem("password"),
+      },
+    });
+    axiosInstance.get("/sells/new/products?",{params:cartParams}).then((response) => {
+      console.log("response ", response.data);
+      if (isChange) {
+        dispatch({
+          type: actionTypes.GET_PRODUCT_LIST_BY_ID_IS_CHANGED,
+          payload: response.data,
+        });
+      } else {
+        dispatch({
+          type: actionTypes.GET_PRODUCT_LIST_BY_ID_IS_NOT_CHANGED,
+          payload: response.data,
+        });
+      }
+
+      dispatch(hideLoader());
+    });
+  };
