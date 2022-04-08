@@ -63,9 +63,9 @@ export default function CategoryEdit(props) {
         </Form.Item>
         <Form.Item>
           <Button
-            type="submit"
+            type="primary"
             htmlType="submit"
-            style={{ position: "absolute", left: "300px", bottom: "-90px" }}
+            style={{ position: "absolute", left: "300px", bottom: "-90px" ,backgroundColor:"#0C9873",borderColor:"#0C9873"}}
             onClick={onUpdate}
           >
             Yadda saxla

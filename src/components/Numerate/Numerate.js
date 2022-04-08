@@ -80,6 +80,7 @@ export default function Numerate() {
             Say:{" "}
             <InputNumber min={0} onChange={(e) => setCount(e)}></InputNumber>
             <Button
+            style={{left: "10px",backgroundColor:"#0C9873",borderColor:"#0C9873"}}
               disabled={count <= 0 ? true : false}
               type="primary"
               onClick={() => onClickAdd(productData)}

@@ -109,6 +109,7 @@ export default function StoreHouseTable() {
         return (
           <Space size="middle">
             <Button
+            style={{backgroundColor:"#0C9873",borderColor:"#0C9873"}}
               size="small"
               type="primary"
               onClick={() => showEditModal(storeHouse)}
@@ -178,7 +179,7 @@ export default function StoreHouseTable() {
   return (
     <div>
       <Button
-        style={{ marginTop: "20px" }}
+        style={{ marginTop: "20px",backgroundColor:"#0C9873",borderColor:"#0C9873" }}
         type="primary"
         onClick={showAddModal}
       >
@@ -228,7 +229,7 @@ export default function StoreHouseTable() {
           </Form.Item>
           <Form.Item>
             <Button
-              style={{ marginLeft: "50px" }}
+              style={{ marginLeft: "50px",backgroundColor:"#0C9873",borderColor:"#0C9873" }}
               icon={<SearchOutlined />}
               type="primary"
               htmlType="submit"
@@ -241,7 +242,7 @@ export default function StoreHouseTable() {
             <Button
               type="primary"
               htmlType="submit"
-              style={{ marginLeft: "70px" }}
+              style={{ marginLeft: "70px" ,backgroundColor:"#ff7400",borderColor:"#ff7400"}}
               onClick={onClear}
             >
               Təmizlə
@@ -290,7 +291,7 @@ export default function StoreHouseTable() {
         destroyOnClose={true}
         onCancel={handleCancel}
         footer={[
-          <Button danger onClick={handleCancel}>
+          <Button danger onClick={handleCancel} type="primary">
             Geri
           </Button>,
         ]}
@@ -308,7 +309,7 @@ export default function StoreHouseTable() {
         destroyOnClose={true}
         onCancel={handleCancel}
         footer={[
-          <Button danger onClick={handleCancel}>
+          <Button danger onClick={handleCancel} type="primary" >
             Geri
           </Button>,
         ]}
@@ -324,7 +325,7 @@ export default function StoreHouseTable() {
         visible={isSilModalVisible}
         onCancel={handleCancel}
         footer={[
-          <Button danger onClick={handleCancel}>
+          <Button danger onClick={handleCancel} type="primary">
             Geri
           </Button>,
         ]}

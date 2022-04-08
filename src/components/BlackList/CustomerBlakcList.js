@@ -69,7 +69,7 @@ export default function CustomerBlakcList() {
             </Option>
           ))}
         </Select>
-        <Button type="primary" onClick={addCustomerToBlackList}>
+        <Button type="primary" onClick={addCustomerToBlackList} style={{backgroundColor:"#0C9873",borderColor:"#0C9873"}}>
           Əlavə et
         </Button>
       </Space>

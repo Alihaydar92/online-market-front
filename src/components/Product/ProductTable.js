@@ -79,6 +79,7 @@ export default function ProductTable() {
         return (
           <Space size="middle">
             <Button
+            style={{backgroundColor:"#0C9873",borderColor:"#0C9873"}}
               size="small"
               type="primary"
               onClick={() => showEditModal(productData)}
@@ -94,7 +95,7 @@ export default function ProductTable() {
             </Button>
             <Button
               size="small"
-              type="danger"
+              type="primary"
               onClick={() => showImgPanel(productData.id)}
             >
               Şəkil
@@ -277,7 +278,7 @@ export default function ProductTable() {
             type="file"
           />
           <Button
-            style={{ marginLeft: "10px" }}
+            style={{ marginLeft: "10px",backgroundColor:"#0C9873",borderColor:"#0C9873" }}
             type="primary"
             onClick={onCreateExcel(pagination)}
             disabled={disabledSave}
@@ -288,7 +289,7 @@ export default function ProductTable() {
       </Row>
       <Row style={{ marginTop: "20px" }}>
         <Col>
-          <Button type="primary" onClick={showAddModal}>
+          <Button type="primary" onClick={showAddModal} style={{backgroundColor:"#0C9873",borderColor:"#0C9873"}}>
             Əlavə et
           </Button>
         </Col>
@@ -310,6 +311,7 @@ export default function ProductTable() {
           </Form.Item>
           <Form.Item>
             <Button
+            style={{backgroundColor:"#0C9873",borderColor:"#0C9873"}}
               icon={<SearchOutlined />}
               type="primary"
               htmlType="submit"
@@ -322,7 +324,7 @@ export default function ProductTable() {
             <Button
               type="primary"
               htmlType="submit"
-              style={{ left: "20px" }}
+              style={{ left: "20px" , backgroundColor:"#ff7400",borderColor:"#ff7400"}}
               onClick={onClear}
             >
               Təmizlə
@@ -366,7 +368,7 @@ export default function ProductTable() {
         destroyOnClose={true}
         onCancel={handleCancel}
         footer={[
-          <Button danger onClick={handleCancel}>
+          <Button danger onClick={handleCancel} type="primary">
             Geri
           </Button>,
         ]}
@@ -383,7 +385,7 @@ export default function ProductTable() {
         destroyOnClose={true}
         onCancel={handleCancel}
         footer={[
-          <Button danger onClick={handleCancel}>
+          <Button danger onClick={handleCancel} type="primary">
             Geri
           </Button>,
         ]}
@@ -399,7 +401,7 @@ export default function ProductTable() {
         visible={isSilModalVisible}
         onCancel={handleCancel}
         footer={[
-          <Button danger onClick={handleCancel}>
+          <Button danger onClick={handleCancel} type="primary">
             Geri
           </Button>,
         ]}
@@ -418,10 +420,10 @@ export default function ProductTable() {
         height={1000}
         footer={[
           <div>
-            <Button danger onClick={handleCancel}>
+            <Button danger onClick={handleCancel} type="primary">
               Geri
             </Button>
-            <Button danger onClick={onSaveImages}>
+            <Button type="primary"  onClick={onSaveImages} style={{backgroundColor:"#0C9873",borderColor:"#0C9873"}}>
               Yadda saxla
             </Button>
           </div>,

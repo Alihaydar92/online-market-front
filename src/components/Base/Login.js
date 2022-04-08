@@ -111,7 +111,7 @@ export default function Login() {
               span: 16,
             }}
           >
-            <Button type="primary" htmlType="submit" onClick={submitHandler}>
+            <Button type="primary" htmlType="submit" onClick={submitHandler} style={{backgroundColor:"#0C9873",borderColor:"#0C9873" }}>
               Daxil ol
             </Button>
           </Form.Item>

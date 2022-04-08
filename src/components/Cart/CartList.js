@@ -606,8 +606,9 @@ export default function CartList() {
               <Col className="gutter-row" span={7} offset={1}>
                 <Form.Item>
                   <Button
+                  style={{backgroundColor:"#0C9873",borderColor:"#0C9873"}}
                     disabled={disableForProAndCatCombo}
-                    danger
+                    
                     type="primary"
                     onClick={onClickForPropertyAndCategoryCombo}
                   >
@@ -716,8 +717,8 @@ export default function CartList() {
                   </Form>
                   <Form.Item wrapperCol={{ offset: 2 }}>
                     <Button
-                      style={{ width: "100%" }}
-                      type="warning"
+                      style={{ width: "100%",backgroundColor:"#0C9873",borderColor:"#0C9873" }}
+                      type="primary"
                       htmlType="submit"
                       onClick={() => handleToggleComplete(item)}
                     >

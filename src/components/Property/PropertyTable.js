@@ -25,6 +25,7 @@ export default function PropertyTable() {
           return (
             <Space size="middle">
               <Button
+              style={{backgroundColor:"#0C9873",borderColor:"#0C9873"}}
                 size="small"
                 type="primary"
                 onClick={() => showEditModal(propertyData)}
@@ -77,7 +78,7 @@ export default function PropertyTable() {
     return (
       <div>
         <Button
-          style={{ marginTop: "20px" }}
+          style={{ marginTop: "20px",backgroundColor:"#0C9873",borderColor:"#0C9873" }}
           type="primary"
           onClick={showAddModal}
         >
@@ -96,7 +97,7 @@ export default function PropertyTable() {
           destroyOnClose={true}
           onCancel={handleCancel}
           footer={[
-            <Button danger onClick={handleCancel}>
+            <Button danger onClick={handleCancel} type="primary">
               Geri
             </Button>,
           ]}
@@ -110,7 +111,7 @@ export default function PropertyTable() {
           destroyOnClose={true}
           onCancel={handleCancel}
           footer={[
-            <Button danger onClick={handleCancel}>
+            <Button danger onClick={handleCancel} type="primary">
               Geri
             </Button>,
           ]}
@@ -122,7 +123,7 @@ export default function PropertyTable() {
           visible={isSilModalVisible}
           onCancel={handleCancel}
           footer={[
-            <Button danger onClick={handleCancel}>
+            <Button danger onClick={handleCancel} type="primary">
               Geri
             </Button>,
           ]}

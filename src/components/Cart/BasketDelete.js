@@ -14,9 +14,9 @@ export default function BasketDelete(props) {
         <Form.Item label="Səbət məlumatını silməyə əminsinizmi?"></Form.Item>
         <Form.Item>
           <Button
-            type="submit"
+            type="primary"
             htmlType="submit"
-            style={{ position: "absolute", left: "320px", bottom: "-90px" }}
+            style={{ position: "absolute", left: "320px", bottom: "-90px",backgroundColor:"#0C9873",borderColor:"#0C9873" }}
             onClick={onDelete(props.basketIdProps)}
           >
             Bəli

@@ -60,6 +60,7 @@ export default function ExpeditorTable() {
         return (
           <Space size="middle">
             <Button
+            style={{backgroundColor:"#0C9873",borderColor:"#0C9873" }}
               size="small"
               type="primary"
               onClick={() => showEditModal(expeditorData)}
@@ -67,8 +68,10 @@ export default function ExpeditorTable() {
               Redaktə et
             </Button>
             <Button
+            danger
+            type="primary"
               size="small"
-              type="danger"
+              
               onClick={() => showRemoveModal(expeditorData.id)}
             >
               Sil
@@ -176,7 +179,7 @@ export default function ExpeditorTable() {
             type="file"
           />
           <Button
-            style={{ marginTop: "20px", marginLeft: "10px" }}
+            style={{ marginTop: "20px", marginLeft: "10px",backgroundColor:"#0C9873",borderColor:"#0C9873"  }}
             type="primary"
             onClick={onCreateExcel}
             disabled={disabledSave}
@@ -186,7 +189,7 @@ export default function ExpeditorTable() {
         </Space>
       </Row>
       <Button
-        style={{ marginTop: "20px" }}
+        style={{ marginTop: "20px",backgroundColor:"#0C9873",borderColor:"#0C9873"  }}
         type="primary"
         onClick={showAddModal}
       >
@@ -206,7 +209,7 @@ export default function ExpeditorTable() {
         destroyOnClose={true} 
         onCancel={handleCancel}
         footer={[
-          <Button danger onClick={handleCancel}>
+          <Button danger onClick={handleCancel} type="primary">
             Geri
           </Button>,
         ]}
@@ -219,7 +222,7 @@ export default function ExpeditorTable() {
         destroyOnClose={true} 
         onCancel={handleCancel}
         footer={[
-          <Button danger onClick={handleCancel}>
+          <Button danger onClick={handleCancel} type="primary">
             Geri
           </Button>,
         ]}
@@ -231,7 +234,7 @@ export default function ExpeditorTable() {
         visible={isSilModalVisible}
         onCancel={handleCancel}
         footer={[
-          <Button danger onClick={handleCancel}>
+          <Button danger onClick={handleCancel} type="primary">
             Geri
           </Button>,
         ]}

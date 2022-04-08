@@ -123,9 +123,9 @@ export default function ProductAdd(props) {
         </Form.Item>
         <Form.Item>
           <Button
-            type="submit"
+            type="primary"
             htmlType="submit"
-            style={{ position: "absolute", left: "320px", bottom: "-90px" }}
+            style={{ position: "absolute", left: "320px", bottom: "-90px" ,backgroundColor:"#0C9873",borderColor:"#0C9873"}}
             onClick={onCreate}
           >
             Əlavə et

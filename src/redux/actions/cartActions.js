@@ -41,7 +41,7 @@ export const endSale = (data) => (dispatch) => {
         payload: response.data,
       });
       dispatch(showAddedBasketItems());
-        notification["success"]({ message: response.data, description: "" });
+      notification["success"]({ message: response.data, description: "" });
       //   dispatch(listOfCategories());
     }
   });
@@ -69,6 +69,7 @@ export const clearBasket = () => (dispatch) => {
   });
 };
 export const updateBasket = (basketData) => (dispatch) => {
+  console.log("basket data in action: ", basketData);
   const axiosInstance = axios.create({
     baseURL: baseURL,
     auth: {
@@ -76,7 +77,7 @@ export const updateBasket = (basketData) => (dispatch) => {
       password: window.localStorage.getItem("password"),
     },
   });
-  axiosInstance.put("/carts/updatePrice",basketData).then((response) => {
+  axiosInstance.put("/carts/updatePrice", basketData).then((response) => {
     if (response.status === 200) {
       console.log("response updatebasket data ", response.data);
       dispatch({
@@ -98,7 +99,7 @@ export const deleteCart = (id) => (dispatch) => {
       password: window.localStorage.getItem("password"),
     },
   });
-  axiosInstance.delete("/carts/"+id).then((response) => {
+  axiosInstance.delete("/carts/" + id).then((response) => {
     if (response.status === 200) {
       console.log("response cart delete  data ", response.data);
       dispatch({
@@ -106,7 +107,7 @@ export const deleteCart = (id) => (dispatch) => {
         payload: response.data,
       });
       notification["success"]({ message: response.data, description: "" });
-        dispatch(showAddedBasketItems());
+      dispatch(showAddedBasketItems());
     }
   });
 };
@@ -121,7 +122,7 @@ export const showAddedBasketItems = () => (dispatch) => {
   });
 
   axiosInstance.get("/carts/user/1").then((response) => {
-    console.log(response.data)
+    console.log(response.data);
     if (response.status === 200) {
       dispatch({
         type: actionTypes.SHOW_BASKET_ITEMS,
@@ -130,5 +131,3 @@ export const showAddedBasketItems = () => (dispatch) => {
     }
   });
 };
-
-

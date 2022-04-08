@@ -87,11 +87,15 @@ qaimede bezi reqem hesablamalaridna yuvarlaqlasdirmaq
 
 cartlistde qiymet shrifte bir de nezer yetirmek 
 
-butun buttonlarin rengini teyyubun shatsapda atdigi kimi css-le etmek
+butun buttonlarin rengini teyyubun shatsapda atdigi kimi css-le etmek +++
 
 cart listde mehsul parametrlerini shekildeki kimi dizayn etmek+++
 
 watsap videoda deyildiyi cartlistde say qiymet inputlarini right to left etmek, sebete elave et buttonundan baslasin
+
+basket table-da  discount price artrimaq ve updatede nezere almaq
+
+sayim penceresinde elave et buttonunu aralasdirmaq +++
 
 ### sonra
 

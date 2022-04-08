@@ -70,9 +70,9 @@ export default function Basket() {
   };
 
   const editBasketData = (basketData) => {
-
     console.log(basketData);
     dispatch(updateBasket(basketData));
+    dispatch(showAddedBasketItems());
   };
 
   const columns = [
@@ -121,6 +121,46 @@ export default function Basket() {
       ),
     },
     {
+      title: "Güzəşt",
+      dataIndex: "discountPercent",
+      editable: true,
+      render: (text, record, index) => (
+        <InputNumber
+          defaultValue={text}
+          min={0}
+          max={100}
+          formatter={(value) => `${value}%`}
+          parser={(value) => value.replace("%", "")}
+          onChange={onInputDiscountPercent("discountPercent", index)}
+        />
+      ),
+    },
+    {
+      title: "Güzəştli qiyməti",
+      dataIndex: "discount",
+    
+      render: (text, record, index) => (
+        <InputNumber
+        defaultValue={text}
+          editable={false}
+          disabled={true}
+          formatter={(value) =>
+            // `${value}`.replace(/(\.\d{2})\d*/, "$1").replace(/(\d)(?=(\d{3})+\b)/g, "$1,")
+            parseFloat(value)
+              .toFixed(2)
+              .replace(/(\d)(?=(\d{2})+(?!\d))/g, "$1,")
+              .replace(".00", "")
+          }
+          parser={(value) =>
+            parseFloat(value)
+              .toFixed(2)
+              .replace(/(\d)(?=(\d{2})+(?!\d))/g, "$1,")
+              .replace(".00", "")
+          }
+        />
+      ),
+    },
+    {
       title: "Ümumi cəm",
       dataIndex: "totalPrice",
       render: (text, record, index) => (
@@ -142,7 +182,6 @@ export default function Basket() {
               .replace(/(\d)(?=(\d{2})+(?!\d))/g, "$1,")
               .replace(".00", "")
           }
-        
         />
       ),
     },
@@ -161,6 +200,7 @@ export default function Basket() {
               Sil
             </Button>
             <Button
+              style={{ backgroundColor: "#0C9873", borderColor: "#0C9873" }}
               size="small"
               type="primary"
               onClick={() => editBasketData(basketData)}
@@ -180,12 +220,20 @@ export default function Basket() {
 
     setBasketArray(newData);
   };
+
   const onInputPriceChange = (key, index) => (e) => {
     console.log(e);
     console.log(key);
 
     const newData = [...basketArray];
     newData[index].storeHouseDto[key] = Number(e);
+
+    setBasketArray(newData);
+  };
+
+  const onInputDiscountPercent = (key, index) => (e) => {
+    const newData = [...basketArray];
+    newData[index][key] = Number(e);
 
     setBasketArray(newData);
   };
@@ -359,6 +407,8 @@ export default function Basket() {
             type="primary"
             style={{
               marginBottom: 16,
+              backgroundColor: "#ff7400",
+              borderColor: "#ff7400",
             }}
           >
             Səbəti Təmizlə
@@ -370,6 +420,8 @@ export default function Basket() {
             type="primary"
             style={{
               marginBottom: 16,
+              backgroundColor: "#0C9873",
+              borderColor: "#0C9873",
             }}
           >
             Pdf-ə çap et
@@ -399,6 +451,8 @@ export default function Basket() {
             type="primary"
             style={{
               marginBottom: 16,
+              backgroundColor: "#0C9873",
+              borderColor: "#0C9873",
             }}
           >
             {/* <LeftSquareTwoTone style={{ fontSize: "50px", color: "#08c" }}/> */}
@@ -411,6 +465,8 @@ export default function Basket() {
             type="primary"
             style={{
               marginBottom: 16,
+              backgroundColor: "#0C9873",
+              borderColor: "#0C9873",
             }}
           >
             {/* <LeftSquareTwoTone style={{ fontSize: "50px", color: "#08c" }}/> */}
@@ -424,7 +480,7 @@ export default function Basket() {
         pagin
         onCancel={handleCancel}
         footer={[
-          <Button danger onClick={handleCancel}>
+          <Button danger onClick={handleCancel} type="primary">
             Geri
           </Button>,
         ]}
