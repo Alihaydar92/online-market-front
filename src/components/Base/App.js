@@ -29,7 +29,7 @@ import CartList from "../Cart/CartList";
 import Basket from "../Cart/Basket";
 import { useCookies } from "react-cookie";
 const { SubMenu } = Menu;
-const logo = require("../../helpers/greenstream.jpeg");
+const logo = require("../../helpers/greenStream.jpeg");
 const { Footer, Content } = Layout;
 
 export default function App() {

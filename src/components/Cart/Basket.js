@@ -24,8 +24,7 @@ import fontTxt from "../../helpers/fontRobotoBase64";
 import moment from "moment";
 import BasketDelete from "./BasketDelete";
 import TextArea from "antd/lib/input/TextArea";
-// const logo = require("../../helpers/greenStreamImg.jpeg");
-const logo = require("../../helpers/greenstream.jpeg");
+const logo = require("../../helpers/greenStream.jpeg");
 export default function Basket() {
   const dispatch = useDispatch();
   const [isSilModalVisible, setIsSilModalVisible] = useState(false);

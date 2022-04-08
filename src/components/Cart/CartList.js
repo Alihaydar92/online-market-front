@@ -12,6 +12,7 @@ import {
   Popover,
   Space,
   Input,
+  Divider,
 } from "antd";
 import { ClearOutlined } from "@ant-design/icons";
 import {
@@ -342,9 +343,9 @@ export default function CartList() {
     console.log(proId, catId);
     console.log(baseForm.getFieldsValue().product);
     if (cartSearchMode === "new") {
-      dispatch(getAllNewProducts(page,false));
+      dispatch(getAllNewProducts(page, false));
     } else if (cartSearchMode === "all") {
-      dispatch(getAllProducts(page,false));
+      dispatch(getAllProducts(page, false));
     } else {
       if (
         productParam !== "" &&
@@ -361,7 +362,6 @@ export default function CartList() {
       }
     }
 
-    
     setLoading(false);
   }, [page]);
   const onClickForPropertyAndCategoryCombo = () => {
@@ -391,13 +391,13 @@ export default function CartList() {
   const onClickNewProducts = () => {
     setPage(0);
     setCartSearchMode("new");
-    dispatch(getAllNewProducts(0,true));
+    dispatch(getAllNewProducts(0, true));
   };
- 
+
   const onClickAllProducts = () => {
     setPage(0);
     setCartSearchMode("all");
-    dispatch(getAllProducts(0,true));
+    dispatch(getAllProducts(0, true));
   };
 
   const changeProductInput = (e) => {
@@ -452,152 +452,170 @@ export default function CartList() {
     // style={{ height: "800px", overflowY: "auto" }}
     >
       <Row style={{ marginTop: "20px" }}>
-        <Col span={5} offset={8}>
+        <Col span={6} offset={8}>
           <Form
             form={baseForm}
             name="basic"
-            labelCol={{ span: 8 }}
-            wrapperCol={{ span: 16 }}
+            // labelCol={{ span: 8 }}
+            // wrapperCol={{ span: 16 }}
             autoComplete="off"
+            layout="inline"
             // onFinish={handleFinish}
           >
-            <Form.Item
-              label="Müştəri"
-              name="customer"
-              rules={[{ required: true, message: "Müştərini seçin!" }]}
-            >
-              <Select
-                onChange={onChangeCustomer}
-                // style={{ width: "300px" }}
-                showSearch
-                optionFilterProp="children"
-                filterOption={(input, option) => {
-                  return (
-                    option.props.children
-                      .toString()
-                      .toLowerCase()
-                      .indexOf(input.toLowerCase()) >= 0 ||
-                    option.props.value
-                      .toString()
-                      .toLowerCase()
-                      .indexOf(input.toLowerCase()) >= 0
-                  );
-                }}
-              >
-                {listOfCustomerByExpeditorId.map((customerData) => (
-                  <Option key={customerData.id} value={customerData.id}>
-                    {customerData.name}
-                  </Option>
-                ))}
-              </Select>
-            </Form.Item>
-            <Form.Item
-              label="Tip"
-              name="category"
-              rules={[{ required: false, message: "Tipi seçin!" }]}
-            >
-              <Select
-                disabled={disable}
-                onChange={onChangeCategory}
-                onFocus={onFocusCategory}
-                showSearch
-                allowClear={true}
-                optionFilterProp="children"
-                filterOption={(input, option) => {
-                  return (
-                    option.props.children
-                      .toString()
-                      .toLowerCase()
-                      .indexOf(input.toLowerCase()) >= 0 ||
-                    option.props.value
-                      .toString()
-                      .toLowerCase()
-                      .indexOf(input.toLowerCase()) >= 0
-                  );
-                }}
-              >
-                {listOfCategoryData.map((categoryData) => (
-                  <Option key={categoryData.id} value={categoryData.id}>
-                    {categoryData.name}
-                  </Option>
-                ))}
-              </Select>
-            </Form.Item>
-            <Form.Item
-              label="Xüsusiyyət"
-              name="property"
-              rules={[{ required: false, message: "Xüsusiyyəti seçin!" }]}
-            >
-              <Select
-                disabled={disableForProAndCatCombo}
-                // style={{ width: "300px" }}
-                onChange={onChangeProperty}
-                onFocus={onFocusProperty}
-                showSearch
-                allowClear={true}
-                optionFilterProp="children"
-                // onSearch={onSearchproperty}
-                filterOption={(input, option) => {
-                  return (
-                    option.props.children
-                      .toString()
-                      .toLowerCase()
-                      .indexOf(input.toLowerCase()) >= 0 ||
-                    option.props.value
-                      .toString()
-                      .toLowerCase()
-                      .indexOf(input.toLowerCase()) >= 0
-                  );
-                }}
-              >
-                {propertyDataByCategoryId.map((propertyData) => (
-                  <Option key={propertyData.id} value={propertyData.id}>
-                    {propertyData.name}
-                  </Option>
-                ))}
-              </Select>
-            </Form.Item>
-            <Form.Item
-              label="Məhsul"
-              name="product"
+            <Row gutter={24}>
+              <Col span={24}>Müştəri</Col>
+              <Col className="gutter-row" span={24}>
+                <Form.Item
+                  // label="Müştəri"
+                  name="customer"
+                  rules={[{ required: true, message: "Müştərini seçin!" }]}
+                >
+                  <Select
+                    onChange={onChangeCustomer}
+                    // style={{ width: "300px" }}
+                    showSearch
+                    optionFilterProp="children"
+                    filterOption={(input, option) => {
+                      return (
+                        option.props.children
+                          .toString()
+                          .toLowerCase()
+                          .indexOf(input.toLowerCase()) >= 0 ||
+                        option.props.value
+                          .toString()
+                          .toLowerCase()
+                          .indexOf(input.toLowerCase()) >= 0
+                      );
+                    }}
+                  >
+                    {listOfCustomerByExpeditorId.map((customerData) => (
+                      <Option key={customerData.id} value={customerData.id}>
+                        {customerData.name}
+                      </Option>
+                    ))}
+                  </Select>
+                </Form.Item>
+              </Col>
+              <Col span={16}>Tip</Col>
+              <Col className="gutter-row" span={16}>
+                <Form.Item
+                  // label="Tip"
+                  name="category"
+                  rules={[{ required: false, message: "Tipi seçin!" }]}
+                >
+                  <Select
+                    disabled={disable}
+                    onChange={onChangeCategory}
+                    onFocus={onFocusCategory}
+                    showSearch
+                    allowClear={true}
+                    optionFilterProp="children"
+                    filterOption={(input, option) => {
+                      return (
+                        option.props.children
+                          .toString()
+                          .toLowerCase()
+                          .indexOf(input.toLowerCase()) >= 0 ||
+                        option.props.value
+                          .toString()
+                          .toLowerCase()
+                          .indexOf(input.toLowerCase()) >= 0
+                      );
+                    }}
+                  >
+                    {listOfCategoryData.map((categoryData) => (
+                      <Option key={categoryData.id} value={categoryData.id}>
+                        {categoryData.name}
+                      </Option>
+                    ))}
+                  </Select>
+                </Form.Item>
+              </Col>
+              <Col className="gutter-row" span={8}>
+                <Form.Item>
+                  <Button
+                    disabled={disable}
+                    type="link"
+                    onClick={onClickNewProducts}
+                  >
+                    Yeni
+                  </Button>
+                </Form.Item>
+              </Col>
+              <Col span={16}>Xüsusiyyət</Col>
 
-              // rules={[{ required: true, message: "Məhsulu seçin!" }]}
-            >
-              <Input onChange={changeProductInput}></Input>
-            </Form.Item>
-            <Form.Item wrapperCol={{ offset: 8 }}>
-              <Button
-                disabled={disableForProAndCatCombo}
-                danger
-                type="primary"
-                onClick={onClickForPropertyAndCategoryCombo}
-              >
-                Axtar
-              </Button>
-            </Form.Item>
+              <Col className="gutter-row" span={16}>
+                <Form.Item
+                  // label="Xüsusiyyət"
+                  name="property"
+                  rules={[{ required: false, message: "Xüsusiyyəti seçin!" }]}
+                >
+                  <Select
+                    disabled={disableForProAndCatCombo}
+                    // style={{ width: "300px" }}
+                    onChange={onChangeProperty}
+                    onFocus={onFocusProperty}
+                    showSearch
+                    allowClear={true}
+                    optionFilterProp="children"
+                    // onSearch={onSearchproperty}
+                    filterOption={(input, option) => {
+                      return (
+                        option.props.children
+                          .toString()
+                          .toLowerCase()
+                          .indexOf(input.toLowerCase()) >= 0 ||
+                        option.props.value
+                          .toString()
+                          .toLowerCase()
+                          .indexOf(input.toLowerCase()) >= 0
+                      );
+                    }}
+                  >
+                    {propertyDataByCategoryId.map((propertyData) => (
+                      <Option key={propertyData.id} value={propertyData.id}>
+                        {propertyData.name}
+                      </Option>
+                    ))}
+                  </Select>
+                </Form.Item>
+              </Col>
+              <Col className="gutter-row" span={8}>
+                <Form.Item>
+                  <Button
+                    disabled={disable}
+                    type="link"
+                    onClick={onClickAllProducts}
+                  >
+                    Bütün
+                  </Button>
+                </Form.Item>
+              </Col>
 
-            <Form.Item wrapperCol={{ offset: 8 }}>
-              <Button
-                disabled={disable}
-                
-                type="link"
-                onClick={onClickNewProducts}
-              >
-                Yeni məhsullar
-              </Button>
-            </Form.Item>
+              <Col span={16}>Məhsul</Col>
+              <Col className="gutter-row" span={16}>
+                <Form.Item
+                  // label="Məhsul"
+                  name="product"
 
-            <Form.Item wrapperCol={{ offset: 8 }}>
-              
-              <Button
-                disabled={disable}
-                
-                type="link"
-                onClick={onClickAllProducts}
-              >
-                Bütün məhsullar
-              </Button>
-            </Form.Item>
+                  // rules={[{ required: true, message: "Məhsulu seçin!" }]}
+                >
+                  <Input onChange={changeProductInput}></Input>
+                </Form.Item>
+              </Col>
+              <Col className="gutter-row" span={7} offset={1}>
+                <Form.Item>
+                  <Button
+                    disabled={disableForProAndCatCombo}
+                    danger
+                    type="primary"
+                    onClick={onClickForPropertyAndCategoryCombo}
+                  >
+                    Axtar
+                  </Button>
+                </Form.Item>
+              </Col>
+            </Row>
           </Form>
 
           {listOfProductDataById.map((item, index) => {
@@ -638,9 +656,8 @@ export default function CartList() {
                     </h6>
                   </Row>
                   <Row>
-                   
-                 <h6>Qiymət:{" "}</h6>     
-                      <h4>
+                    <h6>Qiymət: </h6>
+                    <h4>
                       <b style={{ color: "red" }}>{item.sellPrice + " AZN"}</b>{" "}
                     </h4>
                   </Row>

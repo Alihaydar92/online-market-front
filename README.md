@@ -85,9 +85,13 @@ anbar page redaktede error verir(ola bilsin product list comboya dolmamis acilir
 
 qaimede bezi reqem hesablamalaridna yuvarlaqlasdirmaq
 
-cartlistde qiymet shrifte bir de nezer yetirmek
+cartlistde qiymet shrifte bir de nezer yetirmek 
 
 butun buttonlarin rengini teyyubun shatsapda atdigi kimi css-le etmek
+
+cart listde mehsul parametrlerini shekildeki kimi dizayn etmek+++
+
+watsap videoda deyildiyi cartlistde say qiymet inputlarini right to left etmek, sebete elave et buttonundan baslasin
 
 ### sonra
 

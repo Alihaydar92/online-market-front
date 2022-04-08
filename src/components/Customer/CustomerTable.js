@@ -41,6 +41,7 @@ export default function CustomerTable() {
         return (
           <Space size="middle">
             <Button
+             style={{ backgroundColor:"#0C9873",borderColor:"#0C9873" }}
               size="small"
               type="primary"
               onClick={() => showEditModal(customerData)}
@@ -146,7 +147,7 @@ export default function CustomerTable() {
   return (
     <div>
       <Button
-        style={{ marginTop: "20px" }}
+        style={{ marginTop: "20px",backgroundColor:"#0C9873",borderColor:"#0C9873" }}
         type="primary"
         onClick={showAddModal}
       >
@@ -169,6 +170,7 @@ export default function CustomerTable() {
 
           <Form.Item>
             <Button
+            style={{ backgroundColor:"#0C9873",borderColor:"#0C9873" }}
               icon={<SearchOutlined />}
               type="primary"
               htmlType="submit"
@@ -179,9 +181,10 @@ export default function CustomerTable() {
           </Form.Item>
           <Form.Item>
             <Button
+            style={{left: "20px" , backgroundColor:"#ff7400",borderColor:"#ff7400" }}
               type="primary"
               htmlType="submit"
-              style={{ left: "20px" }}
+          
               onClick={onClear}
             >
               Təmizlə
@@ -223,7 +226,7 @@ export default function CustomerTable() {
         destroyOnClose={true}
         onCancel={handleCancel}
         footer={[
-          <Button danger onClick={handleCancel}>
+          <Button danger onClick={handleCancel} type="primary">
             Geri
           </Button>,
         ]}
@@ -236,7 +239,7 @@ export default function CustomerTable() {
         destroyOnClose={true}
         onCancel={handleCancel}
         footer={[
-          <Button danger onClick={handleCancel}>
+          <Button danger onClick={handleCancel} type="primary">
             Geri
           </Button>,
         ]}
@@ -254,7 +257,7 @@ export default function CustomerTable() {
         pagin
         onCancel={handleCancel}
         footer={[
-          <Button danger onClick={handleCancel}>
+          <Button danger onClick={handleCancel} type="primary">
             Geri
           </Button>,
         ]}
