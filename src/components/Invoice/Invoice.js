@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Table, Form, Input, Button, Select } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { listOfInvoices } from "../../redux/actions/invoiceActions";
-
+import {fetchCustomers} from "../../redux/actions/customerAction"
 const { Option } = Select;
 export default function Invoice() {
   const dispatch = useDispatch();
@@ -11,7 +11,9 @@ export default function Invoice() {
     dispatch(listOfInvoices());
   }, [dispatch]);
 
- 
+  useEffect(() => {
+    dispatch(fetchCustomers());
+  }, [dispatch]);
 
   const listOfInvoiceData = useSelector(
     (state) => state.invoiceReducers?.invoiceListData
@@ -55,6 +57,7 @@ export default function Invoice() {
           <Select
             style={{ width: 200 }}
             // onChange={onChangeCustomer}
+            disabled={true}
             showSearch
             optionFilterProp="children"
             filterOption={(input, option) => {
@@ -71,41 +74,13 @@ export default function Invoice() {
             }}
           >
             {fetchCustomerData.map((customerData) => (
-            <Option key={customerData.id} value={customerData.id}>
-              {customerData.name}
-            </Option>
-          ))}
-          </Select>
-        </Form.Item>
-        <Form.Item
-          label="Satıcı"
-          name="expeditor"
-          rules={[{ required: false, message: "Satıcı adını daxil edin!" }]}
-        >
-          <Select
-            showSearch
-            style={{ width: 200 }}
-            optionFilterProp="children"
-            filterOption={(input, option) => {
-              return (
-                option.props.children
-                  .toString()
-                  .toLowerCase()
-                  .indexOf(input.toLowerCase()) >= 0 ||
-                option.props.value
-                  .toString()
-                  .toLowerCase()
-                  .indexOf(input.toLowerCase()) >= 0
-              );
-            }}
-          >
-            {listOfExpeditorData.map((expeditorData) => (
-              <Option key={expeditorData.id} value={expeditorData.id}>
-                {expeditorData.name}
+              <Option key={customerData.id} value={customerData.id}>
+                {customerData.name}
               </Option>
             ))}
           </Select>
         </Form.Item>
+
         <Form.Item
           label="Qaimə nömrəsi"
           name="invoiceNumber"
@@ -113,7 +88,20 @@ export default function Invoice() {
         >
           <Input />
         </Form.Item>
-
+        <Form.Item
+          label="Tarix aralığı"
+          name="dateRange"
+          rules={[{ required: false, message: "Tarix aralığını  daxil edin!" }]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="Məbləğ"
+          name="price"
+          rules={[{ required: false, message: "Tarix aralığını  daxil edin!" }]}
+        >
+          <Input />
+        </Form.Item>
         <Form.Item>
           <Button
             style={{ backgroundColor: "#0C9873", borderColor: "#0C9873" }}
