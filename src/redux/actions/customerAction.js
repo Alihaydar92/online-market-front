@@ -28,8 +28,6 @@ export const listOfCustomers = (page, pageSize) => (dispatch) => {
     });
 };
 export const fetchCustomers = () => (dispatch) => {
-
-
   const axiosInstance = axios.create({
     baseURL: baseURL,
     auth: {
@@ -38,14 +36,12 @@ export const fetchCustomers = () => (dispatch) => {
     },
   });
   //?page=" + (page - 1) + "&size=" + pageSize
-  axiosInstance
-    .get("/customers/fetch")
-    .then((response) => {
-      dispatch({
-        type: actionTypes.FETCH_CUSTOMERS,
-        payload: response.data,
-      });
+  axiosInstance.get("/customers/fetch").then((response) => {
+    dispatch({
+      type: actionTypes.FETCH_CUSTOMERS,
+      payload: response.data,
     });
+  });
 };
 export const getCustomerById = (id) => (dispatch) => {
   const axiosInstance = axios.create({
@@ -63,7 +59,8 @@ export const getCustomerById = (id) => (dispatch) => {
   });
 };
 export const getCustomerListByExpeditorId = (expeditorId) => (dispatch) => {
-  expeditorId = 6; //helelik elnen vermisem expeditor id-ni
+  // expeditorId = 6; //helelik elnen vermisem expeditor id-ni
+  console.log("expeditor id: ", expeditorId);
   const axiosInstance = axios.create({
     baseURL: baseURL,
     auth: {
@@ -78,6 +75,7 @@ export const getCustomerListByExpeditorId = (expeditorId) => (dispatch) => {
         type: actionTypes.GET_CUSTOMER_LIST_BY_EXPEDITOR_ID,
         payload: response.data,
       });
+      console.log("response.data customer list by expeditor id", response.data);
     });
 };
 export const addCustomer = (data, page, pageSize) => (dispatch) => {
@@ -175,5 +173,3 @@ export const searchCustomers = (customerData, page, pageSize) => (dispatch) => {
       }
     });
 };
-
-

@@ -22,6 +22,7 @@ import {
 import { listOfCategories } from "../../redux/actions/categoryActions";
 import { addCart } from "../../redux/actions/cartActions";
 import { getCustomerListByExpeditorId } from "../../redux/actions/customerAction";
+import { getExpeditorByUsername } from "../../redux/actions/expeditorActions";
 import {
   getProductListByPropertyId,
   getProductListByCategoryId,
@@ -52,7 +53,6 @@ export default function CartList() {
   const [loading, setLoading] = useState(false);
   const [visibleState, setVisibleState] = useState({ visible: false });
   const [formKey, setFormKey] = useState(Number(0));
-  const [cookies, setCookie] = useCookies(["customerCookieId"]);
   const [proId, setProId] = useState(undefined);
   const [catId, setCatId] = useState(undefined);
   const [productParam, setProductParam] = useState();
@@ -64,20 +64,23 @@ export default function CartList() {
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(getCustomerListByExpeditorId());
+    dispatch(getExpeditorByUsername(window.localStorage.getItem("username")));
+    // dispatch(getCustomerListByExpeditorId());
   }, [dispatch]);
 
   useEffect(() => {
-    console.log(cookies.customerCookieId);
+    console.log(window.localStorage.getItem("customerId"));
     baseForm.setFieldsValue({
       customer:
-        cookies.customerCookieId === undefined
+        window.localStorage.getItem("customerId") === undefined ||
+        window.localStorage.getItem("customerId") === 0 ||
+        window.localStorage.getItem("customerId") === null
           ? null
-          : Number(cookies.customerCookieId),
+          : Number(window.localStorage.getItem("customerId")),
     });
-    setCustomerId(cookies.customerCookieId);
+    setCustomerId(window.localStorage.getItem("customerId"));
     setDisable(false);
-  }, [baseForm, cookies]);
+  }, [baseForm]);
 
   const listOfPropertyData = useSelector(
     (state) => state.propertyReducers?.propertyListData
@@ -160,7 +163,8 @@ export default function CartList() {
   const onChangeCustomer = (value) => {
     setDisable(false);
     setCustomerId(value);
-    setCookie("customerCookieId", value);
+
+    window.localStorage.setItem("customerId", value);
   };
   var countDataJS = null;
   var customerSellPriceDataJs = null;
@@ -236,7 +240,7 @@ export default function CartList() {
     productItemJs.storeHouseDto.id = productItem.id;
     // productItemJs.storeHouseDto.price = 0; //heleki 0 gonderilir sonra duzelecek
 
-    basketItemJs.sellerId = 6;
+    basketItemJs.sellerId = window.localStorage.getItem("expeditorId");
     basketItemJs.customerId = customerId;
 
     for (var i = 0; i < countDataList.length; i++) {
@@ -606,9 +610,11 @@ export default function CartList() {
               <Col className="gutter-row" span={7} offset={1}>
                 <Form.Item>
                   <Button
-                  style={{backgroundColor:"#0C9873",borderColor:"#0C9873"}}
+                    style={{
+                      backgroundColor: "#0C9873",
+                      borderColor: "#0C9873",
+                    }}
                     disabled={disableForProAndCatCombo}
-                    
                     type="primary"
                     onClick={onClickForPropertyAndCategoryCombo}
                   >
@@ -691,7 +697,7 @@ export default function CartList() {
                     autoComplete="off"
                     key={formKey}
                   >
-                    <Form.Item label="Say">
+                    <Form.Item label="Say"  labelCol={{offset:12}}>
                       <InputNumber
                         onChange={(e) => handleCountChange(e, item)}
                         defaultValue={0}
@@ -699,7 +705,7 @@ export default function CartList() {
                       ></InputNumber>
                     </Form.Item>
 
-                    <Form.Item label="Digər qiymətlər">
+                    <Form.Item label="Digər qiymətlər" labelCol={{offset:5}}>
                       <InputNumber
                         onChange={(e) => handleOtherPriceChange(e, item)}
                         defaultValue={0}
@@ -707,7 +713,7 @@ export default function CartList() {
                       ></InputNumber>
                     </Form.Item>
 
-                    <Form.Item label="Müştəri satış qiyməti">
+                    <Form.Item label="Müştəri satış qiyməti" labelCol={{offset:2}}>
                       <InputNumber
                         onChange={(e) => handleCustomerSellPriceChange(e, item)}
                         defaultValue={0}
@@ -715,9 +721,13 @@ export default function CartList() {
                       ></InputNumber>
                     </Form.Item>
                   </Form>
-                  <Form.Item wrapperCol={{ offset: 2 }}>
+                  <Form.Item wrapperCol={{ offset: 1 }}>
                     <Button
-                      style={{ width: "100%",backgroundColor:"#0C9873",borderColor:"#0C9873" }}
+                      style={{
+                        width: "100%",
+                        backgroundColor: "#0C9873",
+                        borderColor: "#0C9873",
+                      }}
                       type="primary"
                       htmlType="submit"
                       onClick={() => handleToggleComplete(item)}

@@ -227,3 +227,25 @@ qaimede mebleg cem ve yekunu yuvarlaqlasdirmaq ( vergulden sonra 2 reqem)+++
 basketde umumi cem kesr to fixed problem+++
 
 basketde deyishikliyi tesdiqleyende gonderilen pricede tofixed problemi+++
+
+sayim penceresinde elave et buttonunu aralasdirmaq +++
+
+cartlistde qiymet shrifte bir de nezer yetirmek +++
+
+butun buttonlarin rengini teyyubun shatsapda atdigi kimi css-le etmek +++
+
+cart listde mehsul parametrlerini shekildeki kimi dizayn etmek+++
+
+basket table-da  discount price artrimaq ve updatede nezere almaq +++
+
+qaimede barkodun uzunlugu max 13 simvoldu ona uygun columun uzunlugunu teyinq etmek +++
+
+qaimede expeditor dinamic etmek +++
+
+secilmis musterini cokiide saxlayirdim, kecirdim localstorageye+++
+
+watsap videoda deyildiyi cartlistde say qiymet inputlarini right to left etmek, sebete elave et buttonundan baslasin +++
+
+qaime cedvelde guzestli qiymeti ve guzesti dimaic gostermek+++
+
+qaimede meblegi say ve qiymetin hasili ile gostermek+++

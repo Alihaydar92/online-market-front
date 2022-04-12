@@ -120,8 +120,8 @@ export const showAddedBasketItems = () => (dispatch) => {
       password: window.localStorage.getItem("password"),
     },
   });
-
-  axiosInstance.get("/carts/user/1").then((response) => {
+console.log("window.localStorage.getItem expeditor id :  ",window.localStorage.getItem("expeditorId"))
+  axiosInstance.get("/carts/user/"+window.localStorage.getItem("expeditorId")).then((response) => {
     console.log(response.data);
     if (response.status === 200) {
       dispatch({

@@ -1,8 +1,8 @@
 import * as actionTypes from "./actionTypes";
 import axios from "axios";
-
+import { getCustomerListByExpeditorId } from "../../redux/actions/customerAction";
 import { showLoader, hideLoader } from "../actions/loaderActions";
-import {notification} from "antd"
+import { notification } from "antd";
 const baseURL = process.env.REACT_APP_BACKEND_URL;
 export const listOfExpeditors = () => (dispatch) => {
   const axiosInstance = axios.create({
@@ -11,9 +11,7 @@ export const listOfExpeditors = () => (dispatch) => {
       username: window.localStorage.getItem("username"),
       password: window.localStorage.getItem("password"),
     },
-    
-  }
-  );
+  });
   axiosInstance.get("/sellers").then((response) => {
     dispatch({
       type: actionTypes.LIST_OF_EXPEDITORS,
@@ -28,9 +26,7 @@ export const getExpeditorById = (id) => (dispatch) => {
       username: window.localStorage.getItem("username"),
       password: window.localStorage.getItem("password"),
     },
-    
-  }
-  );
+  });
   axiosInstance.get("/sellers/" + id).then((response) => {
     dispatch({
       type: actionTypes.GET_EXPEDITOR_BY_ID,
@@ -46,9 +42,7 @@ export const addExpeditor = (data) => (dispatch) => {
       username: window.localStorage.getItem("username"),
       password: window.localStorage.getItem("password"),
     },
-    
-  }
-  );
+  });
   console.log("add customer ", data);
   axiosInstance.post("/sellers", data).then((response) => {
     if (response.status === 200) {
@@ -69,9 +63,7 @@ export const updateExpeditor = (data) => (dispatch) => {
       username: window.localStorage.getItem("username"),
       password: window.localStorage.getItem("password"),
     },
-    
-  }
-  );
+  });
   axiosInstance.put("/sellers/" + data.id, data).then((response) => {
     if (response.status === 200) {
       dispatch({
@@ -90,9 +82,7 @@ export const deleteExpeditor = (id) => (dispatch) => {
       username: window.localStorage.getItem("username"),
       password: window.localStorage.getItem("password"),
     },
-    
-  }
-  );
+  });
   axiosInstance.delete("/sellers/" + id).then((response) => {
     if (response.status === 200) {
       dispatch({
@@ -111,9 +101,7 @@ export const addExpeditorExcel = (data) => (dispatch) => {
       username: window.localStorage.getItem("username"),
       password: window.localStorage.getItem("password"),
     },
-    
-  }
-  );
+  });
   dispatch(showLoader());
   axiosInstance.post("/sellers/excel", data).then((response) => {
     if (response.status === 200) {
@@ -122,8 +110,29 @@ export const addExpeditorExcel = (data) => (dispatch) => {
         payload: response.data,
       });
       dispatch(hideLoader());
-      notification['success']({message:response.data,description:''})
+      notification["success"]({ message: response.data, description: "" });
       dispatch(listOfExpeditors());
+    }
+  });
+};
+export const getExpeditorByUsername = (username) => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+  });
+  axiosInstance.get("/sellers/username/" + username).then((response) => {
+    if (response.status === 200) {
+      dispatch({
+        type: actionTypes.GET_EXPEDITOR_BY_USERNAME,
+        payload: response.data,
+      });
+      console.log("username: ", username);
+      console.log("response expeditor: ", response.data);
+      window.localStorage.setItem("expeditorId",response.data)
+      dispatch(getCustomerListByExpeditorId(response.data));
     }
   });
 };

@@ -47,8 +47,11 @@ export default function Basket() {
   useEffect(() => {
     setBasketArray(basketItems);
     console.log(basketItems);
-  }, [basketItems]);
+  }, [basketItems, basketArray]);
 
+  useEffect(() => {
+    console.log(basketArray);
+  }, [basketArray]);
   const EDVPersent = 0.18;
   const EDV = Number(
     Math.round(basketAllData?.grandTotal * EDVPersent * 100) / 100
@@ -138,10 +141,10 @@ export default function Basket() {
     {
       title: "Güzəştli qiyməti",
       dataIndex: "discount",
-    
+
       render: (text, record, index) => (
         <InputNumber
-        defaultValue={text}
+          defaultValue={text}
           editable={false}
           disabled={true}
           formatter={(value) =>
@@ -288,12 +291,15 @@ export default function Basket() {
       var temp = [
         index + 1,
         element.storeHouseDto.barcode,
+
         element.storeHouseDto.productDto.name,
         element.quantity,
         element.storeHouseDto.sellPrice.toFixed(2),
-        "0",
-        "0%",
-        "0%",
+        (
+          Number(element.quantity) * Number(element.storeHouseDto.sellPrice)
+        ).toFixed(2),
+        element.discountPercent + " %",
+        element.discount,
         element.totalPrice,
       ];
 
@@ -323,8 +329,8 @@ export default function Basket() {
       },
       columnStyles: {
         0: { cellWidth: 8 },
-        1: { cellWidth: 27 },
-        2: { cellWidth: 45 },
+        1: { cellWidth: 32 },
+        2: { cellWidth: 40 },
         3: { cellWidth: 14 },
         4: { cellWidth: 16 },
         5: { cellWidth: 20 },
