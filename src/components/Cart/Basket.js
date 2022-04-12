@@ -302,8 +302,10 @@ export default function Basket() {
         element.discount,
         element.totalPrice,
       ];
-
-      rows.push(temp);
+if(element.quantity!==0){
+  rows.push(temp);
+}
+      
     });
     pdf.autoTable({
       head: [col],
