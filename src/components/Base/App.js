@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Layout, Menu, Affix, Badge,Image } from "antd";
+import { Layout, Menu, Affix, Badge, Image } from "antd";
 import {
   Route,
   Routes,
@@ -28,6 +28,7 @@ import {
 import CartList from "../Cart/CartList";
 import Basket from "../Cart/Basket";
 import { useCookies } from "react-cookie";
+import Invoice from "../Invoice/Invoice";
 const { SubMenu } = Menu;
 const logo = require("../../helpers/greenStream.jpeg");
 const { Footer, Content } = Layout;
@@ -63,8 +64,14 @@ export default function App() {
               style={{ borderRight: 0, height: "100%" }}
             >
               <Menu.Item>
-              <Image width={150} height={45} alt="logo" src={String(logo)} preview={false} />
-            </Menu.Item>
+                <Image
+                  width={150}
+                  height={45}
+                  alt="logo"
+                  src={String(logo)}
+                  preview={false}
+                />
+              </Menu.Item>
               <Menu.Item key="101">
                 {
                   {
@@ -80,6 +87,7 @@ export default function App() {
                     "/numerate": <h3>Sayım</h3>,
                     "/numerateResult": <h3>Sayım nəticəsi</h3>,
                     "/customerBlackList": <h3>Qara siyahı</h3>,
+                    "/invoice": <h3>Qaimə</h3>,
                   }[location.pathname]
                 }
               </Menu.Item>
@@ -122,6 +130,9 @@ export default function App() {
                 </Menu.Item>
                 <Menu.Item key="15">
                   <Link to="customerBlackList">Qara siyahı</Link>
+                </Menu.Item>
+                <Menu.Item key="16">
+                  <Link to="invoice">Qaimə</Link>
                 </Menu.Item>
               </SubMenu>
 
@@ -168,6 +179,7 @@ export default function App() {
                 <Route path="basket" element={<Basket />} />
                 <Route path="numerate" element={<Numerate />} />
                 <Route path="numerateResult" element={<NumerateResult />} />
+                <Route path="invoice" element={<Invoice />} />
                 <Route
                   path="customerBlackList"
                   element={<CustomerBlakcList />}

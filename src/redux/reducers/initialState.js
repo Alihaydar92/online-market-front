@@ -53,4 +53,6 @@ export default {
   loading: false,
 
   showBlackListData: [],
+
+  invoiceListData:[]
 };

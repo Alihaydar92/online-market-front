@@ -95,3 +95,7 @@ export const SHOW_BASKET_ITEMS = "SHOW_BASKET_ITEMS";
 //black list
 export const ADD_BLACK_LIST_CUSTOMER = "ADD_BLACK_LIST_CUSTOMER";
 export const SHOW_BLACK_LIST = "SHOW_BLACK_LIST";
+
+//incvoice
+
+export const LIST_OF_INVOICES = "LIST_OF_INVOICES";
