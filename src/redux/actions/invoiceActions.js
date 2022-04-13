@@ -16,3 +16,20 @@ export const listOfInvoices = () => (dispatch) => {
     });
   });
 };
+
+
+export const getInvoiceById = (invoiceId) => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+  });
+  axiosInstance.get("/invoices/"+invoiceId+"/invoiceItems").then((response) => {
+    dispatch({
+      type: actionTypes.GET_INVOICE_BY_ID,
+      payload: response.data,
+    });
+  });
+};

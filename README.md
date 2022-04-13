@@ -87,6 +87,8 @@ qaimede bezi reqem hesablamalarina yuvarlaqlasdirmaq
 
 basket data updateden sonra refresh
 
+qaimede row selectionda invoices items-i cagirmaq ve basqa sahede gostermek
+
 ### sonra
 
 label-larin textlerini file-dan oxumaq

@@ -17,8 +17,12 @@
   .ant-pagination-options-size-changer.ant-select{
     display: none !important;
   }
-  
+ 
 
+  .ant-table-tbody >.tableRowColor > td {
+  
+    color: red;
+}
   /* .ant-checkbox-inner {
     width: 35px;
     height: 35px;

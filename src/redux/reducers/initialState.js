@@ -17,7 +17,7 @@ export default {
 
   productListData: [],
   productListDataByPage: {},
-  productListDataById:[],
+  productListDataById: [],
   totalPages: Number(),
   totalItems: Number(),
   productDataById: {},
@@ -41,7 +41,7 @@ export default {
 
   storeHouseListData: [],
   storeHouseCountCombo: [],
-  storeHouseNumerateResult:{},
+  storeHouseNumerateResult: {},
   storeHouseDataById: {},
   listOfQuantities: [],
 
@@ -54,5 +54,6 @@ export default {
 
   showBlackListData: [],
 
-  invoiceListData:[]
+  invoiceListData: [],
+  invoiceListDataById: [],
 };

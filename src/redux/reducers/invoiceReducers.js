@@ -9,6 +9,12 @@ export default function invoiceReducers(state = initialState, action) {
         invoiceListData: action.payload,
       };
     }
+    case actionTypes.GET_INVOICE_BY_ID: {
+      return {
+        ...state,
+        invoiceListDataById: action.payload,
+      };
+    }
 
     default:
       return state;
