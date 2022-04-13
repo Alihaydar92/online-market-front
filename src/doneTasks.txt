@@ -249,3 +249,11 @@ watsap videoda deyildiyi cartlistde say qiymet inputlarini right to left etmek, 
 qaime cedvelde guzestli qiymeti ve guzesti dimaic gostermek+++
 
 qaimede meblegi say ve qiymetin hasili ile gostermek+++
+
+qaimede cedvel klikinde acilan popupda pdf export (clicklenmish setir melumatlari en ustde , popupdaki melumatlar ise cedvel sheklinde pdfde gorunecek)+++
+
+qaimede row selectionda invoices items-i cagirmaq ve basqa sahede gostermek+++
+
+qaimede pdf export+++
+
+qaime table sort +++

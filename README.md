@@ -87,13 +87,15 @@ qaimede bezi reqem hesablamalarina yuvarlaqlasdirmaq
 
 basket data updateden sonra refresh
 
-qaimede row selectionda invoices items-i cagirmaq ve basqa sahede gostermek
+qaimede excel export (veya download)
+
+qaime yekun mebleg cemini hesablamaq ve exportda nezere almaq
 
 ### sonra
 
 label-larin textlerini file-dan oxumaq
 
-daxil olan userin(expeditor) musteri siyahisi verilcek
+daxil olan userin(expeditor) musteri siyahisi verilecek
 
 login olduqdan sonra user id-ye gore seller cagirilacaq (hem de goruntude gosterilecek)
 
