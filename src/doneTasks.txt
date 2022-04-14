@@ -257,3 +257,13 @@ qaimede row selectionda invoices items-i cagirmaq ve basqa sahede gostermek+++
 qaimede pdf export+++
 
 qaime table sort +++
+
+qaimede excel export (veya download)+++
+
+invoicede elave olunacaq sutunlar grandtotal,catnumber,createdat+++
+
+invoice-de qaimeleri basketdeki skeletdeki kimi olacaq +++
+
+qaimeye artiq qaime nomresi de vurulacaq+++
+
+qaimede bezi reqem hesablamalarina yuvarlaqlasdirmaq+++

@@ -83,19 +83,10 @@ yalniz satisda sebete elave ederken sebet isaresi gorsenir ,sonra itir
 
 anbar page redaktede error verir(ola bilsin product list comboya dolmamis acilir)
 
-qaimede bezi reqem hesablamalarina yuvarlaqlasdirmaq
+qaime yekun mebleg cemini hesablamaq ve exportda nezere almaq
 
 basket data updateden sonra refresh
 
-qaimede excel export (veya download)
-
-qaime yekun mebleg cemini hesablamaq ve exportda nezere almaq
-
-invoicede elave olunacaq sutunlar grandtotal,catnumber,createdat+++
-
-invoice-de qaimeleri basketdeki skeletdeki kimi olacaq +++
-
-qaimeye artiq qaime nomresi de vurulacaq+++
 ### sonra
 
 label-larin textlerini file-dan oxumaq

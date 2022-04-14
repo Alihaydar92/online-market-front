@@ -40,10 +40,7 @@ export const getInvoiceById = (invoiceId) => (dispatch) => {
     });
 };
 
-export const exportPdf = (
-  arrayData,
-  objectData,
-) => {
+export const exportPdf = (arrayData, objectData) => {
   const EDVPersent = 0.18;
   const EDV = Number(
     Math.round(objectData?.grandTotal * EDVPersent * 100) / 100
@@ -70,7 +67,9 @@ export const exportPdf = (
   pdf.line(15, 34, 195, 34);
   pdf.text("Satış", 195, 15, { align: "right" });
   pdf.text("Ofis: " + "055 203-60-10", 195, 30, { align: "right" });
-  pdf.text("Qaimə nömrə : " + objectData?.cartNumber, 195, 40, { align: "right" });
+  pdf.text("Qaimə nömrə : " + objectData?.cartNumber, 195, 40, {
+    align: "right",
+  });
   /////
   pdf.text(15, 50, "Alıcı: ");
   pdf.text(45, 50, objectData?.customerDto?.name);
@@ -163,16 +162,17 @@ export const exportPdf = (
   pdf.line(150, finalY + 11, 195, finalY + 11);
 
   pdf.text(45, finalY + 20, "ƏDV");
-  pdf.text(170, finalY + 20, EDV.toString());
+  pdf.text(170, finalY + 20, EDV.toFixed(2));
   pdf.line(150, finalY + 21, 195, finalY + 21);
   pdf.text(45, finalY + 30, "Məbləğ Cəm");
-  pdf.text(170, finalY + 30, objectData?.grandTotal.toString());
+  pdf.text(170, finalY + 30, objectData?.grandTotal.toFixed(2));
   pdf.line(150, finalY + 31, 195, finalY + 31);
   pdf.text(45, finalY + 40, "Yekun");
-  pdf.text(170, finalY + 40, finalPrice.toString());
+  pdf.text(170, finalY + 40, finalPrice.toFixed(2));
   pdf.line(150, finalY + 41, 195, finalY + 41);
   pdf.text(45, finalY + 50, "Kontragentin qalıq borcu");
-  pdf.text(170, finalY + 50, "1000");
+  pdf.text(170, finalY + 50, objectData?.customerDto?.dept.toFixed(2));
+
   pdf.line(150, finalY + 51, 195, finalY + 51);
 
   pdf.setLineDash([2, 2], 0);
@@ -189,10 +189,7 @@ export const exportPdf = (
   pdf.text("Imza", 165, finalY + 93);
   pdf.save("Qaimə");
 };
-export const exportPdfOnlyGrid = (
-  col,
-  rows
-) => {
+export const exportPdfOnlyGrid = (col, rows) => {
   var callAddFont = function () {
     this.addFileToVFS("Roboto-Regular-normal.ttf", fontTxt);
     this.addFont("Roboto-Regular-normal.ttf", "Roboto-Regular", "normal");
@@ -206,7 +203,7 @@ export const exportPdfOnlyGrid = (
   pdf.setFont("Roboto-Regular");
   pdf.setFontSize(12);
   /////////////////////////cedvel
-  
+
   pdf.autoTable({
     head: [col],
     body: rows,
@@ -229,7 +226,6 @@ export const exportPdfOnlyGrid = (
       lineColor: [0, 0, 0],
       lineWidth: 0.5,
     },
-   
   });
   pdf.save("Qaimə");
 };
