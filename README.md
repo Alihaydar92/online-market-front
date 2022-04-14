@@ -93,9 +93,9 @@ qaime yekun mebleg cemini hesablamaq ve exportda nezere almaq
 
 invoicede elave olunacaq sutunlar grandtotal,catnumber,createdat+++
 
-invoice-de qaimeleri basketdeki skeletdeki kimi olacaq 
+invoice-de qaimeleri basketdeki skeletdeki kimi olacaq +++
 
-qaimeye artiq qaime nomresi de vurulacaq
+qaimeye artiq qaime nomresi de vurulacaq+++
 ### sonra
 
 label-larin textlerini file-dan oxumaq

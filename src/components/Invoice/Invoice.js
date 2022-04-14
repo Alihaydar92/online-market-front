@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Table, Form, Input, Button, Select, Col, Row, Modal } from "antd";
 import { useDispatch, useSelector } from "react-redux";
+import moment from "moment";
 import {
   listOfInvoices,
   getInvoiceById,
-  exportPdfOnlyGrid
+  exportPdfOnlyGrid,
 } from "../../redux/actions/invoiceActions";
 import { fetchCustomers } from "../../redux/actions/customerAction";
 import InvoiceShowModal from "./InvoiceShowModal";
+import { Excel } from "antd-table-saveas-excel";
 const { Option } = Select;
 export default function Invoice() {
   const dispatch = useDispatch();
@@ -48,6 +50,7 @@ export default function Invoice() {
       dataIndex: "createdAt",
       sorter: (a, b) => a.createdAt.localeCompare(b.createdAt),
       sortDirections: ["descend", "ascend"],
+      render: (text) => moment(text).format("DD.MM.YYYY"),
     },
     {
       title: "Yekun məbləğ",
@@ -74,7 +77,6 @@ export default function Invoice() {
   };
 
   const pdfExport = () => {
-   
     var col = ["№", "Qaimə nömrəsi", "Əlavə olunma tarixi", "Yekun məbləğ"];
     var rows = [];
     console.log(listOfInvoiceData);
@@ -83,15 +85,23 @@ export default function Invoice() {
       var temp = [
         index + 1,
         element.cartNumber,
-        element.createdAt,
+        moment(element.createdAt).format("DD.MM.YYYY"),
         element.grandTotal,
       ];
 
       rows.push(temp);
     });
-   
-    dispatch(exportPdfOnlyGrid(col,rows))
-   
+
+    dispatch(exportPdfOnlyGrid(col, rows));
+  };
+
+  const excelExport = () => {
+    const excel = new Excel();
+    excel
+      .addSheet("test")
+      .addColumns(invoicesListColumns)
+      .addDataSource(listOfInvoiceData)
+      .saveAs("Qaimə.xlsx");
   };
   return (
     <div>
@@ -170,6 +180,19 @@ export default function Invoice() {
             onClick={pdfExport}
           >
             Pdf-ə export
+          </Button>
+        </Form.Item>
+        <Form.Item>
+          <Button
+            type="primary"
+            htmlType="submit"
+            style={{
+              backgroundColor: "#0C9873",
+              borderColor: "#0C9873",
+            }}
+            onClick={excelExport}
+          >
+            Excel-ə export
           </Button>
         </Form.Item>
       </Form>
