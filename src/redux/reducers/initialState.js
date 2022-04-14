@@ -55,5 +55,6 @@ export default {
   showBlackListData: [],
 
   invoiceListData: [],
-  invoiceListDataById: [],
+  invoiceItemsById: [],
+  invoiceAllData: {},
 };
