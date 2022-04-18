@@ -18,12 +18,11 @@ export default function cartReducers(state = initialState, action) {
         basketAllData: action.payload,
       };
     }
-    // case actionTypes.END_SALE:{
-    //   return {
-    //     addBasketItems:null,
-    //     basketAllData:null
-    //   }
-    // }
+    case actionTypes.END_SALE:{
+      return {
+        endSaleReturnData:action.payload,
+      }
+    }
 
     default:
       return state;

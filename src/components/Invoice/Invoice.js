@@ -1,5 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Table, Form, Input, Button, Select, Typography, Modal } from "antd";
+import {
+  Table,
+  Form,
+  Input,
+  Button,
+  Select,
+  Typography,
+  Modal,
+  InputNumber,
+} from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import {
@@ -10,6 +19,7 @@ import {
 import { fetchCustomers } from "../../redux/actions/customerAction";
 import InvoiceShowModal from "./InvoiceShowModal";
 import { Excel } from "antd-table-saveas-excel";
+import { NumberFilter } from "ag-grid-community";
 const { Option } = Select;
 const { Text } = Typography;
 export default function Invoice() {
@@ -18,6 +28,7 @@ export default function Invoice() {
   const [rowIndex, setRowIndex] = useState();
   const [isModalVisible, setIsModalVisible] = useState();
   const [invoiceBaseData, setInvoiceBaseData] = useState();
+  const [pagination, setPagination] = useState({ page: 1, pageSize: 15 });
   useEffect(() => {
     dispatch(listOfInvoices());
   }, [dispatch]);
@@ -26,272 +37,10 @@ export default function Invoice() {
     dispatch(fetchCustomers());
   }, [dispatch]);
 
-  // const listOfInvoiceData = useSelector(
-  //   (state) => state.invoiceReducers?.invoiceListData
-  // );
-  const listOfInvoiceData = [
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(12),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(88),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-    {
-      grandTotal: Number(11),
-    },
-  ];
+  const listOfInvoiceData = useSelector(
+    (state) => state.invoiceReducers?.invoiceListData
+  );
+
   const fetchCustomerData = useSelector(
     (state) => state.customerReducer?.fetchCustomerData
   );
@@ -321,6 +70,11 @@ export default function Invoice() {
       sorter: {
         compare: (a, b) => a.grandTotal - b.grandTotal,
         // multiple: 2,
+      },
+      type: "float",
+      sortType: "asFloat", // you just need to add this
+      convert: function (value, model) {
+        return parseFloat(Math.round(value * 100) / 100).toFixed(2);
       },
     },
   ];
@@ -463,9 +217,20 @@ export default function Invoice() {
       <Table
         scroll={{ y: 530 }}
         style={{ marginTop: "20px", wordBreak: "break-word" }}
-        dataSource={listOfInvoiceData}
+        dataSource={listOfInvoiceData?.pages}
         columns={invoicesListColumns}
         rowKey="invoiceListKey"
+        pagination={{
+          defaultCurrent: 1,
+          current: listOfInvoiceData?.currentPage + 1,
+          pageSize: listOfInvoiceData?.pageSize,
+          total: listOfInvoiceData?.totalItems,
+          onChange: (page, pageSize) => {
+            setPagination({ page, pageSize });
+
+            // dispatch(listOfInvoices(page, pageSize));
+          },
+        }}
         onRow={(record, rowIndex) => {
           return {
             onClick: () => {
@@ -491,14 +256,17 @@ export default function Invoice() {
               <Table.Summary.Row>
                 <Table.Summary.Cell>Cəm</Table.Summary.Cell>
                 <Table.Summary.Cell>
-                <Text type="danger">{"Səhifə cəm/ümumi cəm"}</Text>
+                  <Text type="danger">{"Səhifə cəm / ümumi cəm"}</Text>
                 </Table.Summary.Cell>
                 <Table.Summary.Cell>
-                <Text type="danger">{totalOfGrandTotal.toString().concat("/").concat("999")}</Text>
+                  <Text type="danger">
+                    {totalOfGrandTotal
+                      .toString()
+                      .concat("/")
+                      .concat(listOfInvoiceData.total)}
+                  </Text>
                 </Table.Summary.Cell>
               </Table.Summary.Row>
-              
-           
             </>
           );
         }}

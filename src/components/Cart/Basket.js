@@ -20,7 +20,7 @@ import {
 } from "../../redux/actions/cartActions";
 import BasketDelete from "./BasketDelete";
 import TextArea from "antd/lib/input/TextArea";
-import {exportPdf} from "../../redux/actions/invoiceActions"
+import { exportPdf } from "../../redux/actions/invoiceActions";
 export default function Basket() {
   const dispatch = useDispatch();
   const [isSilModalVisible, setIsSilModalVisible] = useState(false);
@@ -32,10 +32,16 @@ export default function Basket() {
   const basketAllData = useSelector(
     (state) => state.cartReducers?.basketAllData
   );
+  const endSaleBasketReturnData = useSelector(
+    (state) => state.cartReducers?.endSaleReturnData
+  );
   const [basketArray, setBasketArray] = useState();
   useEffect(() => {
     dispatch(showAddedBasketItems());
   }, [dispatch]);
+  useEffect(() => {
+    console.log(endSaleBasketReturnData);
+  }, [endSaleBasketReturnData]);
   useEffect(() => {
     console.log(basketItems);
   }, [basketItems]);
@@ -48,7 +54,6 @@ export default function Basket() {
   useEffect(() => {
     console.log(basketArray);
   }, [basketArray]);
- 
 
   const handleClear = () => {
     dispatch(clearBasket());
@@ -231,7 +236,7 @@ export default function Basket() {
     setBasketArray(newData);
   };
   const openPdf = () => {
-    dispatch(exportPdf(basketArray,basketAllData))
+    dispatch(exportPdf(basketArray, basketAllData));
   };
   const endSales = () => {
     var endSalesData = new Object();
@@ -252,7 +257,7 @@ export default function Basket() {
     console.log(basketArray);
 
     console.log(endSalesData);
-
+    // exportPdf(endSaleBasketReturnData)
     dispatch(endSale(endSalesData));
   };
   const onChangeNote = (note) => [
@@ -277,12 +282,14 @@ export default function Basket() {
         </Col>
         <Col span={2} offset={20}>
           <Button
+         
             onClick={openPdf}
             type="primary"
             style={{
               marginBottom: 16,
               backgroundColor: "#0C9873",
               borderColor: "#0C9873",
+              display:'none'
             }}
           >
             Pdf-ə çap et

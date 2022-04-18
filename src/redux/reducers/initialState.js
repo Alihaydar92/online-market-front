@@ -49,12 +49,13 @@ export default {
   basketGrandTotal: "",
   addBasketItems: [],
   basketAllData: {},
+  endSaleReturnData: [],
 
   loading: false,
 
   showBlackListData: [],
 
-  invoiceListData: [],
+  invoiceListData: {},
   invoiceItemsById: [],
   invoiceAllData: {},
 };

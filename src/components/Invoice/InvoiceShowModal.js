@@ -1,7 +1,8 @@
-import React from "react";
-import { Button, Form, Input, Table, Typography } from "antd";
+import React, { useEffect, useState } from "react";
+import { Button, Form, Input, Table, Typography, Space, Image } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { exportPdf } from "../../redux/actions/invoiceActions";
+import { getProductImagesByProductId } from "../../redux/actions/productActions";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import fontTxt from "../../helpers/fontRobotoBase64";
@@ -11,10 +12,17 @@ const { Text } = Typography;
 export default function InvoiceShowModal(props) {
   const [form] = Form.useForm();
   const dispatch = useDispatch();
+  const [visible, setVisible] = useState(false);
   const invoicesDataById = useSelector(
     (state) => state.invoiceReducers?.invoiceItemsById
   );
+  const imgsByProductId = useSelector(
+    (state) => state.productReducers?.productImagesDataByProductId
+  );
 
+  useEffect(() => {
+    console.log(imgsByProductId);
+  }, [imgsByProductId]);
   const invoicesByIdColumns = [
     {
       title: "Barkod",
@@ -34,7 +42,7 @@ export default function InvoiceShowModal(props) {
     },
     {
       title: "Məbləğ",
-      dataIndex: "",
+      dataIndex: "amount",
     },
     {
       title: "Güzəşt",
@@ -48,10 +56,36 @@ export default function InvoiceShowModal(props) {
       title: "Cəmi",
       dataIndex: "totalPrice",
     },
+    {
+      title: "Şəkil",
+      dataIndex: "operation",
+
+      render: (text, productData) => {
+        return (
+          <Space size="middle">
+            <Button
+              size="small"
+              type="primary"
+              onClick={() =>
+                showImgPanel(productData.storeHouseDto.productDto.id)
+              }
+            >
+              Şəkil
+            </Button>
+          </Space>
+        );
+      },
+    },
   ];
 
   const pdfExport = () => {
     dispatch(exportPdf(invoicesDataById, props?.invoiceBaseDataProps));
+  };
+
+  const showImgPanel = (productId) => {
+    console.log(productId);
+    dispatch(getProductImagesByProductId(productId));
+    setVisible(true);
   };
   return (
     <div>
@@ -100,8 +134,24 @@ export default function InvoiceShowModal(props) {
         }}
         onClick={pdfExport}
       >
-        Pdf-ə export
+        Pdf-ə exports
       </Button>
+
+      {imgsByProductId?.images?.map((image, index) => (
+        <Image
+          style={{ display: "none" }}
+          src={image["content"]}
+          width={200}
+          height={200}
+          preview={{
+            visible,
+            src: image["content"],
+            onVisibleChange: (value) => {
+              setVisible(value);
+            },
+          }}
+        />
+      ))}
     </div>
   );
 }
