@@ -124,14 +124,14 @@ export default function Invoice() {
     <div>
       <Form layout={"inline"} form={form} style={{ marginTop: "20px" }}>
         <Form.Item
-          label="Müştəri"
-          name="customer"
+          label="Qaimə tipi"
+          name="invoiceType"
           rules={[{ required: false, message: "Müştəri adını daxil edin!" }]}
         >
           <Select
             style={{ width: 200 }}
             // onChange={onChangeCustomer}
-            disabled={true}
+
             showSearch
             optionFilterProp="children"
             filterOption={(input, option) => {
@@ -147,11 +147,12 @@ export default function Invoice() {
               );
             }}
           >
-            {fetchCustomerData.map((customerData) => (
-              <Option key={customerData.id} value={customerData.id}>
-                {customerData.name}
-              </Option>
-            ))}
+            <Option key={0} value={0}>
+              {"Satış"}
+            </Option>
+            <Option key={1} value={1}>
+              {"Qaytarma"}
+            </Option>
           </Select>
         </Form.Item>
 
@@ -163,9 +164,20 @@ export default function Invoice() {
           <Input />
         </Form.Item>
         <Form.Item
-          label="Tarix aralığı"
+          label="Başlama tarixi"
           name="dateRange"
-          rules={[{ required: false, message: "Tarix aralığını  daxil edin!" }]}
+          rules={[
+            { required: false, message: "Başlama tarixini  daxil edin!" },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="Bitmə tarixi"
+          name="dateRange"
+          rules={[
+            { required: false, message: "Başlama tarixini  daxil edin!" },
+          ]}
         >
           <Input />
         </Form.Item>

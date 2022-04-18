@@ -97,6 +97,8 @@ invoice listi paging ile etmek+++
 
 qaime klikinde acilan modalda sekile bax emeliyyatini yazmaq
 
+qaimede meblege daxil olarken telefonda ancaq reqem acilsin
+
 ### sonra
 
 label-larin textlerini file-dan oxumaq
