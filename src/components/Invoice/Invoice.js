@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Table, Form, Input, Button, Select, Col, Row, Modal } from "antd";
+import { Table, Form, Input, Button, Select, Typography, Modal } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import {
@@ -11,6 +11,7 @@ import { fetchCustomers } from "../../redux/actions/customerAction";
 import InvoiceShowModal from "./InvoiceShowModal";
 import { Excel } from "antd-table-saveas-excel";
 const { Option } = Select;
+const { Text } = Typography;
 export default function Invoice() {
   const dispatch = useDispatch();
   const [form] = Form.useForm();
@@ -25,10 +26,272 @@ export default function Invoice() {
     dispatch(fetchCustomers());
   }, [dispatch]);
 
-  const listOfInvoiceData = useSelector(
-    (state) => state.invoiceReducers?.invoiceListData
-  );
-
+  // const listOfInvoiceData = useSelector(
+  //   (state) => state.invoiceReducers?.invoiceListData
+  // );
+  const listOfInvoiceData = [
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(12),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(88),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+    {
+      grandTotal: Number(11),
+    },
+  ];
   const fetchCustomerData = useSelector(
     (state) => state.customerReducer?.fetchCustomerData
   );
@@ -216,6 +479,29 @@ export default function Invoice() {
         rowClassName={(record, index) =>
           index === rowIndex ? "tableRowColor" : ""
         }
+        summary={(pageData) => {
+          let totalOfGrandTotal = 0;
+
+          pageData.forEach(({ grandTotal }) => {
+            totalOfGrandTotal += grandTotal;
+          });
+
+          return (
+            <>
+              <Table.Summary.Row>
+                <Table.Summary.Cell>Cəm</Table.Summary.Cell>
+                <Table.Summary.Cell>
+                <Text type="danger">{"Səhifə cəm/ümumi cəm"}</Text>
+                </Table.Summary.Cell>
+                <Table.Summary.Cell>
+                <Text type="danger">{totalOfGrandTotal.toString().concat("/").concat("999")}</Text>
+                </Table.Summary.Cell>
+              </Table.Summary.Row>
+              
+           
+            </>
+          );
+        }}
       ></Table>
 
       <Modal

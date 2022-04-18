@@ -100,10 +100,10 @@ export const exportPdf = (arrayData, objectData) => {
     console.log(element);
     var temp = [
       index + 1,
-      element.storeHouseDto.barcode,
-      element.storeHouseDto.productDto.name,
+      element.storeHouseDto?.barcode,
+      element.storeHouseDto?.productDto?.name,
       element.quantity,
-      element.storeHouseDto.sellPrice.toFixed(2),
+      element.storeHouseDto?.sellPrice?.toFixed(2),
       (
         Number(element.quantity) * Number(element.storeHouseDto.sellPrice)
       ).toFixed(2),
@@ -158,20 +158,20 @@ export const exportPdf = (arrayData, objectData) => {
   /////////////////////////////
   pdf.setDrawColor(0, 0, 0);
   pdf.text(45, finalY + 10, "Məbləğ");
-  pdf.text(170, finalY + 10, totalPrice.toFixed(2));
+  pdf.text(170, finalY + 10, totalPrice?.toFixed(2));
   pdf.line(150, finalY + 11, 195, finalY + 11);
 
   pdf.text(45, finalY + 20, "ƏDV");
   pdf.text(170, finalY + 20, EDV.toFixed(2));
   pdf.line(150, finalY + 21, 195, finalY + 21);
   pdf.text(45, finalY + 30, "Məbləğ Cəm");
-  pdf.text(170, finalY + 30, objectData?.grandTotal.toFixed(2));
+  pdf.text(170, finalY + 30, objectData?.grandTotal?.toFixed(2));
   pdf.line(150, finalY + 31, 195, finalY + 31);
   pdf.text(45, finalY + 40, "Yekun");
   pdf.text(170, finalY + 40, finalPrice.toFixed(2));
   pdf.line(150, finalY + 41, 195, finalY + 41);
   pdf.text(45, finalY + 50, "Kontragentin qalıq borcu");
-  pdf.text(170, finalY + 50, objectData?.customerDto?.dept.toFixed(2));
+  pdf.text(170, finalY + 50, objectData?.customerDto?.dept?.toFixed(2));
 
   pdf.line(150, finalY + 51, 195, finalY + 51);
 
@@ -209,7 +209,6 @@ export const exportPdfOnlyGrid = (col, rows) => {
     body: rows,
     startY: 30,
     theme: "grid",
-
     headStyles: {
       textColor: [0, 0, 0],
       lineColor: [0, 0, 0],

@@ -56,7 +56,7 @@ export default function InvoiceShowModal(props) {
   return (
     <div>
       <Table
-      bordered
+        bordered
         // scroll={{ y: 530 }}
         // style={{ marginTop: "20px", wordBreak: "break-word" }}
         dataSource={invoicesDataById}
@@ -73,25 +73,13 @@ export default function InvoiceShowModal(props) {
           return (
             <>
               <Table.Summary.Row>
-                <Table.Summary.Cell>Total</Table.Summary.Cell>
-                <Table.Summary.Cell>
-                  
-                </Table.Summary.Cell>
-                <Table.Summary.Cell>
-                  
-                </Table.Summary.Cell>
-                <Table.Summary.Cell>
-                  
-                </Table.Summary.Cell>
-                <Table.Summary.Cell>
-                 
-                </Table.Summary.Cell>
-                <Table.Summary.Cell>
-                 
-                 </Table.Summary.Cell>
-                 <Table.Summary.Cell>
-                 
-                 </Table.Summary.Cell>
+                <Table.Summary.Cell>Cəm</Table.Summary.Cell>
+                <Table.Summary.Cell></Table.Summary.Cell>
+                <Table.Summary.Cell></Table.Summary.Cell>
+                <Table.Summary.Cell></Table.Summary.Cell>
+                <Table.Summary.Cell></Table.Summary.Cell>
+                <Table.Summary.Cell></Table.Summary.Cell>
+                <Table.Summary.Cell></Table.Summary.Cell>
                 <Table.Summary.Cell>
                   <Text type="danger">{totalBorrow}</Text>
                 </Table.Summary.Cell>

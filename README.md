@@ -87,6 +87,10 @@ qaime yekun mebleg cemini hesablamaq ve exportda nezere almaq
 
 basket data updateden sonra refresh
 
+qaime pagede yekun mebleg ve hemin sehifedeki yekun meblegin cemi
+
+qaime page klikinde acilan tablede mebleg columunu action yada reducerde hesablayib yeni deyisene vaermek ve cedvel gostermek
+
 ### sonra
 
 label-larin textlerini file-dan oxumaq
