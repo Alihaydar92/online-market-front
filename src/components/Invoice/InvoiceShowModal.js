@@ -1,5 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Button, Form, Input, Table, Typography, Space, Image } from "antd";
+import {
+  Button,
+  Form,
+  Input,
+  Table,
+  Typography,
+  Space,
+  Image,
+  InputNumber,
+} from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { exportPdf } from "../../redux/actions/invoiceActions";
 import { getProductImagesByProductId } from "../../redux/actions/productActions";
@@ -13,13 +22,16 @@ export default function InvoiceShowModal(props) {
   const [form] = Form.useForm();
   const dispatch = useDispatch();
   const [visible, setVisible] = useState(false);
+  const [invoicesStateData, setInvoicesStateData] = useState();
   const invoicesDataById = useSelector(
     (state) => state.invoiceReducers?.invoiceItemsById
   );
   const imgsByProductId = useSelector(
     (state) => state.productReducers?.productImagesDataByProductId
   );
-
+  useEffect(() => {
+    setInvoicesStateData(invoicesDataById);
+  }, [invoicesDataById, invoicesStateData]);
   useEffect(() => {
     console.log(imgsByProductId);
   }, [imgsByProductId]);
@@ -35,6 +47,13 @@ export default function InvoiceShowModal(props) {
     {
       title: "Say",
       dataIndex: "quantity",
+      editable: true,
+      render: (text, record, index) => (
+        <InputNumber
+          value={text}
+          onChange={onInputQuantityChange("quantity", index)}
+        />
+      ),
     },
     {
       title: "Qiyməti",
@@ -77,9 +96,16 @@ export default function InvoiceShowModal(props) {
       },
     },
   ];
+  const onInputQuantityChange = (key, index) => (e) => {
+    console.log(e);
+    console.log(key);
+    const newData = [...invoicesStateData];
+    newData[index][key] = Number(e);
 
+    setInvoicesStateData(newData);
+  };
   const pdfExport = () => {
-    dispatch(exportPdf(invoicesDataById, props?.invoiceBaseDataProps));
+    dispatch(exportPdf(invoicesStateData, props?.invoiceBaseDataProps));
   };
 
   const showImgPanel = (productId) => {

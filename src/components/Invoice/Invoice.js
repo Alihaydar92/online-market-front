@@ -268,10 +268,20 @@ export default function Invoice() {
               <Table.Summary.Row>
                 <Table.Summary.Cell>Cəm</Table.Summary.Cell>
                 <Table.Summary.Cell>
-                  <Text type="danger">{"Səhifə cəm / ümumi cəm"}</Text>
+                  <Text
+                    style={{
+                      color: "#0C9873",
+                    }}
+                  >
+                    {"Səhifə cəm / ümumi cəm"}
+                  </Text>
                 </Table.Summary.Cell>
                 <Table.Summary.Cell>
-                  <Text type="danger">
+                  <Text
+                    style={{
+                      color: "#0C9873",
+                    }}
+                  >
                     {totalOfGrandTotal
                       .toString()
                       .concat("/")

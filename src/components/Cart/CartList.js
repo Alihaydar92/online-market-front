@@ -695,10 +695,15 @@ export default function CartList() {
                     labelCol={{ span: 9 }}
                     wrapperCol={{ span: 16 }}
                     autoComplete="off"
+                    layout="vertical"
                     key={formKey}
                     // labelAlign={"right"}
                   >
-                    <Form.Item label="Say"  wrapperCol={{offset:0}} labelCol={{ offset:16 }}>
+                    <Form.Item
+                      label="Say"
+                      wrapperCol={{ offset: 16 }}
+                      labelCol={{ offset: 16 }}
+                    >
                       <InputNumber
                         onChange={(e) => handleCountChange(e, item)}
                         defaultValue={0}
@@ -706,7 +711,11 @@ export default function CartList() {
                       ></InputNumber>
                     </Form.Item>
 
-                    <Form.Item label="Digər qiymətlər" wrapperCol={{offset:0}} labelCol={{ offset:12 }}>
+                    <Form.Item
+                      label="Digər qiymətlər"
+                      wrapperCol={{ offset: 16 }}
+                      labelCol={{ offset: 16 }}
+                    >
                       <InputNumber
                         onChange={(e) => handleOtherPriceChange(e, item)}
                         defaultValue={0}
@@ -714,7 +723,11 @@ export default function CartList() {
                       ></InputNumber>
                     </Form.Item>
 
-                    <Form.Item label="Müştəri satış qiyməti" wrapperCol={{offset:0}} labelCol={{ offset:10 }}>
+                    <Form.Item
+                      label="Müştəri satış qiyməti"
+                      wrapperCol={{ offset: 16 }}
+                      labelCol={{ offset: 16 }}
+                    >
                       <InputNumber
                         onChange={(e) => handleCustomerSellPriceChange(e, item)}
                         defaultValue={0}

@@ -87,17 +87,17 @@ qaime yekun mebleg cemini hesablamaq ve exportda nezere almaq
 
 basket data updateden sonra refresh
 
-qaime pagede yekun mebleg ve hemin sehifedeki yekun meblegin cemi (cemi teyyub verir yerlesddir)+++
-
-qaime page klikinde acilan tablede mebleg columunu action yada reducerde hesablayib yeni deyisene vaermek ve cedvel gostermek (teyyub bunu etdi adi amount)+++
-
-sebetde pdf-e cap et emeliyyatini satisi yekunlasdir duymesinin altinda  da cagirmaq (repsonsu teyyub yazdi bunu pedfe gondermek ,id null deyilse gondermek,nuldudsa error cixarmaq)+++
-
-invoice listi paging ile etmek+++
-
 qaime klikinde acilan modalda sekile bax emeliyyatini yazmaq
 
 qaimede meblege daxil olarken telefonda ancaq reqem acilsin
+
+qaimede sehife cem umimi cem rengi yasil olsun , to fixed problemi 
+
+satisda say qiymet dizaynlarina yeniden baxmaq
+
+qaimede klikinde sayi input etmek
+
+qaime klikinde sayi input etdikden sonra mebleg ve cemin hesablamisini da nezere almaq( backendde ve ya frontda)
 
 ### sonra
 

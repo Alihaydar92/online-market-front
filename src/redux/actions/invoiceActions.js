@@ -104,9 +104,10 @@ export const exportPdf = (arrayData, objectData) => {
       element.storeHouseDto?.productDto?.name,
       element.quantity,
       element.storeHouseDto?.sellPrice?.toFixed(2),
-      (
-        Number(element.quantity) * Number(element.storeHouseDto.sellPrice)
-      ).toFixed(2),
+      // (
+      //   Number(element.quantity) * Number(element.storeHouseDto.sellPrice)
+      // ).toFixed(2),
+      element?.amount?.toFixed(2),
       element.discountPercent + " %",
       element.discount,
       element.totalPrice,
