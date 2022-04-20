@@ -15,6 +15,7 @@ export const listOfInvoices = () => (dispatch) => {
     },
   });
   axiosInstance.get("/invoices", {}).then((response) => {
+    console.log(response.data);
     dispatch({
       type: actionTypes.LIST_OF_INVOICES,
       payload: response.data,
@@ -35,6 +36,27 @@ export const getInvoiceById = (invoiceId) => (dispatch) => {
     .then((response) => {
       dispatch({
         type: actionTypes.GET_INVOICE_BY_ID,
+        payload: response.data,
+      });
+    });
+};
+
+export const getInvoicesByParams = (invoiceNum) => (dispatch) => {
+  var invoiceParams = {};
+  invoiceParams.invoiceNumber = invoiceNum;
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+  });
+  axiosInstance
+    .get("/invoices/params", { params: invoiceParams })
+    .then((response) => {
+      console.log(response.data);
+      dispatch({
+        type: actionTypes.LIST_OF_INVOICES,
         payload: response.data,
       });
     });

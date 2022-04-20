@@ -15,6 +15,7 @@ import {
   listOfInvoices,
   getInvoiceById,
   exportPdfOnlyGrid,
+  getInvoicesByParams,
 } from "../../redux/actions/invoiceActions";
 import { fetchCustomers } from "../../redux/actions/customerAction";
 import InvoiceShowModal from "./InvoiceShowModal";
@@ -120,6 +121,17 @@ export default function Invoice() {
       .addDataSource(listOfInvoiceData)
       .saveAs("Qaimə.xlsx");
   };
+
+  const onSearchInvoices = () => {
+    form
+      .validateFields()
+      .then((values) => {
+        if (values.invoiceNumber !== undefined) {
+          dispatch(getInvoicesByParams(values.invoiceNumber));
+        }
+      })
+      .catch((err) => {}, []);
+  };
   return (
     <div>
       <Form layout={"inline"} form={form} style={{ marginTop: "20px" }}>
@@ -192,7 +204,7 @@ export default function Invoice() {
           <Button
             style={{ backgroundColor: "#0C9873", borderColor: "#0C9873" }}
             // disabled={userSysInfoAddButtonDisable}
-            // onClick={onAddUserSysInfo}
+            onClick={onSearchInvoices}
             type="primary"
           >
             Axtar
