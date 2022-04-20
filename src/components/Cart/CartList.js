@@ -641,6 +641,7 @@ export default function CartList() {
                     marginTop: "10px",
                     overflowWrap: "break-word",
                     minWidth: 300,
+                    // width:450
                   }}
                   key="cardList"
                 >
@@ -648,106 +649,118 @@ export default function CartList() {
                     <h4>
                       <b style={{ color: "red" }}>{item.isNew ? "Yeni" : ""}</b>
                     </h4>
-                  </Row>
-                  <Image
-                    width="100%"
-                    preview={true}
-                    alt="logo"
-                    // src={String(logo)}
-                    src={
-                      item.image === null
-                        ? String(logo)
-                        : `data:image/jpeg;base64,${item.image}`
-                    }
-                  />
-                  <Row style={{ overflowWrap: "break-word" }}>
-                    <h6 style={{ overflowWrap: "break-word" }}>
-                      Məhsul: {item.name}
-                    </h6>
+                    <Image
+                      width="100%"
+                      preview={true}
+                      alt="logo"
+                      // src={String(logo)}
+                      src={
+                        item.image === null
+                          ? String(logo)
+                          : `data:image/jpeg;base64,${item.image}`
+                      }
+                    />
                   </Row>
                   <Row>
-                    <h6>Barkod: {item.barcode}</h6>
-                  </Row>
-                  <Row>
-                    <h6>
-                      Anbardakı sayı:{" "}
-                      <b style={{ color: "red" }}>{item.quantity}</b>
-                    </h6>
-                  </Row>
-                  <Row>
-                    <h6>Qiymət: </h6>
-                    <h4>
-                      <b style={{ color: "red" }}>{item.sellPrice + " AZN"}</b>{" "}
-                    </h4>
-                  </Row>
-                  <Row>
-                    {" "}
-                    <h6>
-                      Qeyd:
-                      <Popover
-                        content={item.note}
-                        // title="Title"
-                        trigger="click"
-                        visible={visibleState.visible}
-                        onVisibleChange={handleVisibleChange}
+                    <Col span={12}>
+                      <Row></Row>
+
+                      <Row style={{ overflowWrap: "break-word" }}>
+                        <h6 style={{ overflowWrap: "break-word" }}>
+                          Məhsul: {item.name}
+                        </h6>
+                      </Row>
+                      <Row>
+                        <h6>Barkod: {item.barcode}</h6>
+                      </Row>
+                      <Row>
+                        <h6>
+                          Anbardakı sayı:{" "}
+                          <b style={{ color: "red" }}>{item.quantity}</b>
+                        </h6>
+                      </Row>
+                      <Row>
+                        <h6>Qiymət: </h6>
+                        <h4>
+                          <b style={{ color: "red" }}>
+                            {item.sellPrice + " AZN"}
+                          </b>{" "}
+                        </h4>
+                      </Row>
+                      <Row>
+                        {" "}
+                        <h6>
+                          Qeyd:
+                          <Popover
+                            content={item.note}
+                            // title="Title"
+                            trigger="click"
+                            visible={visibleState.visible}
+                            onVisibleChange={handleVisibleChange}
+                          >
+                            <Button
+                              disabled={item.note === null}
+                              onClick={hide}
+                              type="primary"
+                            >
+                              Bax
+                            </Button>
+                          </Popover>
+                        </h6>
+                      </Row>
+                    </Col>
+                    <Col span={12}>
+                      <Form
+                        form={topForm}
+                        name="priceForm"
+                        labelCol={{ span: 9 }}
+                        wrapperCol={{ span: 16 }}
+                        autoComplete="off"
+                        // layout="vertical"
+                        key={formKey}
+                        // labelAlign={"right"}
                       >
-                        <Button
-                          disabled={item.note === null}
-                          onClick={hide}
-                          type="primary"
+                        <Form.Item
+                          label="Say"
+                          wrapperCol={{ offset:6 }}
+                          labelCol={{ offset: 6 }}
                         >
-                          Bax
-                        </Button>
-                      </Popover>
-                    </h6>
+                          <InputNumber
+                            onChange={(e) => handleCountChange(e, item)}
+                            defaultValue={0}
+                            min={0}
+                          ></InputNumber>
+                        </Form.Item>
+
+                        <Form.Item
+                          label="Digər qiymətlər"
+                          wrapperCol={{ offset:6 }}
+                          labelCol={{ offset: 6 }}
+                        >
+                          <InputNumber
+                            onChange={(e) => handleOtherPriceChange(e, item)}
+                            defaultValue={0}
+                            min={0}
+                          ></InputNumber>
+                        </Form.Item>
+
+                        <Form.Item
+                          label="Müştəri S/Qiy"
+                          wrapperCol={{ offset:6 }}
+                          labelCol={{ offset: 6 }}
+                        >
+                          <InputNumber
+                            onChange={(e) =>
+                              handleCustomerSellPriceChange(e, item)
+                            }
+                            defaultValue={0}
+                            min={0}
+                          ></InputNumber>
+                        </Form.Item>
+                      </Form>
+                    </Col>
                   </Row>
-                  <Form
-                    form={topForm}
-                    name="priceForm"
-                    labelCol={{ span: 9 }}
-                    wrapperCol={{ span: 16 }}
-                    autoComplete="off"
-                    layout="vertical"
-                    key={formKey}
-                    // labelAlign={"right"}
-                  >
-                    <Form.Item
-                      label="Say"
-                      wrapperCol={{ offset: 16 }}
-                      labelCol={{ offset: 16 }}
-                    >
-                      <InputNumber
-                        onChange={(e) => handleCountChange(e, item)}
-                        defaultValue={0}
-                        min={0}
-                      ></InputNumber>
-                    </Form.Item>
-
-                    <Form.Item
-                      label="Digər qiymətlər"
-                      wrapperCol={{ offset: 16 }}
-                      labelCol={{ offset: 16 }}
-                    >
-                      <InputNumber
-                        onChange={(e) => handleOtherPriceChange(e, item)}
-                        defaultValue={0}
-                        min={0}
-                      ></InputNumber>
-                    </Form.Item>
-
-                    <Form.Item
-                      label="Müştəri satış qiyməti"
-                      wrapperCol={{ offset: 16 }}
-                      labelCol={{ offset: 16 }}
-                    >
-                      <InputNumber
-                        onChange={(e) => handleCustomerSellPriceChange(e, item)}
-                        defaultValue={0}
-                        min={0}
-                      ></InputNumber>
-                    </Form.Item>
-                  </Form>
-                  <Form.Item wrapperCol={{ offset: 1 }}>
+                  <Row>
                     <Button
                       style={{
                         width: "100%",
@@ -760,7 +773,10 @@ export default function CartList() {
                     >
                       {item.isComplete ? "Səbətdən sil" : "Səbətə əlavə et"}
                     </Button>
-                  </Form.Item>
+                  </Row>
+                  {/* <Form.Item wrapperCol={{ offset: 1 }}>
+                    
+                  </Form.Item> */}
                 </Card>
               </div>
             );
