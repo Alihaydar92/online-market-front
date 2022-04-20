@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useCookies } from "react-cookie";
+import MediaQuery from "react-responsive";
+import { useMediaQuery } from "react-responsive";
 import {
   Card,
   Select,
@@ -35,19 +37,11 @@ import { useDispatch, useSelector } from "react-redux";
 import Button from "antd-button-color";
 import "antd/dist/antd.css"; // or 'antd/dist/antd.less'
 import "antd-button-color/dist/css/style.css";
-import { useMediaQuery } from "react-responsive";
 const logo = require("../../helpers/no-img.png");
 // const { Header, Footer, Sider, Content } = Layout;
 const { Option } = Select;
 
-export default function CartList() {
-  //responsive
-  const isDesktopOrLaptop = useMediaQuery({ minWidth: 1224 });
-  const isBigScreen = useMediaQuery({ minWidth: 1824 });
-  const isTabletOrMobile = useMediaQuery({ maxWidth: 1224 });
-  const isPortrait = useMediaQuery({ orientation: "portrait" });
-  const isRetina = useMediaQuery({ minResolution: "2dppx" });
-
+export default function Example() {
   const dispatch = useDispatch();
   const [topForm] = Form.useForm();
   const [baseForm] = Form.useForm();
@@ -457,6 +451,11 @@ export default function CartList() {
   //     }
   //   }
   // };
+  const isDesktopOrLaptop = useMediaQuery({ minWidth: 1224 });
+  const isBigScreen = useMediaQuery({ minWidth: 1824 });
+  const isTabletOrMobile = useMediaQuery({ maxWidth: 1224 });
+  const isPortrait = useMediaQuery({ orientation: "portrait" });
+  const isRetina = useMediaQuery({ minResolution: "2dppx" });
   return (
     <div
     //   onScroll={onScroll }

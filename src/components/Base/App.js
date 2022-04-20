@@ -29,6 +29,7 @@ import CartList from "../Cart/CartList";
 import Basket from "../Cart/Basket";
 import { useCookies } from "react-cookie";
 import Invoice from "../Invoice/Invoice";
+import Example from "../Reponsive/Example";
 const { SubMenu } = Menu;
 const logo = require("../../helpers/greenStream.jpeg");
 const { Footer, Content } = Layout;
@@ -88,6 +89,7 @@ export default function App() {
                     "/numerateResult": <h3>Sayım nəticəsi</h3>,
                     "/customerBlackList": <h3>Qara siyahı</h3>,
                     "/invoice": <h3>Qaimə</h3>,
+                    "/responsive": <h3>Reponsiv</h3>,
                   }[location.pathname]
                 }
               </Menu.Item>
@@ -134,6 +136,9 @@ export default function App() {
                 <Menu.Item key="16">
                   <Link to="invoice">Qaimə</Link>
                 </Menu.Item>
+                {/* <Menu.Item key="17">
+                  <Link to="responsive">Responsiv</Link>
+                </Menu.Item> */}
               </SubMenu>
 
               <SubMenu key="sub3" icon={<UserOutlined />} title="İstifadəçi">
@@ -180,6 +185,7 @@ export default function App() {
                 <Route path="numerate" element={<Numerate />} />
                 <Route path="numerateResult" element={<NumerateResult />} />
                 <Route path="invoice" element={<Invoice />} />
+                <Route path="responsive" element={<Example />} />
                 <Route
                   path="customerBlackList"
                   element={<CustomerBlakcList />}
