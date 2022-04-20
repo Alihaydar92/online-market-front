@@ -58,4 +58,5 @@ export default {
   invoiceListData: {},
   invoiceItemsById: [],
   invoiceAllData: {},
+  invoiceTypeListData: [],
 };

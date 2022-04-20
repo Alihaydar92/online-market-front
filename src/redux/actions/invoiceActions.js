@@ -62,6 +62,23 @@ export const getInvoicesByParams = (invoiceNum) => (dispatch) => {
     });
 };
 
+export const listOfInvoiceTypes = () => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+  });
+  axiosInstance.get("/invoiceTypes").then((response) => {
+    console.log(response.data);
+    dispatch({
+      type: actionTypes.LIST_OF_INVOICE_TYPES,
+      payload: response.data,
+    });
+  });
+};
+
 export const exportPdf = (arrayData, objectData) => {
   const EDVPersent = 0.18;
   const EDV = Number(

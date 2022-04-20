@@ -16,6 +16,7 @@ import {
   getInvoiceById,
   exportPdfOnlyGrid,
   getInvoicesByParams,
+  listOfInvoiceTypes,
 } from "../../redux/actions/invoiceActions";
 import { fetchCustomers } from "../../redux/actions/customerAction";
 import InvoiceShowModal from "./InvoiceShowModal";
@@ -37,11 +38,16 @@ export default function Invoice() {
   useEffect(() => {
     dispatch(fetchCustomers());
   }, [dispatch]);
-
+  useEffect(() => {
+    dispatch(listOfInvoiceTypes());
+  }, [dispatch]);
   const listOfInvoiceData = useSelector(
     (state) => state.invoiceReducers?.invoiceListData
   );
 
+  const listOfInvoicesTypeData = useSelector(
+    (state) => state.invoiceReducers?.invoiceTypeListData
+  );
   const fetchCustomerData = useSelector(
     (state) => state.customerReducer?.fetchCustomerData
   );
@@ -159,19 +165,18 @@ export default function Invoice() {
               );
             }}
           >
-            <Option key={0} value={0}>
-              {"Satış"}
-            </Option>
-            <Option key={1} value={1}>
-              {"Qaytarma"}
-            </Option>
+            {listOfInvoicesTypeData.map((invoiceTypeData) => (
+              <Option key={invoiceTypeData.id} value={invoiceTypeData.id}>
+                {invoiceTypeData.name}
+              </Option>
+            ))}
           </Select>
         </Form.Item>
 
         <Form.Item
           label="Qaimə nömrəsi"
           name="invoiceNumber"
-          rules={[{ required: false, message: "FTP İStifadəçini daxil edin!" }]}
+          rules={[{ required: false, message: "Qaimə nömrəsini daxil edin!" }]}
         >
           <Input />
         </Form.Item>

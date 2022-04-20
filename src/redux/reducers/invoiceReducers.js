@@ -13,10 +13,15 @@ export default function invoiceReducers(state = initialState, action) {
       return {
         ...state,
         invoiceItemsById: action.payload.items,
-        invoiceAllData:action.payload
+        invoiceAllData: action.payload,
       };
     }
-
+    case actionTypes.LIST_OF_INVOICE_TYPES: {
+      return {
+        ...state,
+        invoiceTypeListData: action.payload,
+      };
+    }
     default:
       return state;
   }
