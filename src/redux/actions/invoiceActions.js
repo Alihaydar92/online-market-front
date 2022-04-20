@@ -110,8 +110,15 @@ export const exportPdf = (arrayData, objectData) => {
     align: "right",
   });
   /////
+  console.log(objectData);
+  console.log(objectData?.customerDto);
+  console.log(objectData?.customerDto?.name);
   pdf.text(15, 50, "Alıcı: ");
-  pdf.text(45, 50, objectData?.customerDto?.name);
+  pdf.text(
+    45,
+    50,
+    objectData?.customerDto?.name === null ? "" : objectData?.customerDto?.name
+  );
   pdf.line(45, 51, 195, 51);
   pdf.text(15, 60, "Ekspeditor: ");
   pdf.text(45, 60, objectData?.sellerDto?.name);
@@ -211,7 +218,13 @@ export const exportPdf = (arrayData, objectData) => {
   pdf.text(170, finalY + 40, finalPrice.toFixed(2));
   pdf.line(150, finalY + 41, 195, finalY + 41);
   pdf.text(45, finalY + 50, "Kontragentin qalıq borcu");
-  pdf.text(170, finalY + 50, objectData?.customerDto?.dept?.toFixed(2));
+  pdf.text(
+    170,
+    finalY + 50,
+    objectData?.customerDto?.dept === null
+      ? ""
+      : objectData?.customerDto?.dept?.toFixed(2)
+  );
 
   pdf.line(150, finalY + 51, 195, finalY + 51);
 
