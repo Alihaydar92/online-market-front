@@ -82,14 +82,16 @@ export default function StoreHouseAdd(props) {
           name="price"
           rules={[{ required: false, message: "Qiymətini daxil edin!" }]}
         >
-          <InputNumber min={0} autoFocus={true} />
+          <InputNumber pattern="[0-9]*"
+        inputmode="numeric" min={0} autoFocus={true} />
         </Form.Item>
         <Form.Item
           label="Satış qiyməti"
           name="sellPrice"
           rules={[{ required: false, message: "Satış qiymətini daxil edin!" }]}
         >
-          <InputNumber min={0} />
+          <InputNumber pattern="[0-9]*"
+        inputmode="numeric" min={0} />
         </Form.Item>
         <Form.Item
           label="Müştəri satış qiyməti"
@@ -98,21 +100,24 @@ export default function StoreHouseAdd(props) {
             { required: false, message: "Müştəri satış qiymətini daxil edin!" },
           ]}
         >
-          <InputNumber min={0} />
+          <InputNumber pattern="[0-9]*"
+        inputmode="numeric" min={0} />
         </Form.Item>
         <Form.Item
           label="Digər qiymətlər"
           name="customerOfferedPrice"
           rules={[{ required: false, message: "Digər qiymətləri daxil edin!" }]}
         >
-          <InputNumber min={0} />
+          <InputNumber pattern="[0-9]*"
+        inputmode="numeric" min={0} />
         </Form.Item>
         <Form.Item
           label="Say"
           name="quantity"
           rules={[{ required: true, message: "Sayı daxil edin!" }]}
         >
-          <InputNumber min={0} />
+          <InputNumber pattern="[0-9]*"
+        inputmode="numeric" min={0} />
         </Form.Item>
         <Form.Item
           label="Qeyd"

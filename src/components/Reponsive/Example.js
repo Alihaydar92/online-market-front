@@ -715,7 +715,8 @@ export default function Example() {
                       wrapperCol={{ offset: 16 }}
                       labelCol={{ offset: 16 }}
                     >
-                      <InputNumber
+                      <InputNumber pattern="[0-9]*"
+        inputmode="numeric"
                         onChange={(e) => handleCountChange(e, item)}
                         defaultValue={0}
                         min={0}
@@ -727,7 +728,8 @@ export default function Example() {
                       wrapperCol={{ offset: 16 }}
                       labelCol={{ offset: 16 }}
                     >
-                      <InputNumber
+                      <InputNumber pattern="[0-9]*"
+        inputmode="numeric"
                         onChange={(e) => handleOtherPriceChange(e, item)}
                         defaultValue={0}
                         min={0}
@@ -739,7 +741,8 @@ export default function Example() {
                       wrapperCol={{ offset: 16 }}
                       labelCol={{ offset: 16 }}
                     >
-                      <InputNumber
+                      <InputNumber pattern="[0-9]*"
+        inputmode="numeric"
                         onChange={(e) => handleCustomerSellPriceChange(e, item)}
                         defaultValue={0}
                         min={0}

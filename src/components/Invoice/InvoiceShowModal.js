@@ -50,6 +50,8 @@ export default function InvoiceShowModal(props) {
       editable: true,
       render: (text, record, index) => (
         <InputNumber
+        pattern="[0-9]*"
+        inputmode="numeric"
           value={text}
           onChange={onInputQuantityChange("quantity", index)}
         />

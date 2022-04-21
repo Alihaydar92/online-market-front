@@ -88,6 +88,8 @@ export default function Basket() {
       editable: true,
       render: (text, record, index) => (
         <InputNumber
+        pattern="[0-9]*"
+        inputmode="numeric"
           value={text}
           onChange={onInputQuantityChange("quantity", index)}
         />
@@ -99,6 +101,8 @@ export default function Basket() {
       editable: true,
       render: (text, record, index) => (
         <InputNumber
+        pattern="[0-9]*"
+        inputmode="numeric"
           min={0}
           defaultValue={text}
           formatter={(value) =>
@@ -124,6 +128,8 @@ export default function Basket() {
       editable: true,
       render: (text, record, index) => (
         <InputNumber
+        pattern="[0-9]*"
+        inputmode="numeric"
           defaultValue={text}
           min={0}
           max={100}
@@ -139,6 +145,8 @@ export default function Basket() {
 
       render: (text, record, index) => (
         <InputNumber
+        pattern="[0-9]*"
+        inputmode="numeric"
           defaultValue={text}
           editable={false}
           disabled={true}
@@ -163,6 +171,8 @@ export default function Basket() {
       dataIndex: "totalPrice",
       render: (text, record, index) => (
         <InputNumber
+        pattern="[0-9]*"
+        inputmode="numeric"
           min={0}
           defaultValue={text}
           editable={false}

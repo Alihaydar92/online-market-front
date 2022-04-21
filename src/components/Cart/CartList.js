@@ -465,7 +465,7 @@ export default function CartList() {
     // ref={listInnerRef}
     // style={{ height: "800px", overflowY: "auto" }}
     >
-      <InputNumber></InputNumber>
+      <input type="number" pattern="[0-9]*" inputmode="numeric"></input>
       <Row style={{ marginTop: "20px" }}>
         <Col span={6} offset={isTabletOrMobile ? 1 : 8}>
           <Form
@@ -716,7 +716,7 @@ export default function CartList() {
                     <InputNumber
                       pattern="[0-9]*"
                       inputmode="numeric"
-                      size="large"
+                     
                       onChange={(e) => handleCountChange(e, item)}
                       defaultValue={0}
                       min={0}
@@ -758,7 +758,9 @@ export default function CartList() {
                   <Row justify="end">
                     Digər qiymətlər:
                     <InputNumber
-                      size="small"
+                      pattern="[0-9]*"
+                      inputmode="numeric"
+                    
                       onChange={(e) => handleOtherPriceChange(e, item)}
                       defaultValue={0}
                       min={0}
@@ -768,6 +770,8 @@ export default function CartList() {
                   <Row justify="end">
                     Müştəri S/Qiy:
                     <InputNumber
+                      pattern="[0-9]*"
+                      inputmode="numeric"
                       onChange={(e) => handleCustomerSellPriceChange(e, item)}
                       defaultValue={0}
                       min={0}

@@ -78,7 +78,8 @@ export default function Numerate() {
             <p>Barkod: {productData.barcode}</p>
             <p>Anbardakı say: {productData.quantity}</p>
             Say:{" "}
-            <InputNumber min={0} onChange={(e) => setCount(e)}></InputNumber>
+            <InputNumber pattern="[0-9]*"
+        inputmode="numeric" min={0} onChange={(e) => setCount(e)}></InputNumber>
             <Button
             style={{left: "10px",backgroundColor:"#0C9873",borderColor:"#0C9873"}}
               disabled={count <= 0 ? true : false}
