@@ -36,6 +36,7 @@ import Button from "antd-button-color";
 import "antd/dist/antd.css"; // or 'antd/dist/antd.less'
 import "antd-button-color/dist/css/style.css";
 import { useMediaQuery } from "react-responsive";
+import { InputGroup } from "reactstrap";
 const logo = require("../../helpers/no-img.png");
 // const { Header, Footer, Sider, Content } = Layout;
 const { Option } = Select;
@@ -662,9 +663,7 @@ export default function CartList() {
                     />
                   </Row>
                   <Row>
-                    <Col span={12}>
-                      <Row></Row>
-
+                    <Col span={24}>
                       <Row style={{ overflowWrap: "break-word" }}>
                         <h6 style={{ overflowWrap: "break-word" }}>
                           Məhsul: {item.name}
@@ -709,57 +708,66 @@ export default function CartList() {
                         </h6>
                       </Row>
                     </Col>
-                    <Col span={12}>
-                      <Form
+                  </Row>
+                  <Row justify="end">
+                    Say:
+                    <InputNumber
+                      onChange={(e) => handleCountChange(e, item)}
+                      defaultValue={0}
+                      min={0}
+                    ></InputNumber>
+                    {/* <Col span={24}> */}
+                    {/* <Form
                         form={topForm}
                         name="priceForm"
-                        labelCol={{ span: 9 }}
+                        labelCol={{ span: 8 }}
                         wrapperCol={{ span: 16 }}
                         autoComplete="off"
-                        // layout="vertical"
+                        layout="horizontal"
                         key={formKey}
-                        // labelAlign={"right"}
-                      >
-                        <Form.Item
+                        // width="100%"
+                        
+                      > */}
+                    {/* <Form.Item
                           label="Say"
-                          wrapperCol={{ offset:6 }}
-                          labelCol={{ offset: 6 }}
-                        >
-                          <InputNumber
-                            onChange={(e) => handleCountChange(e, item)}
-                            defaultValue={0}
-                            min={0}
-                          ></InputNumber>
-                        </Form.Item>
-
-                        <Form.Item
+                          // wrapperCol={{ span:16}}
+                          // labelCol={{ span:8}}
+                        > */}
+                    {/* </Form.Item> */}
+                    {/* <Form.Item
                           label="Digər qiymətlər"
-                          wrapperCol={{ offset:6 }}
-                          labelCol={{ offset: 6 }}
-                        >
-                          <InputNumber
-                            onChange={(e) => handleOtherPriceChange(e, item)}
-                            defaultValue={0}
-                            min={0}
-                          ></InputNumber>
-                        </Form.Item>
-
-                        <Form.Item
+                          // wrapperCol={{ span:16}}
+                          // labelCol={{ span:8}}
+                        > */}
+                    {/* </Form.Item> */}
+                    {/* <Form.Item
                           label="Müştəri S/Qiy"
-                          wrapperCol={{ offset:6 }}
-                          labelCol={{ offset: 6 }}
-                        >
-                          <InputNumber
-                            onChange={(e) =>
-                              handleCustomerSellPriceChange(e, item)
-                            }
-                            defaultValue={0}
-                            min={0}
-                          ></InputNumber>
-                        </Form.Item>
-                      </Form>
-                    </Col>
+                          // wrapperCol={{ span:16}}
+                          // labelCol={{ span:8}}
+                        > */}
+                    {/* </Form.Item> */}
+                    {/* </Form> */}
+                    {/* </Col> */}
                   </Row>
+                  <br />
+                  <Row justify="end">
+                    Digər qiymətlər:
+                    <InputNumber
+                      onChange={(e) => handleOtherPriceChange(e, item)}
+                      defaultValue={0}
+                      min={0}
+                    ></InputNumber>
+                  </Row>
+                  <br />
+                  <Row justify="end">
+                    Müştəri S/Qiy:
+                    <InputNumber
+                      onChange={(e) => handleCustomerSellPriceChange(e, item)}
+                      defaultValue={0}
+                      min={0}
+                    ></InputNumber>
+                  </Row>
+                  <br />
                   <Row>
                     <Button
                       style={{

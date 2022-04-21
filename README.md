@@ -99,7 +99,10 @@ qaimede klikinde sayi input etmek
 
 qaime klikinde sayi input etdikden sonra mebleg ve cemin hesablamisini da nezere almaq( backendde ve ya frontda)
 
-satisda say qiymet musteri satis qiymeti yuxari qaldirib diger labellerin sagina qoymaq
+satisda say qiymet musteri satis qiymeti bu inputlari tapsiriga uygun duzeltmek
+
+helelik satis reponsive oz mobilim ucun duzdu,bunu plansete tetbiq etmek
+
 
 ### sonra
 
