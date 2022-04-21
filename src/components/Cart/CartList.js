@@ -465,7 +465,7 @@ export default function CartList() {
     // ref={listInnerRef}
     // style={{ height: "800px", overflowY: "auto" }}
     >
-      <input type="number" pattern="[0-9]*" inputmode="numeric"></input>
+      {/* <input type="number" pattern="[0-9]*" inputmode="numeric"></input> */}
       <Row style={{ marginTop: "20px" }}>
         <Col span={6} offset={isTabletOrMobile ? 1 : 8}>
           <Form

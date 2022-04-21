@@ -103,7 +103,7 @@ satisda say qiymet musteri satis qiymeti bu inputlari tapsiriga uygun duzeltmek
 
 helelik satis reponsive oz mobilim ucun duzdu,bunu plansete tetbiq etmek
 
-
+satida yuxariya qayit ucun button qoymaq
 ### sonra
 
 label-larin textlerini file-dan oxumaq
