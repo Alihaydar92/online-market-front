@@ -19,6 +19,7 @@ import {
   listOfInvoiceTypes,
 } from "../../redux/actions/invoiceActions";
 import { fetchCustomers } from "../../redux/actions/customerAction";
+import { incomePdf } from "../../redux/actions/pdfActions";
 import InvoiceShowModal from "./InvoiceShowModal";
 import { Excel } from "antd-table-saveas-excel";
 import { NumberFilter } from "ag-grid-community";
@@ -138,6 +139,10 @@ export default function Invoice() {
       })
       .catch((err) => {}, []);
   };
+
+  const onClickincomePdfExport = () => {
+    dispatch(incomePdf());
+  };
   return (
     <div>
       <Form layout={"inline"} form={form} style={{ marginTop: "20px" }}>
@@ -239,6 +244,19 @@ export default function Invoice() {
             onClick={excelExport}
           >
             Excel-ə export
+          </Button>
+        </Form.Item>
+        <Form.Item>
+          <Button
+            type="primary"
+            htmlType="submit"
+            style={{
+              backgroundColor: "#0C9873",
+              borderColor: "#0C9873",
+            }}
+            onClick={onClickincomePdfExport}
+          >
+            Mədaxil qəbzi
           </Button>
         </Form.Item>
       </Form>
