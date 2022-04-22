@@ -25,13 +25,16 @@ import {
   LaptopOutlined,
   ShoppingCartOutlined,
   RollbackOutlined,
+  RadarChartOutlined,
 } from "@ant-design/icons";
 import Sale from "../Cart/Sale";
 import SaleBasket from "../Cart/SaleBasket";
 import RestoreBasket from "../Cart/RestoreBasket";
+import RetailBasket from "../Cart/RetailBasket";
 import { useCookies } from "react-cookie";
 import Invoice from "../Invoice/Invoice";
 import Restore from "../Cart/Restore";
+import Retail from "../Cart/Retail";
 const { SubMenu } = Menu;
 const logo = require("../../helpers/greenStream.jpeg");
 const { Footer, Content } = Layout;
@@ -87,12 +90,14 @@ export default function App() {
                     "/sale": <h3>Satış</h3>,
                     "/saleBasket": <h3>Satış Səbət</h3>,
                     "/restoreBasket": <h3>Qaytarma Səbət</h3>,
+                    "/retailBasket": <h3>Pərakəndə Səbət</h3>,
                     "/home": <h3>Əsas</h3>,
                     "/numerate": <h3>Sayım</h3>,
                     "/numerateResult": <h3>Sayım nəticəsi</h3>,
                     "/customerBlackList": <h3>Qara siyahı</h3>,
                     "/invoice": <h3>Qaimə</h3>,
                     "/restore": <h3>Qaytarma</h3>,
+                    "/retail": <h3>Pərakəndə</h3>,
                   }[location.pathname]
                 }
               </Menu.Item>
@@ -136,6 +141,9 @@ export default function App() {
                 <Menu.Item key="17">
                   <Link to="restore">Qaytarma</Link>
                 </Menu.Item>
+                <Menu.Item key="18">
+                  <Link to="retail">Pərakəndə</Link>
+                </Menu.Item>
               </SubMenu>
 
               <SubMenu key="sub3" icon={<UserOutlined />} title="İstifadəçi">
@@ -168,6 +176,16 @@ export default function App() {
                     </Link>
                   </Badge>
                 ) : null}
+                {location.pathname === "/retail" ? (
+                  <Badge count={basketItems?.length}>
+                    <Link to="/retailBasket">
+                      {/* <Icon icon="emojione:shopping-cart" align="right" float="right" verticalAlign="right"/> */}
+                      <RadarChartOutlined
+                        style={{ fontSize: "30px", color: "#08c" }}
+                      />
+                    </Link>
+                  </Badge>
+                ) : null}
               </Menu.Item>
             </Menu>
           </Affix>
@@ -181,14 +199,18 @@ export default function App() {
                 <Route path="products" element={<ProductTable />} />
                 <Route path="categories" element={<CategoryTable />} />
                 <Route path="properties" element={<PropertyTable />} />
-                <Route path="sale" element={<Sale />} />
                 <Route path="storeHouse" element={<StoreHouseTable />} />
+                <Route path="sale" element={<Sale />} />
+                <Route path="restore" element={<Restore />} />
+                <Route path="retail" element={<Retail />} />
+
                 <Route path="saleBasket" element={<SaleBasket />} />
                 <Route path="restoreBasket" element={<RestoreBasket />} />
+                <Route path="retailBasket" element={<RetailBasket />} />
                 <Route path="numerate" element={<Numerate />} />
                 <Route path="numerateResult" element={<NumerateResult />} />
                 <Route path="invoice" element={<Invoice />} />
-                <Route path="restore" element={<Restore />} />
+
                 <Route
                   path="customerBlackList"
                   element={<CustomerBlakcList />}
