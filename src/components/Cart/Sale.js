@@ -1,5 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
-import { useCookies } from "react-cookie";
+import React, { useEffect, useState } from "react";
 import {
   Card,
   Select,
@@ -8,25 +7,15 @@ import {
   InputNumber,
   Image,
   Col,
-  Checkbox,
   Popover,
-  Space,
   Input,
-  Divider,
   BackTop,
 } from "antd";
-import { ClearOutlined } from "@ant-design/icons";
-import {
-  listOfProperties,
-  getPropertyByCategoryId,
-} from "../../redux/actions/propertyActions";
+import { getPropertyByCategoryId } from "../../redux/actions/propertyActions";
 import { listOfCategories } from "../../redux/actions/categoryActions";
 import { addCart } from "../../redux/actions/cartActions";
-import { getCustomerListByExpeditorId } from "../../redux/actions/customerAction";
 import { getExpeditorByUsername } from "../../redux/actions/expeditorActions";
 import {
-  getProductListByPropertyId,
-  getProductListByCategoryId,
   getProductListByProAndCatId,
   getProductListByProduct,
   getAllProducts,
@@ -37,11 +26,10 @@ import Button from "antd-button-color";
 import "antd/dist/antd.css"; // or 'antd/dist/antd.less'
 import "antd-button-color/dist/css/style.css";
 import { useMediaQuery } from "react-responsive";
-import { InputGroup } from "reactstrap";
 const logo = require("../../helpers/no-img.png");
 // const { Header, Footer, Sider, Content } = Layout;
 const { Option } = Select;
-export default function CartList() {
+export default function Sale() {
   //responsive
   const isDesktopOrLaptop = useMediaQuery({ minWidth: 1224 });
   const isBigScreen = useMediaQuery({ minWidth: 1824 });
@@ -50,10 +38,8 @@ export default function CartList() {
   const isRetina = useMediaQuery({ minResolution: "2dppx" });
 
   const dispatch = useDispatch();
-  const [topForm] = Form.useForm();
   const [baseForm] = Form.useForm();
   const [customerId, setCustomerId] = useState(Number());
-  const [dataId, setDataId] = useState(Number());
   const [disable, setDisable] = useState(true);
   const [disableForProAndCatCombo, setDisableForProAndCatCombo] =
     useState(true);
@@ -68,13 +54,11 @@ export default function CartList() {
 
   const [cartSearchMode, setCartSearchMode] = useState("");
   useEffect(() => {
-    // dispatch(listOfProperties());
     dispatch(listOfCategories());
   }, [dispatch]);
 
   useEffect(() => {
     dispatch(getExpeditorByUsername(window.localStorage.getItem("username")));
-    // dispatch(getCustomerListByExpeditorId());
   }, [dispatch]);
 
   useEffect(() => {
@@ -130,11 +114,7 @@ export default function CartList() {
       setDisableForProAndCatCombo(false);
     }
     console.log(proValue);
-    // baseForm.resetFields(["category"]);
     setFormKey((formKey || 0) + 1);
-    // setDataId(value);
-    // dispatch(getProductListByPropertyId(value, 0, true));
-
     setLoading(false);
   };
 
@@ -152,22 +132,8 @@ export default function CartList() {
     } else {
       setDisableForProAndCatCombo(false);
     }
-
-    console.log(catValue);
-    // baseForm.resetFields(["property"]);
-    console.log("formKey", formKey);
     setFormKey((formKey || 0) + 1);
-    // setDataId(value);
-    // dispatch(getProductListByCategoryId(value, 0, true));
-
     setLoading(false);
-  };
-
-  const onChangeProduct = (e) => {
-    // var productArrData=[{}];
-    // productArrData=listOfProductDataBypropertyId.filter((element)=>{
-    // return element.id===e;
-    // })
   };
   const onChangeCustomer = (value) => {
     setDisable(false);
@@ -446,26 +412,8 @@ export default function CartList() {
   const handleVisibleChange = (v) => {
     setVisibleState({ v });
   };
-  // const listInnerRef = useRef();
-
-  // const onScroll = () => {
-  //   if (listInnerRef.current) {
-  //     const { scrollTop, scrollHeight, clientHeight } = listInnerRef.current;
-  //     if (scrollTop + clientHeight === scrollHeight && productListTotalPages>currentPage) {
-  //       setPage(page+1);
-  //       // dispatch(getProductListByPropertyId(dataId, page, false));
-  //       console.log("reached bottom");
-  //     }
-  //   }
-  // };
   return (
-    <div
-
-    //   onScroll={onScroll }
-    // ref={listInnerRef}
-    // style={{ height: "800px", overflowY: "auto" }}
-    >
-      {/* <input type="number" pattern="[0-9]*" inputmode="numeric"></input> */}
+    <div>
       <Row style={{ marginTop: "20px" }}>
         <Col span={6} offset={isTabletOrMobile ? 1 : 8}>
           <Form
@@ -758,9 +706,6 @@ export default function CartList() {
                       {item.isComplete ? "Səbətdən sil" : "Səbətə əlavə et"}
                     </Button>
                   </Row>
-                  {/* <Form.Item wrapperCol={{ offset: 1 }}>
-                    
-                  </Form.Item> */}
                 </Card>
               </div>
             );

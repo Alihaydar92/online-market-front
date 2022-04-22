@@ -104,6 +104,9 @@ satisda say qiymet musteri satis qiymeti bu inputlari tapsiriga uygun duzeltmek
 helelik satis reponsive oz mobilim ucun duzdu,bunu plansete tetbiq etmek
 
 satida yuxariya qayit ucun button qoymaq
+
+eynen satis kimi qaytarma penceresi 
+eynen sebet kimi qaytarma sebeti
 ### sonra
 headerin responsiveliyi (Imkan varsa pencerelesi responsive etmek (Sonda da edile biler))
 

@@ -24,12 +24,14 @@ import {
   UserOutlined,
   LaptopOutlined,
   ShoppingCartOutlined,
+  RollbackOutlined,
 } from "@ant-design/icons";
-import CartList from "../Cart/CartList";
-import Basket from "../Cart/Basket";
+import Sale from "../Cart/Sale";
+import SaleBasket from "../Cart/SaleBasket";
+import RestoreBasket from "../Cart/RestoreBasket";
 import { useCookies } from "react-cookie";
 import Invoice from "../Invoice/Invoice";
-import Example from "../Reponsive/Example";
+import Restore from "../Cart/Restore";
 const { SubMenu } = Menu;
 const logo = require("../../helpers/greenStream.jpeg");
 const { Footer, Content } = Layout;
@@ -73,7 +75,7 @@ export default function App() {
                   preview={false}
                 />
               </Menu.Item>
-              <Menu.Item key="101">
+              <Menu.Item key="100">
                 {
                   {
                     "/customers": <h3>Müştərilər</h3>,
@@ -82,29 +84,24 @@ export default function App() {
                     "/properties": <h3>Xüsusiyyət</h3>,
                     "/products": <h3>Məhsullar</h3>,
                     "/storeHouse": <h3>Anbar</h3>,
-                    "/cartList": <h3>Satış</h3>,
-                    "/basket": <h3>Səbət</h3>,
+                    "/sale": <h3>Satış</h3>,
+                    "/saleBasket": <h3>Satış Səbət</h3>,
+                    "/restoreBasket": <h3>Qaytarma Səbət</h3>,
                     "/home": <h3>Əsas</h3>,
                     "/numerate": <h3>Sayım</h3>,
                     "/numerateResult": <h3>Sayım nəticəsi</h3>,
                     "/customerBlackList": <h3>Qara siyahı</h3>,
                     "/invoice": <h3>Qaimə</h3>,
-                    "/responsive": <h3>Reponsiv</h3>,
+                    "/restore": <h3>Qaytarma</h3>,
                   }[location.pathname]
                 }
               </Menu.Item>
               <SubMenu key="sub1" icon={<UserOutlined />} title="Qeydiyyat">
-                <Menu.Item
-                  // onClick={navigate("customers")}
-                  key="1"
-                >
+                <Menu.Item key="1">
                   <Link to="customers">Müştərilər</Link>
                   <Outlet />
                 </Menu.Item>
-                <Menu.Item
-                  // onClick={navigate('/sellers')}
-                  key="2"
-                >
+                <Menu.Item key="2">
                   <Link to="sellers">Əməkdaşlar</Link>
                 </Menu.Item>
                 <Menu.Item key="3">
@@ -119,7 +116,7 @@ export default function App() {
                   <Link to="/products">Məhsullar</Link>
                 </Menu.Item>
                 <Menu.Item key="11">
-                  <Link to="/cartList">Satış</Link>
+                  <Link to="/sale">Satış</Link>
                 </Menu.Item>
                 <Menu.Item key="12">
                   <Link to="/storeHouse">Anbar</Link>
@@ -136,16 +133,13 @@ export default function App() {
                 <Menu.Item key="16">
                   <Link to="invoice">Qaimə</Link>
                 </Menu.Item>
-                {/* <Menu.Item key="17">
-                  <Link to="responsive">Responsiv</Link>
-                </Menu.Item> */}
+                <Menu.Item key="17">
+                  <Link to="restore">Qaytarma</Link>
+                </Menu.Item>
               </SubMenu>
 
               <SubMenu key="sub3" icon={<UserOutlined />} title="İstifadəçi">
-                <Menu.Item
-                  // onClick={navigate("customers")}
-                  key="20"
-                >
+                <Menu.Item key="20">
                   Profil
                   <Outlet />
                 </Menu.Item>
@@ -153,12 +147,22 @@ export default function App() {
                   Çıxış
                 </Menu.Item>
               </SubMenu>
-              <Menu.Item key="100">
-                {location.pathname === "/cartList" ? (
+              <Menu.Item key="101">
+                {location.pathname === "/sale" ? (
                   <Badge count={basketItems?.length}>
-                    <Link to="/basket">
+                    <Link to="/saleBasket">
                       {/* <Icon icon="emojione:shopping-cart" align="right" float="right" verticalAlign="right"/> */}
                       <ShoppingCartOutlined
+                        style={{ fontSize: "30px", color: "#08c" }}
+                      />
+                    </Link>
+                  </Badge>
+                ) : null}
+                {location.pathname === "/restore" ? (
+                  <Badge count={basketItems?.length}>
+                    <Link to="/restoreBasket">
+                      {/* <Icon icon="emojione:shopping-cart" align="right" float="right" verticalAlign="right"/> */}
+                      <RollbackOutlined
                         style={{ fontSize: "30px", color: "#08c" }}
                       />
                     </Link>
@@ -169,8 +173,6 @@ export default function App() {
           </Affix>
 
           <Layout>
-            {/* <Navi location={location} /> */}
-
             <Content>
               <Routes>
                 <Route exact path="home" element={<CustomerTable />} />
@@ -179,13 +181,14 @@ export default function App() {
                 <Route path="products" element={<ProductTable />} />
                 <Route path="categories" element={<CategoryTable />} />
                 <Route path="properties" element={<PropertyTable />} />
-                <Route path="cartList" element={<CartList />} />
+                <Route path="sale" element={<Sale />} />
                 <Route path="storeHouse" element={<StoreHouseTable />} />
-                <Route path="basket" element={<Basket />} />
+                <Route path="saleBasket" element={<SaleBasket />} />
+                <Route path="restoreBasket" element={<RestoreBasket />} />
                 <Route path="numerate" element={<Numerate />} />
                 <Route path="numerateResult" element={<NumerateResult />} />
                 <Route path="invoice" element={<Invoice />} />
-                <Route path="responsive" element={<Example />} />
+                <Route path="restore" element={<Restore />} />
                 <Route
                   path="customerBlackList"
                   element={<CustomerBlakcList />}

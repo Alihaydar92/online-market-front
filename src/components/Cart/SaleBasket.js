@@ -21,7 +21,7 @@ import {
 import BasketDelete from "./BasketDelete";
 import TextArea from "antd/lib/input/TextArea";
 import { exportPdf } from "../../redux/actions/invoiceActions";
-export default function Basket() {
+export default function SaleBasket() {
   const dispatch = useDispatch();
   const [isSilModalVisible, setIsSilModalVisible] = useState(false);
   const [basketId, setBasketId] = useState();
@@ -88,8 +88,8 @@ export default function Basket() {
       editable: true,
       render: (text, record, index) => (
         <InputNumber
-        pattern="[0-9]*"
-        inputmode="numeric"
+          pattern="[0-9]*"
+          inputmode="numeric"
           value={text}
           onChange={onInputQuantityChange("quantity", index)}
         />
@@ -101,8 +101,8 @@ export default function Basket() {
       editable: true,
       render: (text, record, index) => (
         <InputNumber
-        pattern="[0-9]*"
-        inputmode="numeric"
+          pattern="[0-9]*"
+          inputmode="numeric"
           min={0}
           defaultValue={text}
           formatter={(value) =>
@@ -128,8 +128,8 @@ export default function Basket() {
       editable: true,
       render: (text, record, index) => (
         <InputNumber
-        pattern="[0-9]*"
-        inputmode="numeric"
+          pattern="[0-9]*"
+          inputmode="numeric"
           defaultValue={text}
           min={0}
           max={100}
@@ -145,8 +145,8 @@ export default function Basket() {
 
       render: (text, record, index) => (
         <InputNumber
-        pattern="[0-9]*"
-        inputmode="numeric"
+          pattern="[0-9]*"
+          inputmode="numeric"
           defaultValue={text}
           editable={false}
           disabled={true}
@@ -171,8 +171,8 @@ export default function Basket() {
       dataIndex: "totalPrice",
       render: (text, record, index) => (
         <InputNumber
-        pattern="[0-9]*"
-        inputmode="numeric"
+          pattern="[0-9]*"
+          inputmode="numeric"
           min={0}
           defaultValue={text}
           editable={false}
@@ -292,14 +292,13 @@ export default function Basket() {
         </Col>
         <Col span={2} offset={20}>
           <Button
-         
             onClick={openPdf}
             type="primary"
             style={{
               marginBottom: 16,
               backgroundColor: "#0C9873",
               borderColor: "#0C9873",
-              display:'none'
+              display: "none",
             }}
           >
             Pdf-ə çap et
@@ -334,7 +333,7 @@ export default function Basket() {
             }}
           >
             {/* <LeftSquareTwoTone style={{ fontSize: "50px", color: "#08c" }}/> */}
-            <Link to="/cartList">Satışa davam et</Link>
+            <Link to="/sale">Satışa davam et</Link>
           </Button>
         </Col>
         <Col span={6} offset={12}>
