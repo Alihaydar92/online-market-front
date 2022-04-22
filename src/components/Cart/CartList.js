@@ -13,6 +13,7 @@ import {
   Space,
   Input,
   Divider,
+  BackTop,
 } from "antd";
 import { ClearOutlined } from "@ant-design/icons";
 import {
@@ -40,7 +41,6 @@ import { InputGroup } from "reactstrap";
 const logo = require("../../helpers/no-img.png");
 // const { Header, Footer, Sider, Content } = Layout;
 const { Option } = Select;
-
 export default function CartList() {
   //responsive
   const isDesktopOrLaptop = useMediaQuery({ minWidth: 1224 });
@@ -716,43 +716,10 @@ export default function CartList() {
                     <InputNumber
                       pattern="[0-9]*"
                       inputmode="numeric"
-                     
                       onChange={(e) => handleCountChange(e, item)}
                       defaultValue={0}
                       min={0}
                     ></InputNumber>
-                    {/* <Col span={24}> */}
-                    {/* <Form
-                        form={topForm}
-                        name="priceForm"
-                        labelCol={{ span: 8 }}
-                        wrapperCol={{ span: 16 }}
-                        autoComplete="off"
-                        layout="horizontal"
-                        key={formKey}
-                        // width="100%"
-                        
-                      > */}
-                    {/* <Form.Item
-                          label="Say"
-                          // wrapperCol={{ span:16}}
-                          // labelCol={{ span:8}}
-                        > */}
-                    {/* </Form.Item> */}
-                    {/* <Form.Item
-                          label="Digər qiymətlər"
-                          // wrapperCol={{ span:16}}
-                          // labelCol={{ span:8}}
-                        > */}
-                    {/* </Form.Item> */}
-                    {/* <Form.Item
-                          label="Müştəri S/Qiy"
-                          // wrapperCol={{ span:16}}
-                          // labelCol={{ span:8}}
-                        > */}
-                    {/* </Form.Item> */}
-                    {/* </Form> */}
-                    {/* </Col> */}
                   </Row>
                   <br />
                   <Row justify="end">
@@ -760,7 +727,6 @@ export default function CartList() {
                     <InputNumber
                       pattern="[0-9]*"
                       inputmode="numeric"
-                    
                       onChange={(e) => handleOtherPriceChange(e, item)}
                       defaultValue={0}
                       min={0}
@@ -814,6 +780,7 @@ export default function CartList() {
           </Row>
         </Col>
       </Row>
+      <BackTop />
     </div>
   );
 }

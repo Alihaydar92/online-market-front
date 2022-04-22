@@ -71,7 +71,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ### CODE
 
-headerin responsiveliyi (Imkan varsa pencerelesi responsive etmek (Sonda da edile biler))
+
 
 route ile linkleri goruntuden yigisdirmaq, yalniz base link olacaq
 
@@ -105,6 +105,7 @@ helelik satis reponsive oz mobilim ucun duzdu,bunu plansete tetbiq etmek
 
 satida yuxariya qayit ucun button qoymaq
 ### sonra
+headerin responsiveliyi (Imkan varsa pencerelesi responsive etmek (Sonda da edile biler))
 
 label-larin textlerini file-dan oxumaq
 
@@ -118,9 +119,6 @@ musteri id-ni cokilerde saxlayiram(cardlistden basqa pencereye keciden sonra ger
 
 img ve diger filelarla bagli codelarin optimizasiyasi
 
-category secildikden sonra gelen mehsullara gore axtaris (cartlist)
-
-satis penceresinde mehsul combosuna barkodu da elave etmek ve axtarisinda her ikisi islesin(anbardaki product combobox kimi eynen) combonu secdikden sonra HEMIN XOMBOYA AID OLAN TEK DATA satisda gorsensin
 
 comboboxlarda scrolling data(ya da loadingi xombobox ucun de tetbiq etmek)
 
