@@ -268,7 +268,7 @@ export default function SaleBasket() {
 
     console.log(endSalesData);
     // exportPdf(endSaleBasketReturnData)
-    dispatch(endSale(endSalesData));
+    dispatch(endSale(endSalesData,'Satış'));
   };
   const onChangeNote = (note) => [
     setBasketNote(note.target.value === undefined ? "" : note.target.value),

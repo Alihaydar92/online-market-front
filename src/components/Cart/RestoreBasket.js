@@ -268,7 +268,7 @@ export default function RestoreBasket() {
 
     console.log(endSalesData);
     // exportPdf(endSaleBasketReturnData)
-    dispatch(endSale(endSalesData));
+    dispatch(endSale(endSalesData,'Qaytarma'));
   };
   const onChangeNote = (note) => [
     setBasketNote(note.target.value === undefined ? "" : note.target.value),

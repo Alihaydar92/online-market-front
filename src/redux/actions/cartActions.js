@@ -26,7 +26,7 @@ export const addCart = (data) => (dispatch) => {
   });
 };
 
-export const endSale = (data) => (dispatch) => {
+export const endSale = (data,paramName) => (dispatch) => {
   const axiosInstance = axios.create({
     baseURL: baseURL,
     auth: {
@@ -48,7 +48,7 @@ export const endSale = (data) => (dispatch) => {
             arr.push(value);
           }
         }
-        exportPdf(arr, response.data);
+        exportPdf(arr, response.data,paramName);
         
       }
       dispatch(showAddedBasketItems());

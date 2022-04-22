@@ -79,7 +79,7 @@ export const listOfInvoiceTypes = () => (dispatch) => {
   });
 };
 
-export const exportPdf = (arrayData, objectData) => {
+export const exportPdf = (arrayData, objectData, paramName) => {
   const EDVPersent = 0.18;
   const EDV = Number(
     Math.round(objectData?.grandTotal * EDVPersent * 100) / 100
@@ -104,7 +104,7 @@ export const exportPdf = (arrayData, objectData) => {
   pdf.text(15, 40, "Tarix: " + moment().format("DD.MM.YYYY"));
   pdf.line(15, 42, 195, 42);
   pdf.line(15, 34, 195, 34);
-  pdf.text("Satış", 195, 15, { align: "right" });
+  pdf.text(paramName, 195, 15, { align: "right" });
   pdf.text("Ofis: " + "055 203-60-10", 195, 30, { align: "right" });
   pdf.text("Qaimə nömrə : " + objectData?.cartNumber, 195, 40, {
     align: "right",
@@ -240,7 +240,7 @@ export const exportPdf = (arrayData, objectData) => {
   // pdf.setFontStyle("italic")
   pdf.text("Imza", 165, finalY + 83);
   pdf.text("Imza", 165, finalY + 93);
-  pdf.save("Qaimə");
+  pdf.save(paramName);
 };
 export const exportPdfOnlyGrid = (col, rows) => {
   var callAddFont = function () {
