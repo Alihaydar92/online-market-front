@@ -308,7 +308,22 @@ export default function Invoice() {
                       color: "#0C9873",
                     }}
                   >
-                    {"Səhifə cəm / ümumi cəm"}
+                    {"Səhifə cəm"}
+                  </Text>
+                  <Text
+                    style={{
+                      color: "#808080",
+                    }}
+                  >
+                    {" / "}
+                  </Text>
+
+                  <Text
+                    style={{
+                      color: "#FF0000",
+                    }}
+                  >
+                    {"ümumi cəm"}
                   </Text>
                 </Table.Summary.Cell>
                 <Table.Summary.Cell>
@@ -317,10 +332,21 @@ export default function Invoice() {
                       color: "#0C9873",
                     }}
                   >
-                    {totalOfGrandTotal
-                      .toString()
-                      .concat("/")
-                      .concat(listOfInvoiceData.total)}
+                    {totalOfGrandTotal.toString()}
+                  </Text>
+                  <Text
+                    style={{
+                      color: "#808080",
+                    }}
+                  >
+                    {" / "}
+                  </Text>
+                  <Text
+                    style={{
+                      color: "#FF0000",
+                    }}
+                  >
+                    {listOfInvoiceData.total.toString()}
                   </Text>
                 </Table.Summary.Cell>
               </Table.Summary.Row>
