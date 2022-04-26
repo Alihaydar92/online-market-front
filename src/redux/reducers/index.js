@@ -10,6 +10,7 @@ import authReducers from "./authReducers";
 import cartReducers from "./cartReducers";
 import blackListReducers from "./blackListReducers";
 import invoiceReducers from "./invoiceReducers";
+import restoreReducers from "./restoreReducers"
 const rootReducer = combineReducers({
   customerReducer,
   expeditorReducers,
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   cartReducers,
   blackListReducers,
   invoiceReducers,
+  restoreReducers,
 });
 
 export default rootReducer;

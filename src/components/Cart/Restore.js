@@ -14,6 +14,7 @@ import {
 import { getPropertyByCategoryId } from "../../redux/actions/propertyActions";
 import { listOfCategories } from "../../redux/actions/categoryActions";
 import { addCart } from "../../redux/actions/cartActions";
+import { addRestore } from "../../redux/actions/restoreActions";
 import { getExpeditorByUsername } from "../../redux/actions/expeditorActions";
 import {
   getProductListByProAndCatId,
@@ -199,23 +200,15 @@ export default function Restore() {
   var items = []; //quantity, price ve product id data list
 
   const handleToggleComplete = (productItem) => {
-    console.log(countDataList.length);
-    console.log(items);
     if (countDataList.length === 0) return; //eger mehsulun sayi secilmeyibse o zaman elave etmesin
-    console.log(countDataList);
-
     var productItemJs = {
       quantity: 0,
       storeHouseDto: { id: 0 },
-      customerSellPrice: 0,
-      otherPrice: 0,
     }; //yalniz itemsi yigacagim obj
     var basketItemJs = new Object(); //umumi cart add-a gondereceyim data
 
     productItemJs.storeHouseDto.id = productItem.id;
-    // productItemJs.storeHouseDto.price = 0; //heleki 0 gonderilir sonra duzelecek
-
-    basketItemJs.sellerId = window.localStorage.getItem("expeditorId");
+    // basketItemJs.sellerId = window.localStorage.getItem("expeditorId");
     basketItemJs.customerId = customerId;
 
     for (var i = 0; i < countDataList.length; i++) {
@@ -224,14 +217,6 @@ export default function Restore() {
 
       if (countDataList[i].id === productItem.id) {
         productItemJs.quantity = countDataList[i].countState;
-        console.log("items ", items);
-        console.log("productItemJs.quantity ", productItemJs.quantity);
-        console.log("countDataJS[i].count ", countDataList[i].countState);
-        console.log("countDataJS[i].id ", countDataList[i].id);
-        console.log(
-          "productItemJs.storeHouseDto.id ",
-          productItemJs.storeHouseDto.id
-        );
         const o = items.findIndex(
           (_element) =>
             _element.storeHouseDto.id === productItemJs.storeHouseDto.id
@@ -246,13 +231,9 @@ export default function Restore() {
         }
       }
     }
-    console.log(productItemJs); //bunu tek tek gondermek lazimdi(Teyyubla danis)
-    console.log(items);
-    // basketItemJs["items"] = items;
     basketItemJs["itemForAdd"] = productItemJs;
-
     console.log(basketItemJs);
-    dispatch(addCart(basketItemJs));
+    dispatch(addRestore(basketItemJs));
   };
 
   useEffect(() => {
@@ -620,7 +601,7 @@ export default function Restore() {
                       htmlType="submit"
                       onClick={() => handleToggleComplete(item)}
                     >
-                      Qaytarmaya  əlavə et
+                      Qaytarmaya əlavə et
                     </Button>
                   </Row>
                 </Card>

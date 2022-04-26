@@ -44,8 +44,11 @@ export default function App() {
   let navigate = useNavigate();
   const loading = useSelector((state) => state.loaderReducers?.loading);
   const [cookies, setCookie, removeCookie] = useCookies(["customerCookieId"]);
-  const basketItems = useSelector(
+  const basketSaleItems = useSelector(
     (state) => state.cartReducers?.addBasketItems
+  );
+  const basketRestoreItems = useSelector(
+    (state) => state.restoreReducers?.addBasketItems
   );
   const logout = () => {
     window.localStorage.clear();
@@ -157,9 +160,9 @@ export default function App() {
               </SubMenu>
               <Menu.Item key="101">
                 {location.pathname === "/sale" ? (
-                  <Badge count={basketItems?.length}>
+                  <Badge count={basketSaleItems?.length}>
                     <Link to="/saleBasket">
-                      {/* <Icon icon="emojione:shopping-cart" align="right" float="right" verticalAlign="right"/> */}
+                    
                       <ShoppingCartOutlined
                         style={{ fontSize: "30px", color: "#08c" }}
                       />
@@ -167,25 +170,25 @@ export default function App() {
                   </Badge>
                 ) : null}
                 {location.pathname === "/restore" ? (
-                  <Badge count={basketItems?.length}>
+                  <Badge count={basketRestoreItems?.length}>
                     <Link to="/restoreBasket">
-                      {/* <Icon icon="emojione:shopping-cart" align="right" float="right" verticalAlign="right"/> */}
+                    
                       <RollbackOutlined
                         style={{ fontSize: "30px", color: "#08c" }}
                       />
                     </Link>
                   </Badge>
                 ) : null}
-                {location.pathname === "/retail" ? (
+                {/* {location.pathname === "/retail" ? (
                   <Badge count={basketItems?.length}>
                     <Link to="/retailBasket">
-                      {/* <Icon icon="emojione:shopping-cart" align="right" float="right" verticalAlign="right"/> */}
+                 
                       <RadarChartOutlined
                         style={{ fontSize: "30px", color: "#08c" }}
                       />
                     </Link>
                   </Badge>
-                ) : null}
+                ) : null} */}
               </Menu.Item>
             </Menu>
           </Affix>

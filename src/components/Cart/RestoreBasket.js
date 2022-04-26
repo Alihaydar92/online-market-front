@@ -14,10 +14,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
   showAddedBasketItems,
-  endSale,
-  clearBasket,
-  updateBasket,
-} from "../../redux/actions/cartActions";
+  endRestore,
+} from "../../redux/actions/restoreActions";
 import BasketDelete from "./BasketDelete";
 import TextArea from "antd/lib/input/TextArea";
 import { exportPdf } from "../../redux/actions/invoiceActions";
@@ -27,21 +25,21 @@ export default function RestoreBasket() {
   const [basketId, setBasketId] = useState();
   const [basketNote, setBasketNote] = useState();
   const basketItems = useSelector(
-    (state) => state.cartReducers?.addBasketItems
+    (state) => state.restoreReducers?.addBasketItems
   );
   const basketAllData = useSelector(
-    (state) => state.cartReducers?.basketAllData
+    (state) => state.restoreReducers?.basketAllData
   );
-  const endSaleBasketReturnData = useSelector(
-    (state) => state.cartReducers?.endSaleReturnData
+  const endRestoreBasketReturnData = useSelector(
+    (state) => state.cartReducers?.endRestoreReturnData
   );
   const [basketArray, setBasketArray] = useState();
   useEffect(() => {
     dispatch(showAddedBasketItems());
   }, [dispatch]);
   useEffect(() => {
-    console.log(endSaleBasketReturnData);
-  }, [endSaleBasketReturnData]);
+    console.log(endRestoreBasketReturnData);
+  }, [endRestoreBasketReturnData]);
   useEffect(() => {
     console.log(basketItems);
   }, [basketItems]);
@@ -55,9 +53,7 @@ export default function RestoreBasket() {
     console.log(basketArray);
   }, [basketArray]);
 
-  const handleClear = () => {
-    dispatch(clearBasket());
-  };
+  const handleClear = () => {};
   const showRemoveModal = (id) => {
     setBasketId(id);
 
@@ -69,8 +65,6 @@ export default function RestoreBasket() {
 
   const editBasketData = (basketData) => {
     console.log(basketData);
-    dispatch(updateBasket(basketData));
-    dispatch(showAddedBasketItems());
   };
 
   const columns = [
@@ -84,14 +78,14 @@ export default function RestoreBasket() {
     },
     {
       title: "Say",
-      dataIndex: "quantity",
+      dataIndex: "refundQuantity",
       editable: true,
       render: (text, record, index) => (
         <InputNumber
-        pattern="[0-9]*"
-        inputmode="numeric"
+          pattern="[0-9]*"
+          inputmode="numeric"
           value={text}
-          onChange={onInputQuantityChange("quantity", index)}
+          onChange={onInputQuantityChange("refundQuantity", index)}
         />
       ),
     },
@@ -101,8 +95,8 @@ export default function RestoreBasket() {
       editable: true,
       render: (text, record, index) => (
         <InputNumber
-        pattern="[0-9]*"
-        inputmode="numeric"
+          pattern="[0-9]*"
+          inputmode="numeric"
           min={0}
           defaultValue={text}
           formatter={(value) =>
@@ -128,8 +122,8 @@ export default function RestoreBasket() {
       editable: true,
       render: (text, record, index) => (
         <InputNumber
-        pattern="[0-9]*"
-        inputmode="numeric"
+          pattern="[0-9]*"
+          inputmode="numeric"
           defaultValue={text}
           min={0}
           max={100}
@@ -145,8 +139,8 @@ export default function RestoreBasket() {
 
       render: (text, record, index) => (
         <InputNumber
-        pattern="[0-9]*"
-        inputmode="numeric"
+          pattern="[0-9]*"
+          inputmode="numeric"
           defaultValue={text}
           editable={false}
           disabled={true}
@@ -171,8 +165,8 @@ export default function RestoreBasket() {
       dataIndex: "totalPrice",
       render: (text, record, index) => (
         <InputNumber
-        pattern="[0-9]*"
-        inputmode="numeric"
+          pattern="[0-9]*"
+          inputmode="numeric"
           min={0}
           defaultValue={text}
           editable={false}
@@ -248,13 +242,13 @@ export default function RestoreBasket() {
   const openPdf = () => {
     dispatch(exportPdf(basketArray, basketAllData));
   };
-  const endSales = () => {
+  const endRestores = () => {
     var endSalesData = new Object();
     endSalesData.customerId = basketAllData.customerId;
-    endSalesData.customerDto = basketAllData.customerDto;
-    endSalesData.sellerDto = basketAllData.sellerDto;
-    endSalesData.sellerId = basketAllData.sellerId;
-    endSalesData.note = basketNote === undefined ? "" : basketNote;
+    // endSalesData.customerDto = basketAllData.customerDto;
+    // endSalesData.sellerDto = basketAllData.sellerDto;
+    // endSalesData.sellerId = basketAllData.sellerId;
+    // endSalesData.note = basketNote === undefined ? "" : basketNote;
     endSalesData.grandTotal = basketAllData.grandTotal;
 
     var result = basketArray.reduce(function (map, obj) {
@@ -263,12 +257,12 @@ export default function RestoreBasket() {
       return map;
     }, {});
     // endSalesData.items= JSON.stringify({...result});
-    endSalesData.items = result;
+    endSalesData.itemForAdd = result;
     console.log(basketArray);
 
     console.log(endSalesData);
     // exportPdf(endSaleBasketReturnData)
-    dispatch(endSale(endSalesData,'Qaytarma'));
+    dispatch(endRestore(endSalesData, "Qaytarma"));
   };
   const onChangeNote = (note) => [
     setBasketNote(note.target.value === undefined ? "" : note.target.value),
@@ -292,14 +286,13 @@ export default function RestoreBasket() {
         </Col>
         <Col span={2} offset={20}>
           <Button
-         
             onClick={openPdf}
             type="primary"
             style={{
               marginBottom: 16,
               backgroundColor: "#0C9873",
               borderColor: "#0C9873",
-              display:'none'
+              display: "none",
             }}
           >
             Pdf-ə çap et
@@ -339,7 +332,7 @@ export default function RestoreBasket() {
         </Col>
         <Col span={6} offset={12}>
           <Button
-            onClick={endSales}
+            onClick={endRestores}
             type="primary"
             style={{
               marginBottom: 16,

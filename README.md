@@ -112,6 +112,10 @@ eynen sebet kimi qaytarma sebeti+++
 perakende penceresi eynen qaytarma kimi (musteri olmayacaq)
 
 perakende sebet eynen o biri sebetler kimi (buttonlarin adlari deyisilecek)
+
+qaytarma penceresinde sebete elave et duymesinin altinda refund add servisini cagirmaq
+
+qaytarma sebet penceresinde qaytarmani bitir duymesinin altinda refund complete servisini cagirmaq
 ### sonra
 headerin responsiveliyi (Imkan varsa pencerelesi responsive etmek (Sonda da edile biler))
 
