@@ -17,3 +17,20 @@ export const cashboxTypeList = () => (dispatch) => {
     });
   });
 };
+
+export const cashboxAdd = (data) => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+  });
+  axiosInstance.post("/cashboxes",data).then((response) => {
+    console.log(response)
+    dispatch({
+      type: actionTypes.CASHBOX_ADD,
+      payload: response.data,
+    });
+  });
+};

@@ -114,3 +114,4 @@ export const END_RETAIL = "END_RETAIL";
 
 //cashbox
 export const CASHBOX_TYPE_LIST = "CASHBOX_TYPE_LIST";
+export const CASHBOX_ADD = "CASHBOX_ADD";

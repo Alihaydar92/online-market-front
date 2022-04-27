@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Form, Select, Input, Button, DatePicker } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { cashboxTypeList } from "../../redux/actions/cashBoxActions";
+import {
+  cashboxTypeList,
+  cashboxAdd,
+} from "../../redux/actions/cashBoxActions";
 
 const { Option } = Select;
 export default function CashBoxPage() {
@@ -20,6 +23,20 @@ export default function CashBoxPage() {
   const onChangeCashboxCombo = (e) => {
     setCashboxTypeDataState(e);
   };
+
+  const onClickAddCashbox = () => [
+    form
+      .validateFields()
+      .then((values) => {
+        var addData = {
+          name: values.customer,
+          boxTypeId: cashboxTypeDataState,
+        };
+        console.log(addData);
+        dispatch(cashboxAdd(addData));
+      })
+      .catch((err) => {}),
+  ];
   return (
     <div>
       Kassa tipi:
@@ -64,7 +81,7 @@ export default function CashBoxPage() {
           <Form.Item
             label="Müştəri"
             name="customer"
-            rules={[{ required: false, message: "Müştərini daxil edin!" }]}
+            rules={[{ required: true, message: "Müştərini daxil edin!" }]}
           >
             <Input />
           </Form.Item>
@@ -99,7 +116,7 @@ export default function CashBoxPage() {
                 backgroundColor: "#0C9873",
                 borderColor: "#0C9873",
               }}
-              // onClick={onClickincomePdfExport}
+              onClick={onClickAddCashbox}
             >
               Əlavə et
             </Button>
