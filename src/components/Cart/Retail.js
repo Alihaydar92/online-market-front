@@ -583,7 +583,7 @@ export default function Retail() {
                       htmlType="submit"
                       onClick={() => handleToggleComplete(item)}
                     >
-                      Qaytarmaya əlavə et
+                      Səbətə əlavə et
                     </Button>
                   </Row>
                 </Card>

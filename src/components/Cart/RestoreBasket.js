@@ -45,6 +45,10 @@ export default function RestoreBasket() {
   }, [basketItems]);
 
   useEffect(() => {
+    console.log(basketAllData);
+  }, [basketAllData]);
+
+  useEffect(() => {
     setBasketArray(basketItems);
     console.log(basketItems);
   }, [basketItems, basketArray]);
@@ -244,7 +248,7 @@ export default function RestoreBasket() {
   };
   const endRestores = () => {
     var endSalesData = new Object();
-    endSalesData.customerId = basketAllData.customerId;
+    endSalesData.customerId = basketAllData.customerDto.id;
     // endSalesData.customerDto = basketAllData.customerDto;
     // endSalesData.sellerDto = basketAllData.sellerDto;
     // endSalesData.sellerId = basketAllData.sellerId;
