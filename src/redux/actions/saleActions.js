@@ -1,7 +1,7 @@
 import * as actionTypes from "./actionTypes";
 import axios from "axios";
 import { message, notification } from "antd";
-import { exportPdf } from "../actions/invoiceActions";
+import { exportSalePdf } from "../actions/pdfActions";
 const baseURL = process.env.REACT_APP_BACKEND_URL;
 
 export const addCart = (data) => (dispatch) => {
@@ -26,7 +26,7 @@ export const addCart = (data) => (dispatch) => {
   });
 };
 
-export const endSale = (data,paramName) => (dispatch) => {
+export const endSale = (data, paramName) => (dispatch) => {
   const axiosInstance = axios.create({
     baseURL: baseURL,
     auth: {
@@ -48,12 +48,9 @@ export const endSale = (data,paramName) => (dispatch) => {
             arr.push(value);
           }
         }
-        exportPdf(arr, response.data,paramName);
-        
+        exportSalePdf(arr, response.data, paramName);
       }
       dispatch(showAddedBasketItems());
-      notification["success"]({ message: response.data, description: "" });
-      //   dispatch(listOfCategories());
     }
   });
 };

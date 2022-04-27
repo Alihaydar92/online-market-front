@@ -52,7 +52,7 @@ export default function App() {
   );
 
   const basketRetailItems = useSelector(
-    (state) => state.restoreReducers?.addRetailBasketItems
+    (state) => state.retailReducers?.addRetailBasketItems
   );
   const logout = () => {
     window.localStorage.clear();

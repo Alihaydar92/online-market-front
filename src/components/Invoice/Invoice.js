@@ -14,10 +14,11 @@ import moment from "moment";
 import {
   listOfInvoices,
   getInvoiceById,
-  exportPdfOnlyGrid,
+  
   getInvoicesByParams,
   listOfInvoiceTypes,
 } from "../../redux/actions/invoiceActions";
+import {exportPdfOnlyGrid} from "../../redux/actions/pdfActions"
 import { fetchCustomers } from "../../redux/actions/customerAction";
 import { incomePdf } from "../../redux/actions/pdfActions";
 import InvoiceShowModal from "./InvoiceShowModal";

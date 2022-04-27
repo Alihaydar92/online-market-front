@@ -13,7 +13,10 @@ import {
 } from "antd";
 import { getPropertyByCategoryId } from "../../redux/actions/propertyActions";
 import { listOfCategories } from "../../redux/actions/categoryActions";
-import { addRetail } from "../../redux/actions/retailActions";
+import {
+  addRetail,
+  showAddedBasketItems,
+} from "../../redux/actions/retailActions";
 import { getExpeditorByUsername } from "../../redux/actions/expeditorActions";
 import {
   getProductListByProAndCatId,
@@ -74,7 +77,9 @@ export default function Retail() {
     setCustomerId(window.localStorage.getItem("customerId"));
     setDisable(false);
   }, [baseForm]);
-
+  useEffect(() => {
+    dispatch(showAddedBasketItems());
+  }, [dispatch]);
   const listOfPropertyData = useSelector(
     (state) => state.propertyReducers?.propertyListData
   );

@@ -10,7 +10,7 @@ import {
   InputNumber,
 } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { exportPdf } from "../../redux/actions/invoiceActions";
+import { exportSalePdf } from "../../redux/actions/pdfActions";
 import { getProductImagesByProductId } from "../../redux/actions/productActions";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
@@ -107,7 +107,7 @@ export default function InvoiceShowModal(props) {
     setInvoicesStateData(newData);
   };
   const pdfExport = () => {
-    dispatch(exportPdf(invoicesStateData, props?.invoiceBaseDataProps));
+    dispatch(exportSalePdf(invoicesStateData, props?.invoiceBaseDataProps));
   };
 
   const showImgPanel = (productId) => {

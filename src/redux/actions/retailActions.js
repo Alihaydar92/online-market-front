@@ -1,7 +1,7 @@
 import * as actionTypes from "./actionTypes";
 import axios from "axios";
 import { message, notification } from "antd";
-import { exportPdf } from "../actions/invoiceActions";
+import { exportRetailPdf } from "../actions/pdfActions";
 const baseURL = process.env.REACT_APP_BACKEND_URL;
 
 export const addRetail = (data) => (dispatch) => {
@@ -26,37 +26,34 @@ export const addRetail = (data) => (dispatch) => {
   });
 };
 
-// export const endSale = (data,paramName) => (dispatch) => {
-//   const axiosInstance = axios.create({
-//     baseURL: baseURL,
-//     auth: {
-//       username: window.localStorage.getItem("username"),
-//       password: window.localStorage.getItem("password"),
-//     },
-//   });
-//   axiosInstance.post("/carts", data).then((response) => {
-//     if (response.status === 200) {
-//       console.log("response end sale cart data ", response.data);
-//       dispatch({
-//         type: actionTypes.END_SALE,
-//         payload: response.data,
-//       });
-//       if (response.data.id !== null) {
-//         if (Object.entries(response.data.items).length > 0) {
-//           var arr = [];
-//           for (let value of Object.values(response.data.items)) {
-//             arr.push(value);
-//           }
-//         }
-//         exportPdf(arr, response.data,paramName);
-
-//       }
-//       dispatch(showAddedBasketItems());
-//       notification["success"]({ message: response.data, description: "" });
-//       //   dispatch(listOfCategories());
-//     }
-//   });
-// };
+export const endRetail = (data, paramName) => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+  });
+  axiosInstance.post("/retails/complete", data).then((response) => {
+    if (response.status === 200) {
+      console.log("response end sale cart data ", response.data);
+      dispatch({
+        type: actionTypes.END_RETAIL,
+        payload: response.data,
+      });
+      // if (response.data.id !== null) {
+        if (Object.entries(response.data.items).length > 0) {
+          var arr = [];
+          for (let value of Object.values(response.data.items)) {
+            arr.push(value);
+          }
+        }
+        exportRetailPdf(arr, response.data, paramName);
+      // }
+      dispatch(showAddedBasketItems());
+    }
+  });
+};
 
 // export const clearBasket = () => (dispatch) => {
 //   const axiosInstance = axios.create({
@@ -136,7 +133,7 @@ export const showAddedBasketItems = () => (dispatch) => {
     window.localStorage.getItem("expeditorId")
   );
   axiosInstance
-    .get("/retails" )
+    .get("/retails/user/" + window.localStorage.getItem("expeditorId"))
     .then((response) => {
       console.log(response.data);
       if (response.status === 200) {

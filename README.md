@@ -71,15 +71,11 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ### CODE
 
-
-
 route ile linkleri goruntuden yigisdirmaq, yalniz base link olacaq
 
 sekli sil buttonunun altinda sekli servisde cagirib silmek
 
 infinite scrool satis buttunsuz elemek---
-
-yalniz satisda sebete elave ederken sebet isaresi gorsenir ,sonra itir
 
 anbar page redaktede error verir(ola bilsin product list comboya dolmamis acilir)
 
@@ -89,13 +85,7 @@ basket data updateden sonra refresh
 
 qaime klikinde acilan modalda sekile bax emeliyyatini yazmaq
 
-qaimede meblege daxil olarken telefonda ancaq reqem acilsin
-
-qaimede sehife cem umimi cem rengi yasil olsun , to fixed problemi 
-
 satisda say qiymet dizaynlarina yeniden baxmaq
-
-qaimede klikinde sayi input etmek
 
 qaime klikinde sayi input etdikden sonra mebleg ve cemin hesablamisini da nezere almaq( backendde ve ya frontda)
 
@@ -103,19 +93,10 @@ satisda say qiymet musteri satis qiymeti bu inputlari tapsiriga uygun duzeltmek
 
 helelik satis reponsive oz mobilim ucun duzdu,bunu plansete tetbiq etmek
 
-satida yuxariya qayit ucun button qoymaq+++
+pagelere daxil olarken verilmis page adlarini bir cerciveye salib sabit widthde saxlamaq lazimdirki menu oynamasin saga sola
 
-eynen satis kimi qaytarma penceresi+++
+kassa page yigmaq goruntu olaraq wpdaki sekil
 
-eynen sebet kimi qaytarma sebeti+++
-
-perakende penceresi eynen qaytarma kimi (musteri olmayacaq)
-
-perakende sebet eynen o biri sebetler kimi (buttonlarin adlari deyisilecek)
-
-qaytarma penceresinde sebete elave et duymesinin altinda refund add servisini cagirmaq
-
-qaytarma sebet penceresinde qaytarmani bitir duymesinin altinda refund complete servisini cagirmaq
 ### sonra
 headerin responsiveliyi (Imkan varsa pencerelesi responsive etmek (Sonda da edile biler))
 

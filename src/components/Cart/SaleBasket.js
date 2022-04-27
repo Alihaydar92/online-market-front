@@ -20,7 +20,7 @@ import {
 } from "../../redux/actions/saleActions";
 import BasketDelete from "./BasketDelete";
 import TextArea from "antd/lib/input/TextArea";
-import { exportPdf } from "../../redux/actions/invoiceActions";
+import { exportSalePdf } from "../../redux/actions/pdfActions";
 export default function SaleBasket() {
   const dispatch = useDispatch();
   const [isSilModalVisible, setIsSilModalVisible] = useState(false);
@@ -246,7 +246,7 @@ export default function SaleBasket() {
     setBasketArray(newData);
   };
   const openPdf = () => {
-    dispatch(exportPdf(basketArray, basketAllData));
+    dispatch(exportSalePdf(basketArray, basketAllData, "Qaimə"));
   };
   const endSales = () => {
     var endSalesData = new Object();

@@ -1,7 +1,7 @@
 import * as actionTypes from "./actionTypes";
 import axios from "axios";
 import { message, notification } from "antd";
-import { exportPdf } from "../actions/invoiceActions";
+import { exportRestorePdf } from "../actions/pdfActions";
 const baseURL = process.env.REACT_APP_BACKEND_URL;
 
 export const addRestore = (data) => (dispatch) => {
@@ -36,23 +36,24 @@ export const endRestore = (data, paramName) => (dispatch) => {
   });
   axiosInstance.post("/refunds/complete", data).then((response) => {
     if (response.status === 200) {
-      console.log("response end sale cart data ", response.data);
+      console.log("response end restore  data ", response.data);
       dispatch({
         type: actionTypes.END_RESTORE,
         payload: response.data,
       });
       if (response.data.id !== null) {
+        console.log('response.data.id is null ')
         if (Object.entries(response.data.items).length > 0) {
           var arr = [];
           for (let value of Object.values(response.data.items)) {
             arr.push(value);
           }
         }
-        // exportPdf(arr, response.data, paramName);
+        console.log(response.data)
+        console.log(arr)
+        exportRestorePdf(arr, response.data, paramName);
       }
-      //   dispatch(showAddedBasketItems());
-      notification["success"]({ message: response.data, description: "" });
-      //   dispatch(listOfCategories());
+        dispatch(showAddedBasketItems());
     }
   });
 };

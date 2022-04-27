@@ -19,7 +19,7 @@ import {
 } from "../../redux/actions/restoreActions";
 import BasketDelete from "./BasketDelete";
 import TextArea from "antd/lib/input/TextArea";
-import { exportPdf } from "../../redux/actions/invoiceActions";
+import { exportRestorePdf } from "../../redux/actions/pdfActions";
 export default function RestoreBasket() {
   const dispatch = useDispatch();
   const [isSilModalVisible, setIsSilModalVisible] = useState(false);
@@ -247,7 +247,7 @@ export default function RestoreBasket() {
     setBasketArray(newData);
   };
   const openPdf = () => {
-    dispatch(exportPdf(basketArray, basketAllData));
+    dispatch(exportRestorePdf(basketArray, basketAllData,"Qaytarma"));
   };
   const endRestores = () => {
     var endSalesData = new Object();
@@ -264,7 +264,7 @@ export default function RestoreBasket() {
       return map;
     }, {});
     // endSalesData.items= JSON.stringify({...result});
-    endSalesData.itemForAdd = result;
+    endSalesData.items = result;
     console.log(basketArray);
 
     console.log(endSalesData);

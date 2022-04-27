@@ -12,10 +12,13 @@ import {
 } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { showAddedBasketItems } from "../../redux/actions/retailActions";
+import {
+  showAddedBasketItems,
+  endRetail,
+} from "../../redux/actions/retailActions";
 import BasketDelete from "./BasketDelete";
 import TextArea from "antd/lib/input/TextArea";
-import { exportPdf } from "../../redux/actions/invoiceActions";
+import { exportRetailPdf } from "../../redux/actions/pdfActions";
 export default function RetailBasket() {
   const dispatch = useDispatch();
   const [isSilModalVisible, setIsSilModalVisible] = useState(false);
@@ -241,7 +244,7 @@ export default function RetailBasket() {
     setBasketArray(newData);
   };
   const openPdf = () => {
-    dispatch(exportPdf(basketArray, basketAllData));
+    dispatch(exportRetailPdf(basketArray, basketAllData, "Pərakəndə"));
   };
   const endSales = () => {
     var endSalesData = new Object();
@@ -263,7 +266,7 @@ export default function RetailBasket() {
 
     console.log(endSalesData);
     // exportPdf(endSaleBasketReturnData)
-    // dispatch(endSale(endSalesData, "Pərakəndə"));
+    dispatch(endRetail(endSalesData, "Pərakəndə"));
   };
   const onChangeNote = (note) => [
     setBasketNote(note.target.value === undefined ? "" : note.target.value),
@@ -274,7 +277,7 @@ export default function RetailBasket() {
       <Row style={{ marginTop: "10px" }}>
         <Col span={2}>
           <Button
-           disabled={basketArray?.length === 0 ? true : false}
+            disabled={basketArray?.length === 0 ? true : false}
             onClick={handleClear}
             type="primary"
             style={{
