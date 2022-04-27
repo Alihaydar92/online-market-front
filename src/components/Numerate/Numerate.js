@@ -70,7 +70,7 @@ export default function Numerate() {
             ))}
           </Select>
         </Form.Item>
-        {productData == null ? (
+        {productData === null ? (
           <p>Məlumat yoxdur</p>
         ) : (
           <Card style={{ width: 300 }}>

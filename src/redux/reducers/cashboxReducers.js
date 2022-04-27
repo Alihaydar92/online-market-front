@@ -2,12 +2,12 @@ import * as actionTypes from "../actions/actionTypes"
 import  initialState from "./initialState"
 
 
- export default function blackListReducers(state = initialState, action) {
+ export default function cashboxReducers(state = initialState, action) {
     switch (action.type) {
-        case actionTypes.SHOW_BLACK_LIST: {
+        case actionTypes.CASHBOX_TYPE_LIST: {
             return {
                 ...state,
-                showBlackListData: action.payload
+                cashboxTypeListData: action.payload
             }
         }
         

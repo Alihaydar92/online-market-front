@@ -35,6 +35,7 @@ import { useCookies } from "react-cookie";
 import Invoice from "../Invoice/Invoice";
 import Restore from "../Cart/Restore";
 import Retail from "../Cart/Retail";
+import CashBoxPage from "../CashBox/CashBoxPage";
 const { SubMenu } = Menu;
 const logo = require("../../helpers/greenStream.jpeg");
 const { Footer, Content } = Layout;
@@ -105,6 +106,7 @@ export default function App() {
                     "/invoice": <h3>Qaimə</h3>,
                     "/restore": <h3>Qaytarma</h3>,
                     "/retail": <h3>Pərakəndə</h3>,
+                    "/cashbox": <h3>Kassa</h3>,
                   }[location.pathname]
                 }
               </Menu.Item>
@@ -150,6 +152,9 @@ export default function App() {
                 </Menu.Item>
                 <Menu.Item key="18">
                   <Link to="retail">Pərakəndə</Link>
+                </Menu.Item>
+                <Menu.Item key="19">
+                  <Link to="cashbox">Kassa</Link>
                 </Menu.Item>
               </SubMenu>
 
@@ -214,6 +219,7 @@ export default function App() {
                 <Route path="numerate" element={<Numerate />} />
                 <Route path="numerateResult" element={<NumerateResult />} />
                 <Route path="invoice" element={<Invoice />} />
+                <Route path="cashbox" element={<CashBoxPage />} />
 
                 <Route
                   path="customerBlackList"

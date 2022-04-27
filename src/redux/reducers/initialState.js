@@ -70,4 +70,6 @@ export default {
   invoiceItemsById: [],
   invoiceAllData: {},
   invoiceTypeListData: [],
+
+  cashboxTypeListData:[]
 };
