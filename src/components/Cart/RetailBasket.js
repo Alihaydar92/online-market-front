@@ -274,6 +274,7 @@ export default function RetailBasket() {
       <Row style={{ marginTop: "10px" }}>
         <Col span={2}>
           <Button
+           disabled={basketArray?.length === 0 ? true : false}
             onClick={handleClear}
             type="primary"
             style={{
@@ -328,7 +329,7 @@ export default function RetailBasket() {
             }}
           >
             {/* <LeftSquareTwoTone style={{ fontSize: "50px", color: "#08c" }}/> */}
-            <Link to="/restore">Qaytarmaya davam et</Link>
+            <Link to="/retail">Pərakəndə satışa davam et</Link>
           </Button>
         </Col>
         <Col span={6} offset={12}>
@@ -342,7 +343,7 @@ export default function RetailBasket() {
             }}
           >
             {/* <LeftSquareTwoTone style={{ fontSize: "50px", color: "#08c" }}/> */}
-            Qaytarmanı yekunlaşdır
+            Pərakəndə satışı yekunlaşdır
           </Button>
         </Col>
       </Row>

@@ -50,6 +50,10 @@ export default function App() {
   const basketRestoreItems = useSelector(
     (state) => state.restoreReducers?.addRestoreBasketItems
   );
+
+  const basketRetailItems = useSelector(
+    (state) => state.restoreReducers?.addRetailBasketItems
+  );
   const logout = () => {
     window.localStorage.clear();
     navigate("/");
@@ -162,7 +166,6 @@ export default function App() {
                 {location.pathname === "/sale" ? (
                   <Badge count={basketSaleItems?.length}>
                     <Link to="/saleBasket">
-                    
                       <ShoppingCartOutlined
                         style={{ fontSize: "30px", color: "#08c" }}
                       />
@@ -172,23 +175,21 @@ export default function App() {
                 {location.pathname === "/restore" ? (
                   <Badge count={basketRestoreItems?.length}>
                     <Link to="/restoreBasket">
-                    
                       <RollbackOutlined
                         style={{ fontSize: "30px", color: "#08c" }}
                       />
                     </Link>
                   </Badge>
                 ) : null}
-                {/* {location.pathname === "/retail" ? (
-                  <Badge count={basketItems?.length}>
+                {location.pathname === "/retail" ? (
+                  <Badge count={basketRetailItems?.length}>
                     <Link to="/retailBasket">
-                 
                       <RadarChartOutlined
                         style={{ fontSize: "30px", color: "#08c" }}
                       />
                     </Link>
                   </Badge>
-                ) : null} */}
+                ) : null}
               </Menu.Item>
             </Menu>
           </Affix>
