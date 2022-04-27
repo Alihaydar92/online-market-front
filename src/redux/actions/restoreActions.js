@@ -19,7 +19,7 @@ export const addRestore = (data) => (dispatch) => {
         type: actionTypes.ADD_RESTORE,
         payload: response.data,
       });
-      //   dispatch(showAddedBasketItems());
+      dispatch(showAddedBasketItems());
       //   notification["success"]({ message: response.data, description: "" });
       //   dispatch(listOfCategories());
     }
@@ -57,27 +57,27 @@ export const endRestore = (data, paramName) => (dispatch) => {
   });
 };
 
-// export const clearBasket = () => (dispatch) => {
-//   const axiosInstance = axios.create({
-//     baseURL: baseURL,
-//     auth: {
-//       username: window.localStorage.getItem("username"),
-//       password: window.localStorage.getItem("password"),
-//     },
-//   });
-//   axiosInstance.get("/carts/clear").then((response) => {
-//     if (response.status === 200) {
-//       console.log("response clear basket data ", response.data);
-//       dispatch({
-//         type: actionTypes.CLEAR_BASKET,
-//         payload: response.data,
-//       });
-//       dispatch(showAddedBasketItems());
-//       //   notification["success"]({ message: response.data, description: "" });
-//       //   dispatch(listOfCategories());
-//     }
-//   });
-// };
+export const clearBasket = () => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+  });
+  axiosInstance.get("/refunds/clear").then((response) => {
+    if (response.status === 200) {
+      console.log("response clear refunds basket data ", response.data);
+      dispatch({
+        type: actionTypes.CLEAR_BASKET,
+        payload: response.data,
+      });
+      dispatch(showAddedBasketItems());
+      //   notification["success"]({ message: response.data, description: "" });
+      //   dispatch(listOfCategories());
+    }
+  });
+};
 // export const updateBasket = (basketData) => (dispatch) => {
 //   console.log("basket data in action: ", basketData);
 //   const axiosInstance = axios.create({

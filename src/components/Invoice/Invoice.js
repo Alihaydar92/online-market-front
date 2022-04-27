@@ -332,7 +332,7 @@ export default function Invoice() {
                       color: "#0C9873",
                     }}
                   >
-                    {totalOfGrandTotal.toString()}
+                    {totalOfGrandTotal?.toString()}
                   </Text>
                   <Text
                     style={{
@@ -346,7 +346,7 @@ export default function Invoice() {
                       color: "#FF0000",
                     }}
                   >
-                    {listOfInvoiceData.total.toString()}
+                    {listOfInvoiceData?.total?.toString()}
                   </Text>
                 </Table.Summary.Cell>
               </Table.Summary.Row>

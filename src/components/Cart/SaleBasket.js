@@ -268,7 +268,7 @@ export default function SaleBasket() {
 
     console.log(endSalesData);
     // exportPdf(endSaleBasketReturnData)
-    dispatch(endSale(endSalesData,'Satış'));
+    dispatch(endSale(endSalesData, "Satış"));
   };
   const onChangeNote = (note) => [
     setBasketNote(note.target.value === undefined ? "" : note.target.value),
@@ -279,6 +279,7 @@ export default function SaleBasket() {
       <Row style={{ marginTop: "10px" }}>
         <Col span={2}>
           <Button
+            disabled={basketArray?.length === 0 ? true : false}
             onClick={handleClear}
             type="primary"
             style={{

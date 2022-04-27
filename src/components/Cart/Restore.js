@@ -14,7 +14,10 @@ import {
 import { getPropertyByCategoryId } from "../../redux/actions/propertyActions";
 import { listOfCategories } from "../../redux/actions/categoryActions";
 import { addCart } from "../../redux/actions/cartActions";
-import { addRestore } from "../../redux/actions/restoreActions";
+import {
+  addRestore,
+  showAddedBasketItems,
+} from "../../redux/actions/restoreActions";
 import { getExpeditorByUsername } from "../../redux/actions/expeditorActions";
 import {
   getProductListByProAndCatId,
@@ -262,6 +265,10 @@ export default function Restore() {
 
     setLoading(false);
   }, [page]);
+
+  useEffect(() => {
+    dispatch(showAddedBasketItems());
+  }, [dispatch]);
   const onClickForPropertyAndCategoryCombo = () => {
     baseForm
       .validateFields()

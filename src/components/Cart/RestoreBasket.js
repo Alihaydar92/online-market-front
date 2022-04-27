@@ -15,6 +15,7 @@ import { Link } from "react-router-dom";
 import {
   showAddedBasketItems,
   endRestore,
+  clearBasket,
 } from "../../redux/actions/restoreActions";
 import BasketDelete from "./BasketDelete";
 import TextArea from "antd/lib/input/TextArea";
@@ -57,7 +58,9 @@ export default function RestoreBasket() {
     console.log(basketArray);
   }, [basketArray]);
 
-  const handleClear = () => {};
+  const handleClear = () => {
+    dispatch(clearBasket());
+  };
   const showRemoveModal = (id) => {
     setBasketId(id);
 
@@ -82,7 +85,7 @@ export default function RestoreBasket() {
     },
     {
       title: "Say",
-      dataIndex: "refundQuantity",
+      dataIndex: "quantity",
       editable: true,
       render: (text, record, index) => (
         <InputNumber
@@ -277,6 +280,7 @@ export default function RestoreBasket() {
       <Row style={{ marginTop: "10px" }}>
         <Col span={2}>
           <Button
+            disabled={basketArray?.length === 0 ? true : false}
             onClick={handleClear}
             type="primary"
             style={{
