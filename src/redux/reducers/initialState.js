@@ -47,10 +47,20 @@ export default {
 
   basketData: {},
   basketGrandTotal: "",
-  addBasketItems: [],
-  basketAllData: {},
+
+  
+  
+  saleBasketAllData: {},
+  addSaleBasketItems: [],
   endSaleReturnData: [],
-  endRestoreReturnData:[],
+  
+  restoreBasketAllData: {},
+  addRestoreBasketItems: [],
+  endRestoreReturnData: [],
+
+  addRetailBasketItems: [],
+  retailBasketAllData: {},
+  endRetailReturnData: [],
 
   loading: false,
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Form } from "antd";
-import { deleteCart } from "../../redux/actions/cartActions";
+import { deleteCart } from "../../redux/actions/saleActions";
 import { useDispatch } from "react-redux";
 export default function BasketDelete(props) {
   const dispatch = useDispatch();

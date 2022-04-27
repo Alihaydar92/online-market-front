@@ -13,7 +13,6 @@ import {
 } from "antd";
 import { getPropertyByCategoryId } from "../../redux/actions/propertyActions";
 import { listOfCategories } from "../../redux/actions/categoryActions";
-import { addCart } from "../../redux/actions/cartActions";
 import {
   addRestore,
   showAddedBasketItems,

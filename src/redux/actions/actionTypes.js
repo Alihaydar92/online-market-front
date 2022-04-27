@@ -85,12 +85,12 @@ export const HIDE_LOADER = "HIDE_LOADER";
 export const LOGIN_AUTH = "LOGIN_AUTH";
 
 //CART
-export const ADD_CART = "ADD_CART";
+export const ADD_SALE = "ADD_SALE";
 export const END_SALE = "END_SALE";
 export const CLEAR_BASKET = "CLEAR_BASKET";
 export const UPDATE_BASKET = "UPDATE_BASKET";
 export const DELETE_CART = "DELETE_CART";
-export const SHOW_BASKET_ITEMS = "SHOW_BASKET_ITEMS";
+export const SHOW_CART_BASKET_ITEMS = "SHOW_CART_BASKET_ITEMS";
 
 //black list
 export const ADD_BLACK_LIST_CUSTOMER = "ADD_BLACK_LIST_CUSTOMER";
@@ -106,3 +106,8 @@ export const GET_INVOICES_BY_INVOICE_NUMBER = "GET_INVOICES_BY_INVOICE_NUMBER";
 export const ADD_RESTORE = "ADD_RESTORE";
 export const END_RESTORE = "END_RESTORE";
 export const SHOW_RESTORE_BASKET_ITEMS = "SHOW_RESTORE_BASKET_ITEMS";
+
+//retail
+export const ADD_RETAIL = "ADD_RETAIL";
+export const SHOW_RETAIL_BASKET_ITEMS = "SHOW_RETAIL_BASKET_ITEMS";
+export const END_RETAIL = "END_RETAIL";

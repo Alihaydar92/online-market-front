@@ -16,7 +16,7 @@ export const addCart = (data) => (dispatch) => {
     if (response.status === 200) {
       console.log("response cart data ", response.data);
       dispatch({
-        type: actionTypes.ADD_CART,
+        type: actionTypes.ADD_SALE,
         payload: response.data,
       });
       dispatch(showAddedBasketItems());
@@ -141,7 +141,7 @@ export const showAddedBasketItems = () => (dispatch) => {
       console.log(response.data);
       if (response.status === 200) {
         dispatch({
-          type: actionTypes.SHOW_BASKET_ITEMS,
+          type: actionTypes.SHOW_CART_BASKET_ITEMS,
           payload: response.data,
         });
       }

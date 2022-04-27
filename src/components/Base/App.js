@@ -45,10 +45,10 @@ export default function App() {
   const loading = useSelector((state) => state.loaderReducers?.loading);
   const [cookies, setCookie, removeCookie] = useCookies(["customerCookieId"]);
   const basketSaleItems = useSelector(
-    (state) => state.cartReducers?.addBasketItems
+    (state) => state.saleReducers?.addSaleBasketItems
   );
   const basketRestoreItems = useSelector(
-    (state) => state.restoreReducers?.addBasketItems
+    (state) => state.restoreReducers?.addRestoreBasketItems
   );
   const logout = () => {
     window.localStorage.clear();

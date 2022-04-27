@@ -13,7 +13,7 @@ import {
 } from "antd";
 import { getPropertyByCategoryId } from "../../redux/actions/propertyActions";
 import { listOfCategories } from "../../redux/actions/categoryActions";
-import { addCart } from "../../redux/actions/cartActions";
+import { addRetail } from "../../redux/actions/retailActions";
 import { getExpeditorByUsername } from "../../redux/actions/expeditorActions";
 import {
   getProductListByProAndCatId,
@@ -138,8 +138,6 @@ export default function Retail() {
     window.localStorage.setItem("customerId", value);
   };
   var countDataJS = null;
-  var customerSellPriceDataJs = null;
-  var otherPriceDataJs = null;
   function handleCountChange(count, item) {
     console.log(item);
     countDataJS = new Object();
@@ -156,42 +154,7 @@ export default function Retail() {
     console.log(countDataList);
     console.log(countDataJS);
   }
-  function handleCustomerSellPriceChange(customerSellPrice, item) {
-    console.log(item);
-    customerSellPriceDataJs = new Object();
-    customerSellPriceDataJs.id = item.id;
-    customerSellPriceDataJs.customerSellPrice = customerSellPrice;
 
-    const i = customerSellPriceDataList.findIndex(
-      (_element) => _element.id === item.id
-    );
-    if (i > -1) {
-      customerSellPriceDataList[i] = customerSellPriceDataJs;
-    } else {
-      customerSellPriceDataList.push(customerSellPriceDataJs);
-    }
-
-    console.log(customerSellPriceDataList);
-    console.log(customerSellPriceDataJs);
-  }
-  function handleOtherPriceChange(otherPrice, item) {
-    console.log(item);
-    otherPriceDataJs = new Object();
-    otherPriceDataJs.id = item.id;
-    otherPriceDataJs.otherPrice = otherPrice;
-
-    const i = otherPriceDataList.findIndex(
-      (_element) => _element.id === item.id
-    );
-    if (i > -1) {
-      otherPriceDataList[i] = otherPriceDataJs;
-    } else {
-      otherPriceDataList.push(otherPriceDataJs);
-    }
-
-    console.log(otherPriceDataList);
-    console.log(otherPriceDataJs);
-  }
   var items = []; //quantity, price ve product id data list
 
   const handleToggleComplete = (productItem) => {
@@ -203,8 +166,6 @@ export default function Retail() {
     var productItemJs = {
       quantity: 0,
       storeHouseDto: { id: 0 },
-      customerSellPrice: 0,
-      otherPrice: 0,
     }; //yalniz itemsi yigacagim obj
     var basketItemJs = new Object(); //umumi cart add-a gondereceyim data
 
@@ -248,7 +209,7 @@ export default function Retail() {
     basketItemJs["itemForAdd"] = productItemJs;
 
     console.log(basketItemJs);
-    dispatch(addCart(basketItemJs));
+    dispatch(addRetail(basketItemJs));
   };
 
   useEffect(() => {

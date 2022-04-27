@@ -12,12 +12,7 @@ import {
 } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import {
-  showAddedBasketItems,
-  endSale,
-  clearBasket,
-  updateBasket,
-} from "../../redux/actions/cartActions";
+import { showAddedBasketItems } from "../../redux/actions/retailActions";
 import BasketDelete from "./BasketDelete";
 import TextArea from "antd/lib/input/TextArea";
 import { exportPdf } from "../../redux/actions/invoiceActions";
@@ -27,13 +22,13 @@ export default function RetailBasket() {
   const [basketId, setBasketId] = useState();
   const [basketNote, setBasketNote] = useState();
   const basketItems = useSelector(
-    (state) => state.cartReducers?.addBasketItems
+    (state) => state.retailReducers?.addRetailBasketItems
   );
   const basketAllData = useSelector(
-    (state) => state.cartReducers?.basketAllData
+    (state) => state.retailReducers?.retailBasketAllData
   );
   const endSaleBasketReturnData = useSelector(
-    (state) => state.cartReducers?.endSaleReturnData
+    (state) => state.retailReducers?.endRetailReturnData
   );
   const [basketArray, setBasketArray] = useState();
   useEffect(() => {
@@ -56,7 +51,7 @@ export default function RetailBasket() {
   }, [basketArray]);
 
   const handleClear = () => {
-    dispatch(clearBasket());
+    // dispatch(clearBasket());
   };
   const showRemoveModal = (id) => {
     setBasketId(id);
@@ -68,9 +63,9 @@ export default function RetailBasket() {
   };
 
   const editBasketData = (basketData) => {
-    console.log(basketData);
-    dispatch(updateBasket(basketData));
-    dispatch(showAddedBasketItems());
+    // console.log(basketData);
+    // dispatch(updateBasket(basketData));
+    // dispatch(showAddedBasketItems());
   };
 
   const columns = [
@@ -88,8 +83,8 @@ export default function RetailBasket() {
       editable: true,
       render: (text, record, index) => (
         <InputNumber
-        pattern="[0-9]*"
-        inputmode="numeric"
+          pattern="[0-9]*"
+          inputmode="numeric"
           value={text}
           onChange={onInputQuantityChange("quantity", index)}
         />
@@ -101,8 +96,8 @@ export default function RetailBasket() {
       editable: true,
       render: (text, record, index) => (
         <InputNumber
-        pattern="[0-9]*"
-        inputmode="numeric"
+          pattern="[0-9]*"
+          inputmode="numeric"
           min={0}
           defaultValue={text}
           formatter={(value) =>
@@ -128,8 +123,8 @@ export default function RetailBasket() {
       editable: true,
       render: (text, record, index) => (
         <InputNumber
-        pattern="[0-9]*"
-        inputmode="numeric"
+          pattern="[0-9]*"
+          inputmode="numeric"
           defaultValue={text}
           min={0}
           max={100}
@@ -145,8 +140,8 @@ export default function RetailBasket() {
 
       render: (text, record, index) => (
         <InputNumber
-        pattern="[0-9]*"
-        inputmode="numeric"
+          pattern="[0-9]*"
+          inputmode="numeric"
           defaultValue={text}
           editable={false}
           disabled={true}
@@ -171,8 +166,8 @@ export default function RetailBasket() {
       dataIndex: "totalPrice",
       render: (text, record, index) => (
         <InputNumber
-        pattern="[0-9]*"
-        inputmode="numeric"
+          pattern="[0-9]*"
+          inputmode="numeric"
           min={0}
           defaultValue={text}
           editable={false}
@@ -268,7 +263,7 @@ export default function RetailBasket() {
 
     console.log(endSalesData);
     // exportPdf(endSaleBasketReturnData)
-    dispatch(endSale(endSalesData,'Pərakəndə'));
+    // dispatch(endSale(endSalesData, "Pərakəndə"));
   };
   const onChangeNote = (note) => [
     setBasketNote(note.target.value === undefined ? "" : note.target.value),
@@ -292,14 +287,13 @@ export default function RetailBasket() {
         </Col>
         <Col span={2} offset={20}>
           <Button
-         
             onClick={openPdf}
             type="primary"
             style={{
               marginBottom: 16,
               backgroundColor: "#0C9873",
               borderColor: "#0C9873",
-              display:'none'
+              display: "none",
             }}
           >
             Pdf-ə çap et

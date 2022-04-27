@@ -26,13 +26,13 @@ export default function RestoreBasket() {
   const [basketId, setBasketId] = useState();
   const [basketNote, setBasketNote] = useState();
   const basketItems = useSelector(
-    (state) => state.restoreReducers?.addBasketItems
+    (state) => state.restoreReducers?.addRestoreBasketItems
   );
   const basketAllData = useSelector(
-    (state) => state.restoreReducers?.basketAllData
+    (state) => state.restoreReducers?.restoreBasketAllData
   );
   const endRestoreBasketReturnData = useSelector(
-    (state) => state.cartReducers?.endRestoreReturnData
+    (state) => state.restoreReducers?.endRestoreReturnData
   );
   const [basketArray, setBasketArray] = useState();
   useEffect(() => {
@@ -58,7 +58,7 @@ export default function RestoreBasket() {
     console.log(basketArray);
   }, [basketArray]);
 
-  const handleClear = () => {
+  const handleClear = () => { 
     dispatch(clearBasket());
   };
   const showRemoveModal = (id) => {

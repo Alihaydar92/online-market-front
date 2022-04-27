@@ -1,10 +1,10 @@
 import * as actionTypes from "../actions/actionTypes";
 import initialState from "./initialState";
 
-export default function restoreReducers(state = initialState, action) {
+export default function retailReducers(state = initialState, action) {
   console.log(action.payload);
   switch (action.type) {
-    case actionTypes.SHOW_RESTORE_BASKET_ITEMS: {
+    case actionTypes.SHOW_RETAIL_BASKET_ITEMS: {
       if (Object.entries(action.payload).length > 0) {
         var arr = [];
         for (let value of Object.values(action.payload.items)) {
@@ -13,13 +13,13 @@ export default function restoreReducers(state = initialState, action) {
       }
       return {
         ...state,
-        addRestoreBasketItems: arr,
-        restoreBasketAllData: action.payload,
+        addRetailBasketItems: arr,
+        retailBasketAllData: action.payload,
       };
     }
-    case actionTypes.END_RESTORE: {
+    case actionTypes.END_RETAIL: {
       return {
-        endRestoreReturnData: action.payload,
+        endRetailReturnData: action.payload,
       };
     }
 

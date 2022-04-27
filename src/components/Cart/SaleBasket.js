@@ -17,7 +17,7 @@ import {
   endSale,
   clearBasket,
   updateBasket,
-} from "../../redux/actions/cartActions";
+} from "../../redux/actions/saleActions";
 import BasketDelete from "./BasketDelete";
 import TextArea from "antd/lib/input/TextArea";
 import { exportPdf } from "../../redux/actions/invoiceActions";
@@ -27,13 +27,13 @@ export default function SaleBasket() {
   const [basketId, setBasketId] = useState();
   const [basketNote, setBasketNote] = useState();
   const basketItems = useSelector(
-    (state) => state.cartReducers?.addBasketItems
+    (state) => state.saleReducers?.addSaleBasketItems
   );
   const basketAllData = useSelector(
-    (state) => state.cartReducers?.basketAllData
+    (state) => state.saleReducers?.saleBasketAllData
   );
   const endSaleBasketReturnData = useSelector(
-    (state) => state.cartReducers?.endSaleReturnData
+    (state) => state.saleReducers?.endSaleReturnData
   );
   const [basketArray, setBasketArray] = useState();
   useEffect(() => {
