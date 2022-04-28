@@ -31,6 +31,10 @@ export default function CustomerTable() {
       dataIndex: "surname",
     },
     {
+      title: "Xalis borc",
+      dataIndex: "netDept",
+    },
+    {
       title: "Qeyd",
       dataIndex: "note",
     },
