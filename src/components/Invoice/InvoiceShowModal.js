@@ -171,7 +171,7 @@ export default function InvoiceShowModal(props) {
         <Image
           style={{ display: "none" }}
           src={
-            imgsByProductId?.images.length===0
+            image["content"]===null
             ? alert('sekil yoxdu')
               : `data:image/jpeg;base64,${image["content"]}`
           }
@@ -179,7 +179,7 @@ export default function InvoiceShowModal(props) {
           height={200}
           preview={{
             visible,
-            src:  imgsByProductId?.images.length===0
+            src:  image["content"]===null
             ? alert('sekil yoxdu')
             : `data:image/jpeg;base64,${image["content"]}`,
             onVisibleChange: (value) => {

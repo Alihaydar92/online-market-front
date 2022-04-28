@@ -1,21 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { Form, Select, Input, Button, DatePicker } from "antd";
+import { Form, Select, Input, Button, DatePicker, Space, Modal } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import {
   cashboxTypeList,
   cashboxAdd,
 } from "../../redux/actions/cashBoxActions";
+import { getExpeditorByUsername } from "../../redux/actions/expeditorActions";
+import CashBoxAddModal from "./CashBoxAddModal";
 
 const { Option } = Select;
 export default function CashBoxPage() {
   const dispatch = useDispatch();
   const [form] = Form.useForm();
   const [cashboxTypeDataState, setCashboxTypeDataState] = useState(null);
-
+  const [isAddCashboxModalVisible, setIsAddCashboxModalVisible] =
+    useState(false);
   const cashboxTypeListData = useSelector(
     (state) => state.cashboxReducers?.cashboxTypeListData
   );
-
+  useEffect(() => {
+    dispatch(getExpeditorByUsername(window.localStorage.getItem("username")));
+  }, [dispatch]);
   useEffect(() => {
     dispatch(cashboxTypeList());
   }, []);
@@ -24,46 +29,65 @@ export default function CashBoxPage() {
     setCashboxTypeDataState(e);
   };
 
-  const onClickAddCashbox = () => [
-    form
-      .validateFields()
-      .then((values) => {
-        var addData = {
-          name: values.customer,
-          boxTypeId: cashboxTypeDataState,
-        };
-        console.log(addData);
-        dispatch(cashboxAdd(addData));
-      })
-      .catch((err) => {}),
-  ];
+  const onClickAddCashbox = () => {
+    setIsAddCashboxModalVisible(true);
+    // form
+    //   .validateFields()
+    //   .then((values) => {
+    //     var addData = {
+    //       name: values.customer,
+    //       boxTypeId: cashboxTypeDataState,
+    //     };
+    //     console.log(addData);
+    //     dispatch(cashboxAdd(addData));
+    //   })
+    //   .catch((err) => {}),
+  };
+  const handleCancel = () => {
+    setIsAddCashboxModalVisible(false);
+  };
   return (
     <div>
-      Kassa tipi:
-      <Select
-        style={{ width: 200, marginTop: "20px" }}
-        onChange={onChangeCashboxCombo}
-        showSearch
-        optionFilterProp="children"
-        filterOption={(input, option) => {
-          return (
-            option.props.children
-              .toString()
-              .toLowerCase()
-              .indexOf(input.toLowerCase()) >= 0 ||
-            option.props.value
-              .toString()
-              .toLowerCase()
-              .indexOf(input.toLowerCase()) >= 0
-          );
-        }}
-      >
-        {cashboxTypeListData.map((cashboxTypeData) => (
-          <Option key={cashboxTypeData.id} value={cashboxTypeData.id}>
-            {cashboxTypeData.name}
-          </Option>
-        ))}
-      </Select>
+      <Space style={{ marginTop: "20px" }}>
+        Kassa tipi:
+        <Select
+          style={{ width: 200 }}
+          onChange={onChangeCashboxCombo}
+          showSearch
+          optionFilterProp="children"
+          filterOption={(input, option) => {
+            return (
+              option.props.children
+                .toString()
+                .toLowerCase()
+                .indexOf(input.toLowerCase()) >= 0 ||
+              option.props.value
+                .toString()
+                .toLowerCase()
+                .indexOf(input.toLowerCase()) >= 0
+            );
+          }}
+        >
+          {cashboxTypeListData.map((cashboxTypeData, index) => (
+            <Option key={cashboxTypeData.id} value={cashboxTypeData.id}>
+              {cashboxTypeData.name}
+            </Option>
+          ))}
+        </Select>
+        <Button
+          disabled={cashboxTypeDataState === null ? true : false}
+          type="primary"
+          htmlType="submit"
+          style={{
+            backgroundColor: "#0C9873",
+            borderColor: "#0C9873",
+          }}
+          onClick={onClickAddCashbox}
+        >
+          Əlavə et
+        </Button>
+      </Space>
+      {/* <br /> */}
       {cashboxTypeDataState === null ? (
         <p>Məlumat yoxdur</p>
       ) : (
@@ -116,14 +140,32 @@ export default function CashBoxPage() {
                 backgroundColor: "#0C9873",
                 borderColor: "#0C9873",
               }}
-              onClick={onClickAddCashbox}
+              // onClick={onClickSearchCashbox}
             >
-              Əlavə et
+              Axtar
             </Button>
           </Form.Item>
         </Form>
       )}
       <br />
+
+      <Modal
+        title="Kassa əlavə edilməsi"
+        visible={isAddCashboxModalVisible}
+        destroyOnClose={true}
+        onCancel={handleCancel}
+        footer={[
+          <Button danger onClick={handleCancel} type="primary">
+            Geri
+          </Button>,
+        ]}
+      >
+        <CashBoxAddModal
+          cashboxTypeDataStateProps={cashboxTypeDataState}
+          rowKey="id"
+          handleCancel={handleCancel}
+        />
+      </Modal>
     </div>
   );
 }
