@@ -32,12 +32,14 @@ export const listOfProducts = () => (dispatch) => {
       password: window.localStorage.getItem("password"),
     },
   });
+  dispatch(showLoader());
   axiosInstance.get("/products").then((response) => {
     console.log(response.data);
     dispatch({
       type: actionTypes.LIST_OF_PRODUCTS,
       payload: response.data,
     });
+    dispatch(hideLoader());
   });
 };
 

@@ -77,7 +77,7 @@ sekli sil buttonunun altinda sekli servisde cagirib silmek
 
 infinite scrool satis buttunsuz elemek---
 
-anbar page redaktede error verir(ola bilsin product list comboya dolmamis acilir)
+anbar page redaktede error verir(ola bilsin product list comboya dolmamis acilir) +++
 
 qaime yekun mebleg cemini hesablamaq ve exportda nezere almaq
 
@@ -85,7 +85,7 @@ basket data updateden sonra refresh
 
 qaime klikinde acilan modalda sekile bax emeliyyatini yazmaq
 
-satisda say qiymet dizaynlarina yeniden baxmaq
+satisda say qiymet dizaynlarina yeniden baxmaq (up down mobile gorunmur)
 
 qaime klikinde sayi input etdikden sonra mebleg ve cemin hesablamisini da nezere almaq( backendde ve ya frontda)
 
@@ -93,9 +93,7 @@ satisda say qiymet musteri satis qiymeti bu inputlari tapsiriga uygun duzeltmek
 
 helelik satis reponsive oz mobilim ucun duzdu,bunu plansete tetbiq etmek
 
-pagelere daxil olarken verilmis page adlarini bir cerciveye salib sabit widthde saxlamaq lazimdirki menu oynamasin saga sola
-
-kassa page yigmaq goruntu olaraq wpdaki sekil
+xercler gelirler pagelerini qurmaq, her iki pencerede elave et duymesinde modal acilacaq, name ve mebleg olacaq, pageleri shekde oldugu kimi form qurmaq
 
 ### sonra
 headerin responsiveliyi (Imkan varsa pencerelesi responsive etmek (Sonda da edile biler))
@@ -111,7 +109,6 @@ seller id-ye gore ise musteri siyahisi gelecek, helelik musteri siyahsini cagirm
 musteri id-ni cokilerde saxlayiram(cardlistden basqa pencereye keciden sonra geri qayidanda birde musteri secmesin deye)
 
 img ve diger filelarla bagli codelarin optimizasiyasi
-
 
 comboboxlarda scrolling data(ya da loadingi xombobox ucun de tetbiq etmek)
 

@@ -303,3 +303,7 @@ perakende baskete data dushende icon gorsenmir +++
 pdfleri uc yere parcalamaq , perakende pdfi sekile uygun duzelis etmek +++
 
 perakende yekunlasdir-i test etmek , yekunlasarken pdfi download etmek +++ 
+
+pagelere daxil olarken verilmis page adlarini bir cerciveye salib sabit widthde saxlamaq lazimdirki menu oynamasin saga sola +++
+
+kassa page yigmaq goruntu olaraq wpdaki sekil +++

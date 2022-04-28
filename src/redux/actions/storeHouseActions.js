@@ -1,5 +1,6 @@
 import * as actionTypes from "./actionTypes";
 import axios from "axios";
+import { showLoader, hideLoader } from "../actions/loaderActions";
 const baseURL = process.env.REACT_APP_BACKEND_URL;
 export const listOfStoreHouse = (page, pageSize) => (dispatch) => {
   const axiosInstance = axios.create({
@@ -26,12 +27,15 @@ export const getStoreHouseById = (id) => (dispatch) => {
       password: window.localStorage.getItem("password"),
     },
   });
+  dispatch(showLoader());
+    
   axiosInstance.get("/storehouse/" + id).then((response) => {
     console.log("response ", response.data);
     dispatch({
       type: actionTypes.GET_STOREHOUSE_BY_ID,
       payload: response.data,
     });
+    dispatch(hideLoader());
   });
 };
 

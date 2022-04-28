@@ -36,6 +36,8 @@ import Invoice from "../Invoice/Invoice";
 import Restore from "../Cart/Restore";
 import Retail from "../Cart/Retail";
 import CashBoxPage from "../CashBox/CashBoxPage";
+import IncomePage from "../Income/IncomePage";
+import CostPage from "../Cost/CostPage";
 const { SubMenu } = Menu;
 const logo = require("../../helpers/greenStream.jpeg");
 const { Footer, Content } = Layout;
@@ -86,7 +88,7 @@ export default function App() {
                   preview={false}
                 />
               </Menu.Item>
-              <Menu.Item key="100">
+              <Menu.Item key="100" style={{ width: "200px", marginTop: "5px" }}>
                 {
                   {
                     "/customers": <h3>Müştərilər</h3>,
@@ -107,6 +109,8 @@ export default function App() {
                     "/restore": <h3>Qaytarma</h3>,
                     "/retail": <h3>Pərakəndə</h3>,
                     "/cashbox": <h3>Kassa</h3>,
+                    "/income": <h3>Gəlirlər</h3>,
+                    "/cost": <h3>Xərclər</h3>,
                   }[location.pathname]
                 }
               </Menu.Item>
@@ -123,6 +127,12 @@ export default function App() {
                 </Menu.Item>
                 <Menu.Item key="4">
                   <Link to="properties">Xüsusiyyət</Link>
+                </Menu.Item>
+                <Menu.Item key="5">
+                  <Link to="income">Gəlirlər</Link>
+                </Menu.Item>
+                <Menu.Item key="6">
+                  <Link to="cost">Xərclər</Link>
                 </Menu.Item>
               </SubMenu>
               <SubMenu key="sub2" icon={<LaptopOutlined />} title="Əməliyyat">
@@ -220,6 +230,8 @@ export default function App() {
                 <Route path="numerateResult" element={<NumerateResult />} />
                 <Route path="invoice" element={<Invoice />} />
                 <Route path="cashbox" element={<CashBoxPage />} />
+                <Route path="income" element={<IncomePage />} />
+                <Route path="cost" element={<CostPage />} />
 
                 <Route
                   path="customerBlackList"
