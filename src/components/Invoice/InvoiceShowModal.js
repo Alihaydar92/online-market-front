@@ -16,7 +16,8 @@ import jsPDF from "jspdf";
 import "jspdf-autotable";
 import fontTxt from "../../helpers/fontRobotoBase64";
 import moment from "moment";
-const logo = require("../../helpers/greenStream.jpeg");
+// const logo = require("../../helpers/greenStream.jpeg");
+const noImg = require("../../helpers/no-img.png");
 const { Text } = Typography;
 export default function InvoiceShowModal(props) {
   const [form] = Form.useForm();
@@ -50,8 +51,8 @@ export default function InvoiceShowModal(props) {
       editable: true,
       render: (text, record, index) => (
         <InputNumber
-        pattern="[0-9]*"
-        inputmode="numeric"
+          pattern="[0-9]*"
+          inputmode="numeric"
           value={text}
           onChange={onInputQuantityChange("quantity", index)}
         />
@@ -166,19 +167,28 @@ export default function InvoiceShowModal(props) {
       </Button>
 
       {imgsByProductId?.images?.map((image, index) => (
+        
         <Image
           style={{ display: "none" }}
-          src={image["content"]}
+          src={
+            imgsByProductId?.images.length===0
+            ? alert('sekil yoxdu')
+              : `data:image/jpeg;base64,${image["content"]}`
+          }
           width={200}
           height={200}
           preview={{
             visible,
-            src: image["content"],
+            src:  imgsByProductId?.images.length===0
+            ? alert('sekil yoxdu')
+            : `data:image/jpeg;base64,${image["content"]}`,
             onVisibleChange: (value) => {
               setVisible(value);
             },
           }}
+    
         />
+        
       ))}
     </div>
   );
