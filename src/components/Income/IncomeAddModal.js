@@ -1,9 +1,23 @@
 import React from "react";
-import { Button, Form, Input, InputNumber } from "antd";
-export default function IncomeAddModal() {
+import { Button, Form, Input } from "antd";
+import { useDispatch } from "react-redux";
+import { addIncomeType } from "../../redux/actions/incomeActions";
+export default function IncomeAddModal(props) {
   const [form] = Form.useForm();
-
-  const onCreateIncome = () => {};
+  const dispatch = useDispatch();
+  const onCreateIncome = () => {
+    form
+      .validateFields()
+      .then((values) => {
+        var data = {
+          name: values.name,
+        };
+        dispatch(addIncomeType(data));
+        props.handleCancel();
+        form.resetFields();
+      })
+      .catch((err) => {});
+  };
   return (
     <div>
       <Form
@@ -15,19 +29,11 @@ export default function IncomeAddModal() {
         autoComplete="off"
       >
         <Form.Item
-          label="Adı"
+          label="Növü"
           name="name"
-          rules={[{ required: true, message: "Adı daxil edin!" }]}
+          rules={[{ required: true, message: "Növü daxil edin!" }]}
         >
           <Input autoFocus="true" />
-        </Form.Item>
-
-        <Form.Item
-          label="Məbləğ"
-          name="price"
-          rules={[{ required: true, message: "Məbləği daxil edin!" }]}
-        >
-          <InputNumber pattern="[0-9]*" inputmode="numeric" />
         </Form.Item>
 
         <Form.Item>

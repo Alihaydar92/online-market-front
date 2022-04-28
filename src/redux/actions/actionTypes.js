@@ -115,3 +115,11 @@ export const END_RETAIL = "END_RETAIL";
 //cashbox
 export const CASHBOX_TYPE_LIST = "CASHBOX_TYPE_LIST";
 export const CASHBOX_ADD = "CASHBOX_ADD";
+
+//income 
+export const ADD_INCOME_TYPE="ADD_INCOME_TYPE"
+export const LIST_OF_INCOME_TYPES="LIST_OF_INCOME_TYPES"
+
+//cost 
+export const ADD_COST_TYPE="ADD_COST_TYPE"
+export const LIST_OF_COST_TYPES="LIST_OF_COST_TYPES"

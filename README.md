@@ -93,8 +93,11 @@ satisda say qiymet musteri satis qiymeti bu inputlari tapsiriga uygun duzeltmek
 
 helelik satis reponsive oz mobilim ucun duzdu,bunu plansete tetbiq etmek
 
-xercler gelirler pagelerini qurmaq, her iki pencerede elave et duymesinde modal acilacaq, name ve mebleg olacaq, pageleri shekde oldugu kimi form qurmaq
+xercler gelirler pagelerini qurmaq, her iki pencerede elave et duymesinde modal acilacaq, name ve mebleg olacaq, pageleri shekde oldugu kimi form qurmaq+++
 
+income cost add modalda təkcə növ daxil ediləcək (məbləğ yoxdu) , modalda cümlə belə olacaq "gəlir növü"
+
+formda senedin novu artirilacaq ,nov ise combobx olacaq+++
 ### sonra
 headerin responsiveliyi (Imkan varsa pencerelesi responsive etmek (Sonda da edile biler))
 
@@ -110,7 +113,7 @@ musteri id-ni cokilerde saxlayiram(cardlistden basqa pencereye keciden sonra ger
 
 img ve diger filelarla bagli codelarin optimizasiyasi
 
-comboboxlarda scrolling data(ya da loadingi xombobox ucun de tetbiq etmek)
+comboboxlarda scrolling data(ya da loadingi combobox ucun de tetbiq etmek)
 
 card reducerin dexlisiz cagirilma bug-i (bunu arasddirmaq)
 

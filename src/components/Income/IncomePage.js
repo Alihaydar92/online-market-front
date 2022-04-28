@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, Select, Input, Button, DatePicker, Modal } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import IncomeAddModal from "./IncomeAddModal";
+import { listOfIncomeType } from "../../redux/actions/incomeActions";
+const { Option } = Select;
 export default function IncomePage() {
   const dispatch = useDispatch();
   const [form] = Form.useForm();
@@ -12,6 +14,12 @@ export default function IncomePage() {
     setIsAddIncomeModalVisible(true);
   };
 
+  useEffect(() => {
+    dispatch(listOfIncomeType());
+  }, [dispatch]);
+  const incomeTypesComboData = useSelector(
+    (state) => state.incomeReducers?.incomeTypesListData
+  );
   const handleCancel = () => {
     setIsAddIncomeModalVisible(false);
   };
@@ -40,11 +48,41 @@ export default function IncomePage() {
         </Form.Item>
 
         <Form.Item
-          label="Növü"
-          name="type"
+          label="Sənədin nömrəsi"
+          name="docNumber"
           rules={[{ required: false, message: "Növü daxil edin!" }]}
         >
           <Input />
+        </Form.Item>
+        <Form.Item
+          label="Növü"
+          name="type"
+          rules={[{ required: true, message: "Məhsulu seçin!" }]}
+        >
+          <Select
+           style={{width:"200px"}}
+            // onChange={onChangeType}
+            showSearch
+            optionFilterProp="children"
+            filterOption={(input, option) => {
+              return (
+                option.props.children
+                  .toString()
+                  .toLowerCase()
+                  .indexOf(input.toLowerCase()) >= 0 ||
+                option.props.value
+                  .toString()
+                  .toLowerCase()
+                  .indexOf(input.toLowerCase()) >= 0
+              );
+            }}
+          >
+            {incomeTypesComboData.map((incomeData) => (
+              <Option value={incomeData.id} key={incomeData.id}>
+                {incomeData.name}
+              </Option>
+            ))}
+          </Select>
         </Form.Item>
         <Form.Item
           label="Məbləğ"
@@ -71,7 +109,7 @@ export default function IncomePage() {
       <br />
 
       <Modal
-        title="Gəlir məlumatının əlavə edilməsi"
+        title="Gəlir növünün əlavə edilməsi"
         visible={isAddIncomeModalVisible}
         destroyOnClose={true}
         onCancel={handleCancel}

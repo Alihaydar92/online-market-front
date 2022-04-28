@@ -1,15 +1,25 @@
-import React,{useState} from "react";
-import { Form, Select, Input, Button, DatePicker,Modal } from "antd";
+import React, { useEffect, useState } from "react";
+import { Form, Select, Input, Button, DatePicker, Modal } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import CostAddModal from "./CostAddModal";
+import { listOfCostType } from "../../redux/actions/costActions";
+const { Option } = Select;
 export default function CostPage() {
   const dispatch = useDispatch();
   const [form] = Form.useForm();
-  const [isAddCostModalVisible,setIsAddCostModalVisible]=useState(false);
+  const [isAddCostModalVisible, setIsAddCostModalVisible] = useState(false);
+
+  useEffect(() => {
+    dispatch(listOfCostType());
+  }, [dispatch]);
+
+  const costTypesComboData = useSelector(
+    (state) => state.costReducers?.costTypesListData
+  );
   const onClickSearchCost = () => {};
 
   const onClickAddCost = () => {
-      setIsAddCostModalVisible(true);
+    setIsAddCostModalVisible(true);
   };
 
   const handleCancel = () => {
@@ -38,13 +48,42 @@ export default function CostPage() {
         >
           <DatePicker placeholder="tarix aralığını seçin" />
         </Form.Item>
-
         <Form.Item
-          label="Növü"
-          name="type"
+          label="Sənədin nömrəsi"
+          name="docNumber"
           rules={[{ required: false, message: "Növü daxil edin!" }]}
         >
           <Input />
+        </Form.Item>
+        <Form.Item
+          label="Növü"
+          name="type"
+          rules={[{ required: true, message: "Növü daxil edin!" }]}
+        >
+          <Select
+            style={{ width: "200px" }}
+            // onChange={onChangeType}
+            showSearch
+            optionFilterProp="children"
+            filterOption={(input, option) => {
+              return (
+                option.props.children
+                  .toString()
+                  .toLowerCase()
+                  .indexOf(input.toLowerCase()) >= 0 ||
+                option.props.value
+                  .toString()
+                  .toLowerCase()
+                  .indexOf(input.toLowerCase()) >= 0
+              );
+            }}
+          >
+            {costTypesComboData.map((costData) => (
+              <Option value={costData.id} key={costData.id}>
+                {costData.name}
+              </Option>
+            ))}
+          </Select>
         </Form.Item>
         <Form.Item
           label="Məbləğ"
@@ -68,12 +107,12 @@ export default function CostPage() {
           </Button>
         </Form.Item>
       </Form>
-      <br/>
+      <br />
 
       <Modal
-        title="Xərc məlumatının əlavə edilməsi"
+        title="Xərc növünün əlavə edilməsi"
         visible={isAddCostModalVisible}
-        destroyOnClose={true} 
+        destroyOnClose={true}
         onCancel={handleCancel}
         footer={[
           <Button danger onClick={handleCancel} type="primary">
@@ -81,7 +120,7 @@ export default function CostPage() {
           </Button>,
         ]}
       >
-        <CostAddModal rowKey="id" handleCancel={handleCancel}/>
+        <CostAddModal rowKey="id" handleCancel={handleCancel} />
       </Modal>
     </div>
   );

@@ -13,6 +13,8 @@ import invoiceReducers from "./invoiceReducers";
 import restoreReducers from "./restoreReducers";
 import retailReducers from "./retailReducers";
 import cashboxReducers from "./cashboxReducers";
+import incomeReducers from "./incomeReducers";
+import costReducers from "./costReducers";
 const rootReducer = combineReducers({
   customerReducer,
   expeditorReducers,
@@ -27,7 +29,9 @@ const rootReducer = combineReducers({
   saleReducers,
   restoreReducers,
   retailReducers,
-  cashboxReducers
+  cashboxReducers,
+  incomeReducers,
+  costReducers,
 });
 
 export default rootReducer;
