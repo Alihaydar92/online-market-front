@@ -9,7 +9,7 @@ export const listOfCostType = () => (dispatch) => {
       password: window.localStorage.getItem("password"),
     },
   });
-  axiosInstance.get("/profitTypes").then((response) => {
+  axiosInstance.get("/expenseTypes").then((response) => {
     dispatch({
       type: actionTypes.LIST_OF_COST_TYPES,
       payload: response.data,
@@ -26,7 +26,7 @@ export const addCostType = (data) => (dispatch) => {
     },
   });
   console.log("add addIncomeType ", data);
-  axiosInstance.post("/profitTypes", data).then((response) => {
+  axiosInstance.post("/expenseTypes", data).then((response) => {
     if (response.status === 200) {
       dispatch({
         type: actionTypes.ADD_COST_TYPE,
