@@ -77,13 +77,11 @@ sekli sil buttonunun altinda sekli servisde cagirib silmek
 
 infinite scrool satis buttunsuz elemek---
 
-anbar page redaktede error verir(ola bilsin product list comboya dolmamis acilir) +++
-
 qaime yekun mebleg cemini hesablamaq ve exportda nezere almaq
 
 basket data updateden sonra refresh
 
-qaime klikinde acilan modalda sekile bax emeliyyatini yazmaq
+qaime klikinde acilan modalda sekile bax emeliyyatini yazmaq 
 
 satisda say qiymet dizaynlarina yeniden baxmaq (up down mobile gorunmur)
 
@@ -93,11 +91,7 @@ satisda say qiymet musteri satis qiymeti bu inputlari tapsiriga uygun duzeltmek
 
 helelik satis reponsive oz mobilim ucun duzdu,bunu plansete tetbiq etmek
 
-xercler gelirler pagelerini qurmaq, her iki pencerede elave et duymesinde modal acilacaq, name ve mebleg olacaq, pageleri shekde oldugu kimi form qurmaq+++
-
-income cost add modalda təkcə növ daxil ediləcək (məbləğ yoxdu) , modalda cümlə belə olacaq "gəlir növü"
-
-formda senedin novu artirilacaq ,nov ise combobx olacaq+++
+mobileda daxil olarken menu (3 noqte sheklindedi) menu ya klikledikde acilmr,ikinci defe klikledikde acilir ,buna baxmaw
 ### sonra
 headerin responsiveliyi (Imkan varsa pencerelesi responsive etmek (Sonda da edile biler))
 

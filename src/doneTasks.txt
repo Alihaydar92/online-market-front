@@ -307,3 +307,11 @@ perakende yekunlasdir-i test etmek , yekunlasarken pdfi download etmek +++
 pagelere daxil olarken verilmis page adlarini bir cerciveye salib sabit widthde saxlamaq lazimdirki menu oynamasin saga sola +++
 
 kassa page yigmaq goruntu olaraq wpdaki sekil +++
+
+xercler gelirler pagelerini qurmaq, her iki pencerede elave et duymesinde modal acilacaq, name ve mebleg olacaq, pageleri shekde oldugu kimi form qurmaq+++
+
+income cost add modalda təkcə növ daxil ediləcək (məbləğ yoxdu) , modalda cümlə belə olacaq "gəlir növü"
+
+formda senedin novu artirilacaq ,nov ise combobx olacaq+++
+
+anbar page redaktede error verir(ola bilsin product list comboya dolmamis acilir) +++

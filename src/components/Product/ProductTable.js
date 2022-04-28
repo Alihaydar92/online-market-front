@@ -79,7 +79,7 @@ export default function ProductTable() {
         return (
           <Space size="middle">
             <Button
-            style={{backgroundColor:"#0C9873",borderColor:"#0C9873"}}
+              style={{ backgroundColor: "#0C9873", borderColor: "#0C9873" }}
               size="small"
               type="primary"
               onClick={() => showEditModal(productData)}
@@ -278,7 +278,11 @@ export default function ProductTable() {
             type="file"
           />
           <Button
-            style={{ marginLeft: "10px",backgroundColor:"#0C9873",borderColor:"#0C9873" }}
+            style={{
+              marginLeft: "10px",
+              backgroundColor: "#0C9873",
+              borderColor: "#0C9873",
+            }}
             type="primary"
             onClick={onCreateExcel(pagination)}
             disabled={disabledSave}
@@ -289,7 +293,11 @@ export default function ProductTable() {
       </Row>
       <Row style={{ marginTop: "20px" }}>
         <Col>
-          <Button type="primary" onClick={showAddModal} style={{backgroundColor:"#0C9873",borderColor:"#0C9873"}}>
+          <Button
+            type="primary"
+            onClick={showAddModal}
+            style={{ backgroundColor: "#0C9873", borderColor: "#0C9873" }}
+          >
             Əlavə et
           </Button>
         </Col>
@@ -311,7 +319,7 @@ export default function ProductTable() {
           </Form.Item>
           <Form.Item>
             <Button
-            style={{backgroundColor:"#0C9873",borderColor:"#0C9873"}}
+              style={{ backgroundColor: "#0C9873", borderColor: "#0C9873" }}
               icon={<SearchOutlined />}
               type="primary"
               htmlType="submit"
@@ -324,7 +332,11 @@ export default function ProductTable() {
             <Button
               type="primary"
               htmlType="submit"
-              style={{ left: "20px" , backgroundColor:"#ff7400",borderColor:"#ff7400"}}
+              style={{
+                left: "20px",
+                backgroundColor: "#ff7400",
+                borderColor: "#ff7400",
+              }}
               onClick={onClear}
             >
               Təmizlə
@@ -423,7 +435,11 @@ export default function ProductTable() {
             <Button danger onClick={handleCancel} type="primary">
               Geri
             </Button>
-            <Button type="primary"  onClick={onSaveImages} style={{backgroundColor:"#0C9873",borderColor:"#0C9873"}}>
+            <Button
+              type="primary"
+              onClick={onSaveImages}
+              style={{ backgroundColor: "#0C9873", borderColor: "#0C9873" }}
+            >
               Yadda saxla
             </Button>
           </div>,
@@ -461,7 +477,7 @@ export default function ProductTable() {
                       <Image.PreviewGroup>
                         <Image
                           // style={{ marginTop: "10px", marginRight: "10px" }}
-                          src={image["content"]}
+                          src={`data:image/jpeg;base64,${image["content"]}`}
                           alt=""
                           width={200}
                           height={200}
