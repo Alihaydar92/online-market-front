@@ -36,3 +36,14 @@
 .site-back-top-basic {
   color: rgba(64, 64, 64, 0.6);
 }
+
+.ant-modal-mask {
+  background: transparent;
+  pointer-events: none;
+}
+.ant-modal-wrap {
+  pointer-events: none;
+}
+.ant-modal {
+  pointer-events: all;
+}

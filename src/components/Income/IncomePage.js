@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { Form, Select, Input, Button, DatePicker, Modal } from "antd";
+import { Form, Select, Input, Button, DatePicker, Modal, Space } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import IncomeAddModal from "./IncomeAddModal";
 import { listOfIncomeType } from "../../redux/actions/incomeActions";
+import IncomeTypeModal from "./IncomeTypeModal";
 const { Option } = Select;
 export default function IncomePage() {
   const dispatch = useDispatch();
   const [form] = Form.useForm();
   const [isAddIncomeModalVisible, setIsAddIncomeModalVisible] = useState(false);
+  const [isIncomeTypeModalVisible, setIsIncomeTypeModalVisible] =
+    useState(false);
   const onClickSearchIncome = () => {};
 
   const onClickAddIncome = () => {
     setIsAddIncomeModalVisible(true);
+    setIsIncomeTypeModalVisible(false);
   };
 
   useEffect(() => {
@@ -22,21 +26,42 @@ export default function IncomePage() {
   );
   const handleCancel = () => {
     setIsAddIncomeModalVisible(false);
+    setIsIncomeTypeModalVisible(false);
+  };
+
+  const onClickShowTypeModal = () => {
+    setIsIncomeTypeModalVisible(true);
+    setIsAddIncomeModalVisible(false);
   };
   return (
     <div>
-      <Button
-        type="primary"
-        htmlType="submit"
-        style={{
-          backgroundColor: "#0C9873",
-          borderColor: "#0C9873",
-          marginTop: "10px",
-        }}
-        onClick={onClickAddIncome}
-      >
-        Əlavə et
-      </Button>
+      <Space>
+        <Button
+          type="primary"
+          htmlType="submit"
+          style={{
+            backgroundColor: "#0C9873",
+            borderColor: "#0C9873",
+            marginTop: "10px",
+          }}
+          onClick={onClickAddIncome}
+        >
+          Növ əlavə et
+        </Button>
+        <Button
+          type="primary"
+          htmlType="submit"
+          style={{
+            backgroundColor: "#0C9873",
+            borderColor: "#0C9873",
+            marginTop: "10px",
+          }}
+          onClick={onClickShowTypeModal}
+        >
+          Növ-Bax
+        </Button>
+      </Space>
+
       <Form layout={"inline"} form={form} style={{ marginTop: "20px" }}>
         <Form.Item
           label="Tarix aralığı"
@@ -60,7 +85,7 @@ export default function IncomePage() {
           rules={[{ required: true, message: "Məhsulu seçin!" }]}
         >
           <Select
-           style={{width:"200px"}}
+            style={{ width: "200px" }}
             // onChange={onChangeType}
             showSearch
             optionFilterProp="children"
@@ -119,7 +144,20 @@ export default function IncomePage() {
           </Button>,
         ]}
       >
-        <IncomeAddModal rowKey="id" handleCancel={handleCancel} />
+        <IncomeAddModal rowKey="addIncomeTypeModal" handleCancel={handleCancel} />
+      </Modal>
+      <Modal
+        title="Gəlir növü"
+        visible={isIncomeTypeModalVisible}
+        destroyOnClose={true}
+        onCancel={handleCancel}
+        footer={[
+          <Button danger onClick={handleCancel} type="primary">
+            Geri
+          </Button>,
+        ]}
+      >
+        <IncomeTypeModal rowKey="incomeTypeModal" handleCancel={handleCancel} />
       </Modal>
     </div>
   );

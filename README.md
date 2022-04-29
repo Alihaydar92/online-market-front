@@ -94,7 +94,9 @@ helelik satis reponsive oz mobilim ucun duzdu,bunu plansete tetbiq etmek
 mobileda daxil olarken menu (3 noqte sheklindedi) menu ya klikledikde acilmr,ikinci defe klikledikde acilir ,buna baxmaw
 
 kassda form elave et duymesi axtarla evezlenecek , kassa tipinin yaninda elave et duymesi,klikinde modal acilacaq acilan modalda musteri combobox, mebleg, 
-novu(gelirdeki combo) => mexaricdise xerclerdki novui xombobox data, medaxildise gelir novu
+novu(gelirdeki combo) => mexaricdise xerclerdki novui xombobox data, medaxildise gelir novu+++
+
+gelirler ve xercler type show modal ,redakte et ve sil emeliyyatlari done +++
 ### sonra
 headerin responsiveliyi (Imkan varsa pencerelesi responsive etmek (Sonda da edile biler))
 
