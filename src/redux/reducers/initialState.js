@@ -72,6 +72,7 @@ export default {
   invoiceTypeListData: [],
 
   cashboxTypeListData:[],
+  cashboxListData:[],
   costTypesListData:[],
   incomeTypesListData:[]
 };

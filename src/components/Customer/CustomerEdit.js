@@ -22,7 +22,14 @@ export default function CustomerEdit(props) {
           note: form.getFieldsValue().note.trim(),
           id: customerDataById?.id,
         };
-        dispatch(updateCustomer(data,props.paginationData.page,props.paginationData.pageSize), [listOfCustomerData]);
+        dispatch(
+          updateCustomer(
+            data,
+            props.paginationData.page,
+            props.paginationData.pageSize
+          ),
+          [listOfCustomerData]
+        );
         props.handleCancel();
       })
       .catch((errorInfo) => {
@@ -81,8 +88,13 @@ export default function CustomerEdit(props) {
           <Button
             type="primary"
             htmlType="submit"
-            style={{ position: "absolute", left: "300px", bottom: "-90px",backgroundColor:"#0C9873",borderColor:"#0C9873"  }}
-            
+            style={{
+              position: "absolute",
+              left: "320px",
+              bottom: "-90px",
+              backgroundColor: "#0C9873",
+              borderColor: "#0C9873",
+            }}
             onClick={onUpdate}
           >
             Yadda saxla

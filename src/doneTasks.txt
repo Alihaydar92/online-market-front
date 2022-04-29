@@ -315,3 +315,8 @@ income cost add modalda təkcə növ daxil ediləcək (məbləğ yoxdu) , modald
 formda senedin novu artirilacaq ,nov ise combobx olacaq+++
 
 anbar page redaktede error verir(ola bilsin product list comboya dolmamis acilir) +++
+
+kassda form elave et duymesi axtarla evezlenecek , kassa tipinin yaninda elave et duymesi,klikinde modal acilacaq acilan modalda musteri combobox, mebleg, 
+novu(gelirdeki combo) => mexaricdise xerclerdki novui xombobox data, medaxildise gelir novu+++
+
+gelirler ve xercler type show modal ,redakte et ve sil emeliyyatlari done +++
