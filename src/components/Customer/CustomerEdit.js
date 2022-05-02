@@ -90,7 +90,7 @@ export default function CustomerEdit(props) {
             htmlType="submit"
             style={{
               position: "absolute",
-              left: "320px",
+              left: "300px",
               bottom: "-90px",
               backgroundColor: "#0C9873",
               borderColor: "#0C9873",

@@ -20,18 +20,18 @@ import { getExpeditorByUsername } from "../../redux/actions/expeditorActions";
 import CashBoxAddModal from "./CashBoxAddModal";
 import CashBoxDelete from "./CashBoxDelete";
 import CashBoxEdit from "./CashBoxEdit";
+import CashBoxAddEditModal from "./CashBoxAddEditModal";
 
 const { Option } = Select;
 export default function CashBoxPage() {
   const dispatch = useDispatch();
   const [form] = Form.useForm();
   const [cashboxTypeDataState, setCashboxTypeDataState] = useState(null);
-  const [isAddCashboxModalVisible, setIsAddCashboxModalVisible] =
-    useState(false);
-  const [isEditCashboxModalVisible, setIsEditCashboxModalVisible] =
+  const [isAddEditCashboxModalVisible, setIsAddEditCashboxModalVisible] =
     useState(false);
   const [isDeleteCashboxModalVisible, setIsDeleteCashboxModalVisible] =
     useState(false);
+  const [isEdit, setIsEdit] = useState(false);
 
   const [cashboxId, setCashboxId] = useState();
   const cashboxTypeListData = useSelector(
@@ -95,31 +95,36 @@ export default function CashBoxPage() {
     },
   ];
   const onChangeCashboxCombo = (e) => {
-    setCashboxTypeDataState(e);
+    console.log(cashboxTypeListData[e]);
+    setCashboxTypeDataState(cashboxTypeListData[e]);
   };
 
   const onClickAddCashbox = () => {
-    setIsAddCashboxModalVisible(true);
-    setIsEditCashboxModalVisible(false);
+    setIsEdit(false);
+    setIsAddEditCashboxModalVisible(true);
+
     setIsDeleteCashboxModalVisible(false);
   };
   const handleCancel = () => {
-    setIsAddCashboxModalVisible(false);
-    setIsEditCashboxModalVisible(false);
+    setIsAddEditCashboxModalVisible(false);
+
     setIsDeleteCashboxModalVisible(false);
+    setIsEdit(false);
   };
 
   const showRemoveModal = (id) => {
+    setIsEdit(false);
     setCashboxId(id);
-    setIsEditCashboxModalVisible(false);
-    setIsAddCashboxModalVisible(false);
+    setIsAddEditCashboxModalVisible(false);
+
     setIsDeleteCashboxModalVisible(true);
   };
 
   const showEditModal = (data) => {
+    setIsEdit(true);
     dispatch(cashboxById(data.id));
-    setIsAddCashboxModalVisible(false);
-    setIsEditCashboxModalVisible(true);
+
+    setIsAddEditCashboxModalVisible(true);
     setIsDeleteCashboxModalVisible(false);
   };
   return (
@@ -145,7 +150,7 @@ export default function CashBoxPage() {
           }}
         >
           {cashboxTypeListData.map((cashboxTypeData, index) => (
-            <Option key={cashboxTypeData.id} value={cashboxTypeData.id}>
+            <Option key={index} value={index}>
               {cashboxTypeData.name}
             </Option>
           ))}
@@ -243,8 +248,8 @@ export default function CashBoxPage() {
         // }}
       ></Table>
       <Modal
-        title="Kassa əlavə edilməsi"
-        visible={isAddCashboxModalVisible}
+        title="Kassa məlumatı"
+        visible={isAddEditCashboxModalVisible}
         destroyOnClose={true}
         onCancel={handleCancel}
         footer={[
@@ -253,26 +258,10 @@ export default function CashBoxPage() {
           </Button>,
         ]}
       >
-        <CashBoxAddModal
+        <CashBoxAddEditModal
           cashboxTypeDataStateProps={cashboxTypeDataState}
+          isEditProps={isEdit}
           rowKey="cashboxAdd"
-          handleCancel={handleCancel}
-        />
-      </Modal>
-      <Modal
-        title="Kassa məlumatına düzəliş  edilməsi"
-        visible={isEditCashboxModalVisible}
-        destroyOnClose={true}
-        onCancel={handleCancel}
-        footer={[
-          <Button danger onClick={handleCancel} type="primary">
-            Geri
-          </Button>,
-        ]}
-      >
-        <CashBoxEdit
-          cashboxTypeDataStateProps={cashboxTypeDataState}
-          rowKey="cashboxEdit"
           handleCancel={handleCancel}
         />
       </Modal>
