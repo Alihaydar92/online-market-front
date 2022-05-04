@@ -52,7 +52,7 @@ export const cashboxList = () => (dispatch) => {
     });
   });
 };
-export const cashboxAdd = (data) => (dispatch) => {
+export const cashboxAdd = (data, isOpenPdf) => (dispatch) => {
   console.log("cashbox add action", data);
   const axiosInstance = axios.create({
     baseURL: baseURL,
@@ -68,7 +68,10 @@ export const cashboxAdd = (data) => (dispatch) => {
         type: actionTypes.CASHBOX_ADD,
         payload: response.data,
       });
-      dispatch(incomePdf(response.data));
+      if (isOpenPdf) {
+        dispatch(incomePdf(response.data));
+      }
+
       dispatch(cashboxList());
     }
   });

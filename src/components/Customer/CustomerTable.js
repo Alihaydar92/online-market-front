@@ -10,13 +10,15 @@ import CustomerAdd from "./CustomerAdd";
 import CustomerEdit from "./CustomerEdit";
 import CustomerDelete from "./CustomerDelete";
 import { SearchOutlined } from "@ant-design/icons";
+import CustomerCashboxModal from "./CustomerCashboxModal";
 export default function CustomerTable() {
   const dispatch = useDispatch();
   const [form] = Form.useForm();
 
   const [pagination, setPagination] = useState({ page: 1, pageSize: 15 });
   const [searchCustomerData, setSearchCustomerData] = useState("");
-  const [current,setCurrent] =useState(1);
+  const [customerId, setCustomerId] = useState();
+  const [current, setCurrent] = useState(1);
   const setfirstpage = () => {
     pagination.page = 1;
   };
@@ -45,7 +47,7 @@ export default function CustomerTable() {
         return (
           <Space size="middle">
             <Button
-             style={{ backgroundColor:"#0C9873",borderColor:"#0C9873" }}
+              style={{ backgroundColor: "#0C9873", borderColor: "#0C9873" }}
               size="small"
               type="primary"
               onClick={() => showEditModal(customerData)}
@@ -59,6 +61,14 @@ export default function CustomerTable() {
             >
               Sil
             </Button>
+            <Button
+              style={{ backgroundColor: "#ff7400", borderColor: "#ff7400" }}
+              size="small"
+              type="danger"
+              onClick={() => showCashbox(customerData.id)}
+            >
+              Kassa
+            </Button>
           </Space>
         );
       },
@@ -71,6 +81,7 @@ export default function CustomerTable() {
   const [isElaveEtModalVisible, setIsElaveEtModalVisible] = useState(false);
   const [isRedakteEtModalVisible, setIsRedakteModalVisible] = useState(false);
   const [isSilModalVisible, setIsSilModalVisible] = useState(false);
+  const [isKassaModalVisible, setIsKassaModalVisible] = useState(false);
   // useEffect(() => {
   //   dispatch(listOfCustomers(pagination.page,pagination.pageSize));
   // }, []);
@@ -84,20 +95,29 @@ export default function CustomerTable() {
     setIsElaveEtModalVisible(true);
     setIsRedakteModalVisible(false);
     setIsSilModalVisible(false);
+    setIsKassaModalVisible(false);
   };
   const showEditModal = (data) => {
     dispatch(getCustomerById(data.id));
     setIsRedakteModalVisible(true);
     setIsElaveEtModalVisible(false);
     setIsSilModalVisible(false);
+    setIsKassaModalVisible(false);
   };
   const showRemoveModal = (id) => {
     dispatch(getCustomerById(id));
     setIsRedakteModalVisible(false);
     setIsElaveEtModalVisible(false);
     setIsSilModalVisible(true);
+    setIsKassaModalVisible(false);
   };
-
+  const showCashbox = (id) => {
+    setIsRedakteModalVisible(false);
+    setIsElaveEtModalVisible(false);
+    setIsSilModalVisible(false);
+    setIsKassaModalVisible(true);
+    setCustomerId(id);
+  };
   const handleCancel = () => {
     dispatch(
       searchCustomers(searchCustomerData, pagination.page, pagination.pageSize)
@@ -105,13 +125,14 @@ export default function CustomerTable() {
     setIsElaveEtModalVisible(false);
     setIsRedakteModalVisible(false);
     setIsSilModalVisible(false);
+    setIsKassaModalVisible(false);
   };
   const onSearch = (e) => {
     setSearchCustomerData(form.getFieldsValue().name);
-    console.log(pagination.page)
+    console.log(pagination.page);
     setfirstpage();
-    console.log(pagination.page)
-   
+    console.log(pagination.page);
+
     dispatch(
       searchCustomers(searchCustomerData, pagination.page, pagination.pageSize)
     );
@@ -129,7 +150,7 @@ export default function CustomerTable() {
   const onClear = () => {
     form.setFieldsValue({
       name: "",
-    }); 
+    });
     setSearchCustomerData("");
     console.log(form.getFieldsValue().name);
   };
@@ -141,17 +162,17 @@ export default function CustomerTable() {
     setSearchCustomerData(form.getFieldsValue().name);
     console.log(searchCustomerData);
     dispatch(
-      searchCustomers(
-        form.getFieldsValue().name,
-        1,
-        pagination.pageSize
-      )
+      searchCustomers(form.getFieldsValue().name, 1, pagination.pageSize)
     );
   };
   return (
     <div>
       <Button
-        style={{ marginTop: "20px",backgroundColor:"#0C9873",borderColor:"#0C9873" }}
+        style={{
+          marginTop: "20px",
+          backgroundColor: "#0C9873",
+          borderColor: "#0C9873",
+        }}
         type="primary"
         onClick={showAddModal}
       >
@@ -174,7 +195,7 @@ export default function CustomerTable() {
 
           <Form.Item>
             <Button
-            style={{ backgroundColor:"#0C9873",borderColor:"#0C9873" }}
+              style={{ backgroundColor: "#0C9873", borderColor: "#0C9873" }}
               icon={<SearchOutlined />}
               type="primary"
               htmlType="submit"
@@ -185,10 +206,13 @@ export default function CustomerTable() {
           </Form.Item>
           <Form.Item>
             <Button
-            style={{left: "20px" , backgroundColor:"#ff7400",borderColor:"#ff7400" }}
+              style={{
+                left: "20px",
+                backgroundColor: "#ff7400",
+                borderColor: "#ff7400",
+              }}
               type="primary"
               htmlType="submit"
-          
               onClick={onClear}
             >
               Təmizlə
@@ -213,8 +237,8 @@ export default function CustomerTable() {
         columns={columns}
         rowKey="id"
         pagination={{
-          defaultCurrent:1,
-          current: listOfCustomerData?.currentPage+1,
+          defaultCurrent: 1,
+          current: listOfCustomerData?.currentPage + 1,
           pageSize: pagination.pageSize,
           total: listOfCustomerData?.totalItems,
           onChange: (page, pageSize) => {
@@ -235,7 +259,11 @@ export default function CustomerTable() {
           </Button>,
         ]}
       >
-        <CustomerEdit rowKey="id" paginationData={pagination} handleCancel={handleCancel}></CustomerEdit>
+        <CustomerEdit
+          rowKey="id"
+          paginationData={pagination}
+          handleCancel={handleCancel}
+        ></CustomerEdit>
       </Modal>
       <Modal
         title="Müştəri məlumatının əlavə edilməsi"
@@ -271,6 +299,24 @@ export default function CustomerTable() {
           paginationData={pagination}
           handleCancel={handleCancel}
         ></CustomerDelete>
+      </Modal>
+      <Modal
+        title="Müştəri kassa məlumatları"
+        visible={isKassaModalVisible}
+        pagin
+        onCancel={handleCancel}
+        footer={[
+          <Button danger onClick={handleCancel} type="primary">
+            Geri
+          </Button>,
+        ]}
+      >
+        <CustomerCashboxModal
+          customerIdProps={customerId}
+          rowKey="id"
+          paginationData={pagination}
+          handleCancel={handleCancel}
+        ></CustomerCashboxModal>
       </Modal>
     </div>
   );

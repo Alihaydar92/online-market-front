@@ -83,7 +83,7 @@ export default function CashBoxAddEditModal(props) {
             profitExpenseId: values.type,
           };
           console.log(addData);
-          dispatch(cashboxAdd(addData));
+          dispatch(cashboxAdd(addData,true));
         }
         props.handleCancel();
         form.resetFields();
