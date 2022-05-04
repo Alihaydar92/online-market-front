@@ -6,7 +6,7 @@ export default function incomeReducers(state = initialState, action) {
     case actionTypes.LIST_OF_INCOME_TYPES: {
       return {
         ...state,
-        incomeTypesListData: action.payload,
+        typesListData: action.payload,
       };
     }
 

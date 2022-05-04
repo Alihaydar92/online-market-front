@@ -7,7 +7,7 @@ import  initialState from "./initialState"
         case actionTypes.LIST_OF_COST_TYPES: {
             return {
                 ...state,
-                costTypesListData: action.payload
+                typesListData: action.payload
             }
         }
         

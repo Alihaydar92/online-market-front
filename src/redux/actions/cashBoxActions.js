@@ -47,6 +47,7 @@ export const cashboxList = () => (dispatch) => {
   });
 };
 export const cashboxAdd = (data) => (dispatch) => {
+  console.log("cashbox add action", data);
   const axiosInstance = axios.create({
     baseURL: baseURL,
     auth: {
@@ -60,6 +61,7 @@ export const cashboxAdd = (data) => (dispatch) => {
       type: actionTypes.CASHBOX_ADD,
       payload: response.data,
     });
+    dispatch(cashboxList());
   });
 };
 
@@ -77,6 +79,7 @@ export const cashboxUpdate = (data) => (dispatch) => {
       type: actionTypes.CASHBOX_UPDATE,
       payload: response.data,
     });
+    dispatch(cashboxList());
   });
 };
 
@@ -96,4 +99,58 @@ export const cashboxDelete = (id) => (dispatch) => {
     });
     dispatch(cashboxList());
   });
+};
+
+export const incomeCostList = () => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+  });
+  axiosInstance.get("/profit-expense").then((response) => {
+    console.log(response);
+    dispatch({
+      type: actionTypes.INCOME_COST_LIST,
+      payload: response.data,
+    });
+  });
+};
+
+export const incomeCostAdd = (data) => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+  });
+  axiosInstance.post("/profit-expense", data).then((response) => {
+    console.log(response);
+    dispatch({
+      type: actionTypes.INCOME_COST_ADD,
+      payload: response.data,
+    });
+    dispatch(incomeCostList());
+  });
+};
+
+export const getIncomeCostByTypeId = (id) => (dispatch) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL,
+    auth: {
+      username: window.localStorage.getItem("username"),
+      password: window.localStorage.getItem("password"),
+    },
+  });
+  axiosInstance
+    .get("/cashboxtypes/" + id + "/profit-expense")
+    .then((response) => {
+      console.log(response);
+      dispatch({
+        type: actionTypes.INCOME_COST_BY_TYPE_ID,
+        payload: response.data,
+      });
+    });
 };

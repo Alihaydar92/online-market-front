@@ -21,7 +21,18 @@ export default function cashboxReducers(state = initialState, action) {
         cashboxByIdData: action.payload,
       };
     }
-
+    case actionTypes.INCOME_COST_LIST: {
+      return {
+        ...state,
+        incomeCostListData: action.payload,
+      };
+    }
+    case actionTypes.INCOME_COST_BY_TYPE_ID: {
+      return {
+        ...state,
+        incomeCostByTypeId: action.payload,
+      };
+    }
     default:
       return state;
   }

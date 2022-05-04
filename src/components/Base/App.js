@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { Layout, Menu, Affix, Badge, Image } from "antd";
 import {
   Route,
+  PrivateRoute,
   Routes,
   Outlet,
   Link,
@@ -38,6 +39,7 @@ import Retail from "../Cart/Retail";
 import CashBoxPage from "../CashBox/CashBoxPage";
 import IncomePage from "../Income/IncomePage";
 import CostPage from "../Cost/CostPage";
+import IncomeAndCost from "../CashBox/IncomeAndCost";
 const { SubMenu } = Menu;
 const logo = require("../../helpers/greenStream.jpeg");
 const { Footer, Content } = Layout;
@@ -134,6 +136,9 @@ export default function App() {
                 <Menu.Item key="6">
                   <Link to="cost">Xərclər</Link>
                 </Menu.Item>
+                <Menu.Item key="7">
+                  <Link to="incomeAndCost">Gəlir-Xərc</Link>
+                </Menu.Item>
               </SubMenu>
               <SubMenu key="sub2" icon={<LaptopOutlined />} title="Əməliyyat">
                 <Menu.Item key="10">
@@ -211,6 +216,7 @@ export default function App() {
 
           <Layout>
             <Content>
+              {/* <Outlet/> */}
               <Routes>
                 <Route exact path="home" element={<CustomerTable />} />
                 <Route path="customers" element={<CustomerTable />} />
@@ -222,7 +228,6 @@ export default function App() {
                 <Route path="sale" element={<Sale />} />
                 <Route path="restore" element={<Restore />} />
                 <Route path="retail" element={<Retail />} />
-
                 <Route path="saleBasket" element={<SaleBasket />} />
                 <Route path="restoreBasket" element={<RestoreBasket />} />
                 <Route path="retailBasket" element={<RetailBasket />} />
@@ -232,6 +237,7 @@ export default function App() {
                 <Route path="cashbox" element={<CashBoxPage />} />
                 <Route path="income" element={<IncomePage />} />
                 <Route path="cost" element={<CostPage />} />
+                <Route path="incomeAndCost" element={<IncomeAndCost />} />
 
                 <Route
                   path="customerBlackList"

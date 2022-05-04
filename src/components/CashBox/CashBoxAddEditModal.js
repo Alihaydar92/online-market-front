@@ -1,46 +1,35 @@
 import React, { useEffect, useState } from "react";
 import { Button, Form, Input, InputNumber, Select } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { listOfCostType } from "../../redux/actions/costActions";
-import { listOfIncomeType } from "../../redux/actions/incomeActions";
-import { getCustomerListByExpeditorId } from "../../redux/actions/customerAction";
+import {
+  cashboxAdd,
+  getIncomeCostByTypeId,
+} from "../../redux/actions/cashBoxActions";
 import TextArea from "antd/lib/input/TextArea";
 const { Option } = Select;
 export default function CashBoxAddEditModal(props) {
   const [form] = Form.useForm();
   const dispatch = useDispatch();
-  const [typeComboData, setTypeComboData] = useState([]);
-  const [typeId, setTypeId] = useState();
+  // const [typeId, setTypeId] = useState();
 
   const listOfCustomerByExpeditorId = useSelector(
     (state) => state.customerReducer?.customerDataListByExpeditorId
   );
-  const costTypesComboData = useSelector(
-    (state) => state.costReducers?.costTypesListData
-  );
-  const incomeTypesComboData = useSelector(
-    (state) => state.incomeReducers?.incomeTypesListData
+  const incomeCostByTypeIdData = useSelector(
+    (state) => state.cashboxReducers?.incomeCostByTypeId
   );
   const cashboxByIdData = useSelector(
     (state) => state.cashboxReducers?.cashboxByIdData
   );
   useEffect(() => {
-    dispatch(listOfCostType());
+    dispatch(getIncomeCostByTypeId(props.cashboxTypeDataStateProps.id));
   }, [dispatch]);
   useEffect(() => {
-    dispatch(listOfIncomeType());
-  }, [dispatch]);
-  useEffect(() => {
-    console.log(props.cashboxTypeDataStateProps);
-    if (props.cashboxTypeDataStateProps.id === 1) {
-      setTypeComboData(incomeTypesComboData);
-    } else if (props.cashboxTypeDataStateProps.id === 2) {
-      setTypeComboData(costTypesComboData);
-    }
-  }, [props.cashboxTypeDataStateProps]);
+    console.log(incomeCostByTypeIdData);
+  }, [incomeCostByTypeIdData]);
   useEffect(() => {
     if (props.isEditProps) {
-      setTypeId(cashboxByIdData?.boxTypeId);
+      // setTypeId(cashboxByIdData?.boxTypeId);
       form.setFieldsValue({
         amount: cashboxByIdData?.amount === null ? "" : cashboxByIdData?.amount,
         type:
@@ -68,10 +57,11 @@ export default function CashBoxAddEditModal(props) {
           customerId: values.customer,
           amount: values.amount,
           explanation: values.explanation,
-          boxTypeId: typeId,
+          profitExpenseId: values.type,
         };
         console.log(data);
         //
+        dispatch(cashboxAdd(data));
         props.handleCancel();
         form.resetFields();
       })
@@ -79,10 +69,10 @@ export default function CashBoxAddEditModal(props) {
         console.log(err);
       });
   };
-  const onChangeType = (e) => {
-    console.log(e);
-    setTypeId(e);
-  };
+  // const onChangeType = (e) => {
+  //   console.log(e);
+  //   setTypeId(e);
+  // };
   return (
     <div>
       <Form
@@ -134,11 +124,11 @@ export default function CashBoxAddEditModal(props) {
         <Form.Item
           label="Növü"
           name="type"
-          rules={[{ required: false, message: "Növü daxil edin!" }]}
+          rules={[{ required: true, message: "Növü daxil edin!" }]}
         >
           <Select
             style={{ width: "200px" }}
-            onChange={onChangeType}
+            // onChange={onChangeType}
             showSearch
             optionFilterProp="children"
             filterOption={(input, option) => {
@@ -154,13 +144,13 @@ export default function CashBoxAddEditModal(props) {
               );
             }}
           >
-            {typeComboData.map((typeData) => (
+            {incomeCostByTypeIdData.map((typeData) => (
               <Option value={typeData.id} key={typeData.id}>
                 {typeData.name}
               </Option>
             ))}
           </Select>
-          {props.cashboxTypeDataStateProps.name}
+          {/* {props.cashboxTypeDataStateProps.name} */}
         </Form.Item>
         <Form.Item
           label="Acıqlama"

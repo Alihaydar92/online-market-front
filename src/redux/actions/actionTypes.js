@@ -119,6 +119,9 @@ export const CASHBOX_UPDATE = "CASHBOX_UPDATE";
 export const CASHBOX_DELETE = "CASHBOX_DELETE";
 export const CASHBOX_BY_ID = "CASHBOX_BY_ID";
 export const CASHBOX_LIST = "CASHBOX_LIST";
+export const INCOME_COST_LIST = "INCOME_COST_LIST";
+export const INCOME_COST_ADD = "INCOME_COST_ADD";
+export const INCOME_COST_BY_TYPE_ID = "INCOME_COST_BY_TYPE_ID";
 
 //income
 export const ADD_INCOME_TYPE = "ADD_INCOME_TYPE";

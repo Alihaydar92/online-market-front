@@ -48,12 +48,10 @@ export default {
   basketData: {},
   basketGrandTotal: "",
 
-  
-  
   saleBasketAllData: {},
   addSaleBasketItems: [],
   endSaleReturnData: [],
-  
+
   restoreBasketAllData: {},
   addRestoreBasketItems: [],
   endRestoreReturnData: [],
@@ -71,8 +69,9 @@ export default {
   invoiceAllData: {},
   invoiceTypeListData: [],
 
-  cashboxTypeListData:[],
-  cashboxListData:[],
-  costTypesListData:[],
-  incomeTypesListData:[]
+  cashboxTypeListData: [],
+  cashboxListData: [],
+  incomeCostListData: [],
+  incomeCostByTypeId: [],
+  // incomeTypesListData:[]
 };

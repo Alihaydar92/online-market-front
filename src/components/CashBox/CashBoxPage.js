@@ -17,9 +17,7 @@ import {
   cashboxById,
 } from "../../redux/actions/cashBoxActions";
 import { getExpeditorByUsername } from "../../redux/actions/expeditorActions";
-import CashBoxAddModal from "./CashBoxAddModal";
 import CashBoxDelete from "./CashBoxDelete";
-import CashBoxEdit from "./CashBoxEdit";
 import CashBoxAddEditModal from "./CashBoxAddEditModal";
 
 const { Option } = Select;
@@ -52,7 +50,7 @@ export default function CashBoxPage() {
   const columns = [
     {
       title: "Kassa tipi",
-      dataIndex: ["cashboxTypeDto", "name"],
+      dataIndex: ["profitExpenseDto", "name"],
     },
     {
       title: "Müştəri",
@@ -168,9 +166,9 @@ export default function CashBoxPage() {
           Əlavə et
         </Button>
       </Space>
-      {/* <br /> */}
+   
       {cashboxTypeDataState === null ? (
-        <p>Məlumat yoxdur</p>
+        <p>Kassa tipi seçilməyib</p>
       ) : (
         <Form layout={"inline"} form={form} style={{ marginTop: "20px" }}>
           <Form.Item
