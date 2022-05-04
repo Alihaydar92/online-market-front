@@ -93,13 +93,13 @@ helelik satis reponsive oz mobilim ucun duzdu,bunu plansete tetbiq etmek
 
 mobileda daxil olarken menu (3 noqte sheklindedi) menu ya klikledikde acilmr,ikinci defe klikledikde acilir ,buna baxmaw
 
-cashbox elave et modalda aciqlama(note ) fieldi elave etmek, elave et servisi yazmaq+++
-
-cashbox showall table gostermek, redakte et sil yerlesdirmek+++
 
 routelarda login olmamis urlden pencereni acmaq olur, bunu duzletmek
 
-kassa elave et ve kassa cedvel emeloyyatda export pdf income islesin
+
+productda sekil panelinde sekil secerken secilmish sekil gorsenmir
+
+sayimda sekili de gostermek
 ### sonra
 headerin responsiveliyi (Imkan varsa pencerelesi responsive etmek (Sonda da edile biler))
 

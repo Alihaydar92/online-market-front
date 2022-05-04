@@ -320,3 +320,9 @@ kassda form elave et duymesi axtarla evezlenecek , kassa tipinin yaninda elave e
 novu(gelirdeki combo) => mexaricdise xerclerdki novui xombobox data, medaxildise gelir novu+++
 
 gelirler ve xercler type show modal ,redakte et ve sil emeliyyatlari done +++
+
+cashbox elave et modalda aciqlama(note ) fieldi elave etmek, elave et servisi yazmaq+++
+
+cashbox showall table gostermek, redakte et sil yerlesdirmek+++
+
+kassa elave et ve kassa cedvel emeloyyatda export pdf income islesin+++

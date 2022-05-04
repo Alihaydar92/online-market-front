@@ -1,10 +1,11 @@
-import { Button, Card, Form, InputNumber, Select } from "antd";
+import { Button, Card, Form, InputNumber, Select ,Image} from "antd";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   storeHouseNumerate,
   storeHouseCountCombo,
 } from "../../redux/actions/storeHouseActions";
+const noImg = require("../../helpers/no-img.png");
 const { Option } = Select;
 export default function Numerate() {
   const [form] = Form.useForm();
@@ -74,6 +75,7 @@ export default function Numerate() {
           <p>Məlumat yoxdur</p>
         ) : (
           <Card style={{ width: 300 }}>
+            <Image src={String(noImg)}></Image>
             <p>Məhsul: {productData.productName}</p>
             <p>Barkod: {productData.barcode}</p>
             <p>Anbardakı say: {productData.quantity}</p>
