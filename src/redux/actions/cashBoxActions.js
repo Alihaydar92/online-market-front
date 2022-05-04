@@ -1,5 +1,6 @@
 import * as actionTypes from "./actionTypes";
 import axios from "axios";
+import { incomePdf } from "../actions/pdfActions";
 const baseURL = process.env.REACT_APP_BACKEND_URL;
 export const cashboxTypeList = () => (dispatch) => {
   const axiosInstance = axios.create({
@@ -16,7 +17,7 @@ export const cashboxTypeList = () => (dispatch) => {
     });
   });
 };
-export const cashboxById = (id) => (dispatch) => {
+export const cashboxById = (id, isOpenPdf) => (dispatch) => {
   const axiosInstance = axios.create({
     baseURL: baseURL,
     auth: {
@@ -25,10 +26,15 @@ export const cashboxById = (id) => (dispatch) => {
     },
   });
   axiosInstance.get("/cashboxes/" + id).then((response) => {
-    dispatch({
-      type: actionTypes.CASHBOX_BY_ID,
-      payload: response.data,
-    });
+    if (response.status === 200) {
+      dispatch({
+        type: actionTypes.CASHBOX_BY_ID,
+        payload: response.data,
+      });
+      if (isOpenPdf) {
+        dispatch(incomePdf(response.data));
+      }
+    }
   });
 };
 export const cashboxList = () => (dispatch) => {
@@ -57,15 +63,18 @@ export const cashboxAdd = (data) => (dispatch) => {
   });
   axiosInstance.post("/cashboxes", data).then((response) => {
     console.log(response);
-    dispatch({
-      type: actionTypes.CASHBOX_ADD,
-      payload: response.data,
-    });
-    dispatch(cashboxList());
+    if (response.status === 200) {
+      dispatch({
+        type: actionTypes.CASHBOX_ADD,
+        payload: response.data,
+      });
+      dispatch(incomePdf(response.data));
+      dispatch(cashboxList());
+    }
   });
 };
 
-export const cashboxUpdate = (data) => (dispatch) => {
+export const cashboxUpdate = (id, data) => (dispatch) => {
   const axiosInstance = axios.create({
     baseURL: baseURL,
     auth: {
@@ -73,7 +82,7 @@ export const cashboxUpdate = (data) => (dispatch) => {
       password: window.localStorage.getItem("password"),
     },
   });
-  axiosInstance.put("/cashboxes/" + data.id, data).then((response) => {
+  axiosInstance.put("/cashboxes/" + id, data).then((response) => {
     console.log(response);
     dispatch({
       type: actionTypes.CASHBOX_UPDATE,

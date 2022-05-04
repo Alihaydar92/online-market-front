@@ -99,6 +99,7 @@ cashbox showall table gostermek, redakte et sil yerlesdirmek+++
 
 routelarda login olmamis urlden pencereni acmaq olur, bunu duzletmek
 
+kassa elave et ve kassa cedvel emeloyyatda export pdf income islesin
 ### sonra
 headerin responsiveliyi (Imkan varsa pencerelesi responsive etmek (Sonda da edile biler))
 

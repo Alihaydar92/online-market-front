@@ -3,7 +3,7 @@ import fontTxt from "../../helpers/fontRobotoBase64";
 import "jspdf-autotable";
 import moment from "moment";
 const logo = require("../../helpers/greenStream.jpeg");
-export const incomePdf = () => (dispatch) => {
+export const incomePdf = (data) => (dispatch) => {
   var callAddFont = function () {
     this.addFileToVFS("Roboto-Regular-normal.ttf", fontTxt);
     this.addFont("Roboto-Regular-normal.ttf", "Roboto-Regular", "normal");
@@ -18,7 +18,7 @@ export const incomePdf = () => (dispatch) => {
 
   //tarix ucun yer
   pdf.setFontSize(12);
-  pdf.text("''___''____________ 20___-ci il", 80, 50);
+  pdf.text(moment(data.createdAt).format("DD.MM.YYYY") + "-ci il", 80, 50);
 
   //linelar
   pdf.line(15, 80, 195, 80); //line 1
@@ -52,20 +52,12 @@ export const incomePdf = () => (dispatch) => {
   pdf.text("Kassa qəbulu:", 15, 285);
 
   //xett uzerindeki dinamyc yazilar
-  pdf.text("ƏLİYEV TEYYUB EYYUB", 50, 78);
+  pdf.text("TEST AD", 50, 78); //data?.customerDto?.name
   pdf.text("AZE 1234567, BAKI Ş., SABUNÇU R., BALAXANI Q.", 50, 93);
 
-  pdf.text(
-    "SƏBƏB OLARAQ ONU DEMƏK LAZIMDIRKİ, MƏDAXİL QƏBZİ  VACİB SƏNƏDDİR",
-    50,
-    113
-  );
-  pdf.text(
-    "SƏBƏB OLARAQ ONU DEMƏK LAZIMDIRKİ, MƏDAXİL QƏBZİ  VACİB SƏNƏDDİR",
-    50,
-    128
-  );
-  pdf.text("5198.55, BEŞ MİN YÜZ DOXSAN SƏKKİZ MANAT 55 QƏPİK", 50, 148);
+  pdf.text(data?.explanation, 50, 113);
+  pdf.text(data?.explanation, 50, 128);
+  pdf.text(data?.amount?.toFixed()+ " (AZN)", 50, 148);
 
   pdf.save("Mədaxil qəbzi");
 };

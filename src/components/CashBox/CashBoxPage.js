@@ -15,10 +15,12 @@ import {
   cashboxAdd,
   cashboxList,
   cashboxById,
+  getIncomeCostByTypeId,
 } from "../../redux/actions/cashBoxActions";
 import { getExpeditorByUsername } from "../../redux/actions/expeditorActions";
 import CashBoxDelete from "./CashBoxDelete";
 import CashBoxAddEditModal from "./CashBoxAddEditModal";
+import { incomePdf } from "../../redux/actions/pdfActions";
 
 const { Option } = Select;
 export default function CashBoxPage() {
@@ -87,6 +89,14 @@ export default function CashBoxPage() {
             >
               Sil
             </Button>
+            <Button
+            style={{backgroundColor:"#ff7400",borderColor:"#ff7400"}}
+              size="small"
+              type="danger"
+              onClick={() => exportPDF(cashboxData)}
+            >
+              PDF
+            </Button>
           </Space>
         );
       },
@@ -120,10 +130,13 @@ export default function CashBoxPage() {
 
   const showEditModal = (data) => {
     setIsEdit(true);
-    dispatch(cashboxById(data.id));
+    dispatch(cashboxById(data.id,false));
 
     setIsAddEditCashboxModalVisible(true);
     setIsDeleteCashboxModalVisible(false);
+  };
+  const exportPDF = (data) => {
+    dispatch(cashboxById(data.id, true));
   };
   return (
     <div>
@@ -166,7 +179,7 @@ export default function CashBoxPage() {
           Əlavə et
         </Button>
       </Space>
-   
+
       {cashboxTypeDataState === null ? (
         <p>Kassa tipi seçilməyib</p>
       ) : (

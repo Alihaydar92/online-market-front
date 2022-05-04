@@ -478,7 +478,7 @@ export default function ProductTable() {
                         <Image
                           // style={{ marginTop: "10px", marginRight: "10px" }}
                           src={`data:image/jpeg;base64,${image["content"]}`}
-                          alt=""
+                          // alt={}
                           width={200}
                           height={200}
                         />

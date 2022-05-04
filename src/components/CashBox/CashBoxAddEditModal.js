@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   cashboxAdd,
   getIncomeCostByTypeId,
+  cashboxUpdate,
 } from "../../redux/actions/cashBoxActions";
 import TextArea from "antd/lib/input/TextArea";
 const { Option } = Select;
@@ -33,9 +34,9 @@ export default function CashBoxAddEditModal(props) {
       form.setFieldsValue({
         amount: cashboxByIdData?.amount === null ? "" : cashboxByIdData?.amount,
         type:
-          cashboxByIdData?.boxTypeId === null
+          cashboxByIdData?.profitExpenseDto === null
             ? null
-            : cashboxByIdData?.boxTypeId,
+            : cashboxByIdData?.profitExpenseDto.id,
         explanation:
           cashboxByIdData?.explanation === null
             ? ""
@@ -44,6 +45,10 @@ export default function CashBoxAddEditModal(props) {
           cashboxByIdData?.customerDto === null
             ? null
             : cashboxByIdData?.customerDto.id,
+        typeName:
+          cashboxByIdData?.profitExpenseDto === null
+            ? null
+            : cashboxByIdData?.profitExpenseDto.name,
       });
     }
   }, [form, cashboxByIdData]);
@@ -53,15 +58,33 @@ export default function CashBoxAddEditModal(props) {
       .validateFields()
       .then((values) => {
         console.log(values.type);
-        var data = {
-          customerId: values.customer,
-          amount: values.amount,
-          explanation: values.explanation,
-          profitExpenseId: values.type,
-        };
-        console.log(data);
+
         //
-        dispatch(cashboxAdd(data));
+        if (props.isEditProps) {
+          var updateData = {
+            customerId: values.customer,
+            amount: values.amount,
+            explanation: values.explanation,
+            profitExpenseId:
+              cashboxByIdData?.profitExpenseDto === null
+                ? null
+                : cashboxByIdData?.profitExpenseDto.id,
+          };
+          console.log(updateData);
+          console.log(props.cashboxTypeDataStateProps.id);
+          console.log(cashboxByIdData?.profitExpenseDto.id);
+          console.log(cashboxByIdData?.id);
+          dispatch(cashboxUpdate(cashboxByIdData?.id, updateData));
+        } else {
+          var addData = {
+            customerId: values.customer,
+            amount: values.amount,
+            explanation: values.explanation,
+            profitExpenseId: values.type,
+          };
+          console.log(addData);
+          dispatch(cashboxAdd(addData));
+        }
         props.handleCancel();
         form.resetFields();
       })
@@ -121,41 +144,55 @@ export default function CashBoxAddEditModal(props) {
         >
           <InputNumber />
         </Form.Item>
-        <Form.Item
-          label="Növü"
-          name="type"
-          rules={[{ required: true, message: "Növü daxil edin!" }]}
-        >
-          <Select
-            style={{ width: "200px" }}
-            // onChange={onChangeType}
-            showSearch
-            optionFilterProp="children"
-            filterOption={(input, option) => {
-              return (
-                option.props.children
-                  .toString()
-                  .toLowerCase()
-                  .indexOf(input.toLowerCase()) >= 0 ||
-                option.props.value
-                  .toString()
-                  .toLowerCase()
-                  .indexOf(input.toLowerCase()) >= 0
-              );
-            }}
+
+        {props.isEditProps ? (
+          <Form.Item
+            label="Növü"
+            name="typeName"
+            rules={[{ required: true, message: "Növü daxil edin!" }]}
           >
-            {incomeCostByTypeIdData.map((typeData) => (
-              <Option value={typeData.id} key={typeData.id}>
-                {typeData.name}
-              </Option>
-            ))}
-          </Select>
-          {/* {props.cashboxTypeDataStateProps.name} */}
-        </Form.Item>
+            <Input disabled={true} />
+          </Form.Item>
+        ) : (
+          <Form.Item
+            label="Növü"
+            name="type"
+            rules={[{ required: true, message: "Növü daxil edin!" }]}
+          >
+            <Select
+              style={{ width: "200px" }}
+              // onChange={onChangeType}
+              showSearch
+              optionFilterProp="children"
+              filterOption={(input, option) => {
+                return (
+                  option.props.children
+                    .toString()
+                    .toLowerCase()
+                    .indexOf(input.toLowerCase()) >= 0 ||
+                  option.props.value
+                    .toString()
+                    .toLowerCase()
+                    .indexOf(input.toLowerCase()) >= 0
+                );
+              }}
+            >
+              {incomeCostByTypeIdData.map((typeData) => (
+                <Option value={typeData.id} key={typeData.id}>
+                  {typeData.name}
+                </Option>
+              ))}
+            </Select>
+
+            {/* {props.cashboxTypeDataStateProps.name} */}
+          </Form.Item>
+        )}
         <Form.Item
           label="Acıqlama"
           name="explanation"
-          rules={[{ required: true, message: "Açıqlamanı daxil edin!" }]}
+          rules={[
+            { required: props.isEditProps, message: "Açıqlamanı daxil edin!" },
+          ]}
         >
           <TextArea />
         </Form.Item>
