@@ -48,6 +48,10 @@ export default function CashBoxPage() {
   }, []);
   const columns = [
     {
+      title: "Kassa nömrəsi",
+      dataIndex: "cashNumber"
+    },
+    {
       title: "Kassa tipi",
       dataIndex: ["profitExpenseDto", "name"],
     },
