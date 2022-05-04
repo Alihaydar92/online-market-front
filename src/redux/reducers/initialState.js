@@ -72,6 +72,6 @@ export default {
   cashboxTypeListData: [],
   cashboxListData: [],
   incomeCostListData: [],
-  incomeCostByTypeId: {},
+  incomeCostByTypeId: [],
   incomeTypesListData:[]
 };

@@ -12,15 +12,12 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import {
   cashboxTypeList,
-  cashboxAdd,
   cashboxList,
   cashboxById,
-  getIncomeCostByTypeId,
 } from "../../redux/actions/cashBoxActions";
 import { getExpeditorByUsername } from "../../redux/actions/expeditorActions";
 import CashBoxDelete from "./CashBoxDelete";
 import CashBoxAddEditModal from "./CashBoxAddEditModal";
-import { incomePdf } from "../../redux/actions/pdfActions";
 
 const { Option } = Select;
 export default function CashBoxPage() {
