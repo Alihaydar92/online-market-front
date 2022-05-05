@@ -102,6 +102,8 @@ productda sekil panelinde sekil secerken secilmish sekil gorsenmir
 sayimda sekili de gostermek+++
 
 müştəri  pəncərəsində yeni bir kassa düyməsi qoymaq , ayrı bir səhifəyə yönəlsin o səhifədə həm əlavə edə bilsin həmdə kassa əməliyyatlari listini görə bilsin
+
+modallari acarken fon qapali olsun,müdaxilə olmasın
 ### sonra
 headerin responsiveliyi (Imkan varsa pencerelesi responsive etmek (Sonda da edile biler))
 

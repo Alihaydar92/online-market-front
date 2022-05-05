@@ -14,11 +14,10 @@ import moment from "moment";
 import {
   listOfInvoices,
   getInvoiceById,
-  
   getInvoicesByParams,
   listOfInvoiceTypes,
 } from "../../redux/actions/invoiceActions";
-import {exportPdfOnlyGrid} from "../../redux/actions/pdfActions"
+import { exportPdfOnlyGrid } from "../../redux/actions/pdfActions";
 import { fetchCustomers } from "../../redux/actions/customerAction";
 import { incomePdf } from "../../redux/actions/pdfActions";
 import InvoiceShowModal from "./InvoiceShowModal";
@@ -106,7 +105,7 @@ export default function Invoice() {
     var col = ["№", "Qaimə nömrəsi", "Əlavə olunma tarixi", "Yekun məbləğ"];
     var rows = [];
     console.log(listOfInvoiceData);
-    listOfInvoiceData.forEach((element, index) => {
+    listOfInvoiceData?.pages.forEach((element, index) => {
       console.log(element);
       var temp = [
         index + 1,

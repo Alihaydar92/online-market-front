@@ -108,7 +108,10 @@ export default function InvoiceShowModal(props) {
     setInvoicesStateData(newData);
   };
   const pdfExport = () => {
-    dispatch(exportSalePdf(invoicesStateData, props?.invoiceBaseDataProps));
+    console.log(props?.invoiceBaseDataProps);
+    dispatch(
+      exportSalePdf(invoicesStateData, props?.invoiceBaseDataProps, "Qaimə")
+    );
   };
 
   const showImgPanel = (productId) => {
@@ -167,28 +170,26 @@ export default function InvoiceShowModal(props) {
       </Button>
 
       {imgsByProductId?.images?.map((image, index) => (
-        
         <Image
           style={{ display: "none" }}
           src={
-            image["content"]===null
-            ? alert('sekil yoxdu')
+            image["content"] === null
+              ? alert("sekil yoxdu")
               : `data:image/jpeg;base64,${image["content"]}`
           }
           width={200}
           height={200}
           preview={{
             visible,
-            src:  image["content"]===null
-            ? alert('sekil yoxdu')
-            : `data:image/jpeg;base64,${image["content"]}`,
+            src:
+              image["content"] === null
+                ? alert("sekil yoxdu")
+                : `data:image/jpeg;base64,${image["content"]}`,
             onVisibleChange: (value) => {
               setVisible(value);
             },
           }}
-    
         />
-        
       ))}
     </div>
   );
