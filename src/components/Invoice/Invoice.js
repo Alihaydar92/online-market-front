@@ -70,7 +70,7 @@ export default function Invoice() {
       dataIndex: "createdAt",
       sorter: (a, b) => a.createdAt.localeCompare(b.createdAt),
       sortDirections: ["descend", "ascend"],
-      render: (text) => moment(text).format("DD.MM.YYYY"),
+      render: (text) => moment(text).format("DD.MM.YYYY HH:mm:ss"),
     },
     {
       title: "Yekun məbləğ",

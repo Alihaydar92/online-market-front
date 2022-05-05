@@ -93,9 +93,7 @@ helelik satis reponsive oz mobilim ucun duzdu,bunu plansete tetbiq etmek
 
 mobileda daxil olarken menu (3 noqte sheklindedi) menu ya klikledikde acilmr,ikinci defe klikledikde acilir ,buna baxmaw
 
-
 routelarda login olmamis urlden pencereni acmaq olur, bunu duzletmek
-
 
 productda sekil panelinde sekil secerken secilmish sekil gorsenmir
 
