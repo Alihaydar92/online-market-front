@@ -99,6 +99,8 @@ müştəri  pəncərəsində yeni bir kassa düyməsi qoymaq , ayrı bir səhif�
 
 modallari acarken fon qapali olsun,müdaxilə olmasın
 
+anbarda progress qoymaq  hemcinin invoiceda
+
 ### sonra
 headerin responsiveliyi (Imkan varsa pencerelesi responsive etmek (Sonda da edile biler))
 

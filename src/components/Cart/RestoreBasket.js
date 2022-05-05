@@ -252,9 +252,9 @@ export default function RestoreBasket() {
   const endRestores = () => {
     var endSalesData = new Object();
     endSalesData.customerId = basketAllData.customerDto.id;
-    // endSalesData.customerDto = basketAllData.customerDto;
-    // endSalesData.sellerDto = basketAllData.sellerDto;
-    // endSalesData.sellerId = basketAllData.sellerId;
+    endSalesData.customerDto = basketAllData.customerDto;
+    endSalesData.sellerDto = basketAllData.sellerDto;
+    endSalesData.sellerId = basketAllData.sellerId;
     // endSalesData.note = basketNote === undefined ? "" : basketNote;
     endSalesData.grandTotal = basketAllData.grandTotal;
 

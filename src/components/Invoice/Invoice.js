@@ -7,7 +7,6 @@ import {
   Select,
   Typography,
   Modal,
-  InputNumber,
 } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
@@ -19,10 +18,8 @@ import {
 } from "../../redux/actions/invoiceActions";
 import { exportPdfOnlyGrid } from "../../redux/actions/pdfActions";
 import { fetchCustomers } from "../../redux/actions/customerAction";
-import { incomePdf } from "../../redux/actions/pdfActions";
 import InvoiceShowModal from "./InvoiceShowModal";
 import { Excel } from "antd-table-saveas-excel";
-import { NumberFilter } from "ag-grid-community";
 const { Option } = Select;
 const { Text } = Typography;
 export default function Invoice() {
@@ -140,9 +137,6 @@ export default function Invoice() {
       .catch((err) => {}, []);
   };
 
-  const onClickincomePdfExport = () => {
-    dispatch(incomePdf());
-  };
   return (
     <div>
       <Form layout={"inline"} form={form} style={{ marginTop: "20px" }}>
@@ -356,6 +350,8 @@ export default function Invoice() {
       ></Table>
 
       <Modal
+      // transitionName="none"
+      // maskTransitionName="fade" 
         title="Qaimə məlumatları"
         visible={isModalVisible}
         onCancel={handleCancel}
