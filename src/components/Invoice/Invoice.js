@@ -246,7 +246,7 @@ export default function Invoice() {
             Excel-ə export
           </Button>
         </Form.Item>
-        <Form.Item>
+        {/* <Form.Item>
           <Button
             type="primary"
             htmlType="submit"
@@ -258,7 +258,7 @@ export default function Invoice() {
           >
             Mədaxil qəbzi
           </Button>
-        </Form.Item>
+        </Form.Item> */}
       </Form>
 
       <Table
@@ -368,10 +368,11 @@ export default function Invoice() {
       >
         <InvoiceShowModal
           rowKey="id"
-          handleCancel={handleCancel}
+          handleCancelInvoice={handleCancel}
           invoiceBaseDataProps={invoiceBaseData}
         ></InvoiceShowModal>
       </Modal>
+   
     </div>
   );
 }

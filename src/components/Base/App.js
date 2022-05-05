@@ -139,36 +139,36 @@ export default function App() {
                 <Menu.Item key="7">
                   <Link to="incomeAndCost">Gəlir-Xərc</Link>
                 </Menu.Item>
+                <Menu.Item key="8">
+                  <Link to="/products">Məhsullar</Link>
+                </Menu.Item>
               </SubMenu>
               <SubMenu key="sub2" icon={<LaptopOutlined />} title="Əməliyyat">
                 <Menu.Item key="10">
-                  <Link to="/products">Məhsullar</Link>
-                </Menu.Item>
-                <Menu.Item key="11">
                   <Link to="/sale">Satış</Link>
                 </Menu.Item>
-                <Menu.Item key="12">
+                <Menu.Item key="11">
                   <Link to="/storeHouse">Anbar</Link>
                 </Menu.Item>
-                <Menu.Item key="13">
+                <Menu.Item key="12">
                   <Link to="numerate">Sayım</Link>
                 </Menu.Item>
-                <Menu.Item key="14">
+                <Menu.Item key="13">
                   <Link to="numerateResult">Sayım nəticəsi</Link>
                 </Menu.Item>
-                <Menu.Item key="15">
+                <Menu.Item key="14">
                   <Link to="customerBlackList">Qara siyahı</Link>
                 </Menu.Item>
-                <Menu.Item key="16">
+                <Menu.Item key="15">
                   <Link to="invoice">Qaimə</Link>
                 </Menu.Item>
-                <Menu.Item key="17">
+                <Menu.Item key="16">
                   <Link to="restore">Qaytarma</Link>
                 </Menu.Item>
-                <Menu.Item key="18">
+                <Menu.Item key="17">
                   <Link to="retail">Pərakəndə</Link>
                 </Menu.Item>
-                <Menu.Item key="19">
+                <Menu.Item key="18">
                   <Link to="cashbox">Kassa</Link>
                 </Menu.Item>
               </SubMenu>

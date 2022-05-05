@@ -110,6 +110,7 @@ export default function InvoiceShowModal(props) {
 
   const handleCancel = () => {
     setIsImgPanelVisible(false);
+   
   };
   return (
     <div>
