@@ -1,41 +1,31 @@
 import React, { useEffect, useState } from "react";
 import {
   Button,
-  Form,
-  Input,
   Table,
   Typography,
   Space,
   Image,
   InputNumber,
+  Modal,
 } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { exportSalePdf } from "../../redux/actions/pdfActions";
 import { getProductImagesByProductId } from "../../redux/actions/productActions";
-import jsPDF from "jspdf";
-import "jspdf-autotable";
-import fontTxt from "../../helpers/fontRobotoBase64";
-import moment from "moment";
-// const logo = require("../../helpers/greenStream.jpeg");
-const noImg = require("../../helpers/no-img.png");
+import InvoiceShowImgPanel from "./InvoiceShowImgPanel";
+
 const { Text } = Typography;
 export default function InvoiceShowModal(props) {
-  const [form] = Form.useForm();
   const dispatch = useDispatch();
-  const [visible, setVisible] = useState(false);
   const [invoicesStateData, setInvoicesStateData] = useState();
+  const [isImgPanelVisible, setIsImgPanelVisible] = useState(false);
   const invoicesDataById = useSelector(
     (state) => state.invoiceReducers?.invoiceItemsById
   );
-  const imgsByProductId = useSelector(
-    (state) => state.productReducers?.productImagesDataByProductId
-  );
+
   useEffect(() => {
     setInvoicesStateData(invoicesDataById);
   }, [invoicesDataById, invoicesStateData]);
-  useEffect(() => {
-    console.log(imgsByProductId);
-  }, [imgsByProductId]);
+
   const invoicesByIdColumns = [
     {
       title: "Barkod",
@@ -108,16 +98,18 @@ export default function InvoiceShowModal(props) {
     setInvoicesStateData(newData);
   };
   const pdfExport = () => {
-    console.log(props?.invoiceBaseDataProps);
     dispatch(
       exportSalePdf(invoicesStateData, props?.invoiceBaseDataProps, "Qaimə")
     );
   };
 
   const showImgPanel = (productId) => {
-    console.log(productId);
     dispatch(getProductImagesByProductId(productId));
-    setVisible(true);
+    setIsImgPanelVisible(true);
+  };
+
+  const handleCancel = () => {
+    setIsImgPanelVisible(false);
   };
   return (
     <div>
@@ -168,29 +160,22 @@ export default function InvoiceShowModal(props) {
       >
         Pdf-ə exports
       </Button>
-
-      {imgsByProductId?.images?.map((image, index) => (
-        <Image
-          style={{ display: "none" }}
-          src={
-            image["content"] === null
-              ? alert("sekil yoxdu")
-              : `data:image/jpeg;base64,${image["content"]}`
-          }
-          width={200}
-          height={200}
-          preview={{
-            visible,
-            src:
-              image["content"] === null
-                ? alert("sekil yoxdu")
-                : `data:image/jpeg;base64,${image["content"]}`,
-            onVisibleChange: (value) => {
-              setVisible(value);
-            },
-          }}
-        />
-      ))}
+      <Modal
+        title="Qaimə şəkillər"
+        visible={isImgPanelVisible}
+        onCancel={handleCancel}
+        width={250}
+        height={200}
+        footer={[
+          <div>
+            <Button danger onClick={handleCancel} type="primary">
+              Geri
+            </Button>
+          </div>,
+        ]}
+      >
+        <InvoiceShowImgPanel key={"imgPanelKey"} />
+      </Modal>
     </div>
   );
 }

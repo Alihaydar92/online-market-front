@@ -326,3 +326,7 @@ cashbox elave et modalda aciqlama(note ) fieldi elave etmek, elave et servisi ya
 cashbox showall table gostermek, redakte et sil yerlesdirmek+++
 
 kassa elave et ve kassa cedvel emeloyyatda export pdf income islesin+++
+
+qaime klikinde acilan modalda sekile bax emeliyyatini yazmaq +++
+
+sayimda sekili de gostermek+++

@@ -297,7 +297,7 @@ export const exportRestorePdf = (arrayData, objectData, paramName) => {
   pdf.line(15, 34, 195, 34);
   pdf.text(paramName, 195, 15, { align: "right" });
   pdf.text("Ofis: " + "055 203-60-10", 195, 30, { align: "right" });
-  pdf.text("Qaimə nömrə : " + objectData?.cartNumber, 195, 40, {
+  pdf.text("Qaimə nömrə : " + objectData?.refundNumber, 195, 40, {
     align: "right",
   });
   /////

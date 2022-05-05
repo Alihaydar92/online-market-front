@@ -81,8 +81,6 @@ qaime yekun mebleg cemini hesablamaq ve exportda nezere almaq
 
 basket data updateden sonra refresh
 
-qaime klikinde acilan modalda sekile bax emeliyyatini yazmaq 
-
 satisda say qiymet dizaynlarina yeniden baxmaq (up down mobile gorunmur)
 
 qaime klikinde sayi input etdikden sonra mebleg ve cemin hesablamisini da nezere almaq( backendde ve ya frontda)
@@ -97,11 +95,10 @@ routelarda login olmamis urlden pencereni acmaq olur, bunu duzletmek
 
 productda sekil panelinde sekil secerken secilmish sekil gorsenmir
 
-sayimda sekili de gostermek+++
-
 müştəri  pəncərəsində yeni bir kassa düyməsi qoymaq , ayrı bir səhifəyə yönəlsin o səhifədə həm əlavə edə bilsin həmdə kassa əməliyyatlari listini görə bilsin
 
 modallari acarken fon qapali olsun,müdaxilə olmasın
+
 ### sonra
 headerin responsiveliyi (Imkan varsa pencerelesi responsive etmek (Sonda da edile biler))
 
