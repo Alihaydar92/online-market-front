@@ -299,7 +299,7 @@ export default function SaleBasket() {
               marginBottom: 16,
               backgroundColor: "#0C9873",
               borderColor: "#0C9873",
-              display: "none",
+              // display: "none",
             }}
           >
             Pdf-ə çap et

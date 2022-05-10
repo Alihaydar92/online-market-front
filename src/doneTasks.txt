@@ -338,3 +338,5 @@ productda sekil panelinde sekil secerken secilmish sekil gorsenmir+++
 anbarda progress qoymaq hemcinin invoiceda +++
 
 invoiceda umumi cem reqemi yuvarlaqlasdirmaq to fixed+++
+
+qaimede ikinci sehifeye kecid problem +++ 

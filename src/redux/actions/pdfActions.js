@@ -57,7 +57,7 @@ export const incomePdf = (data) => (dispatch) => {
 
   pdf.text(data?.explanation, 50, 113);
   pdf.text(data?.explanation, 50, 128);
-  pdf.text(data?.amount?.toFixed()+ " (AZN)", 50, 148);
+  pdf.text(data?.amount?.toFixed() + " (AZN)", 50, 148);
 
   pdf.save("Mədaxil qəbzi");
 };
@@ -227,7 +227,12 @@ export const exportSalePdf = (arrayData, objectData, paramName) => {
 
     // margin: { bottom: 60 },
   });
-  let finalY = pdf.autoTable.previous.finalY;
+  var finalY = pdf.autoTable.previous.finalY;
+  console.log("finalY: ", finalY);
+  if (finalY > 195) {
+    pdf.addPage("p", "mm", "a4");
+    finalY = 0;
+  }
 
   /////////////////////////////
   pdf.setDrawColor(0, 0, 0);
@@ -396,7 +401,11 @@ export const exportRestorePdf = (arrayData, objectData, paramName) => {
     // margin: { bottom: 60 },
   });
   let finalY = pdf.autoTable.previous.finalY;
-
+  console.log("finalY: ", finalY);
+  if (finalY > 195) {
+    pdf.addPage("p", "mm", "a4");
+    finalY = 0;
+  }
   /////////////////////////////
   pdf.setDrawColor(0, 0, 0);
   pdf.text(45, finalY + 10, "Məbləğ");
@@ -558,7 +567,11 @@ export const exportRetailPdf = (arrayData, objectData, paramName) => {
     // margin: { bottom: 60 },
   });
   let finalY = pdf.autoTable.previous.finalY;
-
+  console.log("finalY: ", finalY);
+  if (finalY > 195) {
+    pdf.addPage("p", "mm", "a4");
+    finalY = 0;
+  }
   /////////////////////////////
   pdf.setDrawColor(0, 0, 0);
   pdf.text(45, finalY + 10, "Məbləğ");
