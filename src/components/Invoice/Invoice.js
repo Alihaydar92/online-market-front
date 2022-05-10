@@ -357,7 +357,8 @@ export default function Invoice() {
       <Modal
       // transitionName="none"
       // maskTransitionName="fade" 
-        title="Qaimə məlumatları"
+      
+        title={invoiceBaseData?.type==="S"?"Satış qaimə məlumatları":"Qaytarma qaimə məlumatları"}
         visible={isModalVisible}
         onCancel={handleCancel}
         width={1000}
