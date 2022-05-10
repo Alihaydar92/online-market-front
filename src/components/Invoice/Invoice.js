@@ -57,6 +57,10 @@ export default function Invoice() {
   }, [listOfInvoiceData]);
   const invoicesListColumns = [
     {
+      title: "Qaimə tipi",
+      dataIndex: "type"
+    },
+    {
       title: "Qaimə nömrəsi",
       dataIndex: "cartNumber",
       sorter: (a, b) => a.cartNumber.localeCompare(b.cartNumber),
@@ -92,6 +96,7 @@ export default function Invoice() {
   };
   const invoiceRowClick = (record, rowIndex) => {
     console.log(record.id);
+    console.log(record);
     setInvoiceBaseData(record);
     setRowIndex(rowIndex);
     dispatch(getInvoiceById(record.id));

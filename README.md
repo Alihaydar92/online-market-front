@@ -83,7 +83,7 @@ satisda say qiymet dizaynlarina yeniden baxmaq (up down mobile gorunmur)
 
 qaime klikinde sayi input etdikden sonra mebleg ve cemin hesablamisini da nezere almaq( backendde ve ya frontda)
 
-satisda say qiymet musteri satis qiymeti bu inputlari tapsiriga uygun duzeltmek
+satisda say qiymet musteri satis qiymeti bu inputlari tapsiriga uygun duzeltmek+++
 
 helelik satis reponsive oz mobilim ucun duzdu,bunu plansete tetbiq etmek
 
@@ -93,22 +93,11 @@ routelarda login olmamis urlden pencereni acmaq olur, bunu duzletmek
 
 müştəri pəncərəsində yeni bir kassa düyməsi qoymaq , ayrı bir səhifəyə yönəlsin o səhifədə həm əlavə edə bilsin həmdə kassa əməliyyatlari listini görə bilsin
 
-
-
-
 ### sonra
 
 headerin responsiveliyi (Imkan varsa pencerelesi responsive etmek (Sonda da edile biler))
 
 label-larin textlerini file-dan oxumaq
-
-daxil olan userin(expeditor) musteri siyahisi verilecek
-
-login olduqdan sonra user id-ye gore seller cagirilacaq (hem de goruntude gosterilecek)
-
-seller id-ye gore ise musteri siyahisi gelecek, helelik musteri siyahsini cagirmaq ucun seller id-ni elnen verirem (id 6)
-
-musteri id-ni cokilerde saxlayiram(cardlistden basqa pencereye keciden sonra geri qayidanda birde musteri secmesin deye)
 
 img ve diger filelarla bagli codelarin optimizasiyasi
 
@@ -117,10 +106,6 @@ comboboxlarda scrolling data(ya da loadingi combobox ucun de tetbiq etmek)
 card reducerin dexlisiz cagirilma bug-i (bunu arasddirmaq)
 
 qaimede ikinci sehifeye kecid problem
-
-cart list page acilarken musteri adindan qabaq id gorsenir, bu cookie ile baglidi( cenki cokkie stringde saxlanir onu numbere cevirirem) loginde musteri id geldikde bu problem aradan qalxacaq
-
-mehsullar pagede qeyd: backende sekillerin base 64 nun qarisina data:image/jpeg;base64 vurulanda useeffectde data:image/jpeg;base64 concat etmeyi silecem
 
 ### backend teyyub
 
@@ -135,3 +120,15 @@ anbar page axtarisa duzelis (mehsullardaki kimi)
 17.qaimede 0,00 formatinda gostermek
 
 mehsul ve satisda datalarda uygunsuzluq var , eyni barkodda muxtelif datalar gelir
+
+daxil olan userin(expeditor) musteri siyahisi verilecek
+
+login olduqdan sonra user id-ye gore seller cagirilacaq (hem de goruntude gosterilecek)
+
+seller id-ye gore ise musteri siyahisi gelecek, helelik musteri siyahsini cagirmaq ucun seller id-ni elnen verirem (id 6)
+
+musteri id-ni cokilerde saxlayiram(cardlistden basqa pencereye keciden sonra geri qayidanda birde musteri secmesin deye)
+
+mehsullar pagede qeyd: backende sekillerin base 64 nun qarisina data:image/jpeg;base64 vurulanda useeffectde data:image/jpeg;base64 concat etmeyi silecem
+
+cart list page acilarken musteri adindan qabaq id gorsenir, bu cookie ile baglidi( cenki cokkie stringde saxlanir onu numbere cevirirem) loginde musteri id geldikde bu problem aradan qalxacaq

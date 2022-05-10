@@ -12,8 +12,8 @@ export default function invoiceReducers(state = initialState, action) {
     case actionTypes.GET_INVOICE_BY_ID: {
       return {
         ...state,
-        invoiceItemsById: action.payload.items,
-        invoiceAllData: action.payload,
+        invoiceItemsById: action.payload,
+        // invoiceAllData: action.payload,
       };
     }
     case actionTypes.LIST_OF_INVOICE_TYPES: {
