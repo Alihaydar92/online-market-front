@@ -247,7 +247,7 @@ export default function RestoreBasket() {
     setBasketArray(newData);
   };
   const openPdf = () => {
-    dispatch(exportRestorePdf(basketArray, basketAllData,"Qaytarma"));
+    dispatch(exportRestorePdf(basketArray, basketAllData,"Qaytarma Qaimə"));
   };
   const endRestores = () => {
     var endSalesData = new Object();
@@ -269,7 +269,7 @@ export default function RestoreBasket() {
 
     console.log(endSalesData);
     // exportPdf(endSaleBasketReturnData)
-    dispatch(endRestore(endSalesData, "Qaytarma"));
+    dispatch(endRestore(endSalesData, "Qaytarma Qaimə"));
   };
   const onChangeNote = (note) => [
     setBasketNote(note.target.value === undefined ? "" : note.target.value),

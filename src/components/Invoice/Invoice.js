@@ -1,13 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Table,
-  Form,
-  Input,
-  Button,
-  Select,
-  Typography,
-  Modal,
-} from "antd";
+import { Table, Form, Input, Button, Select, Typography, Modal } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import {
@@ -58,7 +50,7 @@ export default function Invoice() {
   const invoicesListColumns = [
     {
       title: "Qaimə tipi",
-      dataIndex: "type"
+      dataIndex: "type",
     },
     {
       title: "Qaimə nömrəsi",
@@ -104,13 +96,20 @@ export default function Invoice() {
   };
 
   const pdfExport = () => {
-    var col = ["№", "Qaimə nömrəsi", "Əlavə olunma tarixi", "Yekun məbləğ"];
+    var col = [
+      "№",
+      "Qaimə tipi",
+      "Qaimə nömrəsi",
+      "Əlavə olunma tarixi",
+      "Yekun məbləğ",
+    ];
     var rows = [];
     console.log(listOfInvoiceData);
     listOfInvoiceData?.pages.forEach((element, index) => {
       console.log(element);
       var temp = [
         index + 1,
+        element.type,
         element.cartNumber,
         moment(element.createdAt).format("DD.MM.YYYY"),
         element.grandTotal,
@@ -355,10 +354,14 @@ export default function Invoice() {
       ></Table>
 
       <Modal
-      // transitionName="none"
-      // maskTransitionName="fade" 
-      
-        title={invoiceBaseData?.type==="S"?"Satış qaimə məlumatları":"Qaytarma qaimə məlumatları"}
+        // transitionName="none"
+        // maskTransitionName="fade"
+
+        title={
+          invoiceBaseData?.type === "S"
+            ? "Satış qaimə məlumatları"
+            : "Qaytarma qaimə məlumatları"
+        }
         visible={isModalVisible}
         onCancel={handleCancel}
         width={1000}
@@ -374,7 +377,6 @@ export default function Invoice() {
           invoiceBaseDataProps={invoiceBaseData}
         ></InvoiceShowModal>
       </Modal>
-   
     </div>
   );
 }

@@ -94,6 +94,7 @@ routelarda login olmamis urlden pencereni acmaq olur, bunu duzletmek
 müştəri pəncərəsində yeni bir kassa düyməsi qoymaq , ayrı bir səhifəyə yönəlsin o səhifədə həm əlavə edə bilsin həmdə kassa əməliyyatlari listini görə bilsin
 
 qaimede satis ve qaytarma oldugunu pdfde s ve q gostermek, hemcinin pdf in adi ve basligi ni da bucur deyishmek
+
 ### sonra
 
 headerin responsiveliyi (Imkan varsa pencerelesi responsive etmek (Sonda da edile biler))
@@ -105,8 +106,6 @@ img ve diger filelarla bagli codelarin optimizasiyasi
 comboboxlarda scrolling data(ya da loadingi combobox ucun de tetbiq etmek)
 
 card reducerin dexlisiz cagirilma bug-i (bunu arasddirmaq)
-
-
 
 ### backend teyyub
 

@@ -246,7 +246,7 @@ export default function SaleBasket() {
     setBasketArray(newData);
   };
   const openPdf = () => {
-    dispatch(exportSalePdf(basketArray, basketAllData, "Qaimə"));
+    dispatch(exportSalePdf(basketArray, basketAllData, "Satış Qaimə"));
   };
   const endSales = () => {
     var endSalesData = new Object();
@@ -268,7 +268,7 @@ export default function SaleBasket() {
 
     console.log(endSalesData);
     // exportPdf(endSaleBasketReturnData)
-    dispatch(endSale(endSalesData, "Satış"));
+    dispatch(endSale(endSalesData, "Satış Qaimə"));
   };
   const onChangeNote = (note) => [
     setBasketNote(note.target.value === undefined ? "" : note.target.value),

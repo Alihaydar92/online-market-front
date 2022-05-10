@@ -99,7 +99,7 @@ export default function InvoiceShowModal(props) {
   };
   const pdfExport = () => {
     dispatch(
-      exportSalePdf(invoicesStateData, props?.invoiceBaseDataProps, "Qaimə")
+      exportSalePdf(invoicesStateData, props?.invoiceBaseDataProps, "Satış Qaimə")
     );
   };
 
