@@ -90,7 +90,7 @@ export default function App() {
                   preview={false}
                 />
               </Menu.Item>
-              <Menu.Item key="100" style={{ width: "200px", marginTop: "5px" }}>
+              <Menu.Item key="100" style={{ width: "220px", marginTop: "5px" }}>
                 {
                   {
                     "/customers": <h3>Müştərilər</h3>,

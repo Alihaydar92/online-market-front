@@ -75,11 +75,9 @@ route ile linkleri goruntuden yigisdirmaq, yalniz base link olacaq
 
 sekli sil buttonunun altinda sekli servisde cagirib silmek
 
-infinite scrool satis buttunsuz elemek---
+infinite scrool satis buttunsuz elemek
 
 qaime yekun mebleg cemini hesablamaq ve exportda nezere almaq
-
-basket data updateden sonra refresh
 
 satisda say qiymet dizaynlarina yeniden baxmaq (up down mobile gorunmur)
 
@@ -93,15 +91,13 @@ mobileda daxil olarken menu (3 noqte sheklindedi) menu ya klikledikde acilmr,iki
 
 routelarda login olmamis urlden pencereni acmaq olur, bunu duzletmek
 
-productda sekil panelinde sekil secerken secilmish sekil gorsenmir
+müştəri pəncərəsində yeni bir kassa düyməsi qoymaq , ayrı bir səhifəyə yönəlsin o səhifədə həm əlavə edə bilsin həmdə kassa əməliyyatlari listini görə bilsin
 
-müştəri  pəncərəsində yeni bir kassa düyməsi qoymaq , ayrı bir səhifəyə yönəlsin o səhifədə həm əlavə edə bilsin həmdə kassa əməliyyatlari listini görə bilsin
 
-modallari acarken fon qapali olsun,müdaxilə olmasın
 
-anbarda progress qoymaq  hemcinin invoiceda
 
 ### sonra
+
 headerin responsiveliyi (Imkan varsa pencerelesi responsive etmek (Sonda da edile biler))
 
 label-larin textlerini file-dan oxumaq
@@ -124,6 +120,8 @@ qaimede ikinci sehifeye kecid problem
 
 cart list page acilarken musteri adindan qabaq id gorsenir, bu cookie ile baglidi( cenki cokkie stringde saxlanir onu numbere cevirirem) loginde musteri id geldikde bu problem aradan qalxacaq
 
+mehsullar pagede qeyd: backende sekillerin base 64 nun qarisina data:image/jpeg;base64 vurulanda useeffectde data:image/jpeg;base64 concat etmeyi silecem
+
 ### backend teyyub
 
 Anbar tableda sort hemise anbara daxil olma tarixine gore desc getse yaxsidi
@@ -135,3 +133,5 @@ paginationda 120ci pagede data olmadigi halda 120ci page-i qaytarir
 anbar page axtarisa duzelis (mehsullardaki kimi)
 
 17.qaimede 0,00 formatinda gostermek
+
+mehsul ve satisda datalarda uygunsuzluq var , eyni barkodda muxtelif datalar gelir

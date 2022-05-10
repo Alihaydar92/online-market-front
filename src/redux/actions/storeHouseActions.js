@@ -10,6 +10,7 @@ export const listOfStoreHouse = (page, pageSize) => (dispatch) => {
       password: window.localStorage.getItem("password"),
     },
   });
+  dispatch(showLoader());
   axiosInstance
     .get("/storehouse?page=" + (page - 1) + "&size=" + pageSize)
     .then((response) => {
@@ -17,6 +18,7 @@ export const listOfStoreHouse = (page, pageSize) => (dispatch) => {
         type: actionTypes.LIST_OF_STOREHOUSE,
         payload: response.data,
       });
+      dispatch(hideLoader());
     });
 };
 export const getStoreHouseById = (id) => (dispatch) => {

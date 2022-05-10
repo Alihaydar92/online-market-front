@@ -330,3 +330,11 @@ kassa elave et ve kassa cedvel emeloyyatda export pdf income islesin+++
 qaime klikinde acilan modalda sekile bax emeliyyatini yazmaq +++
 
 sayimda sekili de gostermek+++
+
+basket data updateden sonra refresh+++
+
+productda sekil panelinde sekil secerken secilmish sekil gorsenmir+++
+
+anbarda progress qoymaq hemcinin invoiceda +++
+
+invoiceda umumi cem reqemi yuvarlaqlasdirmaq to fixed+++

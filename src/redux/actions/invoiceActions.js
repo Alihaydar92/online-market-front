@@ -1,10 +1,6 @@
 import * as actionTypes from "./actionTypes";
 import axios from "axios";
-import jsPDF from "jspdf";
-import "jspdf-autotable";
-import moment from "moment";
-import fontTxt from "../../helpers/fontRobotoBase64";
-const logo = require("../../helpers/greenStream.jpeg");
+import { showLoader, hideLoader } from "../actions/loaderActions";
 const baseURL = process.env.REACT_APP_BACKEND_URL;
 export const listOfInvoices = () => (dispatch) => {
   const axiosInstance = axios.create({
@@ -14,12 +10,14 @@ export const listOfInvoices = () => (dispatch) => {
       password: window.localStorage.getItem("password"),
     },
   });
+  dispatch(showLoader());
   axiosInstance.get("/invoices", {}).then((response) => {
     console.log(response.data);
     dispatch({
       type: actionTypes.LIST_OF_INVOICES,
       payload: response.data,
     });
+    dispatch(hideLoader());
   });
 };
 

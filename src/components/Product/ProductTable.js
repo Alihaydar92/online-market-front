@@ -27,6 +27,7 @@ import { SearchOutlined } from "@ant-design/icons";
 export default function ProductTable() {
   const dispatch = useDispatch();
   const [form] = Form.useForm();
+  var base64Prefix = "data:image/jpeg;base64,";
   /////////////////////////////////////////////file upload
   const [selectedFile, setSelectedFile] = useState({
     file: null,
@@ -47,6 +48,15 @@ export default function ProductTable() {
   const maxNumber = 10;
   const onChange = (imageList, addUpdateIndex) => {
     console.log(imageList, addUpdateIndex);
+    // var arr = [];
+    // for (let imgValue of Object.values(imageList)) {
+    //   if (imgValue.content.includes(",")) {
+    //     arr.push({ content: imgValue.content.split(",")[1] });
+    //   } else {
+    //     arr.push({ content: imgValue.content });
+    //   }
+    // }
+    // console.log(arr);
     setImages(imageList);
   };
   //////////////////////////////////////////////////image upload
@@ -122,7 +132,26 @@ export default function ProductTable() {
   );
 
   useEffect(() => {
-    setImages(productImagesDataByProductId?.images);
+    console.log(productImagesDataByProductId);
+   
+    var arr = [];
+    if (
+      productImagesDataByProductId !== null &&
+      productImagesDataByProductId !== undefined &&
+      productImagesDataByProductId.length !== 0
+    ) {
+      for (let imgValue of Object.values(
+        productImagesDataByProductId?.images
+      )) {
+        if (imgValue.content.includes(",")) {
+          arr.push({ content: imgValue });
+        } else {
+          arr.push({ content: base64Prefix.concat(imgValue.content) });
+        }
+      }
+      console.log(arr);
+      setImages(arr);
+    }
   }, [productImagesDataByProductId]);
 
   useEffect(() => {
@@ -261,10 +290,6 @@ export default function ProductTable() {
     onClear();
     pagination.page = 1;
     dispatch(searchProduct("", pagination.page, pagination.pageSize, false));
-  };
-
-  const onImageRemove = (index) => {
-    console.log(index);
   };
   return (
     <div>
@@ -477,7 +502,10 @@ export default function ProductTable() {
                       <Image.PreviewGroup>
                         <Image
                           // style={{ marginTop: "10px", marginRight: "10px" }}
-                          src={`data:image/jpeg;base64,${image["content"]}`}
+                          // src={`data:image/jpeg;base64,${image["content"]}`}
+                          //qeyd: backende sekillerin base 64 nun qarisina  data:image/jpeg;base64 vurulanda useeffectde data:image/jpeg;base64 concat etmeyi silecem,
+
+                          src={`${image["content"]}`}
                           // alt={}
                           width={200}
                           height={200}
