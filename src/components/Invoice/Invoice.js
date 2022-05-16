@@ -109,10 +109,10 @@ export default function Invoice() {
       console.log(element);
       var temp = [
         index + 1,
-        element.type,
-        element.cartNumber,
+        element.typeDescription,
+        element.invoiceNumber,
         moment(element.createdAt).format("DD.MM.YYYY"),
-        element.grandTotal,
+        element.total,
       ];
 
       rows.push(temp);
@@ -265,17 +265,17 @@ export default function Invoice() {
         dataSource={listOfInvoiceData?.pages}
         columns={invoicesListColumns}
         rowKey="invoiceListKey"
-        // pagination={{
-        //   defaultCurrent: 1,
-        //   current: listOfInvoiceData?.currentPage + 1,
-        //   pageSize: listOfInvoiceData?.pageSize,
-        //   total: listOfInvoiceData?.totalItems,
-        //   onChange: (page, pageSize) => {
-        //     setPagination({ page, pageSize });
+        pagination={{
+          defaultCurrent: 1,
+          current: listOfInvoiceData?.currentPage + 1,
+          pageSize: listOfInvoiceData?.pageSize,
+          total: listOfInvoiceData?.totalItems,
+          onChange: (page, pageSize) => {
+            setPagination({ page, pageSize });
 
-        //     // dispatch(listOfInvoices(page, pageSize));
-        //   },
-        // }}
+            // dispatch(listOfInvoices(page, pageSize));
+          },
+        }}
         onRow={(record, rowIndex) => {
           return {
             onClick: () => {
