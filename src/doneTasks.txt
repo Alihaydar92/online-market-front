@@ -340,3 +340,7 @@ anbarda progress qoymaq hemcinin invoiceda +++
 invoiceda umumi cem reqemi yuvarlaqlasdirmaq to fixed+++
 
 qaimede ikinci sehifeye kecid problem +++ 
+
+qaimede satis ve qaytarma oldugunu pdfde s ve q gostermek, hemcinin pdf in adi ve basligi ni da bucur deyishmek+++
+
+satisda say qiymet musteri satis qiymeti bu inputlari tapsiriga uygun duzeltmek+++

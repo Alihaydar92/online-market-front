@@ -50,11 +50,11 @@ export default function Invoice() {
   const invoicesListColumns = [
     {
       title: "Qaimə tipi",
-      dataIndex: "type",
+      dataIndex: "typeDescription",
     },
     {
       title: "Qaimə nömrəsi",
-      dataIndex: "cartNumber",
+      dataIndex: "invoiceNumber",
       sorter: (a, b) => a.cartNumber.localeCompare(b.cartNumber),
       sortDirections: ["descend", "ascend"],
     },
@@ -67,7 +67,7 @@ export default function Invoice() {
     },
     {
       title: "Yekun məbləğ",
-      dataIndex: "grandTotal",
+      dataIndex: "total",
       sorter: {
         compare: (a, b) => a.grandTotal - b.grandTotal,
         // multiple: 2,
@@ -265,17 +265,17 @@ export default function Invoice() {
         dataSource={listOfInvoiceData?.pages}
         columns={invoicesListColumns}
         rowKey="invoiceListKey"
-        pagination={{
-          defaultCurrent: 1,
-          current: listOfInvoiceData?.currentPage + 1,
-          pageSize: listOfInvoiceData?.pageSize,
-          total: listOfInvoiceData?.totalItems,
-          onChange: (page, pageSize) => {
-            setPagination({ page, pageSize });
+        // pagination={{
+        //   defaultCurrent: 1,
+        //   current: listOfInvoiceData?.currentPage + 1,
+        //   pageSize: listOfInvoiceData?.pageSize,
+        //   total: listOfInvoiceData?.totalItems,
+        //   onChange: (page, pageSize) => {
+        //     setPagination({ page, pageSize });
 
-            // dispatch(listOfInvoices(page, pageSize));
-          },
-        }}
+        //     // dispatch(listOfInvoices(page, pageSize));
+        //   },
+        // }}
         onRow={(record, rowIndex) => {
           return {
             onClick: () => {
@@ -292,8 +292,8 @@ export default function Invoice() {
         summary={(pageData) => {
           let totalOfGrandTotal = 0;
 
-          pageData.forEach(({ grandTotal }) => {
-            totalOfGrandTotal += grandTotal;
+          pageData.forEach(({ total }) => {
+            totalOfGrandTotal += total;
           });
 
           return (
@@ -344,7 +344,7 @@ export default function Invoice() {
                       color: "#FF0000",
                     }}
                   >
-                    {listOfInvoiceData?.total?.toFixed(2).toString()}
+                    {listOfInvoiceData?.sumTotal?.toFixed(2).toString()}
                   </Text>
                 </Table.Summary.Cell>
               </Table.Summary.Row>

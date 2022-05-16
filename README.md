@@ -69,7 +69,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-### CODE
+### now
 
 route ile linkleri goruntuden yigisdirmaq, yalniz base link olacaq
 
@@ -83,19 +83,17 @@ satisda say qiymet dizaynlarina yeniden baxmaq (up down mobile gorunmur)
 
 qaime klikinde sayi input etdikden sonra mebleg ve cemin hesablamisini da nezere almaq( backendde ve ya frontda)
 
-satisda say qiymet musteri satis qiymeti bu inputlari tapsiriga uygun duzeltmek+++
-
 helelik satis reponsive oz mobilim ucun duzdu,bunu plansete tetbiq etmek
 
-mobileda daxil olarken menu (3 noqte sheklindedi) menu ya klikledikde acilmr,ikinci defe klikledikde acilir ,buna baxmaw
+mobileda daxil olarken menu (3 noqte sheklindedi) menu ya klikledikde acilmr,ikinci defe klikledikde acilir ,buna baxma
 
 routelarda login olmamis urlden pencereni acmaq olur, bunu duzletmek
 
 müştəri pəncərəsində yeni bir kassa düyməsi qoymaq , ayrı bir səhifəyə yönəlsin o səhifədə həm əlavə edə bilsin həmdə kassa əməliyyatlari listini görə bilsin
 
-qaimede satis ve qaytarma oldugunu pdfde s ve q gostermek, hemcinin pdf in adi ve basligi ni da bucur deyishmek
+qaimede deyisiklikler(backendden gelen list struktur deyishimi)
 
-### sonra
+### after
 
 headerin responsiveliyi (Imkan varsa pencerelesi responsive etmek (Sonda da edile biler))
 

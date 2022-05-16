@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { Layout, Menu, Affix, Badge, Image } from "antd";
 import {
   Route,
-  PrivateRoute,
   Routes,
   Outlet,
   Link,

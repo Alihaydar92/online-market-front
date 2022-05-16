@@ -4,6 +4,7 @@ import initialState from "./initialState";
 export default function invoiceReducers(state = initialState, action) {
   switch (action.type) {
     case actionTypes.LIST_OF_INVOICES: {
+      console.log(action.payload)
       return {
         ...state,
         invoiceListData: action.payload,
