@@ -2,7 +2,7 @@ import * as actionTypes from "./actionTypes";
 import axios from "axios";
 import { showLoader, hideLoader } from "../actions/loaderActions";
 const baseURL = process.env.REACT_APP_BACKEND_URL;
-export const listOfInvoices = () => (dispatch) => {
+export const listOfInvoices = (page,pageSize) => (dispatch) => {
   const axiosInstance = axios.create({
     baseURL: baseURL,
     auth: {
@@ -11,7 +11,7 @@ export const listOfInvoices = () => (dispatch) => {
     },
   });
   dispatch(showLoader());
-  axiosInstance.get("/invoices", {}).then((response) => {
+  axiosInstance.get("/invoices?page="+(page-1)+ "&size=" + pageSize, {}).then((response) => {
     console.log(response.data);
     dispatch({
       type: actionTypes.LIST_OF_INVOICES,

@@ -22,7 +22,7 @@ export default function Invoice() {
   const [invoiceBaseData, setInvoiceBaseData] = useState();
   const [pagination, setPagination] = useState({ page: 1, pageSize: 15 });
   useEffect(() => {
-    dispatch(listOfInvoices());
+    dispatch(listOfInvoices(pagination.page, pagination.pageSize));
   }, [dispatch]);
 
   useEffect(() => {
@@ -273,7 +273,7 @@ export default function Invoice() {
           onChange: (page, pageSize) => {
             setPagination({ page, pageSize });
 
-            // dispatch(listOfInvoices(page, pageSize));
+            dispatch(listOfInvoices(page, pageSize));
           },
         }}
         onRow={(record, rowIndex) => {
