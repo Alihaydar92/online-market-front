@@ -21,7 +21,8 @@ export const listOfInvoices = (page,pageSize) => (dispatch) => {
   });
 };
 
-export const getInvoiceById = (invoiceId) => (dispatch) => {
+export const getInvoiceById = (invoiceId,invoiceType) => (dispatch) => {
+  console.log('invoiceId,invoiceType: ',invoiceId,invoiceType)
   const axiosInstance = axios.create({
     baseURL: baseURL,
     auth: {
@@ -30,7 +31,7 @@ export const getInvoiceById = (invoiceId) => (dispatch) => {
     },
   });
   axiosInstance
-    .get("/invoices/" + invoiceId + "/invoiceItems")
+    .get("/invoices/" + invoiceId +"/"+invoiceType+ "/invoiceItems")
     .then((response) => {
       dispatch({
         type: actionTypes.GET_INVOICE_BY_ID,

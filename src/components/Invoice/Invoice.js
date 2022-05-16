@@ -91,7 +91,7 @@ export default function Invoice() {
     console.log(record);
     setInvoiceBaseData(record);
     setRowIndex(rowIndex);
-    dispatch(getInvoiceById(record.id));
+    dispatch(getInvoiceById(record.id,record.invoiceType));
     showAddModal();
   };
 
@@ -358,9 +358,8 @@ export default function Invoice() {
         // maskTransitionName="fade"
 
         title={
-          invoiceBaseData?.type === "S"
-            ? "Satış qaimə məlumatları"
-            : "Qaytarma qaimə məlumatları"
+          invoiceBaseData?.typeDescription 
+       +" Qaimə məlumatları"
         }
         visible={isModalVisible}
         onCancel={handleCancel}
