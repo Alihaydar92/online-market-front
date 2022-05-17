@@ -66,7 +66,7 @@ export default {
 
   invoiceListData: {},
   invoiceItemsById: [],
-  invoiceAllData: {},
+  invoiceAllDataById: {},
   invoiceTypeListData: [],
 
   cashboxTypeListData: [],

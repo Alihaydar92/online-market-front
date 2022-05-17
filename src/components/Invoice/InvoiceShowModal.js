@@ -9,7 +9,10 @@ import {
   Modal,
 } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { exportSalePdf } from "../../redux/actions/pdfActions";
+import {
+  exportInvoiceSalePdf,
+  exportInvoiceRestorePdf,
+} from "../../redux/actions/pdfActions";
 import { getProductImagesByProductId } from "../../redux/actions/productActions";
 import InvoiceShowImgPanel from "./InvoiceShowImgPanel";
 
@@ -20,6 +23,9 @@ export default function InvoiceShowModal(props) {
   const [isImgPanelVisible, setIsImgPanelVisible] = useState(false);
   const invoicesDataById = useSelector(
     (state) => state.invoiceReducers?.invoiceItemsById
+  );
+  const invoiceOtherDataById = useSelector(
+    (state) => state.invoiceReducers?.invoiceAllDataById
   );
 
   useEffect(() => {
@@ -98,9 +104,24 @@ export default function InvoiceShowModal(props) {
     setInvoicesStateData(newData);
   };
   const pdfExport = () => {
-    dispatch(
-      exportSalePdf(invoicesStateData, props?.invoiceBaseDataProps, props?.invoiceBaseDataProps?.typeDescription+" Qaimə")
-    );
+    console.log("props?.invoiceBaseDataProps: ", props?.invoiceBaseDataProps);
+    if (props?.invoiceBaseDataProps?.invoiceType === "s") {
+      dispatch(
+        exportInvoiceSalePdf(
+          invoicesStateData,
+          invoiceOtherDataById,
+          props?.invoiceBaseDataProps?.typeDescription + " Qaimə"
+        )
+      );
+    } else if (props?.invoiceBaseDataProps?.invoiceType === "q") {
+      dispatch(
+        exportInvoiceRestorePdf(
+          invoicesStateData,
+          invoiceOtherDataById,
+          props?.invoiceBaseDataProps?.typeDescription + " Qaimə"
+        )
+      );
+    }
   };
 
   const showImgPanel = (productId) => {
@@ -110,7 +131,6 @@ export default function InvoiceShowModal(props) {
 
   const handleCancel = () => {
     setIsImgPanelVisible(false);
-   
   };
   return (
     <div>

@@ -91,7 +91,11 @@ routelarda login olmamis urlden pencereni acmaq olur, bunu duzletmek
 
 müştəri pəncərəsində yeni bir kassa düyməsi qoymaq , ayrı bir səhifəyə yönəlsin o səhifədə həm əlavə edə bilsin həmdə kassa əməliyyatlari listini görə bilsin
 
-qaimede deyisiklikler(backendden gelen list struktur deyishimi)
+qaimede deyisiklikler(backendden gelen list struktur deyishimi)+++
+
+qaimede klikinde acilanda modalda , backendde deyisen strukturu nezere alib tableda datani gostermek, customer ve seller datalari pdfde gostermek
+
+qaime tablede iki yekun mebleg olacaq qaytarma ve satis yekun mebleg onlari ayirmaq
 
 ### after
 
