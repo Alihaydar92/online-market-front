@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Table, Form, Input, Button, Select, Typography, Modal } from "antd";
+import { Table, Form, Input, Button,DatePicker, Select, Typography, Modal } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import {
@@ -14,7 +14,9 @@ import InvoiceShowModal from "./InvoiceShowModal";
 import { Excel } from "antd-table-saveas-excel";
 const { Option } = Select;
 const { Text } = Typography;
+const dateFormat = "DD.MM.YYYY";
 export default function Invoice() {
+  
   const dispatch = useDispatch();
   const [form] = Form.useForm();
   const [rowIndex, setRowIndex] = useState();
@@ -22,7 +24,7 @@ export default function Invoice() {
   const [invoiceBaseData, setInvoiceBaseData] = useState();
   const [pagination, setPagination] = useState({ page: 1, pageSize: 15 });
   useEffect(() => {
-    dispatch(listOfInvoices(pagination.page, pagination.pageSize));
+    dispatch(listOfInvoices(pagination.page, pagination.pageSize, null,false));
   }, [dispatch]);
 
   useEffect(() => {
@@ -91,7 +93,7 @@ export default function Invoice() {
     console.log(record);
     setInvoiceBaseData(record);
     setRowIndex(rowIndex);
-    dispatch(getInvoiceById(record.id,record.invoiceType));
+    dispatch(getInvoiceById(record.id, record.invoiceType));
     showAddModal();
   };
 
@@ -134,9 +136,18 @@ export default function Invoice() {
     form
       .validateFields()
       .then((values) => {
-        if (values.invoiceNumber !== undefined) {
-          dispatch(getInvoicesByParams(values.invoiceNumber));
-        }
+        // if (values.invoiceNumber !== undefined) {
+        //   dispatch(getInvoicesByParams(values.invoiceNumber));
+
+        // }
+        var searchParam = new Object();
+        searchParam.invoiceType = values.invoiceType;
+        searchParam.invoiceNumber = values.invoiceNumber;
+        searchParam.startAt =moment(values.startDate).format(dateFormat) ;
+        searchParam.endAt =moment(values.endDate).format(dateFormat) ;
+        dispatch(
+          listOfInvoices(pagination.page, pagination.pageSize, searchParam,true)
+        );
       })
       .catch((err) => {}, []);
   };
@@ -185,21 +196,23 @@ export default function Invoice() {
         </Form.Item>
         <Form.Item
           label="Başlama tarixi"
-          name="dateRange"
+          name="startDate"
+        
           rules={[
             { required: false, message: "Başlama tarixini  daxil edin!" },
           ]}
         >
-          <Input />
+        <DatePicker placeholder="tarix aralığını seçin"    type="object" format={dateFormat}/>
         </Form.Item>
         <Form.Item
           label="Bitmə tarixi"
-          name="dateRange"
+          name="endDate"
+        
           rules={[
             { required: false, message: "Başlama tarixini  daxil edin!" },
           ]}
         >
-          <Input />
+        <DatePicker placeholder="tarix aralığını seçin"   type="object" format={dateFormat} />
         </Form.Item>
         <Form.Item
           label="Məbləğ"
@@ -357,10 +370,7 @@ export default function Invoice() {
         // transitionName="none"
         // maskTransitionName="fade"
 
-        title={
-          invoiceBaseData?.typeDescription 
-       +" Qaimə məlumatları"
-        }
+        title={invoiceBaseData?.typeDescription + " Qaimə məlumatları"}
         visible={isModalVisible}
         onCancel={handleCancel}
         width={1000}

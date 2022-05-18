@@ -2,7 +2,7 @@ import * as actionTypes from "./actionTypes";
 import axios from "axios";
 import { showLoader, hideLoader } from "../actions/loaderActions";
 const baseURL = process.env.REACT_APP_BACKEND_URL;
-export const listOfInvoices = (page,pageSize) => (dispatch) => {
+export const listOfInvoices = (page,pageSize,searchParams,isFromSearchPagination) => (dispatch) => {
   const axiosInstance = axios.create({
     baseURL: baseURL,
     auth: {
@@ -10,8 +10,23 @@ export const listOfInvoices = (page,pageSize) => (dispatch) => {
       password: window.localStorage.getItem("password"),
     },
   });
+
+  var invoiceParams = new Object();
+    console.log(searchParams);
+    if (searchParams !== null) {
+      invoiceParams = searchParams;
+
+      if (isFromSearchPagination) {
+        invoiceParams.page = page - 1;
+      } else {
+        invoiceParams.page = 0;
+      }
+    } else {
+      invoiceParams.page = page - 1;
+    }
+    invoiceParams.size = pageSize;
   dispatch(showLoader());
-  axiosInstance.get("/invoices?page="+(page-1)+ "&size=" + pageSize, {}).then((response) => {
+  axiosInstance.get("/invoices" ,{params:invoiceParams}).then((response) => {
     console.log(response.data);
     dispatch({
       type: actionTypes.LIST_OF_INVOICES,
