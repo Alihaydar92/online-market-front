@@ -24,11 +24,15 @@ export default function productReducers(state = initialState, action) {
       };
     }
     case actionTypes.GET_PRODUCT_LIST_BY_ID_IS_NOT_CHANGED: {
+      console.log('not changed')
       let temp = initialState.productListDataById;
+      console.log(initialState.productListDataById)
       action.payload.pages.forEach((element) => {
         temp.push(element);
       });
+   
       // temp=[...initialState.productListDataByCategoryId, ...action.payload.pages]
+      console.log('not changed',temp)
       return {
         // ...state,
         productListDataById: temp,
@@ -38,8 +42,12 @@ export default function productReducers(state = initialState, action) {
       };
     }
     case actionTypes.GET_PRODUCT_LIST_BY_ID_IS_CHANGED: {
+      console.log(' changed')
+      action.payload.pages.forEach((element) => {
+        initialState.productListDataById.push(element);
+      });
       return {
-        productListDataById: action.payload.pages,
+        productListDataById: initialState.productListDataById,
         totalPages: action.payload.totalPages,
         totalItems: action.payload.totalItems,
         currentPage:action.payload.currentPage
