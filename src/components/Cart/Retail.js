@@ -29,6 +29,7 @@ import Button from "antd-button-color";
 import "antd/dist/antd.css"; // or 'antd/dist/antd.less'
 import "antd-button-color/dist/css/style.css";
 import { useMediaQuery } from "react-responsive";
+import InfiniteScroll from 'react-infinite-scroll-component';
 const logo = require("../../helpers/no-img.png");
 // const { Header, Footer, Sider, Content } = Layout;
 const { Option } = Select;
@@ -48,7 +49,7 @@ export default function Retail() {
     useState(true);
   const [disablePropertyCombo, setDisablePropertyCombo] = useState(true);
   const [page, setPage] = useState(0);
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const [visibleState, setVisibleState] = useState({ visible: false });
   const [formKey, setFormKey] = useState(Number(0));
   const [proId, setProId] = useState(undefined);
@@ -116,7 +117,7 @@ export default function Retail() {
     }
     console.log(proValue);
     setFormKey((formKey || 0) + 1);
-    setLoading(false);
+    // setLoading(false);
   };
 
   const onChangeCategory = (catValue) => {
@@ -134,7 +135,7 @@ export default function Retail() {
       setDisableForProAndCatCombo(false);
     }
     setFormKey((formKey || 0) + 1);
-    setLoading(false);
+    // setLoading(false);
   };
   const onChangeCustomer = (value) => {
     setDisable(false);
@@ -241,7 +242,7 @@ export default function Retail() {
       }
     }
 
-    setLoading(false);
+    // setLoading(false);
   }, [page]);
   const onClickForPropertyAndCategoryCombo = () => {
     baseForm
@@ -312,6 +313,10 @@ export default function Retail() {
   const handleVisibleChange = (v) => {
     setVisibleState({ v });
   };
+
+  const theFuncToFetchNextPage =()=>{
+    setPage(page + 1)
+  }
   return (
     <div>
       <Row style={{ marginTop: "20px" }}>
@@ -558,7 +563,8 @@ export default function Retail() {
           })}
           <br />
           <br />
-          <Row>
+          <InfiniteScroll next={theFuncToFetchNextPage} dataLength={listOfProductDataById?.length} hasMore={true} />
+          {/* <Row>
             {productListTotalPages !== page + 1 &&
               listOfProductDataById?.length > 0 && (
                 <Button
@@ -568,7 +574,7 @@ export default function Retail() {
                   {loading ? "Yüklənir..." : "Daha Çox"}
                 </Button>
               )}
-          </Row>
+          </Row> */}
         </Col>
       </Row>
       <BackTop />

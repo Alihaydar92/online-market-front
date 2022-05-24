@@ -75,8 +75,6 @@ route ile linkleri goruntuden yigisdirmaq, yalniz base link olacaq
 
 sekli sil buttonunun altinda sekli servisde cagirib silmek
 
-infinite scrool satis buttunsuz elemek
-
 qaime yekun mebleg cemini hesablamaq ve exportda nezere almaq
 
 satisda say qiymet dizaynlarina yeniden baxmaq (up down mobile gorunmur)
@@ -90,8 +88,6 @@ mobileda daxil olarken menu (3 noqte sheklindedi) menu ya klikledikde acilmr,iki
 routelarda login olmamis urlden pencereni acmaq olur, bunu duzletmek
 
 müştəri pəncərəsində yeni bir kassa düyməsi qoymaq , ayrı bir səhifəyə yönəlsin o səhifədə həm əlavə edə bilsin həmdə kassa əməliyyatlari listini görə bilsin
-
-qaimede deyisiklikler(backendden gelen list struktur deyishimi)+++
 
 qaimede klikinde acilanda modalda , backendde deyisen strukturu nezere alib tableda datani gostermek, customer ve seller datalari pdfde gostermek
 
